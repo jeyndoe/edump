@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Работа ядра на 2-х и более ядрах - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Недавно, при исследовании креш-дампа, случайно обнаружил, что на разных ядрах регистры gdtr и idtr разные. Это привлекло мое внимание и быстро обнаружилась одна проблема - gdi-функции работают только на одном ядре??? По порядку.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Работа ядра на 2-х и более ядрах</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июля 2010 14:45 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Недавно, при исследовании креш-дампа, случайно обнаружил, что на разных ядрах регистры gdtr и idtr разные. Это привлекло мое внимание и быстро обнаружилась одна проблема - <b>gdi-функции работают только на одном ядре</b>???<br><br>По порядку. Для начала введем в WinDbg команды, чтобы узнать на момент краша содержимое регистров на всех cpu.<br><br>Для cpu0<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;0rM&nbsp;0x1A9</li><li class="hl_l1"><span class="hl_registr">eax</span><span class="hl_char">=</span>ffdff13c&nbsp;<span class="hl_registr">ebx</span><span class="hl_char">=</span><span class="hl_number">85817ca0</span>&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;<span class="hl_registr">edx</span><span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;<span class="hl_registr">esi</span><span class="hl_char">=</span>f79a93a4&nbsp;<span class="hl_registr">edi</span><span class="hl_char">=</span><span class="hl_number">85710108</span></li><li class="hl_l0">eip<span class="hl_char">=</span><span class="hl_number">8053767a</span>&nbsp;<span class="hl_registr">esp</span><span class="hl_char">=</span>a9faab8c&nbsp;<span class="hl_registr">ebp</span><span class="hl_char">=</span>a9faaba4&nbsp;iopl<span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nv&nbsp;up&nbsp;ei&nbsp;ng&nbsp;nz&nbsp;na&nbsp;pe&nbsp;nc</li><li class="hl_l1"><span class="hl_registr">cs</span><span class="hl_char">=</span><span class="hl_number">0008</span>&nbsp;&nbsp;<span class="hl_registr">ss</span><span class="hl_char">=</span><span class="hl_number">0010</span>&nbsp;&nbsp;<span class="hl_registr">ds</span><span class="hl_char">=</span><span class="hl_number">0023</span>&nbsp;&nbsp;<span class="hl_registr">es</span><span class="hl_char">=</span><span class="hl_number">0023</span>&nbsp;&nbsp;<span class="hl_registr">fs</span><span class="hl_char">=</span><span class="hl_number">0030</span>&nbsp;&nbsp;<span class="hl_registr">gs</span><span class="hl_char">=</span><span class="hl_number">0000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;efl<span class="hl_char">=</span><span class="hl_number">00000286</span></li><li class="hl_l0">cr0<span class="hl_char">=</span><span class="hl_number">8001003b</span>&nbsp;cr2<span class="hl_char">=</span>c4d400dc&nbsp;cr3<span class="hl_char">=</span><span class="hl_number">06840000</span></li><li class="hl_l1">dr0<span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;dr1<span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;dr2<span class="hl_char">=</span><span class="hl_number">00000000</span></li><li class="hl_l0">dr3<span class="hl_char">=</span><span class="hl_number">8000f800</span>&nbsp;dr6<span class="hl_char">=</span>ffff0ff0&nbsp;dr7<span class="hl_char">=</span><span class="hl_number">00000400</span>&nbsp;cr4<span class="hl_char">=</span><span class="hl_number">000006d9</span></li><li class="hl_l1">gdtr<span class="hl_char">=</span><span class="hl_number">8003f000</span>&nbsp;&nbsp;&nbsp;gdtl<span class="hl_char">=</span><span class="hl_number">03ff</span>&nbsp;idtr<span class="hl_char">=</span><span class="hl_number">8003f400</span>&nbsp;&nbsp;&nbsp;idtl<span class="hl_char">=</span><span class="hl_number">07ff</span>&nbsp;tr<span class="hl_char">=</span><span class="hl_number">0028</span>&nbsp;&nbsp;ldtr<span class="hl_char">=</span><span class="hl_number">0000</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>для cpu1<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;1rM&nbsp;0x1A9</li><li class="hl_l1"><span class="hl_registr">eax</span><span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;<span class="hl_registr">ebx</span><span class="hl_char">=</span><span class="hl_number">006cff03</span>&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">=</span><span class="hl_number">006cfec0</span>&nbsp;<span class="hl_registr">edx</span><span class="hl_char">=</span><span class="hl_number">000000c0</span>&nbsp;<span class="hl_registr">esi</span><span class="hl_char">=</span><span class="hl_number">85edf000</span>&nbsp;<span class="hl_registr">edi</span><span class="hl_char">=</span><span class="hl_number">006cff61</span></li><li class="hl_l0">eip<span class="hl_char">=</span>bf33d6fa&nbsp;<span class="hl_registr">esp</span><span class="hl_char">=</span>a9778b84&nbsp;<span class="hl_registr">ebp</span><span class="hl_char">=</span>e24a83f0&nbsp;iopl<span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;nv&nbsp;up&nbsp;ei&nbsp;pl&nbsp;zr&nbsp;na&nbsp;pe&nbsp;nc</li><li class="hl_l1"><span class="hl_registr">cs</span><span class="hl_char">=</span><span class="hl_number">0008</span>&nbsp;&nbsp;<span class="hl_registr">ss</span><span class="hl_char">=</span><span class="hl_number">0010</span>&nbsp;&nbsp;<span class="hl_registr">ds</span><span class="hl_char">=</span><span class="hl_number">0023</span>&nbsp;&nbsp;<span class="hl_registr">es</span><span class="hl_char">=</span><span class="hl_number">0023</span>&nbsp;&nbsp;<span class="hl_registr">fs</span><span class="hl_char">=</span><span class="hl_number">0030</span>&nbsp;&nbsp;<span class="hl_registr">gs</span><span class="hl_char">=</span><span class="hl_number">0000</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;efl<span class="hl_char">=</span><span class="hl_number">00000246</span></li><li class="hl_l0">cr0<span class="hl_char">=</span><span class="hl_number">8001003b</span>&nbsp;cr2<span class="hl_char">=</span>c4d405ab&nbsp;cr3<span class="hl_char">=</span><span class="hl_number">30352000</span></li><li class="hl_l1">dr0<span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;dr1<span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;dr2<span class="hl_char">=</span><span class="hl_number">00000000</span></li><li class="hl_l0">dr3<span class="hl_char">=</span><span class="hl_number">00000000</span>&nbsp;dr6<span class="hl_char">=</span>ffff0ff0&nbsp;dr7<span class="hl_char">=</span><span class="hl_number">00000400</span>&nbsp;cr4<span class="hl_char">=</span><span class="hl_number">000006d9</span></li><li class="hl_l1">gdtr<span class="hl_char">=</span>f78d4160&nbsp;&nbsp;&nbsp;gdtl<span class="hl_char">=</span><span class="hl_number">03ff</span>&nbsp;idtr<span class="hl_char">=</span>f78d4560&nbsp;&nbsp;&nbsp;idtl<span class="hl_char">=</span><span class="hl_number">07ff</span>&nbsp;tr<span class="hl_char">=</span><span class="hl_number">0028</span>&nbsp;&nbsp;ldtr<span class="hl_char">=</span><span class="hl_number">0000</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Посмотрим таблицы gdt для всех cpu<br><br>для cpu0<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_number">8003f000</span></li><li class="hl_l1"><span class="hl_number">8003f000</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cf9b00</span></li><li class="hl_l0"><span class="hl_number">8003f010</span>&nbsp;&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cf9300</span>&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cffb00</span></li><li class="hl_l1"><span class="hl_number">8003f020</span>&nbsp;&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cff300</span>&nbsp;<span class="hl_number">200020ab</span>&nbsp;<span class="hl_number">80008b04</span></li><li class="hl_l0"><span class="hl_number">8003f030</span>&nbsp;&nbsp;f0000001&nbsp;ffc093df&nbsp;<span class="hl_number">00000fff</span>&nbsp;<span class="hl_number">0040f300</span></li><li class="hl_l1"><span class="hl_number">8003f040</span>&nbsp;&nbsp;<span class="hl_number">0400ffff</span>&nbsp;<span class="hl_number">0000f200</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">8003f050</span>&nbsp;&nbsp;<span class="hl_number">77000068</span>&nbsp;<span class="hl_number">80008955</span>&nbsp;<span class="hl_number">77680068</span>&nbsp;<span class="hl_number">80008955</span></li><li class="hl_l1"><span class="hl_number">8003f060</span>&nbsp;&nbsp;<span class="hl_number">2f40ffff</span>&nbsp;<span class="hl_number">00009302</span>&nbsp;<span class="hl_number">80003fff</span>&nbsp;<span class="hl_number">0000920b</span></li><li class="hl_l0"><span class="hl_number">8003f070</span>&nbsp;&nbsp;<span class="hl_number">700003ff</span>&nbsp;ff0092ff&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">80009a40</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>для cpu1<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;f78d4160</li><li class="hl_l1">f78d4160&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cf9b00</span></li><li class="hl_l0">f78d4170&nbsp;&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cf9300</span>&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cffb00</span></li><li class="hl_l1">f78d4180&nbsp;&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">00cff300</span>&nbsp;<span class="hl_number">0d7020ab</span>&nbsp;f7008b8d</li><li class="hl_l0">f78d4190&nbsp;&nbsp;<span class="hl_number">00000001</span>&nbsp;f7c0938d&nbsp;<span class="hl_number">80000fff</span>&nbsp;<span class="hl_number">7f40f3fa</span></li><li class="hl_l1">f78d41a0&nbsp;&nbsp;<span class="hl_number">0400ffff</span>&nbsp;<span class="hl_number">0000f200</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d41b0&nbsp;&nbsp;<span class="hl_number">30800068</span>&nbsp;f700898d&nbsp;<span class="hl_number">30f00068</span>&nbsp;f700898d</li><li class="hl_l1">f78d41c0&nbsp;&nbsp;<span class="hl_number">2f40ffff</span>&nbsp;<span class="hl_number">00009302</span>&nbsp;<span class="hl_number">80003fff</span>&nbsp;<span class="hl_number">0000920b</span></li><li class="hl_l0">f78d41d0&nbsp;&nbsp;<span class="hl_number">700003ff</span>&nbsp;ff0092ff&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">80009a40</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Видно, что таблицы одинаковы только наполовину. Для селектора fs=30 базы разные: на cpu0 база fs - 0xFFDFF000, cpu1  - 0xF78D0000. Посмотрим что по этим адресам<br><br>для cpu0<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;ffdff000&nbsp;ffdff17f</li><li class="hl_l1">ffdff000&nbsp;&nbsp;a9faadcc&nbsp;a9faadf0&nbsp;a9fa8000&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff010&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;ffdff000</li><li class="hl_l1">ffdff020&nbsp;&nbsp;ffdff120&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff030&nbsp;&nbsp;ffffffff&nbsp;<span class="hl_number">805532b8</span>&nbsp;<span class="hl_number">8003f400</span>&nbsp;<span class="hl_number">8003f000</span></li><li class="hl_l1">ffdff040&nbsp;&nbsp;<span class="hl_number">80042000</span>&nbsp;<span class="hl_number">00010001</span>&nbsp;<span class="hl_number">00000001</span>&nbsp;<span class="hl_number">00000a28</span></li><li class="hl_l0">ffdff050&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff060&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff070&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff080&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff090&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0bebc200</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff0a0&nbsp;&nbsp;<span class="hl_number">0bebc200</span>&nbsp;<span class="hl_number">9af94f30</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">13603cce</span></li><li class="hl_l0">ffdff0b0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff0c0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff0d0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff0e0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff0f0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff100&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff110&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff120&nbsp;&nbsp;<span class="hl_number">00010001</span>&nbsp;<span class="hl_number">857c2448</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">80561cc0</span></li><li class="hl_l0">ffdff130&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000001</span>&nbsp;<span class="hl_number">170a0106</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff140&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff150&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">ffdff160&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">ffdff170&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>для cpu1<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;f78d0000&nbsp;f78d017f</li><li class="hl_l1">f78d0000&nbsp;&nbsp;ffffffff&nbsp;a9778df0&nbsp;a9775000&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0010&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">7ffa8000</span>&nbsp;f78d0000</li><li class="hl_l1">f78d0020&nbsp;&nbsp;f78d0120&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0030&nbsp;&nbsp;ffffffff&nbsp;<span class="hl_number">00000000</span>&nbsp;f78d4560&nbsp;f78d4160</li><li class="hl_l1">f78d0040&nbsp;&nbsp;f78d0d70&nbsp;<span class="hl_number">00010001</span>&nbsp;<span class="hl_number">00000002</span>&nbsp;<span class="hl_number">00000a28</span></li><li class="hl_l0">f78d0050&nbsp;&nbsp;<span class="hl_number">00000100</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d0060&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0070&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d0080&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0090&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000201</span>&nbsp;<span class="hl_number">0bebc200</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d00a0&nbsp;&nbsp;<span class="hl_number">0bebc200</span>&nbsp;<span class="hl_number">9af94f30</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">13603cce</span></li><li class="hl_l0">f78d00b0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d00c0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d00d0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d00e0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d00f0&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d0100&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0110&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d0120&nbsp;&nbsp;<span class="hl_number">00010001</span>&nbsp;<span class="hl_number">85266a90</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;f78d2e20</li><li class="hl_l0">f78d0130&nbsp;&nbsp;<span class="hl_number">00000001</span>&nbsp;<span class="hl_number">00000002</span>&nbsp;<span class="hl_number">170a0106</span>&nbsp;<span class="hl_number">00010017</span></li><li class="hl_l1">f78d0140&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0150&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1">f78d0160&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">f78d0170&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Таблицы адресов nt-функций в ядре, которым передается управление через int 2e или sysenter находятся по адресу [fs:[124] + E0]. По fs:[124] структура, о которой пока имею мало представления, только некоторые адреса. На cpu0 ее адрес 0x857C2448, cpu1 - 0x85266A90. Структуры для разных cpu имеют также разные адреса<br><br>Для cpu0<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_number">857c2448</span>&nbsp;<span class="hl_number">857c2547</span></li><li class="hl_l1"><span class="hl_number">857c2448</span>&nbsp;&nbsp;<span class="hl_number">00700006</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">857c2450</span>&nbsp;<span class="hl_number">857c2450</span></li><li class="hl_l0"><span class="hl_number">857c2458</span>&nbsp;&nbsp;<span class="hl_number">857c2458</span>&nbsp;<span class="hl_number">857c2458</span>&nbsp;a9fab000&nbsp;a9fa8000</li><li class="hl_l1"><span class="hl_number">857c2468</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;a9faa85c&nbsp;<span class="hl_number">00000200</span></li><li class="hl_l0"><span class="hl_number">857c2478</span>&nbsp;&nbsp;<span class="hl_number">0e000a00</span>&nbsp;<span class="hl_number">857c247c</span>&nbsp;<span class="hl_number">857c247c</span>&nbsp;<span class="hl_number">857c2484</span></li><li class="hl_l1"><span class="hl_number">857c2488</span>&nbsp;&nbsp;<span class="hl_number">857c2484</span>&nbsp;<span class="hl_number">863c4830</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">000003b4</span></li><li class="hl_l0"><span class="hl_number">857c2498</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">857c24b8</span></li><li class="hl_l1"><span class="hl_number">857c24a8</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;f7a6beb8&nbsp;<span class="hl_number">00002aa9</span>&nbsp;<span class="hl_number">0400100d</span></li><li class="hl_l0"><span class="hl_number">857c24b8</span>&nbsp;&nbsp;<span class="hl_number">856ba3c8</span>&nbsp;<span class="hl_number">856ba3c8</span>&nbsp;<span class="hl_number">857c2448</span>&nbsp;<span class="hl_number">856ba3c0</span></li><li class="hl_l1"><span class="hl_number">857c24c8</span>&nbsp;&nbsp;<span class="hl_number">857c24b8</span>&nbsp;<span class="hl_number">00010000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">857c24d8</span>&nbsp;&nbsp;<span class="hl_number">857c2448</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1"><span class="hl_number">857c24e8</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">857c2448</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">857c24f8</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">857c2540</span>&nbsp;<span class="hl_number">857c2540</span></li><li class="hl_l1"><span class="hl_number">857c2508</span>&nbsp;&nbsp;<span class="hl_number">857c2448</span>&nbsp;<span class="hl_number">857c2538</span>&nbsp;<span class="hl_number">857c24b8</span>&nbsp;<span class="hl_number">00010102</span></li><li class="hl_l0"><span class="hl_number">857c2518</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000003</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1"><span class="hl_number">857c2528</span>&nbsp;&nbsp;<span class="hl_number">80562520</span>&nbsp;<span class="hl_number">8056a5c0</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">857c2538</span>&nbsp;&nbsp;<span class="hl_number">000a0008</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">857c2540</span>&nbsp;<span class="hl_number">857c2540</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>для cpu1<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_number">85266a90</span>&nbsp;<span class="hl_number">85266b8f</span></li><li class="hl_l1"><span class="hl_number">85266a90</span>&nbsp;&nbsp;<span class="hl_number">00700006</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">85266a98</span>&nbsp;<span class="hl_number">85266a98</span></li><li class="hl_l0"><span class="hl_number">85266aa0</span>&nbsp;&nbsp;<span class="hl_number">85266aa0</span>&nbsp;<span class="hl_number">85266aa0</span>&nbsp;a9779000&nbsp;a9775000</li><li class="hl_l1"><span class="hl_number">85266ab0</span>&nbsp;&nbsp;<span class="hl_number">7ffa8000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;a9778acc&nbsp;<span class="hl_number">00000200</span></li><li class="hl_l0"><span class="hl_number">85266ac0</span>&nbsp;&nbsp;<span class="hl_number">08000a00</span>&nbsp;<span class="hl_number">85266ac4</span>&nbsp;<span class="hl_number">85266ac4</span>&nbsp;<span class="hl_number">85266acc</span></li><li class="hl_l1"><span class="hl_number">85266ad0</span>&nbsp;&nbsp;<span class="hl_number">85266acc</span>&nbsp;<span class="hl_number">852d9020</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000008a</span></li><li class="hl_l0"><span class="hl_number">85266ae0</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000002</span>&nbsp;<span class="hl_number">85266b00</span></li><li class="hl_l1"><span class="hl_number">85266af0</span>&nbsp;&nbsp;<span class="hl_number">80562de0</span>&nbsp;<span class="hl_number">80562de0</span>&nbsp;<span class="hl_number">00002aa6</span>&nbsp;<span class="hl_number">09001008</span></li><li class="hl_l0"><span class="hl_number">85266b00</span>&nbsp;&nbsp;<span class="hl_number">852f0488</span>&nbsp;<span class="hl_number">852f0488</span>&nbsp;<span class="hl_number">85266a90</span>&nbsp;<span class="hl_number">861d2c28</span></li><li class="hl_l1"><span class="hl_number">85266b10</span>&nbsp;&nbsp;<span class="hl_number">85266b48</span>&nbsp;<span class="hl_number">00010000</span>&nbsp;<span class="hl_number">851bcab8</span>&nbsp;<span class="hl_number">851bcab8</span></li><li class="hl_l0"><span class="hl_number">85266b20</span>&nbsp;&nbsp;<span class="hl_number">85266a90</span>&nbsp;<span class="hl_number">851bcab0</span>&nbsp;<span class="hl_number">85266b00</span>&nbsp;<span class="hl_number">00010001</span></li><li class="hl_l1"><span class="hl_number">85266b30</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">85266a90</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">85266b40</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">85266b88</span>&nbsp;<span class="hl_number">85266b88</span></li><li class="hl_l1"><span class="hl_number">85266b50</span>&nbsp;&nbsp;<span class="hl_number">85266a90</span>&nbsp;<span class="hl_number">85266b80</span>&nbsp;<span class="hl_number">85266b00</span>&nbsp;<span class="hl_number">00010102</span></li><li class="hl_l0"><span class="hl_number">85266b60</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;fffffffc&nbsp;<span class="hl_number">00000003</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1"><span class="hl_number">85266b70</span>&nbsp;&nbsp;<span class="hl_number">805624e0</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">85266b80</span>&nbsp;&nbsp;<span class="hl_number">000a0008</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">85266b48</span>&nbsp;<span class="hl_number">85266b48</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Адреса структур, содержащих таблицы для разных cpu тоже разные.<br><br>Для cpu0<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_number">80562520</span>&nbsp;<span class="hl_number">8056255f</span></li><li class="hl_l1"><span class="hl_number">80562520</span>&nbsp;&nbsp;<span class="hl_number">804e48b0</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000011c</span>&nbsp;<span class="hl_number">805110cc</span></li><li class="hl_l0"><span class="hl_number">80562530</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1"><span class="hl_number">80562540</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">80562550</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Для cpu1<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">0</span><span class="hl_char">:</span>&nbsp;kd<span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_number">805624e0</span>&nbsp;<span class="hl_number">8056251f</span></li><li class="hl_l1"><span class="hl_number">805624e0</span>&nbsp;&nbsp;<span class="hl_number">804e48b0</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000011c</span>&nbsp;<span class="hl_number">805110cc</span></li><li class="hl_l0"><span class="hl_number">805624f0</span>&nbsp;&nbsp;bf99a200&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000029b</span>&nbsp;bf99af10</li><li class="hl_l1"><span class="hl_number">80562500</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">80562510</span>&nbsp;&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Вот здесь уже рождается вопрос. Для всех функций от 0 до 0x11C все в порядке, их таблицы даже одинаковые. 0x804E48B0 - таблица адресов функций, в основном содержит адреса в той же ntoskrnl, если только некоторые функции не перехватывается драйверами, такими vax347b (от Alcohol 120%), syser и hardlock(hasp-эмуль). 0x11C - число функций. 0x805110CC - таблица числа аргументов функции. Но для gdi, где номера функций от 0x1000 до 0x129B таблицы указаны только для cpu1!!! <b>Бьюсь над загадкой, как это может корректно работать...</b><br><br>Что  попутно заметил, кроме подмены адресов функций, таблицы можно расширить, а также есть место для еще 2-х. Но это, возможно, будет тема следующего поста...
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261834&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=1" class="addthx" data-post="261834"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июля 2010 17:51 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+<b>DenCoder</b><br>&gt; обнаружил, что на разных ядрах регистры gdtr и idtr разные.<br>ы и после таких вопросов вы есчо пытались со мной чемто меряться <img src="img/smilies/s6.gif" alt=""><br>Каждый процессор имеет сою уникальную среду, это PCR, GDT, IDT, DPC-stack etc.)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=261843&amp;user=17964&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=2" class="addthx" data-post="261843"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июля 2010 21:09 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+В kernel debugging mode при нормальной работе системы адрес структур с таблиц один для обоих cpu. Только на момент краша были проблемы с этим. Видимо, cpu0 уже не собирался в какой-то момент (перед крашем или во время) работать с юзермодом.<br><br><b>Clerk</b>, ладно стебатсья <img src="img/smilies/s5.gif" alt="">, для начинающих ядерщиков будет полезно.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261854&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=3" class="addthx" data-post="261854"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2010 04:27 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Раз уж начал эту тему, несколько вопросов по теме:<br><br>1) Как узнать, на каком проце выполняется поток в kernel mode? Что-то наводит на мысль, что через fs:[0x130]. Там 0 и 1... Хотя заметил еще fs:[0x48] и fs:[0x134], там 1 и 2.<br>2) То же самое в user mode на WinXP x86. Возможно ли в это вообще? В MSDN нашел только GetCurrentProcessorNumber для висты.<br>3) Как узнать контекст другого cpu? Можно ли это?<br><br>Где можно об этом прочесть?<br>____________________________<br>На первые 2 вопроса уже нашел ответ (точнее 2 вопроса объединяются в один для Intel), покопавшись в pdf&#039;ах у себя. cpuid с eax = 1 дает в старшем байте регистра ebx номер текушего cpu, который правильно называют Local APIC ID. (Зубков ничего об этом не писал) Думаю, это оно, но боюсь, что только для Intel. Есть какой-нить универсальный способ?<br>____________________________<br>Как вариант ответа на 3 вопрос для Intel нашел способ через ICR (Interrupt Command Register), который доступен программно и позволяет из процессора в процессор посылать прерывания (IPIs). Любое незадействованное прерывание можно под это заюзать, я думаю. Только что-то геморно...
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261864&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=4" class="addthx" data-post="261864"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2010 06:12 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>1) Как узнать, на каком проце выполняется поток в kernel mode? </I><br>KeGetCurrentProcessorNumber, но делать это имеет смысл только на DISPATCH_LEVEL и выше.<br><br><I>DenCoder пишет:<br>2) То же самое в user mode на WinXP x86. </I><br>Никак, если поток не привязан к конкретному процессору, то с тем же успехом можно узнавать через rand<br><br><I>DenCoder пишет:<br>3) Как узнать контекст другого cpu? Можно ли это? </I><br>Контексты есть у потоков, в ядре ещё есть KTRAP_FRAME. Контекст юзермодных потоков можно узнать через апи, ядерных - никак (документированными средствами).<br><br><I>DenCoder пишет:<br>cpuid с eax = 1 дает в старшем байте регистра ebx номер текушего cpu, который правильно называют Local APIC ID. </I><br>Может некорректно работать на виртуальных машинах использующих программную виртуализацию.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261865&amp;user=12867&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=5" class="addthx" data-post="261865"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]izl3sa[/b]','')">izl3sa</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 2.4 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.12'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=25499">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2010 06:25 <br><script type="text/javascript">QU('izl3sa','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=izl3sa" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+может стоит уже в windbg сделать dt nt!_KPCR и посмотреть что там есть, а не спрашивать по смещениям ^___^?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=261866&amp;user=25499&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=6" class="addthx" data-post="261866"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]cppasm[/b]','')">cppasm</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 251.3 (наставник), 81thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.77'>Активность: 0.14<span style='color:red'>&searr;</span>0.11</span><br>Статус: <a href="action=userinfo&amp;user=6859">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2010 15:51 <br><script type="text/javascript">QU('cppasm','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=cppasm" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>2) То же самое в user mode на WinXP x86. Возможно ли в это вообще? В MSDN нашел только GetCurrentProcessorNumber для висты. </I><br>Для процесса - GetProcessAffinityMask()<br>msdn.microsoft.com/en-us/library/ms683213%28v=VS.85%29.aspx<br><br>Для потока - можно через SetThreadAffinityMask(), она возвращает предыдущее значение.<br>msdn.microsoft.com/en-us/library/ms686247%28VS.85%29.aspx<br>Т.е. через GetProcessAffinityMask() узнать SystemAffinityMask<br>Выполнить<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">PrevThreadAffinityMask<span class="hl_char">=</span>SetThreadAffinityMask<span class="hl_char">(</span>hThread<span class="hl_char">,</span>&nbsp;SystemAffinityMask<span class="hl_char">)</span><span class="hl_comment">; // Разрешить запуск на всех CPU</span></li><li class="hl_l1">SetThreadAffinityMask<span class="hl_char">(</span>hThread<span class="hl_char">,</span>&nbsp;PrevThreadAffinityMask<span class="hl_char">)</span><span class="hl_comment">; // Восстановить маску</span></li><li class="hl_l0">Sleep<span class="hl_char">(</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">; // Перепланировать поток, если изменения в планировании потока не критичны, можно не делать</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261885&amp;user=6859&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=7" class="addthx" data-post="261885"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2010 01:51 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<b>cppasm</b><br>Не, GetProcessAfinityMask может дать различные результаты, в том числе и переменные для одного и того же потока, если не устанавливать самому. Потом она возвращает маску процессоров, на которых могут выполняться потоки процессора, и эта маска - подмножетво из SystemAffinityMask. То же самое и с SetThreadAffinityMask.<br><br>cpuid вполне подходит, если не брать в расчет некоторые виртуалки. Для amd та же команда, только с другой трактовкой регистров.<br><br><b>ntldr</b><br>KeGetCurrentProcessorNumber нету на XP.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261898&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=8" class="addthx" data-post="261898"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]only[/b]','')">only</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.4 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.22'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=20804">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2010 02:10 &middot; Поправил: only <br><script type="text/javascript">QU('only','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=only" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>KeGetCurrentProcessorNumber нету на XP.  </I><br><br>ntddk.h<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">/</span><span class="hl_char">/</span></li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;Get&nbsp;the&nbsp;current&nbsp;processor&nbsp;number</li><li class="hl_l0"><span class="hl_char">/</span><span class="hl_char">/</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_char">=</span><span class="hl_char">-</span><span class="hl_char">&gt;</span>&nbsp;FORCEINLINE&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">-</span><span class="hl_char">=</span></li><li class="hl_l1">ULONG</li><li class="hl_l0">NTAPI</li><li class="hl_l1">KeGetCurrentProcessorNumber<span class="hl_char">(</span><span class="hl_function">VOID</span><span class="hl_char">)</span></li><li class="hl_l0">{</li><li class="hl_l1">#if&nbsp;<span class="hl_char">(</span>_MSC_FULL_VER&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">=</span>&nbsp;<span class="hl_number">13012035</span><span class="hl_char">)</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;<span class="hl_char">(</span>ULONG<span class="hl_char">)</span>&nbsp;__readfsbyte&nbsp;<span class="hl_char">(</span>FIELD_OFFSET&nbsp;<span class="hl_char">(</span>KPCR<span class="hl_char">,</span>&nbsp;Number<span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">#else</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;__asm&nbsp;{&nbsp;&nbsp;<span class="hl_function"><b>movzx</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;_PCR&nbsp;KPCR<span class="hl_char">.</span>Number&nbsp;&nbsp;}</li><li class="hl_l1">#endif</li><li class="hl_l0">}</li><li class="hl_l1">&nbsp;</li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261899&amp;user=20804&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=9" class="addthx" data-post="261899"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2010 02:42 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>only</b><br>Среди экспорта такой функи не обнаружено
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261900&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=10" class="addthx" data-post="261900"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]only[/b]','')">only</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.4 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.22'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=20804">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2010 03:29 &middot; Поправил: only <br><script type="text/javascript">QU('only','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=only" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<b>FORCEINLINE</b><br>такое встречается достаточно часто, в одних версиях ОС sdk функция в виде макроса, либо встраиваемая, в других - в экспорте (примеры: NtCurrentTeb(), ndis (там наверное десятки таких функций, которые были макросами вызова метода объекта через колбек в структуре, а стали экспортируемыми функциями))<br><I>DenCoder пишет:<br>В MSDN нашел только GetCurrentProcessorNumber для висты. </I><br>это все тот же lapic id, только, как уже сказали выше, какой с этих данных толк на PASSIVE_LEVEL не ясно
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=261901&amp;user=20804&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=11" class="addthx" data-post="261901"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2010 04:37 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>KeGetCurrentProcessorNumber нету на XP. </I><br>Всё везде есть. Это макрос DDK, смотри ntddk.h
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261902&amp;user=12867&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=12" class="addthx" data-post="261902"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2010 19:52 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>only пишет:<br>какой с этих данных толк на PASSIVE_LEVEL не ясно</b><br>Раз уж дело еще и за иписами, то и от DISPATCH тоже никакого толку... Разве нельзя KeRaiseIrql использовать?<br><br>Дрову буду писать потихоньку. Впервые в своей жизни, поэтому пока информацию собираю. Пока ничего серьезного, просто несколько экспериментов.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261922&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=13" class="addthx" data-post="261922"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 222thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 июля 2010 04:38 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>only</b><br>Ты 3-ий вопрос пропустил. Оттуда и IPI. Прочти про них, если не знаешь, потом говори.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=261973&amp;user=24257&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=14" class="addthx" data-post="261973"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 июля 2010 17:34 &middot; Поправил: Clerk <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>only</b><br>Ядро вызывает хэндлер IPI на всех процессорах последовательно на IPI_LEVEL.<br>Незачем реализовать самостоятельно. Хал экспортирует нужный но немного урезанный функционал. Ядро имеет функции KeIpiGenericCall/KiIpiGenericCall, первая экспортируется в старших версиях системы, но может быть найдена самостоятельно <noindex><a href="http://files.virustech.org/indy/Code/Ipi/" rel="nofollow" target="_blank">http://files.virustech.org/indy/Code/Ipi/</a></noindex><br>На виртеке ктото вылаживал самодостаточный код, реализующий доставку IPI.<br><b>DenCoder</b><br>&gt; Разве нельзя KeRaiseIrql использовать?<br>Можно, но это только вас ограничит. Понижать IRQL ниже текущего уровня запрещено.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=262032&amp;user=17964&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=15" class="addthx" data-post="262032"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]n0name[/b]','')">n0name</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 61.4 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.7'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=7411">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июля 2010 03:21 <br><script type="text/javascript">QU('n0name','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=n0name" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+&gt; На виртеке ктото вылаживал самодостаточный код, реализующий доставку IPI.<br>50 строк си кода <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=262062&amp;user=7411&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=16" class="addthx" data-post="262062"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июля 2010 06:52 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16475.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<b>n0name</b><br>Точно это вы были <img src="img/smilies/s2.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=262065&amp;user=17964&amp;forum_n=6&amp;topic=16475.html&amp;page=0&amp;anchor=17" class="addthx" data-post="262065"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Работа ядра на 2-х и более ядрах</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#18" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="16475">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=16475" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

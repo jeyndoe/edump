@@ -1,0 +1,353 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Перехват функций Io и Ps в Ring0 - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Доброе время суток. Проблема такова. Пишу свой драйвер. Пытался в нём перехватить функцию IoGetCurrentProcess. В результате драйвер запускается, якобы перехатывает, но ниодного вызова этой функции не фиксирует? Проверил на">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=50833'>vasilevradislav</a>, <a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a>, <a target='_blank' href='?action=userinfo&amp;user=42072'>zombi-vadim</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Перехват функций Io и Ps в Ring0</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2008 21:24 <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Доброе время суток.<br><br>Проблема такова. Пишу свой драйвер. Пытался в нём перехватить функцию IoGetCurrentProcess.<br>В результате драйвер запускается, якобы перехатывает, но ниодного вызова этой функции не фиксирует? <img src="img/smilies/s13.gif" alt=""><br>Проверил на функции к прмеру ZwQuerySystemInformation там всё работает, каждый вызов фиксируется, а функции IoGetCurrentProcess, IoGetCurrentProcessId и PsGetCurrentProcessId не вызываются. Почему?<br>Может они вызываются особым образом или их нельзя перехватывать?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178735&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=1" class="addthx" data-post="178735"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2008 21:41 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Дык перехватывает или нет? Как хук то ставишь? Хоть что-нить бы в студию предоставил. Сайс возьми, потрассируй дров, разберись.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178738&amp;user=1556&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=2" class="addthx" data-post="178738"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]S_T_A_S_[/b]','')">S_T_A_S_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 163.7 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=251">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 03:47 <br><script type="text/javascript">QU('S_T_A_S_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=S_T_A_S_" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Дык она просто не вызывается <img src="img/smilies/s1.gif" alt=""> <br><br><I>DDK пишет:<br>Comments<br>This routine is identical to PsGetCurrentProcess. </I>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178768&amp;user=251&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=3" class="addthx" data-post="178768"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]undb[/b]','')">undb</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 30.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.62'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=14323">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 12:02 <br><script type="text/javascript">QU('undb','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=undb" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Во первых в каком контексте ты это перехватил , там и будет у тебя работать. <br>Во вторых ..сорца нет .. и как ты там перехватываешь и как проверяешь что перехватил нам не известно, мы к большому сожелению не обладаем телепатическими способностями.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178809&amp;user=14323&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=4" class="addthx" data-post="178809"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 12:16 <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>undb пишет:<br>Во первых в каком контексте ты это перехватил , там и будет у тебя работать </I><br>А почему тогда перехват ZwQuerySystemInformation работает для всех контекстов? Не хотел давать исходники, т.к. сейчас начнётся флуд по поводу стиля и выбранного языка программирования. Ну да Бог с ним. Вот основное:<br><br><code>procedure HookFunctions(ADriverObject: PDriverObject);<br>begin<br>  DbgPrint(&#039;HookingEnable()&#039;);<br><br>  asm                                              //disable WP bit<br>    mov eax, cr0                                   //move CR0 register into EAX<br>    and eax, not 000010000h                        //disable WP bit <br>    mov cr0, eax                                   //write register back<br>  end;<br><br>  OldZwQuerySystemInformation := TZwQuerySystemInformation(InterlockedExchange(SystemService(ZwQuerySys temInformationAddr),  LONG(@NewZwQuerySystemInformation)));<br>  OldIoGetCurrentProcess  := TIoGetCurrentProcess(InterlockedExchange(SystemService(IoGetCurrentPro cessAddr),  LONG(@NewIoGetCurrentProcess)));<br><br>  asm                                              //enable WP bit<br>    mov eax, cr0                                   //move CR0 register into EAX<br>    or  eax, 000010000h                             //enable WP bit         <br>    mov cr0, eax                                   //write register back           <br>  end;<br>end;<br><br>function NewIoGetCurrentProcess: PEPROCESS; stdcall;<br>begin<br>  DbgPrint(&#039;IoGetCurrentProcess&#039;);<br>  Result := OldIoGetCurrentProcess;<br>end;<br><br>function NewZwQuerySystemInformation(SystemInformationClass: ULONG; SystemInformation: PVOID; SystemInformationLength: ULONG; ReturnLength: PULONG): NTSTATUS; stdcall;<br>begin<br>  DbgPrint(&#039;ZwQuerySystemInformation&#039;);<br>  Result := OldZwQuerySystemInformation(SystemInformationClass, SystemInformation, SystemInformationLength, ReturnLength);<br>end;<br></code><br><br>Когда это всё запускается, то в <b>DbgView.exe</b> видны вызовы ZwQuerySystemInformation, а IoGetCurrentProcess нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178812&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=5" class="addthx" data-post="178812"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 14:57 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Дык ты чо творишь то? SystemService()-это ж из SDT таблицы хук функи, походу. А твоей функи нет в СДТ. Сплайсинг юзать надо =\
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178822&amp;user=1556&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=6" class="addthx" data-post="178822"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 15:26 <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Ну и на этом уже спасибо =).<br><I>Archer пишет:<br>Дык ты чо творишь то? SystemService()-это ж из SDT таблицы хук функи, походу. А твоей функи нет в СДТ. </I><br>А как я могу узнать какие функции представлены в SDT, а какие нет? Можете ссылкой ткнуть.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178825&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=7" class="addthx" data-post="178825"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]LazzY[/b]','')">LazzY</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 110.7 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.36'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3961">Участник</a><br><font color=blue>~ tPORt ~</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 18:04 <br><script type="text/javascript">QU('LazzY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=LazzY" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+--&gt; шлёп &lt;-- http://www.wasm.ru/pub/21/files/sysservice.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178838&amp;user=3961&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=8" class="addthx" data-post="178838"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 18:21 &middot; Поправил: SLayer <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Ура, <b>LazzY</b> спасибо.<br><br>Вернёмся к сплайсингу.<br>Имеем функцию<br><br><code>function <b>PsGetCurrentProcess</b>: PEPROCESS; stdcall; external NTOSKrnl name &#039;_PsGetCurrentProcess@0&#039;;</code><br><br>Смотрим в дизассемблере код этой ф-ции:<br><br><code>.text:000110A4 PsGetCurrentProcess proc near           <br>.text:000110A4                 jmp     ds:__imp_PsGetCurrentProcess<br>...<br>...<br>.idata:000110EC                 extrn __imp_PsGetCurrentProcess:dword<br></code><br><br>Т.е. это ничто иное как некий JMP на некую ф-цию, смотрим то куда мы попадаем:<br><br><i class=x>HEX: E8 E2 4E 80 F8 DF 4F 80</i><br><br>что соответсвует:<br><br><i class=x>ASM: call 0F8804FB6</i><br><br>т.е. я так понимаю что тут по этому адресу и нужно сплайсить? Если так, то не могу разобраться с тем где  в указанной выше <i class=x>HEX</i> последовательности лежит собственно адрес <b>0F8804FB6</b> ? Как из <i class=x>HEX</i> вытащить этот адрес?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178841&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=9" class="addthx" data-post="178841"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]S_T_A_S_[/b]','')">S_T_A_S_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 163.7 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=251">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 18:28 <br><script type="text/javascript">QU('S_T_A_S_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=S_T_A_S_" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Гарри Неббета лучше поищи. А поскольку набор функций увеличивается со временем, грузи в ида и смотри _KiServiceTable.<br><br>ЗЫ: для полноты картины поправлю себя - PsGetCurrentProcess и IoGetCurrentProcess могут быть физически реализованы как одной, так и 2мя разными (даже в реализации) функциями.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178842&amp;user=251&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=10" class="addthx" data-post="178842"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 18:38 &middot; Поправил: SLayer <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Вопрос про Hex отпадает.<br>Вот asm значение одной и той же последовательности в зависимости от того, где она выполняется.<br><code>000000ED: E800000000                   call        0000000F2  ---&#8595; (4)<br>000000F2: E800000000                   call        0000000F7  ---&#8595; (5)<br>000000F7: E800000000                   call        0000000FC  ---&#8595; (6)<br>000000FC: E800000000                   call        000000101  ---&#8595; (7)</code><br><br><b>S_T_A_S_</b>, Гарри Неббета уже ищу.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178846&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=11" class="addthx" data-post="178846"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 18:55 &middot; Поправил: SLayer <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Как-то туго ищется, только купить нахоится <b>Гэри Неббета</b>.<br>Я конечно и купить не против, но нужно сейчас, а книга прийдёт потом...<br><br>Помогите плиз, мож у кого есть.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178847&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=12" class="addthx" data-post="178847"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 20:08 <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>SLayer</b><br>--&gt; Gary Nebbett Windows NT, 2000 Native API Reference &lt;-- http://dump.ru/files/o/o9303217327/
+<br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=178851&amp;user=6801&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=13" class="addthx" data-post="178851"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Great[/b]','')">Great</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 14.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.47'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=15173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 20:39 &middot; Поправил: Great <br><script type="text/javascript">QU('Great','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Great" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Эх вы.<br><br><b>SLayer</b><br>1) я перехватывал IoGetCurProc и могу дать сорс. все работает чудесно<br><br>2) <b>undb</b><br>&gt;&gt; Во первых в каком контексте ты это перехватил , там и будет у тебя работать. <br>что за бред, мистер) системное АП одно, за вычетом пространства сессии, где лежит win32k.<br>читайте руссиновича, или, на крайняк, мою статью про менеджмент памяти.<br><br>3) <b>SLayer</b><br>&gt;&gt; А как я могу узнать какие функции представлены в SDT, а какие нет? Можете ссылкой ткнуть.<br>Все Nt* функции. Io*, Ke*, Ps*, Ob*, Rtl* и прочее не представлено в SSDT.<br>Они экспортируются ядром, следовательно, нужно сплайсить ее в ядре.<br><br>4) <b>S_T_A_S_</b><br>Садись, два. Обе функции указывают на одну точку входа:<br><br>.text:004174D2 ; Exported entry 383. IoGetCurrentProcess<br>.text:004174D2 ; Exported entry 854. PsGetCurrentProcess<br>.text:004174D2<br>.text:004174D2 ; =============== S U B R O U T I N E =======================================<br>.text:004174D2<br>.text:004174D2<br>.text:004174D2 ; int __stdcall PsGetCurrentProcess()<br>.text:004174D2                 public _PsGetCurrentProcess@0<br>.text:004174D2 _PsGetCurrentProcess@0 proc near
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178853&amp;user=15173&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=14" class="addthx" data-post="178853"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 января 2008 23:46 <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>Great</b>, с удовольствием поразбираюсь в сорсах. Если можно, плиз...<br>Отдельный сенкс to <b>OKOB</b>.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178861&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=15" class="addthx" data-post="178861"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]S_T_A_S_[/b]','')">S_T_A_S_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 163.7 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=251">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 февраля 2008 05:20 <br><script type="text/javascript">QU('S_T_A_S_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=S_T_A_S_" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<b>Great</b><br>Учитель, взгляните же на старые ядра ;) Там даже по разному имполементировано: через fs и захардкоженный адрес.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178871&amp;user=251&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=16" class="addthx" data-post="178871"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Great[/b]','')">Great</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 14.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.47'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=15173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 февраля 2008 09:08 <br><script type="text/javascript">QU('Great','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Great" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Я не думаю что его интересуют щас старые ядра =)<br>Ты бы еще 9х вспомнил
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178878&amp;user=15173&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=17" class="addthx" data-post="178878"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]Great[/b]','')">Great</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 14.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.47'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=15173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 февраля 2008 10:00 &middot; Поправил: Great <br><script type="text/javascript">QU('Great','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Great" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<code><br>#include &lt;ntifs.h&gt;<br><br>void probe_read(void* f)<br>{<br>	ULONG a = *(ULONG*)f;<br>}<br><br>bool splicefunc(void* func, void* hook, void* buffer, int nbytestocopy)<br>{<br>	if( KeGetCurrentIrql() &gt;= DISPATCH_LEVEL )<br>		return false;<br><br>	// Load from swap<br>	probe_read(func);<br>	probe_read(hook);<br>	probe_read(buffer);<br>	<br>	// IF=0<br>	__asm pushfd;<br>	__asm cli;<br><br>	memcpy(buffer, func, nbytestocopy);<br><br>	((BYTE*)func)[0] = 0xE9;<br>	*(ULONG*)((ULONG)func+1) = (ULONG)hook - (ULONG)func - 5;<br><br>	__asm popfd;<br><br>	return true;<br>}<br><br>BYTE iogetcpbuf[10];<br><br>PVOID modbuff = NULL;<br><br><br>BOOLEAN <br>  NewIoGetCurrentProcess(<br>    ULONG ReturnAddress,<br>	PEPROCESS* Process<br>    )<br>{<br>	//<br>	// функционал нового обработичика. возвращает TRUE если надо вернуть оригинальный процесс<br>	// или FALSE если нужно подменить результат.<br>	//<br><br>	return true;<br>}<br><br>//<br>// новый обработчик IoGetCurProc, вызывает NewIoGetCurrentProcess( см выше)<br>// и возвращает оригинальный блок EPROCESS если та вернула TRUE или<br>// значение, возвращенное NewIoGetCurProcess во втором аргументе, если та вернула FALSE<br>//<br><br>__declspec(naked)<br>PEPROCESS <br>  __NewIoGetCurrentProcess(<br>    VOID<br>    )<br>{<br>	__asm<br>	{<br>		mov  eax, [esp] ; return address<br><br>		push esi<br><br>		; reserve dword<br>		push 0<br>		mov  esi, esp<br><br>		push esi ; reserved dword<br>		push eax ; return address<br>		call NewIoGetCurrentProcess<br><br>		test al,al      ; returns 1 if call should be passed to old handler.<br>		jz _ret<br><br>		add esp, 4<br>		pop esi<br><br>		lea edx, iogetcpbuf<br>		jmp edx<br><br>_ret:	mov eax, [esi]<br>		add esp, 4<br>		pop esi<br>		retn<br>	}<br>}<br><br><br>// Driver entry point<br>NTSTATUS DriverEntry(IN PDRIVER_OBJECT DriverObject, IN PUNICODE_STRING RegistryPath)<br>{<br>	KdPrint((&quot;[~] DriverEntry()\n&quot;));<br><br>	// Splice IoGetCurProc<br>	UNICODE_STRING uiogetcp;<br>	void* iogetcp;<br>	RtlInitUnicodeString( &amp;uiogetcp, L&quot;IoGetCurrentProcess&quot; );<br>	iogetcp = MmGetSystemRoutineAddress( &amp;uiogetcp );<br><br>	if( splicefunc(iogetcp, __NewIoGetCurrentProcess, iogetcpbuf, sizeof(iogetcpbuf)) )<br>	{<br>		KdPrint((&quot;Spliced\r\n&quot;));<br>	}<br>	else<br>	{<br>		KdPrint((&quot;Not spliced\r\n&quot;));<br>	}<br><br>	return STATUS_SUCCESS;<br>}<br></code>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178879&amp;user=15173&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=18" class="addthx" data-post="178879"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 февраля 2008 12:36 <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+Ознакомился, вроде всё понятно кроме одного:<br><br><b>// Load from swap <br>probe_read(func); <br>probe_read(hook); <br>probe_read(buffer);</b><br><br>Зачем это делается, разве при <i class=x>memcpy</i> эти данные не загрузятся из SWAP? Или загрузка обрабатывается через прерывание которое мы запрещаем?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178889&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=19" class="addthx" data-post="178889"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Great[/b]','')">Great</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 14.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.47'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=15173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 февраля 2008 16:31 <br><script type="text/javascript">QU('Great','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Great" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+если честно я не помню уже <img src="img/smilies/s1.gif" alt=""><br>помоему просто чтобы в бсоде было проще отловить в бсоде изза чего все грохнется если передадутся неверные аргументы.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178920&amp;user=15173&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=20" class="addthx" data-post="178920"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]SLayer[/b]','')">SLayer</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2576.gif" alt=""><br><span class=txtSm>Ранг: 90.3 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2576">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 февраля 2008 17:51 <br><script type="text/javascript">QU('SLayer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLayer" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11147.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+Ясно, огромное спасибо всем откликнувшимся. Отдельное ПАСИБА to <b>Great</b>.<br>Тема закрыта.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=178924&amp;user=2576&amp;forum_n=6&amp;topic=11147.html&amp;page=0&amp;anchor=21" class="addthx" data-post="178924"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Перехват функций Io и Ps в Ring0</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=11147" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

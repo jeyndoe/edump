@@ -1,0 +1,395 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Анализ кода ARM - расчет смещения (адреса) - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Всем привет. Не очень хорошо понимаю, как рассчитывается смещение (адрес) для данных. Например по адресу 000FB404 имеем: Code:       :000FB404&nbsp;84&nbsp;00&nbsp;9F&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=19256'>johnniewalker</a>, <a target='_blank' href='?action=userinfo&amp;user=247'>NIKOLA</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Анализ кода ARM - расчет смещения (адреса)</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Enclave[/b]','')">Enclave</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 12.1 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.95'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2301">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2017 17:52 &middot; Поправил: Enclave <br><script type="text/javascript">QU('Enclave','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Enclave" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Всем привет.<br><br>Не очень хорошо понимаю, как рассчитывается смещение (адрес) для данных.<br><br>Например по адресу 000FB404 имеем:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">000FB404</span>&nbsp;<span class="hl_number">84</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span>aError&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; &quot;ERROR&quot;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>rodata<span class="hl_char">:</span><span class="hl_number">0039BDC8</span>&nbsp;<span class="hl_number">45</span>&nbsp;<span class="hl_number">52</span>&nbsp;<span class="hl_number">52</span>&nbsp;<span class="hl_number">4F</span><span class="hl_char">+</span>aError&nbsp;&nbsp;&nbsp;&nbsp;DCB&nbsp;<span class="hl_quote">&quot;ERROR&quot;</span><span class="hl_char">,</span><span class="hl_number">0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; DATA XREF: sub_622AC+4Co</span></li><li class="hl_l1"><span class="hl_char">.</span>rodata<span class="hl_char">:</span><span class="hl_number">0039BDC8</span>&nbsp;<span class="hl_number">52</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; sub_622AC+5Co</span></li><li class="hl_l0"><span class="hl_char">.</span>rodata<span class="hl_char">:</span><span class="hl_number">0039BDCE</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>ALIGN</b></span>&nbsp;0x10</li>        </ol>
+    </div>
+</div></div>
+<br><br>Тогда как по адресу  000FB3A4 IDA выдает нам следующее:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">000FB3A4</span>&nbsp;D4&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span>dword_96AA8C</li>        </ol>
+    </div>
+</div></div>
+<br><br><br>Почему так происходит и как можно вычислить адрес соответствующей строки?<br>Подобное было, когда IDA автоматически не создавала функцию, но ведь тут она имеется.<br><br><img src="http://i89.fastpic.ru/big/2017/0124/0d/ad860eca12b6d63e1b0f83290359b60d.jpg" border="0" align="" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=371281&amp;user=2301&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=1" class="addthx" data-post="371281"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]cppasm[/b]','')">cppasm</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 251.3 (наставник), 81thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.77'>Активность: 0.14<span style='color:red'>&searr;</span>0.11</span><br>Статус: <a href="action=userinfo&amp;user=6859">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2017 18:14 <br><script type="text/javascript">QU('cppasm','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=cppasm" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Жесть.<br>Даблклик на свой dword в команде (чтобы перейти на него) и нажми &quot;a&quot;.<br>И будет тебе строка.<br>Если там строка конечно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=371282&amp;user=6859&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=2" class="addthx" data-post="371282"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Enclave[/b]','')">Enclave</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 12.1 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.95'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2301">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2017 20:23 &middot; Поправил: Enclave <br><script type="text/javascript">QU('Enclave','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Enclave" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Ну хорошо. Может пример не совсем удачный. Вот другой. Тут хоть обликайся, никуда не перейдешь.<br><br>В частности, адреса <b>:00249818 </b> и <b>:00249820</b><br>Тут не совсем строки, но там аналогично. Специально искал код покороче, а то все функции довольно длинные.<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">002497FC</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">50</span>&nbsp;E3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CMP</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;#0</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249800</span>&nbsp;<span class="hl_number">38</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span>0x2B6938</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249804</span>&nbsp;<span class="hl_number">0D</span>&nbsp;C0&nbsp;A0&nbsp;E1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R12<span class="hl_char">,</span>&nbsp;<span class="hl_registr">SP</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249808</span>&nbsp;<span class="hl_number">02</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">8F</span>&nbsp;E0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>ADD</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;PC<span class="hl_char">,</span>&nbsp;R2</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">0024980C</span>&nbsp;<span class="hl_number">00</span>&nbsp;D8&nbsp;<span class="hl_number">2D</span>&nbsp;E9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STMFD&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">!</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span>R12<span class="hl_char">,</span>LR<span class="hl_char">,</span>PC}</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249810</span>&nbsp;<span class="hl_number">04</span>&nbsp;B0&nbsp;<span class="hl_number">4C</span>&nbsp;E2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>SUB</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R11<span class="hl_char">,</span>&nbsp;R12<span class="hl_char">,</span>&nbsp;#4</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249814</span>&nbsp;<span class="hl_number">00</span>&nbsp;A8&nbsp;<span class="hl_number">9D</span>&nbsp;<span class="hl_number">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDMEQFD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span><span class="hl_registr">SP</span><span class="hl_char">,</span>PC}</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249818</span>&nbsp;<span class="hl_number">24</span>&nbsp;C0&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R12<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span>0x1D58</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">0024981C</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">30</span>&nbsp;A0&nbsp;E3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R3<span class="hl_char">,</span>&nbsp;#0</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249820</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">10</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R1<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span>0x13D8</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249824</span>&nbsp;<span class="hl_number">01</span>&nbsp;<span class="hl_number">10</span>&nbsp;<span class="hl_number">92</span>&nbsp;E7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R1<span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span>R2<span class="hl_char">,</span>R1<span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249828</span>&nbsp;<span class="hl_number">0C</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">92</span>&nbsp;E7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span>R2<span class="hl_char">,</span>R12<span class="hl_char">]</span></li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">0024982C</span>&nbsp;<span class="hl_number">4E</span>&nbsp;C7&nbsp;FB&nbsp;EB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>BL</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__dynamic_cast</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249830</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">50</span>&nbsp;E3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CMP</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;#0</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249834</span>&nbsp;<span class="hl_number">00</span>&nbsp;A8&nbsp;<span class="hl_number">9D</span>&nbsp;<span class="hl_number">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDMEQFD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span><span class="hl_registr">SP</span><span class="hl_char">,</span>PC}</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249838</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">68</span>&nbsp;<span class="hl_number">9D</span>&nbsp;E8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDMFD&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span><span class="hl_registr">SP</span><span class="hl_char">,</span>LR}</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">0024983C</span>&nbsp;EA&nbsp;BC&nbsp;FC&nbsp;EA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub_178BEC</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">0024983C</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; --------------------------------------</span></li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249840</span>&nbsp;<span class="hl_number">38</span>&nbsp;<span class="hl_number">69</span>&nbsp;<span class="hl_number">2B</span>&nbsp;<span class="hl_number">00</span>&nbsp;dword_249840&nbsp;&nbsp;&nbsp;&nbsp;DCD&nbsp;0x2B6938&nbsp;&nbsp;&nbsp;<span class="hl_comment">; DATA XREF: :00249800</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249844</span>&nbsp;<span class="hl_number">58</span>&nbsp;<span class="hl_number">1D</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;dword_249844&nbsp;&nbsp;&nbsp;&nbsp;DCD&nbsp;0x1D58&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; DATA XREF: :00249818</span></li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249848</span>&nbsp;D8&nbsp;<span class="hl_number">13</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;dword_249848&nbsp;&nbsp;&nbsp;&nbsp;DCD&nbsp;0x13D8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; DATA XREF: :00249820</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>И после создания функции:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">text<span class="hl_char">:</span><span class="hl_number">002497FC</span>&nbsp;&nbsp;&nbsp;&nbsp;sub_2497FC</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">002497FC</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">50</span>&nbsp;E3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CMP</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;#0</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249800</span>&nbsp;<span class="hl_number">38</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span><span class="hl_char">(</span>_GLOBAL_OFFSET_TABLE_&nbsp;<span class="hl_char">-</span>&nbsp;0x249810<span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249804</span>&nbsp;<span class="hl_number">0D</span>&nbsp;C0&nbsp;A0&nbsp;E1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R12<span class="hl_char">,</span>&nbsp;<span class="hl_registr">SP</span></li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249808</span>&nbsp;<span class="hl_number">02</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">8F</span>&nbsp;E0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>ADD</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;PC<span class="hl_char">,</span>&nbsp;R2&nbsp;<span class="hl_comment">; _GLOBAL_OFFSET_TABLE_</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">0024980C</span>&nbsp;<span class="hl_number">00</span>&nbsp;D8&nbsp;<span class="hl_number">2D</span>&nbsp;E9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STMFD&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">!</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span>R12<span class="hl_char">,</span>LR<span class="hl_char">,</span>PC}</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249810</span>&nbsp;<span class="hl_number">04</span>&nbsp;B0&nbsp;<span class="hl_number">4C</span>&nbsp;E2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>SUB</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R11<span class="hl_char">,</span>&nbsp;R12<span class="hl_char">,</span>&nbsp;#4</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249814</span>&nbsp;<span class="hl_number">00</span>&nbsp;A8&nbsp;<span class="hl_number">9D</span>&nbsp;<span class="hl_number">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDMEQFD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span><span class="hl_registr">SP</span><span class="hl_char">,</span>PC}</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249818</span>&nbsp;<span class="hl_number">24</span>&nbsp;C0&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R12<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span><span class="hl_char">(</span>_ZTIN3tsd9bluetooth4core6status3stm13StatusStmDataE_ptr&nbsp;<span class="hl_char">-</span>&nbsp;0x500148<span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">0024981C</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">30</span>&nbsp;A0&nbsp;E3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R3<span class="hl_char">,</span>&nbsp;#0</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249820</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">10</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R1<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span><span class="hl_char">(</span>_ZTIN3tsd6common3stm9IDataPoolE_ptr&nbsp;<span class="hl_char">-</span>&nbsp;0x500148<span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249824</span>&nbsp;<span class="hl_number">01</span>&nbsp;<span class="hl_number">10</span>&nbsp;<span class="hl_number">92</span>&nbsp;E7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R1<span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span>R2<span class="hl_char">,</span>R1<span class="hl_char">]</span>&nbsp;<span class="hl_comment">; _ZTIN3tsd6common3stm9IDataPoolE_ptr</span></li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249828</span>&nbsp;<span class="hl_number">0C</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">92</span>&nbsp;E7&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span>R2<span class="hl_char">,</span>R12<span class="hl_char">]</span>&nbsp;<span class="hl_comment">; _ZTIN3tsd9bluetooth4core6status3stm13StatusStmDataE_ptr</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">0024982C</span>&nbsp;<span class="hl_number">4E</span>&nbsp;C7&nbsp;FB&nbsp;EB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>BL</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__dynamic_cast</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249830</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">50</span>&nbsp;E3&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CMP</b></span>&nbsp;&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;#0</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249834</span>&nbsp;<span class="hl_number">00</span>&nbsp;A8&nbsp;<span class="hl_number">9D</span>&nbsp;<span class="hl_number">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDMEQFD&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span><span class="hl_registr">SP</span><span class="hl_char">,</span>PC}</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249838</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">68</span>&nbsp;<span class="hl_number">9D</span>&nbsp;E8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDMFD&nbsp;&nbsp;<span class="hl_registr">SP</span><span class="hl_char">,</span>&nbsp;{R11<span class="hl_char">,</span><span class="hl_registr">SP</span><span class="hl_char">,</span>LR}</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">0024983C</span>&nbsp;EA&nbsp;BC&nbsp;FC&nbsp;EA&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub_178BEC</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">0024983C</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; End of function sub_2497FC</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">0024983C</span></li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">0024983C</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; -------------------------------</span></li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249840</span>&nbsp;<span class="hl_number">38</span>&nbsp;<span class="hl_number">69</span>&nbsp;<span class="hl_number">2B</span>&nbsp;<span class="hl_number">00</span>&nbsp;off_249840&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCD&nbsp;_GLOBAL_OFFSET_TABLE_&nbsp;<span class="hl_char">-</span>&nbsp;0x249810</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249840</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249844</span>&nbsp;<span class="hl_number">58</span>&nbsp;<span class="hl_number">1D</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;off_249844&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCD&nbsp;_ZTIN3tsd9bluetooth4core6status3stm13StatusStmDataE_ptr&nbsp;<span class="hl_char">-</span>&nbsp;0x500148</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249844</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">:</span><span class="hl_number">00249848</span>&nbsp;D8&nbsp;<span class="hl_number">13</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;off_249848&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DCD&nbsp;_ZTIN3tsd6common3stm9IDataPoolE_ptr&nbsp;<span class="hl_char">-</span>&nbsp;0x500148</li><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249848</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=371287&amp;user=2301&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=3" class="addthx" data-post="371287"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2017 20:50 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+эт что ли ?<br><img src="http:/./images.slideplayer.com/18/6165689/slides/slide_9.jpg" border="0" align="" alt=""><br><noindex><a href="http://slideplayer.com/slide/6165689/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=371288&amp;user=15381&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=4" class="addthx" data-post="371288"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Enclave[/b]','')">Enclave</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 12.1 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.95'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2301">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2017 21:45 &middot; Поправил: Enclave <br><script type="text/javascript">QU('Enclave','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Enclave" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Наверное, но все равно непонятно, как считать.<br><br>Сегмент, где лежат данные:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>got&nbsp;<span class="hl_number">00500148</span>&nbsp;<span class="hl_number">00502214</span>&nbsp;R&nbsp;W&nbsp;<span class="hl_char">.</span>&nbsp;<span class="hl_char">.</span>&nbsp;L&nbsp;<span class="hl_function"><b>dword</b></span>&nbsp;<span class="hl_number">0C</span>&nbsp;<span class="hl_function"><b>public</b></span>&nbsp;<span class="hl_function"><b>DATA</b></span>&nbsp;<span class="hl_number">32</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">0D</span></li>        </ol>
+    </div>
+</div></div>
+<br><br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>got<span class="hl_char">:</span><span class="hl_number">00501520</span>&nbsp;<span class="hl_number">24</span>&nbsp;<span class="hl_number">7C</span>&nbsp;<span class="hl_number">4E</span>&nbsp;<span class="hl_number">00</span>&nbsp;_ZTIN3tsd6common3stm9IDataPoolE_ptr&nbsp;DCD&nbsp;_ZTIN3tsd6common3stm9IDataPoolE</li>        </ol>
+    </div>
+</div></div>
+<br><br><br>Или вот тоже самое, но с обычной строкой.<br>DATA XREF сразу здесь сразу указывает на код, который адресует строку, но так не везде.<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C6E0</span>&nbsp;C0&nbsp;<span class="hl_number">11</span>&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R1<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span><span class="hl_char">(</span>aEvt_start_inqu&nbsp;<span class="hl_char">-</span>&nbsp;0x500148<span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C6E4</span>&nbsp;<span class="hl_number">04</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">85</span>&nbsp;E0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>ADD</b></span>&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;R5<span class="hl_char">,</span>&nbsp;R4&nbsp;<span class="hl_comment">; unk_50344C</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C6E8</span>&nbsp;<span class="hl_number">48</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">80</span>&nbsp;E2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>ADD</b></span>&nbsp;&nbsp;&nbsp;R0<span class="hl_char">,</span>&nbsp;R0<span class="hl_char">,</span>&nbsp;#0x48</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C6EC</span>&nbsp;<span class="hl_number">58</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">4B</span>&nbsp;E2&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>SUB</b></span>&nbsp;&nbsp;&nbsp;R2<span class="hl_char">,</span>&nbsp;R11<span class="hl_char">,</span>&nbsp;#0x58</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C6F0</span>&nbsp;<span class="hl_number">01</span>&nbsp;<span class="hl_number">10</span>&nbsp;<span class="hl_number">85</span>&nbsp;E0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>ADD</b></span>&nbsp;&nbsp;&nbsp;R1<span class="hl_char">,</span>&nbsp;R5<span class="hl_char">,</span>&nbsp;R1&nbsp;<span class="hl_comment">; &quot;EVT_START_INQUIRY&quot;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C8A8</span>&nbsp;BC&nbsp;E3&nbsp;F2&nbsp;FF&nbsp;off_24C8A8&nbsp;&nbsp;&nbsp;DCD&nbsp;&nbsp;&nbsp;&nbsp;aEvt_start_inqu&nbsp;<span class="hl_char">-</span>&nbsp;0x500148</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C8A8</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; DATA XREF: .text:0024C6E0</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C8A8</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; &quot;EVT_START_INQUIRY&quot;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>rodata<span class="hl_char">:</span><span class="hl_number">0042E504</span>&nbsp;<span class="hl_number">45</span>&nbsp;<span class="hl_number">56</span>&nbsp;<span class="hl_number">54</span>&nbsp;<span class="hl_number">5F</span><span class="hl_char">+</span>aEvt_start_inqu&nbsp;DCB&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_quote">&quot;EVT_START_INQUIRY&quot;</span><span class="hl_char">,</span><span class="hl_number">0</span></li><li class="hl_l1"><span class="hl_char">.</span>rodata<span class="hl_char">:</span><span class="hl_number">0042E504</span>&nbsp;<span class="hl_number">53</span>&nbsp;<span class="hl_number">54</span>&nbsp;<span class="hl_number">41</span>&nbsp;<span class="hl_number">52</span><span class="hl_char">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; DATA XREF: .text:0024C6F0</span></li><li class="hl_l0"><span class="hl_char">.</span>rodata<span class="hl_char">:</span><span class="hl_number">0042E504</span>&nbsp;<span class="hl_number">54</span>&nbsp;<span class="hl_number">5F</span>&nbsp;<span class="hl_number">49</span>&nbsp;<span class="hl_number">4E</span><span class="hl_char">+</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; .text:off_24C8A8</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>rodata&nbsp;&nbsp;<span class="hl_number">004045E8</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">004674B8</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=371290&amp;user=2301&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=5" class="addthx" data-post="371290"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2017 22:25 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+у ида свое представление как что выводить<br><br>допустим берем с ида<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">:</span><span class="hl_number">00249818</span>&nbsp;<span class="hl_number">24</span>&nbsp;C0&nbsp;<span class="hl_number">9F</span>&nbsp;E5&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LDR&nbsp;&nbsp;&nbsp;&nbsp;R12<span class="hl_char">,</span>&nbsp;<span class="hl_char">=</span>0x1D58</li>        </ol>
+    </div>
+</div></div>
+<br>берем онлайн дизассемблер и получаем<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">ldr&nbsp;r12<span class="hl_char">,</span><span class="hl_char">[</span>pc<span class="hl_char">,</span>#36<span class="hl_char">]</span>&nbsp;<span class="hl_comment">; 0x00249844</span></li>        </ol>
+    </div>
+</div></div>
+<br>https://www.onlinedisassembler.com/odaweb/w2DBYDCZ/0<br><br><b>Добавлено спустя 20 минут</b><br>что такое 0x1d58 даже я не знаю )))<br>по опкодам 9F E5 это ldr r12,[pc]<br>дальше идут 11 бит смещения т.е. 0x24(36) туда попадает,  0xC0 уже идет в доп биты<br><br><b>Добавлено спустя 22 минуты</b><br>возможно 0x1d58 это смешение от начала всего файла<br><br><b>Добавлено спустя 24 минуты</b><br>поищите в опциях IDA, возможно есть какая то опция для показа инструкций с PC relative offset и оно будет показывать так как вы хотите [pc,#36]
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=371291&amp;user=15381&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=6" class="addthx" data-post="371291"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Enclave[/b]','')">Enclave</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 12.1 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.95'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2301">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 января 2017 11:15 &middot; Поправил: Enclave <br><script type="text/javascript">QU('Enclave','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Enclave" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=24530.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>reversecode</b><br><br>Кажется, я понял.<br><br>Указатель _ZTIN3tsd9bluetooth4core6status3stm13StatusStmDataE_ptr расположен по адресу .got:00501ea0<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>got<span class="hl_char">:</span><span class="hl_number">00501ea0</span>&nbsp;&nbsp;&nbsp;&nbsp;_ZTIN3tsd9bluetooth4core6status3stm13StatusStmDataE_ptr</li>        </ol>
+    </div>
+</div></div>
+<br><br>Этот адрес получается так:<br><br>берем базовый адрес сегмента <b>.got</b> 00500148, добавляем к нему 0x1d58 (это смещение от его начала), получили 00501ea0.<br><br>Только в случае со строкой чуть иначе, она расположена в другом сегменте.<br><br>Здесь его адрес такой  -  <b>.rodata  004045E8</b><br><br>Сама строка находится здесь <b>.rodata:0042E504 45 56 54 5F+aEvt_start_inqu DCB    &quot;EVT_START_INQUIRY&quot;,0</b><br><br>Тут немного непонятно, как считать.<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0024C8A8</span>&nbsp;BC&nbsp;E3&nbsp;F2&nbsp;FF&nbsp;off_24C8A8&nbsp;&nbsp;&nbsp;DCD&nbsp;&nbsp;&nbsp;&nbsp;aEvt_start_inqu&nbsp;<span class="hl_char">-</span>&nbsp;0x500148</li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=371307&amp;user=2301&amp;forum_n=2&amp;topic=24530.html&amp;page=0&amp;anchor=7" class="addthx" data-post="371307"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Анализ кода ARM - расчет смещения (адреса)</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#8" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="2">
+<input type="hidden" name="topic" value="24530">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24530" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

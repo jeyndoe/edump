@@ -1,0 +1,378 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Проблемы с работой Win32 API - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Доброе время суток, господа. наткнулся на интересное явление при модификации чужого кода в памяти во время выполнения. Дело такое: кус кода встраивается в процесс (WriteProcessMemory+CreateRemoteThread) и грузит в контекст жертвы">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=41701'>_MBK_</a>, <a target='_blank' href='?action=userinfo&amp;user=44014'>user99</a>, <a target='_blank' href='?action=userinfo&amp;user=7823'>ManHunter</a> (+8 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Проблемы с работой Win32 API</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]entusiast[/b]','')">entusiast</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 4.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.44'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1179">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 14:52 <br><script type="text/javascript">QU('entusiast','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=entusiast" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Доброе время суток, господа.
+<br>наткнулся на интересное явление при модификации чужого кода в памяти во время выполнения.
+<br>Дело такое: кус кода встраивается в процесс (WriteProcessMemory+CreateRemoteThread) и грузит в контекст жертвы заданную длл-перехватчик..... 
+<br>После завершения &quot;внедрежного&quot; потока дллка в памяти процесса есть, и пытается работать.
+<br>В ней я перехватываю управление в 2х точках жертвы - ставлю переходы на свой код (оригинальные байты, ессно выполняю, но потом).
+<br>Жертва многопоточная, но на этапе срабатывания патча- самое начало работы - поток всего один.
+<br>Проблема такая - любой вызов АПИ (CreateFile,CreateDirectory,MessageBox,etc) завершается ошибкой, GetLastError() после &quot;файловых&quot; вызовов отдает 998 - Invalid access to memory location. 
+<br>дллка написана на С, рантайма нети(точнее не должно быть). Ф-ции Virtual* работают прекрасно.....  
+<br>Вопрос: что сие может быть и как лечить?
+<br>Спасибо.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42543&amp;user=1179&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=1" class="addthx" data-post="42543"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Step[/b]','')">Step</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.6 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.78'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 14:55 <br><script type="text/javascript">QU('Step','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Step" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+<b>entusiast</b>
+<br>Если тебя не затруднит, ВОЗЬМИ ДЕБАГЕР и ПОСМОТРИ куда передаётся управление с твоих jump-ов.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42545&amp;user=2702&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=2" class="addthx" data-post="42545"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]entusiast[/b]','')">entusiast</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 4.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.44'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1179">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 14:59 <br><script type="text/javascript">QU('entusiast','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=entusiast" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Вообче-то, это я уже проделал. Код системных либов там честный.....
+<br>и мой код тоже вызывается так как нужно. Все планируемые параметры оказываются на своих местах... адреса стековых и глобальных переменных тоже в порядке, как и их содержимое.
+<br>
+<br>PS. и нечего орать <img src="img/smilies/s1.gif" alt=""> Если б проблемы были на моей стороне кода - уж наверное, заметил бы....
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42546&amp;user=1179&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=3" class="addthx" data-post="42546"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Step[/b]','')">Step</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.6 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.78'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 15:02 <br><script type="text/javascript">QU('Step','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Step" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<I>entusiast пишет:
+<br> нечего орать </I>
+<br>Пострараюсь <img src="img/smilies/s1.gif" alt="">
+<br>Как ты избавляешься от джампов ? Или емулируешь первые инструкцию ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42547&amp;user=2702&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=4" class="addthx" data-post="42547"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]entusiast[/b]','')">entusiast</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 4.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.44'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1179">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 15:11 <br><script type="text/javascript">QU('entusiast','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=entusiast" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+эээээ. уточни, плз. кто сказал про джампы???? Что ты имеешь в виду?
+<br>Поскольку патч сильно специализирован под версию жертвы, то я просто жестко вшил оригинальный код.
+<br>ессно, нв место перехвата ставится jmp, там я забочусь о сохранении всех регистров, потом call Engine, потом восстановление регистров, потом оригинальный код - там по 2-3 команды типа push reg/ call reg+offs и джамп обратно....
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42552&amp;user=1179&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=5" class="addthx" data-post="42552"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Step[/b]','')">Step</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.6 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.78'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 15:17 &middot; Поправил: Step <br><script type="text/javascript">QU('Step','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Step" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Вообщето исходники, или фрагмент кода был бы не лишним.
+<br>Когда ты делаешь джамп обратно, стек валиден ? Проверь есть ли все аргументы на верхушке, eip возврата, и естественно перед всем этим должны в стеке лежать результаты проэмулированных команд (типа push ebp).
+<br>
+<br>
+<br><I>entusiast пишет:
+<br>в место перехвата ставится jmp, там я забочусь о сохранении всех регистров,  </I>
+<br>Ты это делаешь в перехваченной DLL ? Не в своей функции а именно в чужой API ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42554&amp;user=2702&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=6" class="addthx" data-post="42554"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]entusiast[/b]','')">entusiast</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 4.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.44'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1179">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 15:41 &middot; Поправил: entusiast <br><script type="text/javascript">QU('entusiast','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=entusiast" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>Step пишет:
+<br>Когда ты делаешь джамп обратно, стек валиден ? </I>
+<br>а как же? Жертва-то продолжает работу..... и грузится даже <img src="img/smilies/s1.gif" alt="">
+<br>это враппер основной штуки:
+<br><code>
+<br>void __declspec(naked) engine_wrap()
+<br>{_asm{
+<br>	pushad// save regs
+<br>	pushf// -- flags
+<br>	push ebp //length
+<br>	push edi //data_ptr
+<br>	push ecx //blockname
+<br>	call Interceptor
+<br>	popf// restore eflags
+<br>	popad // restore regs
+<br>         ////// original code
+<br>	call [eax+14h]
+<br>	push edi 
+<br>	mov esi,eax
+<br>        /////// eoc
+<br>	push victim_continue
+<br>	retn
+<br>}}
+<br></code>
+<br>а вот она сама - 
+<br>[c]
+<br>void __stdcall Interceptor(const char* name,void* _ptr,DWORD blksize)
+<br>{
+<br>	DWORD err=GetLastError();
+<br>	char fn[MAX_PATH];strcpy(fn,name);
+<br>	for(unsigned i=0;i&lt;strlen(fn);i++)
+<br>		if(fn[i]==&#039;/&#039;)fn[i]=&#039;.&#039;;
+<br>	HANDLE hFile=CreateFile(fn,GENERIC_WRITE,FILE_SHARE_READ,NULL,CREATE_NEW,FILE _ATTRIBUTE_NORMAL,NULL);
+<br>	if(hFile!=INVALID_HANDLE_VALUE)
+<br>	{
+<br>		DWORD dwWr;
+<br>		WriteFile(hFile,_ptr,blksize,&amp;dwWr,NULL);
+<br>		CloseHandle(hFile);
+<br>	}
+<br>	else
+<br>		GetLastError();
+<br>	SetLastError(err);
+<br>}
+<br>[c]
+<br>Все значения наблюдаю. оптимизация на всяк случай оторвана...
+<br>
+<br>вот, забыл утонить. враппер сажается во вражью длл, штука - в моей.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42559&amp;user=1179&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=7" class="addthx" data-post="42559"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Step[/b]','')">Step</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.6 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.78'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 15:49 <br><script type="text/javascript">QU('Step','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Step" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+Ещё раз, какие АPI ты перехватываешь ?
+<br>В твоём коде я вижу вызовы WriteFile, CreateFile.
+<br>Ты не в мёртвый цикл попадаешь ? Если ты эты ф-и перехватываешь, то ...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42561&amp;user=2702&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=8" class="addthx" data-post="42561"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]ASMax[/b]','')">ASMax</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 62.9 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.06'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2032">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 15:57 <br><script type="text/javascript">QU('ASMax','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ASMax" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Юзай не pushf/popf, а pushfd/popfd и будет тебе щастье. <img src="img/smilies/s2.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42565&amp;user=2032&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=9" class="addthx" data-post="42565"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]entusiast[/b]','')">entusiast</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 4.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.44'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1179">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 16:18 <br><script type="text/javascript">QU('entusiast','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=entusiast" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>Step</b>: Эти ф-ции я не трогаю. там откуда-то куда-то передается буфер на обработку. в этот момент я его цапаю и пытаюсь записать в файл.....
+<br><b>ASMax</b>: пофиг...... проблема не в том, что жертва падает после выполнения моей ф-ции, а в том, что мой код обламывается <img src="img/smilies/s9.gif" alt="">
+<br>Кстати, может просто не хватает стека? Стек-то тут чужой получается...... а восстанавливается правильно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42569&amp;user=1179&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=10" class="addthx" data-post="42569"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Step[/b]','')">Step</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.6 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.78'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 16:27 <br><script type="text/javascript">QU('Step','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Step" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Знач так. 
+<br>1) Поставь брейкпоинт в теле API ф-и, там где нет твоего кода (после  engine_wrap). 
+<br>2) Запиши на бумажку регистры.
+<br>3) пункт 1 и 2 только уже без перехвата.
+<br>4) Сравни результаты (регистры).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42572&amp;user=2702&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=11" class="addthx" data-post="42572"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]entusiast[/b]','')">entusiast</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 4.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.44'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1179">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2005 16:59 &middot; Поправил: entusiast <br><script type="text/javascript">QU('entusiast','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=entusiast" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3268.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<b>Step</b>: Спасибо за совет. Решил проблему так:
+<br><code>
+<br>	pushad
+<br>	pushfd
+<br>	cld // API don&#039;t like CF ......
+<br>	// init stack
+<br>	push ebp
+<br>	push edi
+<br>	push ecx// saved needed parameters 
+<br>	push PAGE_READWRITE
+<br>	push MEM_COMMIT
+<br>	push 0x100000
+<br>	xor eax,eax
+<br>	push eax
+<br>	mov eax,VirtualAlloc 
+<br>	call eax //get buffer for stack
+<br>	pop ecx
+<br>	pop edi 
+<br>	pop ebp // virtAlloc destroyed some - now restore 
+<br>	mov ebx,eax
+<br>	push ebx // save Buffer for further VirtualFree
+<br>	add ebx,0x100000 /point to end of buffer - stackops decreases addresses
+<br>	sub ebx,4 // reserve dword for old esp
+<br>	mov [ebx],esp // save it...
+<br>	mov esp,ebx // set new stack 1Mb seem to be enough
+<br>	push ebp //length
+<br>	push edi //ptr
+<br>	push ecx //blockname
+<br>	call Interceptor // stdcall f-n will clear params...
+<br>	pop esp // restore original stack
+<br>	pop esi // original buffer is unneeded now 
+<br>	push MEM_RELEASE
+<br>	push 0
+<br>	mov eax,VirtualFree 
+<br>	call eax // free it
+<br>	popfd //restore context
+<br>	popad
+<br>         // destroyed original victim&#039;s code
+<br>	call [eax+14h]
+<br>	push edi 
+<br>	mov esi,eax
+<br>         // now stack-jump back to victim
+<br>	push Continue
+<br>	retn
+<br></code>
+<br>
+<br>действительно, не хватало стека......
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=42577&amp;user=1179&amp;forum_n=1&amp;topic=3268.html&amp;page=0&amp;anchor=12" class="addthx" data-post="42577"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Проблемы с работой Win32 API</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=3268" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

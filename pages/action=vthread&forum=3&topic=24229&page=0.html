@@ -1,0 +1,554 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>WAsm и структуры - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Задавал этот вопрос на WASM.RU, но там глухо, так что попытаю счастья здесь. Если кто юзал ваткомовский ассемблер, подскажите, способен ли он работать со структурами или только одна видимость? Объясняю ситуацию. Компилю">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=242'>Alf</a>, <a target='_blank' href='?action=userinfo&amp;user=41144'>Adler</a>, <a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a>, <a target='_blank' href='?action=userinfo&amp;user=40607'>vsv1</a>, <a target='_blank' href='?action=userinfo&amp;user=42623'>site-pro</a> (+8 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/default.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=3&sortBy=0&page=0.html"><b>Софт, инструменты</b></a> <b class=bulletHead>&#8212;&#8250;</b> WAsm и структуры</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=3&amp;topic=24229&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=3&amp;topic=24229&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 июля 2016 23:58 <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Задавал этот вопрос на WASM.RU, но там глухо, так что попытаю счастья здесь. Если кто юзал ваткомовский ассемблер, подскажите, способен ли он работать со структурами или только одна видимость? Объясняю ситуацию. Компилю нижеследующий тестовый код:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">386</span></li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_function"><b>MODEL</b></span>&nbsp;<span class="hl_function">FLAT</span></li><li class="hl_l0">IDEAL</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">STRUC&nbsp;MyType</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field1&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_char">?</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Field2&nbsp;<span class="hl_function"><b>db</b></span>&nbsp;<span class="hl_char">?</span></li><li class="hl_l1"><span class="hl_function">ENDS</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>SEGMENT</b></span>&nbsp;_DATA&nbsp;<span class="hl_function">DWORD</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">MyVar&nbsp;MyType&nbsp;<span class="hl_char">&lt;</span><span class="hl_number">1</span><span class="hl_char">,</span><span class="hl_number">1</span><span class="hl_char">&gt;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function">ENDS</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>SEGMENT</b></span>&nbsp;<span class="hl_function"><b>CODE</b></span>&nbsp;<span class="hl_function">PARA</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>PROC</b></span>&nbsp;TestProc</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>movzx</b></span>&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span>MyVar<span class="hl_char">.</span>Field2<span class="hl_char">]</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">ret</span></li><li class="hl_l0"><span class="hl_function">ENDP</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_function">ENDS</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_function"><b>PUBLIC</b></span>&nbsp;TestProc</li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_function">END</span></li>        </ol>
+    </div>
+</div></div>
+, подключаю изготовленный объектник к проекту на Делфи… и получаю шиш с маслом: после генерации экзешника в map-файле переменная отсутствует, а дизасм показывает, что она находится по адресу 00000004, т.е. смещение поля в структуре транслятор обработал правильно, а саму переменную почему-то забыл. При компиляции этого же кода TAsm&#039;ом, адрес получается валидным. Если же написать просто &quot;MyType &lt;1,1&gt;&quot; или &quot;MyType {}&quot;, то вообще происходит выход с зксцепшном по AV. Может есть какой-нибудь нюанс, очень уж мне понравился этот транслятор – в режиме эмуляции &#039;Ideal&#039;, синтаксис действительно идеальный в отличие от самого TAsm&#039;а. Очень будет обидно, если фичи фейковые, а о копании в потрохах TAsm&#039;а я даже думать боюсь.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366183&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=1" class="addthx" data-post="366183"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 01:05 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Про WASM не скажу ничего, ни плохого, ни хорошего. <br>Если имеется в виду Watcom Assembler, то популярность он приобрёл во времена DOS-расширителей, которые сейчас канули.<br><br>А вот о TASM&#039;е самые хорошие отзывы. Хотя и не пользовался никогда тем режимом IDEAL, из эстетических соображений совместимости с MASM&#039;ом, которые себя вполне оправдали.<br><br>В описываемом случае - так TASM самое то, что надо, это ж одна фирма Борланд.<br>Это так же естественно, как и MASM с MSVC.<br><br>В общем, я бы TASM&#039;а не пугался. Это было любимое детище Борланда, и основа всех его основ.<br>Действительно, программа классная. Только вот сейчас некоторые вещи всёже удобней делать в MASM&#039;е, так получилось.<br>Большие были претензии к борландовскому линкеру для WIN32..<br><i class=x><br></i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366184&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=2" class="addthx" data-post="366184"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 01:29 <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+&gt;&gt; Если имеется в виду Watcom Assembler<br><br>Он самый.<br><br>&gt;&gt; В общем, я бы TASM&#039;а не пугался.<br><br>Да я не TAsm&#039;а пугаюсь (потихоньку перегоняю на него некоторые подпрограммки с встроенного в делфи асма), а ковыряния в его бинарнике. Дело в том, что по непонятным причинам (контора-то одна) его синтаксис не полностью совместим со встроенным вариантом – он ругается на форму обращения к памяти &quot;byte/word/dword [&lt;expression&gt;]&quot; и требует, чтобы модификатор размера операнда находился внутри скобок, но это ушлёпно и алогично.<br><br>&gt;&gt; Действительно, программа классная.<br><br>По текущим впечатлениям согласен, но всё портит вышеописанный момент.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366187&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=3" class="addthx" data-post="366187"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]HandMill[/b]','')">HandMill</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 222.2 (наставник), 115thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.21'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4554">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 09:45 <br><script type="text/javascript">QU('HandMill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HandMill" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+А не пробовали случайно смотреть в сторону jwasm - это продолжатель wasm. Возможно с ним у Вас всё получится. Попробовал собрать Ваш семпл сверху и что-то скомпилировалось:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">386</span></li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_function"><b>MODEL</b></span>&nbsp;<span class="hl_function">FLAT</span></li><li class="hl_l0">MyType&nbsp;STRUC</li><li class="hl_l1">Field1&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;<span class="hl_char">?</span></li><li class="hl_l0">Field2&nbsp;<span class="hl_function"><b>db</b></span>&nbsp;<span class="hl_char">?</span></li><li class="hl_l1">MyType&nbsp;<span class="hl_function">ENDS</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_function">DATA</span></li><li class="hl_l0">MyVar&nbsp;MyType&nbsp;<span class="hl_char">&lt;</span><span class="hl_number">1</span><span class="hl_char">,</span><span class="hl_number">1</span><span class="hl_char">&gt;</span></li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_function">CODE</span></li><li class="hl_l0">TestProc&nbsp;<span class="hl_function">PROC</span></li><li class="hl_l1"><span class="hl_function"><b>movzx</b></span>&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span>MyVar<span class="hl_char">.</span>Field2<span class="hl_char">]</span></li><li class="hl_l0"><span class="hl_function">ret</span></li><li class="hl_l1">TestProc&nbsp;<span class="hl_function">ENDP</span></li><li class="hl_l0"><span class="hl_function"><b>PUBLIC</b></span>&nbsp;TestProc</li><li class="hl_l1"><span class="hl_function">END</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>все багрепорты - в личные сообщения</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=366196&amp;user=4554&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=4" class="addthx" data-post="366196"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 10:32 &middot; Поправил: mak <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Linking Assembly Language with Delphi Part I <noindex><a href="http://www.atelierweb.com/linking-assembly-language-with-delphi-part-i/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>How to use Assembly Language with Delphi 32-bit and 64-bit <noindex><a href="http://www.atelierweb.com/how-to-use-assembly-language-with-delphi-32-bit-and-64-bit/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>Linking Assembly Language with Delphi Part II <noindex><a href="http://www.atelierweb.com/linking-assembly-language-with-delphi-part-ii/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>Примеры с реальным рабочим кодом. Зачем использовать старые ассемблеры? Для сегодняшних нужд в сторону масм компатибельности есть обновленный masm32, с поддержкой новых инструкций и от ваткома продолжение проекта JWASM, где исправлены ошибки, проведены тесты на оптимизацию, сделаны дополнительные макросы и ещё множество плюшек в том числе полная поддерджка 64 битных макро инструкций идентичного masm ...  <br>Сайт HJWasm ассемблера - <noindex><a href="http://www.terraspace.co.uk/hjwasm.html" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>гитхуб - <noindex><a href="https://github.com/Terraspace/HJWasm" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>Со структурами здесь всё работает отлично.<br><br>П.С. Проект с делфи надо было выложить ...
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=366197&amp;user=3520&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=5" class="addthx" data-post="366197"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=30254" title="13-07-2016 12:26, ранг:15.0" target="_blank">elch</a>, <a href="action=userinfo&user=4773" title="13-07-2016 16:56, ранг:217.5" target="_blank">plutos</a>, <a href="action=userinfo&user=4554" title="15-07-2016 08:35, ранг:212.2" target="_blank">HandMill</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 17:12 <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>HandMill</I><br><br>&gt;&gt; А не пробовали случайно смотреть в сторону jwasm<br><br>&quot;Отвернулся&quot;, когда прочитал в описании, что синтаксис MASM&#039;овый.<br><br><I>mak</I><br><br>По всем трём ссылкам я уже бывал, ничего нового там не увидел – пособие для блондинок и не более того. Меня очень смущает, что проблема с WAsm&#039;ом только у меня одного. Ещё больше удивляет, что на целом одноимённом сайте все молчат как рыбы.<br><br>&gt;&gt; в сторону масм компатибельности есть обновленный masm32<br><br>Мне напротив нужна <b>ин</b>компатибельность с MASM&#039;ом. Кстати, MASM32 – это не транслятор, а сборник, в который входит старый MASM, POASM, куча утилит и нклюдов. Всё это бесполезное барахло давным давно валяется у меня на диске.<br><br>&gt;&gt; П.С. Проект с делфи надо было выложить…<br><br>Там нечего выкладывать. Обёртка над &quot;printf&quot;, принимающая результат функции из прилинкованного объектника, да &quot;ExitProcess&quot;. DCC тут ни при чём, т.к. ошибка возникает на этапе компиляции. Может я что-то неправильно делаю, только вот посмотреть негде – мануала по WAsm&#039;у похоже не существует в природе.<br><br>Я тут решил NAsm погонять с этой же задачей и тут тоже засада именно со структурами: ладно бы просто через жопу сделали, так оно ещё и не работает… ну как не работает, компилится-то нормально, а вот при линковке DCC ругается на 16-битный сегмент, который NAsm на кой-то хер добавляет в объектник. Похоже, что придётся остановиться на TAsm&#039;е, и смириться с нелепой формой обращения к памяти – поковырял экзешник, нихрена не понял, как там всё устроено… А ведь его вроде кто-то патчил в своё время на предмет добавления новых инструкций.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366209&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=6" class="addthx" data-post="366209"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 18:20 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+А какие именно <I>новые инструкции</I> добавлялись в тот <I>патченный TASM</I>?<br><br>Пока последнее, что было по TASM&#039;у - слыхал о версии 5.3, 2000-го года, официальная версия.<br>Наверное, это она и имелась в виду.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366213&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=7" class="addthx" data-post="366213"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 19:41 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>dosprog</I><br><br>&gt;&gt; Наверное, это она и имелась в виду.<br><br>Похоже на то. А команды, судя по всему, MMX – <noindex><a href="http://xakep-archive.ru/xa/092/118/4.htm" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366216&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=8" class="addthx" data-post="366216"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2016 21:12 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Про директиву PUBLIC доводилось слыхать?   - Пример: <img src="img/attach.gif" alt=""> <a href="./files/39f3_13.07.2016_EXELAB.rU.tgz">39f3_13.07.2016_EXELAB.rU.tgz</a> - MyVar.rar<br><br>Там на самом деле есть другой серьёзный изъян - глобальность имён членов структур.<br><i class=x><br></i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366220&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=9" class="addthx" data-post="366220"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июля 2016 02:36 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>dosprog</b>, что-то я тебя не пойму – ты сам злонамеренно объявляешь идентификаторы как &quot;PUBLIC&quot;, а потом удивляешься делу рук СВОИХ. По хорошему конечно компилер должен бы посылать в таком случае, но смею предположить, что сей &quot;пофигизм&quot; обусловлен стремлением (вполне обоснованным) разрабов увеличить скорость компиляции.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366246&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=10" class="addthx" data-post="366246"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июля 2016 02:53 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>FalseMaster пишет:<br>dosprog, что-то я тебя не пойму – ты сам злонамеренно объявляешь идентификаторы как &quot;PUBLIC&quot;, а потом удивляешься делу рук СВОИХ. </I><br><br>) Я тоже тебя не пойму. <br>Где это я удивлялся? - Всё сделано в строгом соответствии (почему это &quot;злонамеренно&quot;?..) ,  и результат ожидаемый.<br><br><br>В общем, мы не понимаем, о чём речь<br><br><br><b>--Добавлено--</b><br>.. желаем расшарить адрес структуры - в PUBLIC её.<br>Хотим расшарить смещения в ней её членов - то же самое.<br>Всё нормально<br><br>За исключением вышесказанного в предыдущем посте. Издержки.<br><br>Так это работает<br><i class=x><br></i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366247&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=11" class="addthx" data-post="366247"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 июля 2016 04:41 <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+&gt;&gt; желаем расшарить адрес структуры<br>&gt;&gt; Хотим расшарить смещения в ней её членов<br>&gt;&gt; Всё нормально<br><br>Может оно конечно и нормально (нормы-то у всех свои), но совершенно необъяснимо. На кой чёрт расшаривать константы, рассчитываемые во время компиляции (смещения), а тем паче круглый ноль (адреса структур)? По мне так это какая-то редкая девиация. Ну да ладно, как говорится, каждый дрочит как хочет. Ты вот, если такой любитель TAsm&#039;а, подскажи лучше, можно ли как-нибудь расшаривать функции/переменные/метки под другим именем? То же касается и директивы EXTRN. Это требуется в случае, когда внешнее или видимое извне имя содержит недопустимые символы или является зарезервированным словом. У меня имеется мануал по TAsm&#039;у, но я там что-то ничего не нашёл по этому вопросу, может плохо искал – в PDF неудобно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=366519&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=12" class="addthx" data-post="366519"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2017 04:26 <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>dosprog</b>, если ты ещё живой, отзовись, дело к тебе есть.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373812&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=13" class="addthx" data-post="373812"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2017 10:07 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Та пока живой типа
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373817&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=14" class="addthx" data-post="373817"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 02:45 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+Я вот чего хотел-то. Ты в прошлый раз обмолвился, что юзаешь TAsm и мне советовал (аргументированно) на нём остановиться, что я и сделал. И мало помалу проникся к сему продукту; несмотря на древность, глючность и говнокод есть в нём какая-то необъяснимая ламповость. Теперь о недостатках. Их обнаружилось два и оба для меня неприемлемые. Об одном я уже упоминал – извратная форма обращения к операндам в памяти, а второй – слияние одноимённых сегментов (но надо сказать, этим грешны все известные мне трансляторы (с MASM&#039;ом отдельная история)). И поскольку альтернативы я не видел, а смириться с таким положением дел не мог по причине зашкаливающей привиредливости, то переборов неуверенность в своих силах, рискнул запилить в многострадального необходимые мне фичи. Но вот как-то сразу не заладилось – два раза выбирал неверную стратегию окостыливания, да и в самом коде допускал много ошибок, что проявлялось по мере пользования. Собственно просьба моя заключается в том, чтобы занятый кованием железа народ всё бросил и переключился на пристрастное тестирование моей поделки (получается именно так, чего уж тут скрывать), а поскольку ты сам назвался груздем, то стал первым и пока единственным кандидатом на полезание в короб. Мне не влом тестить самому, но для выявления всех нежданчиков требуются проекты более сложные, нежели состоящие из нескольких SEGMENT/ENDS и PROC/ENDP с FLAT моделью памяти. У меня таких нет, да и знаний недостаточно – я ведь использую TAsm лишь в кач-ве подспорья, а основной компиль дельфовый. В коденье под DOS я вообще полный нуб – за всю жизнь только раз бездумно скомпилил несколько строк чужого кода. В общем, если время позволяет, окажи любезность. Кое-что я уже и сам выявил… ну как выявил, это было сразу ясно: из-за принудительной раздельной сегментации директивы ASSUME, GROUP и SIZE перестали принимать имена сегментов (кроме встроенных), т.к. перед разбором строки производится переименование, но осталась лазейка в виде макроса @curseg. Вот <noindex><a href="http://getfile.dokpub.com/yandex/get/https://yadi.sk/d/hhSBvwOEuGcky" rel="nofollow" target="_blank">ссыль</a></noindex> на костыль.<br>UPD: Ах да, забыл сказать, фичи работают только в режиме IDEAL.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373843&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=15" class="addthx" data-post="373843"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 08:40 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+А есть оригинальный непопорченный файл TASM32.EXE v.5.4?<br>И желательно к нему также tLink32.EXE и iLink32.exe.<br><br>Были две версии TASM 5.4<br>---------------------------------------------------------------------<br>TASM 5.4 © 1988, 2009 CodeGear  <br>tasm32.exe 188,416 bytes (184k) / md5=78c9a9bfa1203745b08c0129e07053db / date=1/14/2009 12:03pm (from C++Builder RAD Studio 2009)<br><br>TASM 5.4 © 1988, 2010 Embarcadero Technologies, Inc. <br>tasm32.exe 194,936 bytes (190k) / md5=4ffa43fb80e81c962cee8521c6fe715a / date=12/7/2013 4:55pm (from C++Builder RAD Studio12 XE5)<br>---------------------------------------------------------------------<br><br>В архиве я увидел файл размером 187&#039;392 от 23-Jan-2013, 2:55:00.<br><br><br>Или сперва нужно отмотать правки по файлу !patch.txt для отмены инжекта библиотеки, а потом реверснуть библиотеку Tasm32.bin, чтобы глянуть, какие правки делались в Tasm&#039;e при загрузке той библиотеки? Там только правки, и никакого функционала.<br>Отмотать-то можно, но при этом не удастся полностью адекватно восстановить исходный файл.<br><br>Почему было не сделать это по-человечески?<br>Обычно есть хорошая DOS-команда &quot;C&gt;FC /b&quot;, с помощью которой можно получать листинг правок.<br><br>По врезанию загрузок всяких приблудных библиотек -<br>Там есть стаб, который ты не заметил - загружает 32rtm.EXE при запуске в реальной DOS.<br>А приблудная DLL имеет такой стаб? - И как оно должно работать, по-твоему?<br><br>Это что, типа квест такой? - На всякий случай - в квестах я не участник.<br><br>Дальше.<br>Если возникают вопросы, то уместны были бы файлы с текстами программ, на которых эти вопросы возникли.<br><br>У меня имеется TASM32 v.5.2 с TLINK32 2.0.68, которые поправлены в нужных мне местах, и они меня устраивают.<br>Ни к форме адресации, ни к политике слияния одноимённых сегментов у меня вопросов кагбы никогда не возникало.<br><i class=x><br></i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373848&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=16" class="addthx" data-post="373848"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 13:07 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+&gt;А есть…<br>&gt;И желательно…<br>Не понимаю, зачем они тебе, но если уж так надо, держи, не жалко <noindex><a href="http://rgho.st/7YPMRBHxB" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex> (всё что есть).<br><br>&gt;В архиве я увидел…<br>Это из XE3, но с почиканной на всякий пожарный security table.<br><br>&gt;…реверснуть библиотеку Tasm32.bin, чтобы глянуть, какие правки делались в Tasm&#039;e при загрузке той библиотеки?<br>Нафига такие сложные ходы сферическим конём? Я тебе исходник могу дать, только опять же зачем?<br><br>&gt;…можно получать листинг правок.<br>Файл !Patch.txt я для себя чиркнул, не обращай на него внимания.<br><br>&gt;И как оно должно работать, по-твоему?<br>Мне как-то не пришло в голову кодить в 2017 году под чистым DOS&#039;ом, хотя их есть у меня (на случай неожиданного вендекапца). Щас запустил в DOS Box&#039;e – не пашет: говорит, что не может найти точку входа в одну из функций, импортируемых из Kernel32.dll, но и с оригинальной версией та же байда.<br><br>&gt;уместны были бы файлы с текстами программ<br>Так вот я как раз и расчитывал, что ты или кто другой погоняет окостыленный мною TAsm на проектах, где используются все его возможности, дабы выявить побочные эффекты, недоработки и баги моего патча.<br><br>&gt;…поправлены в нужных мне местах, и они меня устраивают.<br>&gt;Ни к форме адресации, ни к политике слияния одноимённых сегментов у меня вопросов кагбы никогда не возникало.<br>Интересно рассуждаешь. Т.е. тебе можно корёжить софт под себя, а другим нельзя что ли?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373864&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=17" class="addthx" data-post="373864"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=35473" title="27-03-2017 10:28, ранг:255.2" target="_blank">dosprog</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 13:42 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Ну, более/менее прояснилась ситуация.<br>1)<br>Оверлей с цифровой подписью отрезан - верно.<br>2)<br>Чексумма обнулена - верно.<br>3)<br>Присобачена подгрузка библиотеки, которая патчит код при запуске - не верно. <br>Такие вещи нужно делать обычным статическим патчением. <br>Кстати, в чистой DOS такое уже не работает, хотя в оригинальном виде работает нормально,<br>только, дейставительно, ругается на одну отсутствующую импортную функцию.<br>4)<br> Не совсем понял, откуда в патченной версии взялись хинты импортных функций, если в оригинальном файле их не было, - ну то такое. (Или они в оригинале были?? Тогда &quot;оригинальный&quot; файл тоже был поковырянный). <br><br>Дальше посмотрю, как только будет время.<br><br>Апдейты TASM 5.4 - Спасибо, то, что надо. (Хотя чексуммы и не совпадают с теми, что указаны в прошлом посте. Файлы ковыряли).<br>Они этот RAD закрутили так, что без полной его установки оттуда ничего не вытащить,<br>не хотелось связываться с эти головняком.<br><br><br><br><b>--Добавлено--</b><br><br>Интересно было бы увидеть комментарии по вот этим патчам (ORIGINAL.CRK) -<br>Например, патч .0042192B:  выглядит явно стрёмным.<br>Остальное надо смотреть.<br>То, что не указано в файле ORIGINAL.CRK, более/менее понятно.<br><br>Файл ORIGINAL.CRK:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">TASM&nbsp;<span class="hl_number">5</span><span class="hl_char">.</span><span class="hl_number">4</span></li><li class="hl_l1">Size&nbsp;194'424 bytes</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">Some&nbsp;fixings</li><li class="hl_l0">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">004038CA</span><span class="hl_char">:</span>&nbsp;E3&nbsp;<span class="hl_number">92</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">004038CB</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">02</span>&nbsp;D7&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">004038CC</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;FE&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">004038CD</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;FF&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00404012</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">20</span>&nbsp;<span class="hl_number">40</span>&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">0040712F</span><span class="hl_char">:</span>&nbsp;C8&nbsp;<span class="hl_number">0C</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00407130</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">48</span>&nbsp;<span class="hl_number">21</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00407131</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">42</span>&nbsp;<span class="hl_number">3F</span>&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B17</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">66</span>&nbsp;E8&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409B18</span><span class="hl_char">:</span>&nbsp;FF&nbsp;<span class="hl_number">24</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B19</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">0D</span>&nbsp;<span class="hl_number">75</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409B1A</span><span class="hl_char">:</span>&nbsp;C2&nbsp;FE&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B1B</span><span class="hl_char">:</span>&nbsp;A7&nbsp;FF&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409B1C</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">42</span>&nbsp;<span class="hl_number">66</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B1D</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">90</span>&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B99</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">66</span>&nbsp;E8&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409B9A</span><span class="hl_char">:</span>&nbsp;FF&nbsp;A2&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B9B</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">0D</span>&nbsp;<span class="hl_number">74</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409B9C</span><span class="hl_char">:</span>&nbsp;C2&nbsp;FE&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B9D</span><span class="hl_char">:</span>&nbsp;A7&nbsp;FF&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409B9E</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">42</span>&nbsp;<span class="hl_number">66</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409B9F</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">90</span>&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409BEC</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">66</span>&nbsp;E8&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409BED</span><span class="hl_char">:</span>&nbsp;FF&nbsp;<span class="hl_number">4F</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409BEE</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">0D</span>&nbsp;<span class="hl_number">74</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409BEF</span><span class="hl_char">:</span>&nbsp;C2&nbsp;FE&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409BF0</span><span class="hl_char">:</span>&nbsp;A7&nbsp;FF&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">00409BF1</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">42</span>&nbsp;<span class="hl_number">66</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">00409BF2</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">90</span>&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">0040CE3A</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">11</span>&nbsp;E2&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">0040CE3B</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">12</span>&nbsp;<span class="hl_number">47</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">0040CE3C</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;FE&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">0040CE3D</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;FF&nbsp;</li><li class="hl_l0">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">0040D221</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">2A</span>&nbsp;<span class="hl_number">2B</span>&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">0040D222</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">0E</span>&nbsp;<span class="hl_number">44</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">0040D223</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;FE&nbsp;</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">0040D224</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;FF&nbsp;</li><li class="hl_l1">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_number">004108A7</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">87</span>&nbsp;<span class="hl_number">66</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">004108AE</span><span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>DB</b></span>&nbsp;<span class="hl_number">90</span>&nbsp;</li><li class="hl_l0">tasm32<span class="hl_char">.</span>exe</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_number">0042192B</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">80</span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">;; ??? ASCII=0A7 char ;??Russian 'г'???</span></li><li class="hl_l0">&nbsp;</li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=373866&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=18" class="addthx" data-post="373866"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 15:10 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+&gt;Такие вещи нужно делать обычным статическим патчением.<br>Не вижу логики. В моём решении библа подрубается и в нескольких местах сплайсит код, вставляя прыжки на мои обработчики, сорцы которых скомпиленны одним нажатием клавиши. Всё легко и просто. Ты же предлагаешь добавлять в патчимый бинарь две секции (код/данные), копировать в них содержимое TAsm.bin и лапками править смещения. Причём делать это придётся многократно… хотя нет, после нескольких таких экшенов поедет крыша, возможно даже навсегда.<br><br>&gt;в чистой DOS такое уже не работает, хотя в оригинальном виде работает нормально, только, дейставительно, ругается на одну отсутствующую импортную функцию.<br>Работает до тех пор, пока эта отсутствующая функция не будет вызвана, ибо в соответствующем чанке IAT у нас адрес специально предусмотренной для такого случая заглушки.<br><br>&gt;откуда в патченной версии взялись хинты импортных функций<br><noindex><a href="https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24033" rel="nofollow" target="_blank">Отсюда</a></noindex>.<br><br>&gt;Файлы ковыряли<br>Нет же. У тебя TAsm&#039;ы из D2009 и XE5, а те что в моём архиве – из XE и XE3. Само собой, что контрольные суммы отличаются.<br><br>&gt;Они этот RAD закрутили так, что без полной его установки оттуда ничего не вытащить<br>Ох, не напоминай. Аж поплохело, как вспомнил тот кошмарный день (день генеральной уборки в реестре и на харде).<br><br>UPD:<br>&gt;Например, патч .0042192B: выглядит явно стрёмным.<br>Этот патч разрешает использование в идентификаторах символа &#039;§&#039; (<b>UPD:</b> изменено в следующих версиях), служащего разделителем имени сегмента и присобаченного индекса для того чтобы отсекать этот самый индекс при записи имени в буфер с полуфабрикатом создаваемого объектника. Не вижу ничего стрёмного.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373871&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=19" class="addthx" data-post="373871"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 15:10 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<I>FalseMaster пишет:<br>что ты или кто другой погоняет окостыленный мною TAsm на проектах, где используются все его возможности, дабы выявить побочные эффекты, недоработки и баги моего патча.<br> </I><br>Посмотрю, как будет время.<br>Пока, на паре проектов, - вроде, работает.<br>Но у меня нет проектов с режимом &quot;IDEAL&quot;, всё только &quot;MASM&quot;.<br>Писал об этом раньше, специально не использовал никогда этот IDEAL, <br>и оно себя позже оправдало в полной мере. <br>Сейчас практически нет проблем с использованием ML.EXE (MASM).<br><br><I>FalseMaster пишет:<br>Не вижу логики. </I><br><br>Ok. Понятно.<br><br>В общем, если бы было более толковое описание того, чем занимается подгружаемая библиотека, было бы легче.<br><br>Кстати, а как поведёт себя это всё при ASLR? имеются в виду патчения, которые выполняет подгружаемая библиотека.<br><br><br>--------------------------------<br><strike>Что касается &quot;восстановления хинтов&quot;, </strike> [удалено]<br><i class=x><br></i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373872&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=20" class="addthx" data-post="373872"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 15:58 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+&gt;Пока, на паре проектов, - вроде, работает. Но у меня нет проектов с режимом &quot;IDEAL&quot;, всё только &quot;MASM&quot;.<br>Ну так само собой, что в MASM-режиме всё работает, т.к. управление костылём возложено на ключевые слова IDEAL и MASM. Если найдёшь время, переделай какой-нибудь не самый большой, но насыщенный всяческими директивами проект – не так уж и много переписывать: слова местами поменять да &quot;ptr &quot; заменить на &quot;&quot; сразу во всём тексте. Ну или тестовый забацай с переподвыподвертами.<br><br>&gt;В общем, если бы было более толковое описание…<br>Так я же сразу и описал, только в виде жалоб. И в файлике TAsm+.txt про все три нововведения сказано.<br>1. Раздельная сегментация, то бишь сегменты с одинаковыми именами не сливаются в один.<br>2. Возможность обращаться к памяти вот таким макаром: mov byte/word/dword [address], imm8/16/32.<br>3. Допустимость использования ключевых слов, экранированных символом &#039;&amp;&#039;, в качестве идентификаторов (как в Делфях).<br><br>UPD:<br><br>&gt;Кстати, а как поведёт себя это всё при ASLR?<br>По идее всё должно быть нормуль, но я не имею возможности проверить, ибо прожжённый олдфаг и сижу на 2k3.<br><br>&gt;Хинты имеют смысл только в том случае, если нет имён функций…<br>Ты путаешь хинты с ординалами. Подсказки позволяют ускорить настройку адресов импорта (естественно это будет заметно только если приложение импортирует 9000 библиотек со 100500 функций в каждой, а я так просто для красоты поправил – делов-то на 5 сек.).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373874&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=21" class="addthx" data-post="373874"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 17:39 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Слишком всё громоздко. Хотя и, безусловно, круто.<br><br>И главное - зачем вообще нужен этот паскаль?<br>Чтобы принять и разобрать аргументы?<br>Чтобы вывести на консоль форматированные сообщения?<br>Вот, похоже, и всё. А какая куча головняка.<br>(Кстати, в утилите Hint_fixer вывод на консоль отсутствует. Тупо работает втихую).<br><br>На примере утилитки Hint_fixer, могу сказать, что проще изначально всё делать на MASM&#039;е,<br>чем иметь такие сложности, ещё и с кастомным траслятором вдобавок.<br><br>Просто надо брать и делать такие вещи целиком на ASM&#039;е, оно кажется трудно только в первый раз.<br>И TASM лучше уже оставить в покое, сейчас MASM актуален. Плохо это или хорошо<br><br>Помимо всего прочего, борландовский линкер работает паршиво - файлы выходят неоптимальными, иногда, довольно часто, начинаются какие-то загадочные глюки.<br>TASM был вне конкуренции во времена слабых компьютеров и программирования в DOS - там да.<br>А сейчас уже MASM.<br><br>Окончательно отошёл от TASM&#039;а, когда возился с  утилитой, частью которой являлся отдельно оттранслированный модуль [и не один], включаемый потом в основную программу в виде &quot;included db&quot;.<br>Так вот tlink32 лепил в конец того файла сотню байтов оверлея из нолей, <br>которые приходилось обрезать руками, после чего транслировать главный модуль со включёнными этими &quot;db&quot;.<br>И в результирующем файле тоже оказывался ненужный оверлей, его тоже приходилось отрезать перед окончательной упаковкой готовой программы.<br>Как только перетащил проект в MASM32, все эти странности мигом пропали, и файл перед запаковкой был на треть меньше по размеру, чем после TASM/TLINK. За счёт отсутствия непонятных пустот. <br><br>Это объективно. А так-то я сам ретроград.<br>Старые вещи, сделанные для TASM&#039;а, обычно не трогаю, да и там в основном были вещи для DOS&#039;а.<br>То, что для WINды - тут TASM уже отдыхает.<br><i class=x><br></i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373877&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=22" class="addthx" data-post="373877"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 19:53 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+&gt;Слишком всё громоздко.<br>Это только со стороны и с непривычки так кажется. Для меня мало что поменялось от задействования TAsm&#039;a в паскалевых проектах. Ну добавляю в батник пару-тройку пунктов для &quot;Choice&quot;, вот собственно и всё.<br><br>&gt;И главное - зачем вообще нужен этот паскаль?<br>Не зачем, а почему. Потому что компиляция быстрая, а если сорцы на RAM-диске, то вообще молниеносная. Для меня это основной критерий. Я не зарабатываю кодингом, меня попросту прёт от байто**ства, будто вставился, но очучения более тонкие. А когда компиляция происходит в темпе тягания кота за хвост, возникает диаметрально противоположная реакция – раздражение. Как говорится, почувствуй разницу.<br><br>&gt;Чтобы принять и разобрать аргументы?<br>&gt;Чтобы вывести на консоль форматированные сообщения?<br>Если говорить не конкретно о Паскале, а о ЯВУ вообще, то как ни крути высокоуровневая семантика имеет свои неоспоримые преимущества, как то контроль передаваемых в функции параметров (особенно актуально для вызовов API&#039;шек), большая удобочитаемость исходников etc, что ведёт к сокращению труднообнаружимых ошибок, объёмов писанины и усталости от повышенного внимания.<br><br>&gt;проще изначально всё делать на MASM&#039;е<br>Кому как, это чисто индивидуально. Для меня, например, слишком утомительно х**рить весь проект на голом асме. А в некоторых случаях это ещё и совершенно неоптимально. Для примера, у меня есть проект Portabler, назначение которого в том, чтобы проги хранили свои настройки в INI-файле вместо реестра. Основная часть проекта универсальна, а для каждой конкретной софтины меняется только инклюд, содержащий как правило несколько вызовов стандартизованных функций для загрузки и записи ключей. Большинство инкюдов делаются посредством копирования наиболее подходящего из уже имеющихся и внесения в него небольших корректировок, а то и без оного. Представь, насколько я усложнил бы себе жизнь, заменив эти маленькие удобоваримые инклюды асмовыми портянками.<br><br>&gt;целиком на ASM&#039;е, оно кажется трудно только в первый раз.<br>Ну я как бы не первый день за пекой и свои возможности знаю.<br><br>&gt;Так вот tlink32 лепил в конец того файла сотню байтов оверлея из нолей<br>Ну мне-то попроще будет, т.к. круг решаемых TAsm&#039;ом задач у меня довольно узок: использую его токмо в связке с DCC и никак более.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373882&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=23" class="addthx" data-post="373882"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 20:40 <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+)) Не понял. Этот самый Portabler это что - реестр должен использоваться как временное хранилище настроек, только на время запуска программы?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373884&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=24" class="addthx" data-post="373884"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 21:24 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+&gt;реестр должен использоваться как временное хранилище настроек<br>Ну да, только есть маленькая хитрость, а именно захукивается NtCreateKey с целью добавления флага REG_OPTION_VOLATILE.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373886&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=25" class="addthx" data-post="373886"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 21:41 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+Такая идея выглядит вполне привлекательно. <br>Только вот составлять список всех ключей это тяжело, а для некоторых программ так и просто нереально.<br>Есть такие программы, которые в реестре пакостят очень обильно.<br><br><I>FalseMaster пишет:<br>только есть маленькая хитрость<br> </I><br>А почему нельзя просто их удалять по окончании работы программы?<br>Всё равно ведь лаунчер будет их содержимое записывать в .INI файл?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373887&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=26" class="addthx" data-post="373887"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 22:06 &middot; Поправил: FalseMaster <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+&gt;Только вот составлять список всех ключей это тяжело<br>&gt;Есть такие программы, которые в реестре пакостят очень обильно.<br>Так да не так. В подавляющем большинстве случаев прога срёт в ветку HKEY_CURRENT_USER\Software\&lt;проганейм&gt;, а вот подключей действительно может быть много, но до нереальности далеко, десяток-другой – это ерунда. Но даже если подключей будет овердохуа и при этом они сами не будут иметь подключей, вся ветка загрузится/запишется одним вызовом функции. Попадаются конечно &quot;тяжёлые&quot; случаи с большим кол-вом подключей и вложенностью в несколько уровней, но это редкость.<br><br>UPD:<br><br>&gt;А почему нельзя просто их удалять по окончании работы программы?<br>Тут всё тоньшее и глубжее. Если ключ создаётся с флагом REG_OPTION_VOLATILE, то он располагается в отдельной области памяти, а не в промапленном файле реестра и запись в него не сопровождается записью в лог реестра (ntuser.dat.log, software.log етц), соответственно накопитель не удрачивается даже если созданная нижними конечностями программулина интенсивно пишет в реестр (актуально для SSD). К тому же где гарантия, что приложение завершится корректно? Ну и кода меньше.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373888&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=27" class="addthx" data-post="373888"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 391thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 23:46 <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+Да, идея годная.<br>Надеюсь увидеть в действии.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373894&amp;user=35473&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=28" class="addthx" data-post="373894"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2017 02:14 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+Всё годное пилится на масме. Фасм же стал популярен из за сего компиля <noindex><a href="https://www.purebasic.com/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>Масм весьма глючен, но это олдскульный компиль, именно на нём кодить хорошо и правильно(выбор из всяких тасм фасм етц).
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=373901&amp;user=40990&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=29" class="addthx" data-post="373901"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]FalseMaster[/b]','')">FalseMaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=26640">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 апреля 2017 05:56 <br><script type="text/javascript">QU('FalseMaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FalseMaster" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=24229&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+Я уж грешным делом подумал, что ресурсу настал безвременный кабздец (что было бы весьма прискорбно), ан нет, жив курилка.<br><br><I>dosprog</I><br><br>&gt;Надеюсь увидеть в действии.<br>В каком смысле: привить чистоплотность некой прожке или сорцы позырить?<br><br>Кстати, по поводу обильной срачи в реестр. Чаще всего гадит не столько сам продукт, сколько его инсталлятор. Руки бы пообрывать обмудкам, засовывающим софт во всякие Inno Setup&#039;ы, NullSoft Installer&#039;ы и прочую гадость.<br><br><I>difexacaw</I><br><br>&gt;именно на нём кодить хорошо и правильно<br>Для меня более приоритетно удобство, нежели канонiчность и трушность.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373978&amp;user=26640&amp;forum_n=3&amp;topic=24229&amp;page=0&amp;anchor=30" class="addthx" data-post="373978"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=3&amp;topic=24229&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=3&amp;topic=24229&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/default.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=3&sortBy=0&page=0.html"><b>Софт, инструменты</b></a> <b class=bulletHead>&#8212;&#8250;</b> WAsm и структуры</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#31" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="3">
+<input type="hidden" name="topic" value="24229">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24229" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,404 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Реализация RSA на Delphi - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Я раньше криптографией как-то не занимался. А тут надо сделать простую прогу. Сгенерить пару ключей (RSA). Зашифровать строчку и потом соответственно расшифровать её. Проблема в том, что при больших числах вылетает исключение.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a> (+10 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Реализация RSA на Delphi</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]WELL[/b]','')">WELL</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/38.gif" alt=""><br><span class=txtSm>Ранг: 266.8 (наставник), 5thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.22<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=38">Участник</a><br><font color=blue>very WELL :)</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 04:14 <br><script type="text/javascript">QU('WELL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=WELL" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Я раньше криптографией как-то не занимался.
+<br>А тут надо сделать простую прогу. Сгенерить пару ключей (RSA). Зашифровать строчку и потом соответственно расшифровать её. Проблема в том, что при больших числах вылетает исключение.
+<br>
+<br>Как это вообще реализуется на делфи?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=47290&amp;user=38&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=1" class="addthx" data-post="47290"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]ProTeuS[/b]','')">ProTeuS</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 172.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2281">Участник</a><br><font color=blue></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 04:33 <br><script type="text/javascript">QU('ProTeuS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ProTeuS" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+в принЦипе, зная сам алгоритм цифровой подписи, либо аутентификации, на нем основывающийся несложно накодить все ру4ками...но если времени вобрез и нифига 4итать не хо4ется ;) то могу посоветовать ска4ать либу компонентов LockBox (кому надо найдет) и не замора4иваться на том &quot;как там и 4то делается&quot;, благо там генерация клю4ей и подписб документа сводится к написанию 5 стро4ек нового проэкта...
+<br><br><font size="1"><i>-----<br>HOW MUCH BLOOD WOULD YOU SHED TO STAY ALIVE</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47291&amp;user=2281&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=2" class="addthx" data-post="47291"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]di-2[/b]','')">di-2</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/2792.jpg" alt=""><br><span class=txtSm>Ранг: 230.5 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.18<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2792">Участник</a><br><font color=blue>Norg</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 04:55 <br><script type="text/javascript">QU('di-2','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=di-2" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+www.isyst.ru/download/rsa_demo.rar
+<br>Исходные тексты на Delphi по реализации алгоритма шифрования RSA как пособие для начинающих программистов. RSA алгоритм относится к ассиметричным алгоритмам шифрования, его главное достоинство - имея открытый ключ и зная алгоритм шифрования невозможно повторить закодированое сообщение, на базе алгоритма RSA работает шифрование PGP, реализуются хэш-функции (элетронно-цифровая подпись). Программа является лениво исполненным интерфейсом для модуля работы с большими числами от Walied Othman (также в этом архиве).
+<br><br><font size="1"><i>-----<br>M&amp#225 enginn renna undan &amp#254v&amp#237 sem honum er skapa&amp#240</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47292&amp;user=2792&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=3" class="addthx" data-post="47292"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]cbs[/b]','')">cbs</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2742.gif" alt=""><br><span class=txtSm>Ранг: 78.0 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.77'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2742">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 05:07 &middot; Поправил: cbs <br><script type="text/javascript">QU('cbs','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=cbs" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Ты не написал, для чего тебе это все нужно. Тут есть два принципиально разных подхода:
+<br>
+<br>
+<br><u>1. Надо сделать курсач или что-то подобное (или просто реализовать в программе и т.п.)</u>
+<br>Самая известная библеотека для Дельфей - это, пожалуй, FGInt.
+<br><b>FGInt is a package in Delphi &amp; Free Pascal to handle Fast Gigantic Integers</b>
+<br><i class=x>http://triade.studentenweb.org/</i>
+<br>Библиотека поставляется в сорцах.
+<br>
+<br>В библитеке реализованы операции над большими числами.
+<br>Там же есть реализации алгоритмов ЭЦП ЭльГамаля, ГОСТ 3410, DSA, + реализованы операции с эллиптическими кривыми и алгоритмы ЭЦП с использование этих кривых: EC-ElGamal и ECDSA.
+<br>
+<br><u>2. Хочешь сделать программу/реализацию с надежным шифрованием/ЭЦП.</u>
+<br>Тогда FGInt - это просто детский лепет. Во-первых, она никем не сертифицирована. Во-вторых, там нет никих функций тестирования (вупинг и пр.)
+<br>В-третьих, было когда-то такое, что там нашли баг. Баг проявлялся редко, но его-таки вычислили. И пофиксили. Но я бы не стал доверять такой библиотеке что-либо серьезное.
+<br>в FGInt еще есть генерация простых чисел, что попребуется для генерации кличевой пары.
+<br>Ни о какой надежности функций генерации говорить не приходится.
+<br>
+<br>Так что приговор - FGInt только для игрового программирования.
+<br>
+<br>Думаю, что для серьезных задач явно стоит познакомиться с библиотеками на C/C++.
+<br>
+<br>Подозреваю, что твоя задача попадает под пункт 1, так что ни о чем не думай и бери FGInt <img src="img/smilies/s1.gif" alt="">
+<br>
+<br>
+<br>P.S. Принципиально не согласен с <b>ProTeuS</b>.
+<br><I>ProTeuS пишет:
+<br>в принЦипе, зная сам алгоритм цифровой подписи, либо аутентификации, на нем основывающийся несложно накодить все ру4ками... </I>
+<br><b>ГРАМОТНО</b> реализовать это крайне не просто. Почитай хотя бы Брюса Шнайера (&quot;Практическая криптография&quot;), там описано достаточно поверхностно, но хотя бы начальное представление иметь будешь.
+<br>Как раз для RSA существует множество аспектов, с которыми надо быть чрезвычайно осторожным при реализации.
+<br>
+<br><b>[EDiTED]</b>
+<br><b>di-2</b>
+<br>Молодец! Однако:
+<br>1. В твоем посте нет ни слова про FGInt.
+<br>2. Можно было догадаться, что некоторые люди сразу открывают все новые посты на форуме, а потом отвечают - посмотри на время постов. Не надо разводить лишний флуд.
+<br><br><font size="1"><i>-----<br>crypto.freak</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47295&amp;user=2742&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=4" class="addthx" data-post="47295"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]di-2[/b]','')">di-2</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/2792.jpg" alt=""><br><span class=txtSm>Ранг: 230.5 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.18<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2792">Участник</a><br><font color=blue>Norg</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 05:32 <br><script type="text/javascript">QU('di-2','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=di-2" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>cbs</b> Я который дал ему исходник там как раз  FGInt все на русском обьяснено.
+<br><br><font size="1"><i>-----<br>M&amp#225 enginn renna undan &amp#254v&amp#237 sem honum er skapa&amp#240</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47298&amp;user=2792&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=5" class="addthx" data-post="47298"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]WELL[/b]','')">WELL</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/38.gif" alt=""><br><span class=txtSm>Ранг: 266.8 (наставник), 5thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.22<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=38">Участник</a><br><font color=blue>very WELL :)</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 06:01 <br><script type="text/javascript">QU('WELL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=WELL" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>cbs пишет:
+<br>Подозреваю, что твоя задача попадает под пункт 1, так что ни о чем не думай и бери FGInt   </I>
+<br>Угу. Так и есть <img src="img/smilies/s1.gif" alt="">
+<br>Спасибо всем. Заюзаю это www.isyst.ru/download/rsa_demo.rar <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=47300&amp;user=38&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=6" class="addthx" data-post="47300"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]ProTeuS[/b]','')">ProTeuS</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 172.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2281">Участник</a><br><font color=blue></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 16:18 <br><script type="text/javascript">QU('ProTeuS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ProTeuS" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>cbs пишет:
+<br>ГРАМОТНО реализовать это крайне не просто. Почитай хотя бы Брюса Шнайера (&quot;Практическая криптография&quot;), там описано достаточно поверхностно, но хотя бы начальное представление иметь будешь. 
+<br>Как раз для RSA существует множество аспектов, с которыми надо быть чрезвычайно осторожным при реализации.  </I>
+<br>
+<br>просто- не просто, но в моем вузе решить подобную проблему без использования сторонних библиотек может каждый второй второкурсник, не то 4то про4итать уже до дыр заюзаную &quot;практи4ескую криптографию&quot; шнаера...
+<br>
+<br>а 4то касается протоколов аутентификации, обменов клю4ами и цифровых подписей, то их реально осилить если не на лабораторной работе, то курсовой ВПОЛНЕ!
+<br><br><font size="1"><i>-----<br>HOW MUCH BLOOD WOULD YOU SHED TO STAY ALIVE</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47370&amp;user=2281&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=7" class="addthx" data-post="47370"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Ara[/b]','')">Ara</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/24.jpg" alt=""><br><span class=txtSm>Ранг: 1288.1 <b><u>(!!!!)</u></b>, 273thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 1.29<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 16:26 <br><script type="text/javascript">QU('Ara','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ara" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>ProTeuS пишет:
+<br>просто- не просто, но в моем вузе решить подобную проблему без использования сторонних библиотек может каждый второй второкурсник </I>
+<br>Чё-та сомнения берут...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=47372&amp;user=24&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=8" class="addthx" data-post="47372"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]cbs[/b]','')">cbs</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/2742.gif" alt=""><br><span class=txtSm>Ранг: 78.0 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.77'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2742">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 декабря 2005 17:08 <br><script type="text/javascript">QU('cbs','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=cbs" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>ProTeuS</b>
+<br>Не хочу демонстративно высказывать сомнения касательно квалификации ваших студентов, но эта задача СЛИШКОМ ВЕЛИКА.
+<br>
+<br>Давай разобьем ее на четыре части.
+<br>
+<br>1. Эффективная и надежная реализация больших чисел.
+<br>2. Реализация генератора случайных чисел.
+<br>3. Реализация алгоритма генерации ключей, не подверженных известным атакам.
+<br>4. Реализация тестов.
+<br>
+<br>Каждая из этих подзадач, прямо скажем, весьма объемна.
+<br>Не думаю, что за время, отведенное на курсач, это реально поднять одному человеку.
+<br>Готов поверить, что студенты смогут реализовать что-то вроде сильно упроещенного FGInt с умножением больших чисел столбиком и с примитивной генерацией ключей.
+<br>Ни о какой качественной реализации, по-моему, здесь речи и быть не может. Это все так, на уровне &quot;поиграться&quot;, не более того.
+<br>
+<br><b>P.S.</b> У тебя клавиша &#039;ч&#039; не нажимается, или это 1337 c001 h@x0rz 57y13?
+<br><b>P.P.S.</b> Да, кстати, если ты обучаешься на ИБ, то не совсем понятно, зачем вы так Брюша Шнаера до дыр заюзали <img src="img/smilies/s1.gif" alt=""> По-моему, больше времени стоит уделить алгебре и дискре. Ну да это так... <img src="img/smilies/s1.gif" alt=""> Мысли вслух.
+<br><br><font size="1"><i>-----<br>crypto.freak</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47375&amp;user=2742&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=9" class="addthx" data-post="47375"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]ProTeuS[/b]','')">ProTeuS</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 172.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2281">Участник</a><br><font color=blue></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 декабря 2005 01:07 <br><script type="text/javascript">QU('ProTeuS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ProTeuS" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+2cbs
+<br>4то касается описаных тобой 4 пунктов, то я согласен ЦЕЛИКОМ только со 2, поскольку его реализовать действительно анрил, реализовывался генератор псевдослу4айных последовательностей, 4то касается остальных, то тут возникает уже не вопрос &quot;релизовали? или нереализовали?&quot; а вопрос компетенции преподователя при приеме задания и отношения 4еловека к поставленной зада4е - ведь &quot;замылить&quot; глаза и здать &quot;крякер интерента&quot; под видом новой системы аутентификации при достато4ном желании может по4ти любой...
+<br>
+<br>нас4ет &quot;Ни о какой качественной реализации, по-моему, здесь речи и быть не может. Это все так, на уровне &quot;поиграться&quot;, не более того. &quot;
+<br>
+<br>Никто и не говорит о каких-то супернаворо4еных реализация...Пусть результат у кого-то выйдет деревянным, но зато опыта-то побольше будет 4ем кинуть компонент на форму!
+<br>
+<br>Да и стоит ли сравнивать студен4ескую реализацию (хоть и &quot;ру4ную&quot;)  с современными разработками?
+<br>Ведь тогда бы рынок коммер4еского криптоПО просто рухнул бы...
+<br>
+<br>Имхо главное тут пусть студент живет, у4ится и кодит наиболее низкоуровнево, а тесты, методы атаки(которым, кстати, подвержены не только доморощеные проги) придут с опытом...
+<br>
+<br>&gt;&gt;У тебя клавиша &#039;ч&#039; не нажимается, или это 1337 c001 h@x0rz 57y13? 
+<br>неа, ни 1337 и даже не 31337, и падонкоффским сленгом с большой степени просто не увлекаюсь - просто такой стиль письма моя привЫ4ка и отли4ительная 4ерта, не более...
+<br>
+<br>&gt;&gt;P.P.S. Да, кстати, если ты обучаешься на ИБ, то не совсем понятно, зачем вы так Брюша Шнаера до дыр заюзали  По-моему, больше времени стоит уделить алгебре и дискре. Ну да это так...  Мысли вслух.
+<br>Я не у4усь на ИБ. А за4итали до дыр, поскольку преподается такой предмет как &quot;Криптография и криптоанализ&quot;...Да и вышка с дискретной математикой и теорией 4исел присутствует собстно...
+<br><br><font size="1"><i>-----<br>HOW MUCH BLOOD WOULD YOU SHED TO STAY ALIVE</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47424&amp;user=2281&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=10" class="addthx" data-post="47424"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ProTeuS[/b]','')">ProTeuS</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 172.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2281">Участник</a><br><font color=blue></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 декабря 2005 01:13 <br><script type="text/javascript">QU('ProTeuS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ProTeuS" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>Ara пишет:
+<br>просто- не просто, но в моем вузе решить подобную проблему без использования сторонних библиотек может каждый второй второкурсник 
+<br>Чё-та сомнения берут... </I>
+<br>
+<br>Ara, видать нас4ет &quot;каждый второй&quot; я действительно погоря4ился, ибо лень-матуШка и забивательство не 4ужда и нашим студентам ;) По крайней мере, все описаное мною присутствует в программе и большинство дейтсвительно реализовывают (или не реализовывают, у кого как выходит =) поставленные зада4и
+<br>
+<br>ЗЫ: приятно подискутировать со знающими людьми, ато пол инета облазил и толком нигде нельзя с толком поговорить о криптографии
+<br><br><font size="1"><i>-----<br>HOW MUCH BLOOD WOULD YOU SHED TO STAY ALIVE</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=47425&amp;user=2281&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=11" class="addthx" data-post="47425"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Reich[/b]','')">Reich</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 1.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.31'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=4143">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 марта 2006 20:13 <br><script type="text/javascript">QU('Reich','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Reich" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Народ, я тут вижу вы затронили тему про ECDSA. помогите пожалуйста найти исходники с реализацией ECDSA, только желательно с описанием.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=58551&amp;user=4143&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=12" class="addthx" data-post="58551"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Solo[/b]','')">Solo</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 33.1 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.5'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1119">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 марта 2006 21:06 <br><script type="text/javascript">QU('Solo','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Solo" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>ProTeuS пишет:
+<br>приятно подискутировать со знающими людьми, ато пол инета облазил и толком нигде нельзя с толком поговорить о криптографии </I>
+<br>
+<br>ха-ха! crackl@b - форум криптографов...
+<br>
+<br>а где искал, кстати?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=58560&amp;user=1119&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=13" class="addthx" data-post="58560"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]MrZIyukers[/b]','')">MrZIyukers</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 6.3 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.33'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=4054">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 марта 2006 21:11 &middot; Поправил: MrZIyukers <br><script type="text/javascript">QU('MrZIyukers','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MrZIyukers" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>Reich</b>
+<br>Тебе на WASM - спроси там Володия, <i class=x>&quot;генеального программиста перла, конченых полей и эллептически кривых в многомерном вакууме&quot;</i>. Только будь осторожен, а то попадешь под раздачу, там только сегодня S.T.A.S.&#039;а забанили - одного из старичков форума.
+<br>
+<br>По теме: реализация ECDSA есть на основе того же FGInt&#039;а, так что тебе на сайт Triade Systems, или как они там <img src="img/smilies/s1.gif" alt="">
+<br>
+<br><I>Reich пишет:
+<br>только желательно с описанием. </I>
+<br>Если интересует именно литература, то могу подкинуть пару книжек на тему.
+<br>Нормальных исходников реализации ECDSA с камментами я не видел. Да и зачем они? Либо ты понимаешь, как это работает (тогда камменты не нужны), либо не понимаешь (тогда они и не помогут).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=58561&amp;user=4054&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=14" class="addthx" data-post="58561"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 марта 2006 17:14 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+www.certicom.com/ тоже свою реализацию предлагают. она кстати в flexlm используется
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=58760&amp;user=33&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=15" class="addthx" data-post="58760"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]infern0[/b]','')">infern0</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 160.1 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 марта 2006 17:50 <br><script type="text/javascript">QU('infern0','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=infern0" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=3519.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>MrZIyukers пишет:
+<br>только сегодня S.T.A.S.&#039;а забанили - одного из старичков форума </I>
+<br>правила - либо они есть,либо ты компелируешь...
+<br><I>MrZIyukers пишет:
+<br>исходников реализации ECDSA с камментами я не видел </I>
+<br>ну так хули тогда суешся в тему ? Покури гугль - увидишь (если конечно КАМЕНТЫ от кода отличаешь)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=58772&amp;user=36&amp;forum_n=1&amp;topic=3519.html&amp;page=0&amp;anchor=16" class="addthx" data-post="58772"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Реализация RSA на Delphi</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=3519" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

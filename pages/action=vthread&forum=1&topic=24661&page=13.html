@@ -1,0 +1,551 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Использование IDA Pro (part 2) - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Обмен опытом использования и настройки интерактивного дизассемблера и отладчика IDA Pro. Прошлый топик Использование IDA Pro">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+9 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование IDA Pro (part 2)</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=12.html">&lt;&lt;</a> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=0.html">1</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=8.html">9</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=9.html">10</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=10.html">11</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=12.html">13</a> . <b>14</b> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=14.html">15</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=15.html">16</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=16.html">17</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=17.html">18</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=18.html">19</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=20.html">21</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=21.html">22</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=14.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 11:54 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#1');return false;">#1</a> </span><div align=left><br>
+Обмен опытом использования и настройки интерактивного дизассемблера и отладчика IDA Pro.<br>Прошлый топик <noindex><a href="https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=12507&amp;page=-1.html" rel="nofollow" target="_blank">Использование IDA Pro</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373856&amp;user=1556&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=1" class="addthx" data-post="373856"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=46816" title="22-11-2018 09:30, ранг:0.0" target="_blank">oxfemale</a>, <a href="action=userinfo&user=50040" title="03-08-2019 05:19, ранг:0.0" target="_blank">gent0o0</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]BfoX[/b]','')">BfoX</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 397.0 (мудрец), 179thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.13'>Активность: 0.17<span style='color:red'>&searr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=1865">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 июня 2019 14:15 &middot; Поправил: BfoX <br><script type="text/javascript">QU('BfoX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BfoX" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#2');return false;">#2</a> </span><div align=left><br>
+ActiveState Perl<br><br>12 LXa3kW3q8sjT в версии 5.16<br>12 FgVQyXZY2XFk в версии 5.28
+<br><br><font size="1"><i>-----<br>...или ты работаешь хорошо, или ты работаешь много...</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395795&amp;user=1865&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=2" class="addthx" data-post="395795"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]futunV1[/b]','')">futunV1</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 1.3 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 1.04'>Активность: 0.01=0.01</span><br>Статус: <a href="action=userinfo&amp;user=50190">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 июня 2019 23:17 <br><script type="text/javascript">QU('futunV1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=futunV1" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#3');return false;">#3</a> </span><div align=left><br>
+Задолбала автофункция кеширования функций и строк. Из-за того, что мои бинарники велики, рабочее окно Иды подвисает на несколько минут. Как отключить это, кто знает? В настройках не нашёл.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395923&amp;user=50190&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=3" class="addthx" data-post="395923"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]parfetka[/b]','')">parfetka</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 23.7 (новичок), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.7'>Активность: 0.04<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=41518">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июня 2019 09:44 <br><script type="text/javascript">QU('parfetka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=parfetka" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#4');return false;">#4</a> </span><div align=left><br>
+случайно ни у кого не завалялся pin-3.7-97619?<br>На сайте интел недоступны старые версии. Нужна папка source.<br>п.с. конечная цель собрать из исходников пару плагинов (CodeCoverage и idadbg). Один работает под 3.7, второй под 3.2. Хотелось бы собрать их под 3.10 или хотя бы под одну версию pin..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395941&amp;user=41518&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=4" class="addthx" data-post="395941"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июня 2019 10:12 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#5');return false;">#5</a> </span><div align=left><br>
+<b>parfetka</b><br><br><noindex><a href="https://yadi.sk/d/62bXjL1cLGKi1g" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395942&amp;user=40990&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=5" class="addthx" data-post="395942"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=41518" title="25-06-2019 07:35, ранг:19.6" target="_blank">parfetka</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июня 2019 15:11 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#6');return false;">#6</a> </span><div align=left><br>
+https://old.reddit.com/r/ReverseEngineering/comments/c51gan/hexext_for_ida_70_a_plugin_to_improve_hexrays/
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395951&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=6" class="addthx" data-post="395951"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Dart Raiden[/b]','')">Dart Raiden</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 81.6 (постоянный), 102thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.05'>Активность: 0.06<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=21426">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июня 2019 17:43 <br><script type="text/javascript">QU('Dart Raiden','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Raiden" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#7');return false;">#7</a> </span><div align=left><br>
+https://forum.reverse4you.org/t/hexext-a-plugin-for-extending-hexrays-7-0-via-microcode/10631
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395953&amp;user=21426&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=7" class="addthx" data-post="395953"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июня 2019 00:36 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#8');return false;">#8</a> </span><div align=left><br>
+<noindex><a href="https://research.checkpoint.com/thumbs-up-using-machine-learning-to-improve-idas-analysis/" rel="nofollow" target="_blank"><br> <b>Thumbs Up</b> </a></noindex>successfully enhances IDA’s analysis to a level in which <noindex><a href="https://research.checkpoint.com/karta-matching-open-sources-in-binaries/" rel="nofollow" target="_blank">--&gt; <b>Karta </b>&lt;--</a></noindex> can be used to achieve near optimal results (96% when compared to the manual analysis).<br><br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Thumbs&nbsp;Up&nbsp;is&nbsp;a&nbsp;<span class="hl_function"><b>test</b></span>&nbsp;case&nbsp;which&nbsp;shows&nbsp;that&nbsp;basic&nbsp;Machine&nbsp;Learning&nbsp;classifiers&nbsp;<span class="hl_char">(</span><span class="hl_function"><b>in</b></span>&nbsp;our&nbsp;case<span class="hl_char">,</span>&nbsp;Random<span class="hl_char">-</span>Forest<span class="hl_char">)</span>&nbsp;</li><li class="hl_l1">can&nbsp;be&nbsp;used&nbsp;to&nbsp;learn&nbsp;program<span class="hl_char">-</span>specific&nbsp;features<span class="hl_char">,</span></li><li class="hl_l0">&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;also&nbsp;to&nbsp;improve&nbsp;the&nbsp;analysis&nbsp;for&nbsp;the&nbsp;same&nbsp;program<span class="hl_char">.</span>&nbsp;</li><li class="hl_l1"><span style="word-break: break-all">Although&nbsp;we&nbsp;initially&nbsp;feared&nbsp;that&nbsp;the&nbsp;results&nbsp;would&nbsp;only&nbsp;be&nbsp;valid&nbsp;for&nbsp;firmware&nbsp;files&nbsp;of&nbsp;a&nbsp;large&nbsp;enough&nbsp;size</span><span class="hl_char">,</span>&nbsp;</li><li class="hl_l0">the&nbsp;Mips&nbsp;example&nbsp;shows&nbsp;how&nbsp;a&nbsp;small&nbsp;program&nbsp;with&nbsp;<span class="hl_number">2500</span>&nbsp;functions&nbsp;can&nbsp;still&nbsp;benefit&nbsp;from&nbsp;<span class="hl_function"><b>this</b></span>&nbsp;approach<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;reaching&nbsp;a&nbsp;classifier&nbsp;accuracy&nbsp;of&nbsp;more&nbsp;than&nbsp;<span class="hl_number">96</span><span class="hl_char">%</span><span class="hl_char">.</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>In</b></span>&nbsp;conclusion<span class="hl_char">,</span>&nbsp;we&nbsp;highly&nbsp;recommend&nbsp;that&nbsp;researchers&nbsp;use&nbsp;Thumbs&nbsp;Up&nbsp;to&nbsp;groom&nbsp;their&nbsp;<span class="hl_char">*</span><span class="hl_char">.</span>idb&nbsp;files&nbsp;before&nbsp;they&nbsp;start&nbsp;their&nbsp;research<span class="hl_char">.</span>&nbsp;</li><li class="hl_l0">The&nbsp;plugin&nbsp;proved&nbsp;itself&nbsp;useful&nbsp;as&nbsp;a&nbsp;pre<span class="hl_char">-</span><span style="word-break: break-all">process&nbsp;phase&nbsp;allowing&nbsp;researchers&nbsp;to&nbsp;use&nbsp;Karta&nbsp;without&nbsp;manually&nbsp;improving&nbsp;IDA’s&nbsp;analysis</span><span class="hl_char">.</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395961&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=8" class="addthx" data-post="395961"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июня 2019 09:54 <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#9');return false;">#9</a> </span><div align=left><br>
+<I>reversecode пишет:<br>https://old.reddit.com/r/ReverseEngineering/comments/c51gan/hexext_for_ida_70_a_plugin_to_improve_hexrays/  </I><br><br>Устанавливаем плагин, открываем hexrays.dll, ида падает каждый раз с дампом памяти <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395970&amp;user=3520&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=9" class="addthx" data-post="395970"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июня 2019 11:15 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#10');return false;">#10</a> </span><div align=left><br>
+<I>mak пишет:<br>Устанавливаем плагин, открываем hexrays.dll, ида падает каждый раз с дампом памяти  </I><br><br>автор plugin&#039;a обещает со временем выложить source code для публичного пользования, но если кто не хочет ждать, то он предлагает прямо сейчас, надо только послать ему запрос.  <br>Правда предупреждает, что код нужно еще чистить и приводить в порядок... <br>Так что если кому охота покопаться.... или можно ему все вопросы в комментариях к его посту. <br>вот <noindex><a href="https://forum.reverse4you.org/t/hexext-a-plugin-for-extending-hexrays-7-0-via-microcode/10631" rel="nofollow" target="_blank">--&gt; сюда &lt;--</a></noindex>, по ссылке Dart Raiden&#039;a (see above).
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395974&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=10" class="addthx" data-post="395974"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Dart Raiden[/b]','')">Dart Raiden</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 81.6 (постоянный), 102thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.05'>Активность: 0.06<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=21426">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июня 2019 11:45 &middot; Поправил: Dart Raiden <br><script type="text/javascript">QU('Dart Raiden','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Raiden" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#11');return false;">#11</a> </span><div align=left><br>
+<noindex><a href="https://github.com/lurumdare/dsync" rel="nofollow" target="_blank">IDAPython plugin that synchronizes disassembler and decompiler views</a></noindex><br><br>В 7.3 такую фичу встроили в иду &quot;из коробки&quot;.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395976&amp;user=21426&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=11" class="addthx" data-post="395976"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Nihil enim[/b]','')">Nihil enim</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.1 (гость), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 1.04'>Активность: 0.07<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=50198">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июня 2019 11:54 &middot; Поправил: Nihil enim <br><script type="text/javascript">QU('Nihil enim','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nihil enim" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#12');return false;">#12</a> </span><div align=left><br>
+<b>Dart Raiden</b> осталось только прикрутить подсветку текущей позиции (темнее цвет), да и мне кажется если наблюдать внимательно, то фича в 7.3 попизже будет.<br><br><b>Добавлено спустя 6 часов 15 минут</b><br>Если кому нужны сорцы hexext https://mir.cr/AZEOJOCC
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395977&amp;user=50198&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=12" class="addthx" data-post="395977"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=15381" title="26-06-2019 20:00, ранг:1007.7" target="_blank">reversecode</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июня 2019 22:44 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#13');return false;">#13</a> </span><div align=left><br>
+а я то думаю что там за треш такой<br>а чувак оказывается некоторые функции из рейса реверснул(ас ис) и в плагин встроил<br><br>синхронизация псевдокода в 7.3 имеет некий сайд эффект и не поддерживает просмотр оригинального кода при наведении на аргументы<br>так что плагин питона под 7.2 более приятный<br><br><b>Добавлено спустя 3 минуты</b><br>https://github.com/patois/dsync<br>я про этот синхро
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395996&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=13" class="addthx" data-post="395996"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 01:28 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#14');return false;">#14</a> </span><div align=left><br>
+<I>Nihil enim пишет:<br>Если кому нужны сорцы hexext https://mir.cr/AZEOJOCC </I><br>а почему там <b>microcode_sliding_window_0643686542.exe </b>file в архиве? <br>я ожидал увидеть .срр, hpp, ну сорцы одним словом.<br>Может я чего не то скачал? а то как-то страшновато этот exe запускать даже под vm. <img src="img/smilies/s13.gif" alt="">
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395999&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=14" class="addthx" data-post="395999"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 01:32 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#15');return false;">#15</a> </span><div align=left><br>
+потому что плутос давно на под надзором фсб и фбр, интерпола<br>и ему подсовывают трояна<br>для всех других там зип архив с сорсами
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396000&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=15" class="addthx" data-post="396000"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 04:38 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#16');return false;">#16</a> </span><div align=left><br>
+<I>reversecode пишет:<br>потому что плутос давно на под надзором фсб и фбр, интерпола </I><br><br>да это-то я знаю, вон три мини van&#039;a который день под окном дежурят. <br>Причем сразу и не догадаешься: на одном написано &quot;<b>ФСБ</b>&quot;, на другом &quot;<b>FBI</b>&quot;, на третьем - &quot;<b>Interpol</b>&quot;. <br><br>Так что перезалейте, кому не лень, куда-нибудь, а я буду отдельно благодарен!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396001&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=16" class="addthx" data-post="396001"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]awlost[/b]','')">awlost</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 33.8 (посетитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.01'>Активность: 0.02<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=25876">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 06:49 <br><script type="text/javascript">QU('awlost','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=awlost" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#17');return false;">#17</a> </span><div align=left><br>
+<noindex><a href="https://drive.google.com/file/d/1szOzbCJyONeue3W6fPQHaUM8vIwQ5664/view?usp=drivesdk" rel="nofollow" target="_blank">https://drive.google.com/file/d/1szOzbCJyONeue3W6fPQHaUM8vIwQ5664/view?usp=drivesdk</a></noindex><br>сорцы hexext
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396002&amp;user=25876&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=17" class="addthx" data-post="396002"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="27-06-2019 03:58, ранг:461.8" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]Nihil enim[/b]','')">Nihil enim</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.1 (гость), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 1.04'>Активность: 0.07<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=50198">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 09:03 <br><script type="text/javascript">QU('Nihil enim','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nihil enim" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#18');return false;">#18</a> </span><div align=left><br>
+<b>awlost</b> выше выкладывал
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396005&amp;user=50198&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=18" class="addthx" data-post="396005"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 10:25 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#19');return false;">#19</a> </span><div align=left><br>
+<I>Nihil enim пишет:<br>выше выкладывал </I><br><br>он перезалил по моей просьбе на другой файлообменник.<img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396007&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=19" class="addthx" data-post="396007"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 10:31 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#20');return false;">#20</a> </span><div align=left><br>
+по оригинальной ссылке, на выбор 16 ФО <br>т.е. ту ссылку что выложили в нее уже входит<br><br>может плутосу пора уже сдаться властям ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396008&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=20" class="addthx" data-post="396008"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Adler[/b]','')">Adler</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/41144.png" alt=""><br><span class=txtSm>Ранг: 55.9 (постоянный), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.93'>Активность: 0.12<span style='color:green'>&nearr;</span>0.22</span><br>Статус: <a href="action=userinfo&amp;user=41144">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 11:18 &middot; Поправил: Adler <br><script type="text/javascript">QU('Adler','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Adler" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#21');return false;">#21</a> </span><div align=left><br>
+<I>plutos пишет:<br>а почему там microcode_sliding_window_0643686542.exe file в архиве?  </I><br>Хм. Нет там никакого .exe...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396009&amp;user=41144&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=21" class="addthx" data-post="396009"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]dma[/b]','')">dma</a></b><br></div>
+<img src="img/s0.gif" alt=""><br><span class=txtSm>Ранг: -12.6 (нарушитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.59'>Активность: 0.05<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=36364">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 11:41 <br><script type="text/javascript">QU('dma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dma" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#22');return false;">#22</a> </span><div align=left><br>
+<I>reversecode пишет:<br>может плутосу пора уже сдаться властям ? </I><br><br>Ув. тов. Кашпировский! У меня на столе, пляшут маленькие зелененькие человечки, но мой друг их не видит. Верните человеку зренье. <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396010&amp;user=36364&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=22" class="addthx" data-post="396010"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 11:49 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#23');return false;">#23</a> </span><div align=left><br>
+<I>reversecode пишет:<br>может плутосу пора уже сдаться властям ? </I><br>все, иду сдаваться, но и тебя за собой потяну!<br>А если серьезно, то при попытке скачать zip archive, эти говенные обменники пытаются установить кучу всякого дерьма и подсовывают разные exe.<br> С третьего раза у меня наконец появился нужный архив. <br>Так что все нормально, господа, успокойтесь, никто не умер и не заболел. <br>Просто произошло недоразумение. <br>Всем спасибо! особенно reversecode (I love you too, brother!)! <br>Отбой!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396012&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=23" class="addthx" data-post="396012"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 11:56 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#24');return false;">#24</a> </span><div align=left><br>
+я из нескольких броузеров пытался скачать этот самый заветный exe<br>у меня никак не получается его скачать<br>постоянно zip качается<br>что надо сделать что бы скачался екзе ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396014&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=24" class="addthx" data-post="396014"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 12:17 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#25');return false;">#25</a> </span><div align=left><br>
+<I>reversecode пишет:<br>постоянно zip качается </I><br><br>да у меня тоже зип качался, да только в нем было не то,что нужно, потому и спросил.<br><br> Все, проехали уже или тебе все неймется доказать, что я дурак? <br>Хорошо, согласен, признаю, чтобы прекратить этот пустой разговор: ты начальник, я - дурак. <br><b>Happy now?</b>
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396015&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=25" class="addthx" data-post="396015"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]dma[/b]','')">dma</a></b><br></div>
+<img src="img/s0.gif" alt=""><br><span class=txtSm>Ранг: -12.6 (нарушитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.59'>Активность: 0.05<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=36364">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2019 13:54 &middot; Поправил: dma <br><script type="text/javascript">QU('dma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dma" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#26');return false;">#26</a> </span><div align=left><br>
+<b>plutos</b>, ну reversecode же шутит - причем по-доброму. Это же &quot;видно&quot; даже &quot;невооруженным глазом&quot;. Тут не обижаться нужно, а подыграть? Первый примитивный образец ответа, который приходит в голову: reversecode - просто ты неудачник. И проблема бы решилась сама собой. Извиняюсь, конечно, за свое нравоучение, но как-то неприятно, когда сильные сайта сего, как я вас называю, - ссорятся между собой.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396016&amp;user=36364&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=26" class="addthx" data-post="396016"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2019 00:43 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#27');return false;">#27</a> </span><div align=left><br>
+<I>dma пишет:<br>ну reversecode же шутит - причем по-доброму </I><br><br>дак ведь и я шучу: что ж я себя всерьез дураком стал бы называть?<br>Так что ты, кормилец, не тревожь себя по-напрасну: мы уж как нибудь сами разберемся между собой.<br><br><b>Добавлено спустя 3 часа 2 минуты</b><br><noindex><a href="https://github.com/patois/IDAPyHelper" rel="nofollow" target="_blank">--&gt; <b>IDAPyHelper </b>&lt;--</a></noindex> is a script for the Interactive Disassembler that helps writing IDAPython scripts and plugins.<br><br>It does so by acquiring all names accessible via IDAPython and makes them available in a browsable list that can be sorted, scanned (Alt-T) and filtered (Ctrl-F) arbitrarily. <br>Double clicking a list entry opens a separate view that displays the entry&#039;s docstring, if available.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396035&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=27" class="addthx" data-post="396035"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2019 01:02 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#28');return false;">#28</a> </span><div align=left><br>
+<noindex><a href="https://github.com/carbonblack/HexRaysDeob" rel="nofollow" target="_blank">--&gt; <b>HexRaysDeob</b> &lt;--</a></noindex> for APT10 ANEL<br>Hex-Rays microcode API plugin for breaking an obfuscating compiler<br><br>This is a forked repository of HexRaysDeob for defeating APT10 ANEL code obfuscations.<br>(forked from RolfRolles/HexRaysDeob )<br><br>This plugin supports <b>IDA 7.3 only.</b>
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396406&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=28" class="addthx" data-post="396406"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2019 01:35 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#29');return false;">#29</a> </span><div align=left><br>
+<noindex><a href="https://threatvector.cylance.com/en_us/home/flirting-with-ida-and-apt28.html" rel="nofollow" target="_blank">--&gt; Flirting With IDA and APT28 &lt;--</a></noindex><br><br>This document shares a methodology used to develop Hex-Rays&#039; Interactive Disassembler (IDA) signatures created as part of pre-analysis for a recently published APT28 sample.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396515&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=29" class="addthx" data-post="396515"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]mazaxaker[/b]','')">mazaxaker</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 82.5 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.51'>Активность: 0.13<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=41862">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июля 2019 02:07 <br><script type="text/javascript">QU('mazaxaker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mazaxaker" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#30');return false;">#30</a> </span><div align=left><br>
+В ida можно подобное https://www.pnfsoftware.com/blog/debugging-dynamically-loaded-dex-files-with-jeb/ повторить ? Интересует дебаг динамически подгружаемых dex файлов ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=396516&amp;user=41862&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=30" class="addthx" data-post="396516"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 июля 2019 21:35 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=13#31');return false;">#31</a> </span><div align=left><br>
+<noindex><a href="https://github.com/fireeye/flare-emu" rel="nofollow" target="_blank">--&gt; <b>flare-emu </b>&lt;--</a></noindex> marries IDA Pro’s binary analysis capabilities with Unicorn’s emulation framework to provide the user with an easy to use and flexible interface for scripting emulation tasks.<br> It is designed to handle all the housekeeping of setting up a flexible and robust emulator for its supported architectures so that you can focus on solving your code analysis problems. <br>Currently, flare-emu supports the x86, x86_64, ARM, and ARM64 architectures.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=396606&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=13&amp;anchor=31" class="addthx" data-post="396606"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=12.html">&lt;&lt;</a> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=0.html">1</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=8.html">9</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=9.html">10</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=10.html">11</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=12.html">13</a> . <b>14</b> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=14.html">15</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=15.html">16</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=16.html">17</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=17.html">18</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=18.html">19</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=20.html">21</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=21.html">22</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=14.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование IDA Pro (part 2)</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="24661">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24661" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

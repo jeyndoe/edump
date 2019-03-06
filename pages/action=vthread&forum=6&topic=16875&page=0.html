@@ -1,0 +1,479 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>прерывания - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="вот как я сделал IDTR Code:       &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;; загрузка IDTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;mov&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;eax,&nbsp;0x9107">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55953'>laslo</a>, <a target='_blank' href='?action=userinfo&amp;user=1288'>UniSoft</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> прерывания</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 14:27 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+вот как я сделал IDTR<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; загрузка IDTR</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;0x9107&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; физический адрес 0x9000 (G - глобальная страница, + стандартные параметры)</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">[</span>0x00101000&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_number">9</span><span class="hl_char">*</span><span class="hl_number">4</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr"><b>eax</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; логический адрес тоже 0x9000 (страница №9)</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">edi</span><span class="hl_char">,</span>&nbsp;0x9000</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">eax</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">100</span><span class="hl_char">*</span><span class="hl_number">2</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; всего будет 100 прерываний</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>rep</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>stosd</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; забиваем всё нулями</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">edx</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">8</span><span class="hl_char">*</span><span class="hl_number">8</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; выбераем 8-е прерывание</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">edi</span><span class="hl_char">,</span>&nbsp;0x9000</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>add</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">edi</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">edx</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">esi</span><span class="hl_char">,</span>&nbsp;IDT</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">8</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>rep</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>movsb</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; заносим в IDT, заготовленную запись</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>lidt</b></span>&nbsp;&nbsp;&nbsp;&nbsp;fword&nbsp;<span class="hl_function"><b>ptr</b></span>&nbsp;IDTR</li>        </ol>
+    </div>
+</div></div>
+<br><br>отключаем некоторые прерывания, на которых не имеется обработчиков:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span>&nbsp;0xFFFE&nbsp;&nbsp;<span class="hl_comment">; запрещаем IRQ, кроме IRQ0</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>out</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x21<span class="hl_char">,</span>&nbsp;<span class="hl_registr">ax</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>собственно IDTR собственной персоны:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">IDT_size&nbsp;<span class="hl_function"><b>equ</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">100</span><span class="hl_char">*</span><span class="hl_number">8</span></li><li class="hl_l1">IDTR&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>dw</b></span>&nbsp;IDT_size<span class="hl_char">-</span><span class="hl_number">1</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>dd</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0x00009000</li>        </ol>
+    </div>
+</div></div>
+<br><br>8-ой элемент для IDT<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">IDT<span class="hl_char">:</span></li><li class="hl_l1"><span class="hl_function"><b>dw</b></span>&nbsp;0x3000<span class="hl_char">,</span>&nbsp;0x0000<span class="hl_char">,</span>&nbsp;<span class="hl_number">1000111000000000b</span><span class="hl_char">,</span>&nbsp;0x0000</li>        </ol>
+    </div>
+</div></div>
+<br><br>проблема:<br>возникает #GP в случаях:<br>1) при тике таймер<br>2) int 8<br>успешно работает jmp на адрес, указанный в дескрипторе<br><br>в чем может быть проблема ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268156&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=1" class="addthx" data-post="268156"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 19:37 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+1)если IRQ от таймера закрыто то как оно у вас при тике в IDT попадает?<br>2) ну естественно если у вас в таблице IDT нет указателя на обработчик(к сожалению по памяти ее описание не помню, поэтому описание 8 елемента мне мало о чем говорит)<br>таблица показывает что он есть ? или что его нет?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268179&amp;user=15381&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=2" class="addthx" data-post="268179"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 19:54 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+просматривал память, куда загружаю IDT<br>он туда действительно попадает<br>а так же смотрел таблицу страниц, что бы избежать недоразумений, что IDT загрузилась не туда...<br><br>делал еще 0-ой и 3-ий элемент и пытался вызвать его таким образом int 0, int 3 соответственно...<br>при int происходит #GP<br><br><img src="img/attach.gif" alt=""> <a href="./files/cdf2_23.10.2010_CRACKLAB.rU.tgz">cdf2_23.10.2010_CRACKLAB.rU.tgz</a> - IDTR.png
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268180&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=3" class="addthx" data-post="268180"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 19:57 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+ну что бы избежать недоразумений со страничной адрессацией как в предыдущем топике про видео<br>я бы на вашем месте сначала без нее все отладил<br>а потому уже со страничной адресацией
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268181&amp;user=15381&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=4" class="addthx" data-post="268181"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 20:05 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+да дело в том, что работало)<br>а потом вдруг перестало)))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268183&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=5" class="addthx" data-post="268183"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 20:08 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+ревизию изменений нужно вести<br>тогда легче понять что поламали
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268184&amp;user=15381&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=6" class="addthx" data-post="268184"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2010 20:20 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+помнится мне я всего-навсего добавил пару процедурок, но они отрабатывают до инициализации IDT, так что никто IDT затереть не мог...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268185&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=7" class="addthx" data-post="268185"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 09:15 &middot; Поправил: Clerk <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+o Дескриптор валидный шлюза(смещение, сегмент и пр.) ?<br>o Если используются межкольцевые переключения(понижение кпл), то должен быть валидным TSS(стек).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268216&amp;user=17964&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=8" class="addthx" data-post="268216"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 12:20 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+хм...<br>у меня страничная адресация<br>никакими TSS не заморачивался...<br>я все эти действия делаю в страничной адресации<br>стэк у меня, как был изначально указан на 0x7C00 так и не изменялся...<br>при попытки его переправить в другое место так же возникает #GP
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268222&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=9" class="addthx" data-post="268222"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 12:37 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+ой... #GP не возникает при замене стэка на другой, но он только как-то неправильно работает:<br><br>у меня функция для вывода на экран значения регистра принимает его через стэк...<br>в итоге этой функции ничего не пришло...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268223&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=10" class="addthx" data-post="268223"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 17:01 &middot; Поправил: Clerk <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Прежде матчасть изучают, потом тока ось пишут, после того как общая картина известна станет. Вы же не знаете ничего про селекторы, дескрпторы, стек, TSS.. какая вам ось. Идите маны читайте. Ни тут, ни на васме, ни гделибо есчо вам не будут обьяснять основы.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268235&amp;user=17964&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=11" class="addthx" data-post="268235"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 17:33 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Я знаю что такое селектор, что такое дескриптор, что такое стэк, знаю механизм сегментной адресации, знаю механизм страничной адресации<br>исправно взаимодействую между страницами, вызываю процедуры загруженные в другие страницы, успешно работаю с таблицей стараниц и т. д.<br>у меня изначально работал IDT успешно, потом я незнаю почему он начал давать сбои
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268238&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=12" class="addthx" data-post="268238"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 17:34 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+и к тому же со стэком всё уладил, там просто не сразу увидел неточности...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268239&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=13" class="addthx" data-post="268239"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 18:03 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>Hell Knight</b><br>Да вы даже не знаете что используете сегментацию:<br>&gt; у меня страничная адресация, не юзаю cs<br>Обычно после изучения архитектуры хардварной изучают уже созданные оси, так учатся на ошибках других, иначе выйдет костыли типо линуса, где архитектуры нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268241&amp;user=17964&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=14" class="addthx" data-post="268241"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Coderess[/b]','')">Coderess</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/16383.jpg" alt=""><br><span class=txtSm>Ранг: 355.4 (мудрец), 55thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.21'>Активность: 0.32<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=16383">Uploader</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 18:06 <br><script type="text/javascript">QU('Coderess','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Coderess" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<i class=x>иначе выйдет костыли типо линуса</i><br><br>Да есть там архитектура миниксовая <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Gutta cavat lapidem. Feci, quod potui. Faciant meliora potentes</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=268243&amp;user=16383&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=15" class="addthx" data-post="268243"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 18:07 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+т. е. получается, что при включении страничной адресации сегментация никуда не пропадает ?<br>т. е. как бы работает 2 режима ?<br>я про это не слышал... тогда это немного меняет ситуацию...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268244&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=16" class="addthx" data-post="268244"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 18:22 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<b>Coderess</b><br>Нет там архитектуры и изначально её небыло. МС фиксит по вторникам ошибки реализации, Торвальдс фиксит ошибки архитектуры. Тоесть после введения очередной убогой поделки призванной расширить какойто функционал, куча иных поделок отваливается. Вот и получилось невесть что, а не ось, хотя и работает кое как.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268249&amp;user=17964&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=17" class="addthx" data-post="268249"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 18:35 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+ткните пожалуйста пальцем в мануале где по этому вопросу я бы смог раскрыть эту проблему<br>где ниболее полно будет рассказано про IDT, IDTR и обработку прерываний<br>с английским языком дружу, так что разберусь <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268253&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=18" class="addthx" data-post="268253"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2010 18:37 &middot; Поправил: Clerk <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<i class=x>Intel® 64 and IA-32 Architectures Software Developer&#039;s Manuals</i><br><noindex><a href="http://www.intel.com/products/processor/manuals/" rel="nofollow" target="_blank">http://www.intel.com/products/processor/manuals/</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268254&amp;user=17964&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=19" class="addthx" data-post="268254"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 октября 2010 09:06 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<b>Clerk</b>, пальцем в небо, блин.<img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=268519&amp;user=6336&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=20" class="addthx" data-post="268519"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 октября 2010 09:08 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+www.sysersoft.com/download/IA-32%20Intel%20Architecture.zip<br>вроде живая была
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268520&amp;user=15381&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=21" class="addthx" data-post="268520"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 октября 2010 13:02 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+читаю я мануалы... у меня есть свежие... там еще рассматривается и IA-64, впринципе пока что(на данный момент, сколько прочитал), единственное, что новое для себя вынес это только про 64-bit режим, до этого информацию брал с васма
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268538&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=22" class="addthx" data-post="268538"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 08:58 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<b>Hell Knight</b><br>И что - только по инфе с васма начали писать ось?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=268591&amp;user=6336&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=23" class="addthx" data-post="268591"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 09:05 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+нет) у меня еще была инфа с wiki.osdev.org + Таненбаум
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268592&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=24" class="addthx" data-post="268592"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 10:19 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+вот, лог-файл от boch&#039;a<br><br><img src="img/attach.gif" alt=""> <a href="./files/32a8_28.10.2010_CRACKLAB.rU.tgz">32a8_28.10.2010_CRACKLAB.rU.tgz</a> - log.log
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268595&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=25" class="addthx" data-post="268595"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]cppasm[/b]','')">cppasm</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 251.3 (наставник), 81thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.77'>Активность: 0.14<span style='color:red'>&searr;</span>0.11</span><br>Статус: <a href="action=userinfo&amp;user=6859">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 13:46 <br><script type="text/javascript">QU('cppasm','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=cppasm" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#26');return false;">#26</a> </span><div align=left><br><div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">00014342399e</span><span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;interrupt<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;accessable&nbsp;<span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;<span class="hl_function"><b>code</b></span>&nbsp;<span class="hl_function"><b>segment</b></span>&nbsp;<span class="hl_registr">cs</span><span class="hl_char">=</span>0x0008</li><li class="hl_l1"><span class="hl_number">00014342399e</span><span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;interrupt<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;accessable&nbsp;<span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;<span class="hl_function"><b>code</b></span>&nbsp;<span class="hl_function"><b>segment</b></span>&nbsp;<span class="hl_registr">cs</span><span class="hl_char">=</span>0x0008</li><li class="hl_l0"><span class="hl_number">00014342399e</span><span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;interrupt<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;accessable&nbsp;<span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;<span class="hl_function"><b>code</b></span>&nbsp;<span class="hl_function"><b>segment</b></span>&nbsp;<span class="hl_registr">cs</span><span class="hl_char">=</span>0x0008</li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;CPU&nbsp;is&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;protected&nbsp;mode&nbsp;<span class="hl_char">(</span>active<span class="hl_char">)</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_registr">CS</span><span class="hl_char">.</span>d_b&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_number">32</span>&nbsp;bit</li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_registr">SS</span><span class="hl_char">.</span>d_b&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_number">32</span>&nbsp;bit</li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;EFER&nbsp;&nbsp;&nbsp;<span class="hl_char">=</span>&nbsp;0x00000000</li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;<span class="hl_registr">RAX</span><span class="hl_char">=</span><span class="hl_number">000000000000917f</span>&nbsp;&nbsp;<span class="hl_registr">RBX</span><span class="hl_char">=</span><span class="hl_number">0000000000000100</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;<span class="hl_registr">RCX</span><span class="hl_char">=</span><span class="hl_number">0000000000000000</span>&nbsp;&nbsp;<span class="hl_registr">RDX</span><span class="hl_char">=</span><span class="hl_number">0000000000000090</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;<span class="hl_registr">RSP</span><span class="hl_char">=</span><span class="hl_number">0000000000007ffc</span>&nbsp;&nbsp;<span class="hl_registr">RBP</span><span class="hl_char">=</span><span class="hl_number">0000000000000000</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;<span class="hl_registr">RSI</span><span class="hl_char">=</span><span class="hl_number">0000000000000263</span>&nbsp;&nbsp;<span class="hl_registr">RDI</span><span class="hl_char">=</span><span class="hl_number">0000000000009800</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;R8<span class="hl_char">=</span><span class="hl_number">0000000000000000</span>&nbsp;&nbsp;&nbsp;R9<span class="hl_char">=</span><span class="hl_number">0000000000000000</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;R10<span class="hl_char">=</span><span class="hl_number">0000000000000000</span>&nbsp;&nbsp;R11<span class="hl_char">=</span><span class="hl_number">0000000000000000</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;R12<span class="hl_char">=</span><span class="hl_number">0000000000000000</span>&nbsp;&nbsp;R13<span class="hl_char">=</span><span class="hl_number">0000000000000000</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;R14<span class="hl_char">=</span><span class="hl_number">0000000000000000</span>&nbsp;&nbsp;R15<span class="hl_char">=</span><span class="hl_number">0000000000000000</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;IOPL<span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;id&nbsp;vip&nbsp;vif&nbsp;ac&nbsp;vm&nbsp;RF&nbsp;nt&nbsp;of&nbsp;df&nbsp;<span class="hl_function"><b>IF</b></span>&nbsp;tf&nbsp;sf&nbsp;zf&nbsp;af&nbsp;pf&nbsp;cf</li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;SEG&nbsp;selector&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;base&nbsp;&nbsp;&nbsp;&nbsp;limit&nbsp;G&nbsp;D</li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;SEG&nbsp;sltr<span class="hl_char">(</span>index<span class="hl_char">|</span>ti<span class="hl_char">|</span>rpl<span class="hl_char">)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;base&nbsp;&nbsp;&nbsp;&nbsp;limit&nbsp;G&nbsp;D</li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_registr">CS</span><span class="hl_char">:</span><span class="hl_number">0008</span><span class="hl_char">(</span>&nbsp;<span class="hl_number">0001</span><span class="hl_char">|</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">000fffff</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_number">1</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_registr">DS</span><span class="hl_char">:</span><span class="hl_number">0010</span><span class="hl_char">(</span>&nbsp;<span class="hl_number">0002</span><span class="hl_char">|</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">000fffff</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_number">1</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_registr">SS</span><span class="hl_char">:</span><span class="hl_number">0010</span><span class="hl_char">(</span>&nbsp;<span class="hl_number">0002</span><span class="hl_char">|</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">000fffff</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_number">1</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_registr">ES</span><span class="hl_char">:</span><span class="hl_number">0010</span><span class="hl_char">(</span>&nbsp;<span class="hl_number">0002</span><span class="hl_char">|</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">000fffff</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_number">1</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_registr">FS</span><span class="hl_char">:</span><span class="hl_number">0000</span><span class="hl_char">(</span>&nbsp;<span class="hl_number">0005</span><span class="hl_char">|</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">0</span>&nbsp;<span class="hl_number">0</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_registr">GS</span><span class="hl_char">:</span><span class="hl_number">0000</span><span class="hl_char">(</span>&nbsp;<span class="hl_number">0005</span><span class="hl_char">|</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">|</span>&nbsp;&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">0000ffff</span>&nbsp;<span class="hl_number">0</span>&nbsp;<span class="hl_number">0</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;MSR_FS_BASE<span class="hl_char">:</span><span class="hl_number">0000000000000000</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;&nbsp;MSR_GS_BASE<span class="hl_char">:</span><span class="hl_number">0000000000000000</span></li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;RIP<span class="hl_char">=</span><span class="hl_number">0000000000000257</span>&nbsp;<span class="hl_char">(</span><span class="hl_number">0000000000000257</span><span class="hl_char">)</span></li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;CR0<span class="hl_char">=</span>0xe0000011&nbsp;CR1<span class="hl_char">=</span>0x0&nbsp;CR2<span class="hl_char">=</span>0x0000000000000000</li><li class="hl_l0">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">|</span>&nbsp;CR3<span class="hl_char">=</span>0x00100000&nbsp;CR4<span class="hl_char">=</span>0x00000000</li><li class="hl_l1">00014342399i<span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_function"><b>jmp</b></span>&nbsp;<span class="hl_char">.</span><span class="hl_char">+</span>0xfffffffe&nbsp;<span class="hl_char">(</span>0x00000257<span class="hl_char">)</span>&nbsp;<span class="hl_char">:</span>&nbsp;EBFE</li><li class="hl_l0"><span class="hl_number">00014342399e</span><span class="hl_char">[</span>CPU0&nbsp;<span class="hl_char">]</span>&nbsp;exception<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;3rd&nbsp;<span class="hl_char">(</span><span class="hl_number">13</span><span class="hl_char">)</span>&nbsp;exception&nbsp;with&nbsp;no&nbsp;resolution<span class="hl_char">,</span>&nbsp;shutdown&nbsp;status&nbsp;is&nbsp;<span class="hl_number">00h</span><span class="hl_char">,</span>&nbsp;resetting</li>        </ol>
+    </div>
+</div></div>
+<br><br>У тебя кривая GDT, либо ты в GDTR загрузил адрес без учёта страничной адресации (должен быть виртуальный).<br>Селектор из CS не является селектором дескриптора сегмента кода, и по тройному исключению проц ребутится.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268614&amp;user=6859&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=26" class="addthx" data-post="268614"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 16:15 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+кстати, вполне возможный вариант, что в GDTR загружен адрес нерасчитанный на страничную адресацию...<br>исправлю...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268625&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=27" class="addthx" data-post="268625"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Hell Knight[/b]','')">Hell Knight</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 18.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.79'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22552">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 21:22 <br><script type="text/javascript">QU('Hell Knight','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hell Knight" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+Всё!<br>Как раз в этом и была проблема...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268640&amp;user=22552&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=28" class="addthx" data-post="268640"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 октября 2010 22:24 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=16875.html&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+Тогда можно закрыть, видимо.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=268645&amp;user=1556&amp;forum_n=6&amp;topic=16875.html&amp;page=0&amp;anchor=29" class="addthx" data-post="268645"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> прерывания</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=16875" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

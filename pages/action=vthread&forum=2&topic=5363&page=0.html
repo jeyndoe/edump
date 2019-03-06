@@ -1,0 +1,466 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Java crackme / proof of concept - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Небольшой crackme на Яве, использованы идеи из второй, еще не выложенной, части Unsafe Java. Основная цель - проверить работоспособность и оценить смысл более широкого применения подобных приемов. Поэтому был бы рад увидеть не">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=31361'>zds</a>, <a target='_blank' href='?action=userinfo&amp;user=55991'>kris_sexy</a>, <a target='_blank' href='?action=userinfo&amp;user=3756'>==DJ==[ZLO]</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Java crackme / proof of concept</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Stiver[/b]','')">Stiver</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 48.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.07'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 июня 2006 17:00 <br><script type="text/javascript">QU('Stiver','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Stiver" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Небольшой crackme на Яве, использованы идеи из второй, еще не выложенной, части Unsafe Java. Основная цель - проверить работоспособность и оценить смысл более широкого применения подобных приемов. Поэтому был бы рад увидеть не просто сообщение о том, что взломан, но и хотя бы краткое мнение вместе с описанием процесса. Если у кого-то не запускается или обваливается, пишите с указанием версии Явы и параметров, с которыми пытались вызвать. 
+<br>
+<br>Задание - написать генератор ключей, хотя желающие в принципе могут и патчить. Алгоритм проверки ключа сам по себе примитивный, в одну строчку. Обфускатором не обработано, декомпилируется без проблем.
+<br>
+<br>Рассчитано на виртуальную машину Sun, проверял с версиями от 1.4.2_08 до 1.5.0_07 включительно. Если кому-то нужна совместимость с более старой версией 1.4.x - пишите, сделаю. С 1.3.x и старше связываться не буду, ими пусть занимаются историки <img src="img/smilies/s1.gif" alt=""> Должно работать в режиме как клиента, так и сервера (ключ -server).
+<br>
+<br>Главный класс - ValidatorMain, ожидает два параметра: имя и ключ. Для проверки можно использовать пару Stiver и 161052, то есть вызвать
+<br>
+<br>java ValidatorMain Stiver 161052
+<br>
+<br>Если ключ подходит к имени, должно появиться сообщение &quot;Validation successful!&quot;. В противном случае программа просто молча завершится.
+<br>
+<br>P.S. Некоторое время пытался понять, в какой раздел форума нужно постить crackme. Нельзя ли где-нибудь (в правилах например) поместить соответствующее указание? Сейчас они примерно равномерно рассеяны почти по всем подфорумам. 
+<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/95d1_20.06.2006_CRACKLAB.rU.tgz">95d1_20.06.2006_CRACKLAB.rU.tgz</a> - java_crackme.zip
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78542&amp;user=2011&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=1" class="addthx" data-post="78542"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]BSL//ZcS[/b]','')">BSL//ZcS</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.3 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=5265">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 июня 2006 22:02 <br><script type="text/javascript">QU('BSL//ZcS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BSL//ZcS" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+BSL//ZcS 380000
+<br>
+<br>ключ + сумма кодов букв имени в кубе должны делиться на 11
+<br>
+<br>имхо, селфмод на жабе - вещь на практике малоприменимая.
+<br>хотя бы потому, что jit-компиляция его внятно не жрёт.
+<br>
+<br>например, поставь три вызова твоего патченного метода подряд, и позапускай с ключом -XX:CompileThreshold=2 и без него.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78608&amp;user=5265&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=2" class="addthx" data-post="78608"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Stiver[/b]','')">Stiver</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 48.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.07'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2006 16:53 <br><script type="text/javascript">QU('Stiver','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Stiver" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>BSL//ZcS</b>
+<br>
+<br><I>BSL//ZcS 380000
+<br>ключ + сумма кодов букв имени в кубе должны делиться на 11  </I>
+<br>
+<br>Замечательно <img src="img/smilies/s1.gif" alt="">
+<br>
+<br><I>например, поставь три вызова твоего патченного метода подряд, и позапускай с ключом -XX:CompileThreshold=2 и без него. </I>
+<br>
+<br>Если просто вызовы, то все будет нормально. Ты наверное имеешь в виду изменение байт-кода после того, как по нему прошелся JIT компилятор? Тогда нужно в структуре функции просто обнулять указатель на native code и компилятор переведет ее заново. Я это делать поленился, так как вызов всего один. Посмотри пример в аттаче, он будет давать правильный результат для любого значения CompileThreshold. По крайней мере для любого &gt;1, с ключом -XX:CompileThreshold=1 конца компиляции я так и не дождался <img src="img/smilies/s1.gif" alt="">
+<br>
+<br>
+<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/73c6_21.06.2006_CRACKLAB.rU.tgz">73c6_21.06.2006_CRACKLAB.rU.tgz</a> - test_CompileThreshold.zip
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78801&amp;user=2011&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=3" class="addthx" data-post="78801"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]wormking[/b]','')">wormking</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 22.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4621">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2006 18:33 <br><script type="text/javascript">QU('wormking','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=wormking" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+хм, а смысл использовать что-то, что может перестать работать.
+<br>Если уж в 1.5 sun изменила порядок полей в некоторых структурах, где
+<br>гарантия, что в след. версии они капитально не изменят внутренние
+<br>механизмы, лишив код жизнеспособности.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78812&amp;user=4621&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=4" class="addthx" data-post="78812"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Stiver[/b]','')">Stiver</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 48.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.07'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2006 19:59 <br><script type="text/javascript">QU('Stiver','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Stiver" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>wormking</b>
+<br><I>хм, а смысл использовать что-то, что может перестать работать.  </I>
+<br>
+<br>Сложный вопрос, попробуй задать его читателям(и писателям) различных книг и статей типа &quot;Undocumented Windows&quot;. Ведь тоже никакой гарантии, что в следующей версии Windows или даже после следующего Service Pack&#039;a все точно так же работать будет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78828&amp;user=2011&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=5" class="addthx" data-post="78828"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]BSL//ZcS[/b]','')">BSL//ZcS</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.3 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=5265">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2006 20:20 <br><script type="text/javascript">QU('BSL//ZcS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BSL//ZcS" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>Stiver</b>
+<br><I>Ты наверное имеешь в виду изменение байт-кода после того, как по нему прошелся JIT компилятор? </I>
+<br>
+<br>вообще-то, я имел в виду другое.  
+<br>в самом твоём крякми модифицируемый метод после компиляции перестаёт отрабатывать как должен.
+<br>
+<br>особо я с этим не разбирался.  может это, конечно, из-за того, что я криво патчил.  хотя я вроде несколькими способами делал, с одинаковым результатом.  
+<br>в общем, попробуй то, что я написал, на своём крякми.
+<br>
+<br><I>Тогда нужно в структуре функции просто обнулять указатель на native code и компилятор переведет ее заново. </I>
+<br>
+<br>А если этот метод заинлайнен где-нить в другом месте?
+<br>
+<br>Опять же, с исконно жабьей кросс-платформенностью проблемы.  Как я понимаю, на машинах с другим размером слова или порядком байт этот код работать не будет.   
+<br>
+<br><I>с ключом -XX:CompileThreshold=1 конца компиляции я так и не дождался  </I>
+<br>
+<br>по-моему оно вообще так не компилирует, а намертво зацикливается.  во всяком случае, по ключу -XX:+PrintCompilation оно ни одного скомпилированного метода не сообщает.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78831&amp;user=5265&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=6" class="addthx" data-post="78831"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Stiver[/b]','')">Stiver</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 48.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.07'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 июня 2006 18:38 <br><script type="text/javascript">QU('Stiver','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Stiver" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>BSL//ZcS</b>
+<br><I>в самом твоём крякми модифицируемый метод после компиляции перестаёт отрабатывать как должен.  </I>
+<br>
+<br>Конечно перестает, ведь я заменяю edtb() на Math.pow(), а при компиляции он снова берет &quot;правильную&quot; edtb. Поэтому при нескольких вызовах надо сбрасывать результаты компиляции. Посмотри переделанный crackme в аттаче, там я вставил 5 вызовов в цикле и они дают правильный результат для любого CompileThreshold благодаря 
+<br><code>
+<br>unsafe.putAddress(native_code, 0L);
+<br>unsafe.putAddress(invokcount, 0L);
+<br></code>
+<br>Счетчик вызовов лучше тоже обнулять, чтобы не создавать противоречивых данных. Кстати серверная VM интерпретирует CompileThreshold как ей бог на душу положит, чаще всего просто игнорирует.  
+<br>
+<br><I>А если этот метод заинлайнен где-нить в другом месте?  </I>
+<br>
+<br>Точно, такое может случиться, тогда в этом месте будет вызываться старая версия. Правда это может произойти только с очень маленькими функциями (граница по умолчанию вроде около 36 байт была) или если кто-то вручную -XX:MaxInlineSize увеличит.   
+<br>
+<br><I>Опять же, с исконно жабьей кросс-платформенностью проблемы. Как я понимаю, на машинах с другим размером слова или порядком байт этот код работать не будет.  </I>
+<br>
+<br>Да нет, думаю при желании можно и так написать, что везде работать будет. Размер адреса получим через Unsafe.addressSize(), порядок байт можно вычислить, если надо. Хотя вряд ли надо, все putXXX и getXXX и так работают независимо от порядка. 
+<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/7096_22.06.2006_CRACKLAB.rU.tgz">7096_22.06.2006_CRACKLAB.rU.tgz</a> - java_crackme_5.zip
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78981&amp;user=2011&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=7" class="addthx" data-post="78981"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]BSL//ZcS[/b]','')">BSL//ZcS</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.3 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=5265">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 июня 2006 12:29 <br><script type="text/javascript">QU('BSL//ZcS','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BSL//ZcS" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<b>Stiver</b>
+<br><I>я заменяю edtb() на Math.pow(), а при компиляции он снова берет &quot;правильную&quot; edtb. </I>
+<br>
+<br>примерно это я и имел в виду, когда говорил, что компиляция селфмод внятно не жрёт. <img src="img/smilies/s1.gif" alt="">
+<br>
+<br><I>при нескольких вызовах надо сбрасывать результаты компиляции. </I>
+<br>
+<br>кстати, а куда девается память, в которой они находятся?  течёт, видимо?
+<br>
+<br><I>я вставил 5 вызовов в цикле и они дают правильный результат</I>
+<br>
+<br>если модифицированный код нельзя вызывать без специальных ухищрений - это весьма существенное ограничение.  теряется возможность формировать код, вызываемый из других мест, например из библиотек.
+<br>
+<br>может, можно сделать выносной механизм, который бы чистил те поля вызвавшему его методу, и впатчивать его вызов в начало каждого метода, вызываемого извне?  хотя, конечно, тормозить это будет непомерно. да и место дополнительное искать под это придётся.
+<br>
+<br><I>это может произойти только с очень маленькими функциями (граница по умолчанию вроде около 36 байт была) </I>
+<br>
+<br>ну, это достаточно распространённый вариант.  на жабе традиционно используется масса всяких мелких методов.  те же аксессоры...
+<br>
+<br><I>все putXXX и getXXX и так работают независимо от порядка</I>
+<br>
+<br>я не знаю как именно ведут себя эти методы, отражают они всегда жабий порядок байт или пользуют системный, но один из вариантов использования с другим порядком, видимо, будет неправильным.  либо ксорка, либо адресная арифметика, судя по всему, отвалится.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=79166&amp;user=5265&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=8" class="addthx" data-post="79166"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 июня 2006 18:24 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>Stiver</b>
+<br>~/java_crackme&gt; java ValidatorMain Stiver 161052 
+<br>#
+<br># An unexpected error has been detected by HotSpot Virtual Machine:
+<br>#
+<br>#  SIGSEGV (0xb) at pc=0xfe6a7568, pid=22326, tid=1
+<br>#
+<br># Java VM: Java HotSpot(TM) Server VM (1.5.0_04-b05 mixed mode)
+<br># Problematic frame:
+<br># V  [libjvm.so+0x6a7568]
+<br>#
+<br># An error report file with more information is saved as hs_err_pid22326.log
+<br>#
+<br># If you would like to submit a bug report, please visit:
+<br>#   java.sun.com/webapps/bugreport/crash.jsp
+<br>#
+<br>Abort (core dumped)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=79272&amp;user=33&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=9" class="addthx" data-post="79272"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Stiver[/b]','')">Stiver</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 48.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.07'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 июня 2006 10:24 &middot; Поправил: Stiver <br><script type="text/javascript">QU('Stiver','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Stiver" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>BSL//ZcS</b>
+<br>
+<br><I>кстати, а куда девается память, в которой они находятся? течёт, видимо? </I>
+<br>
+<br>Хм, хороший вопрос, не задумывался. Наверное действительно течет. Беда в том, что проверить сложно, но я попробую. Правда на фоне тех сотен мегабайт, которые Ява и так берет и не отдает, эта пара килобайт особо погоды не делает.
+<br>
+<br><I>если модифицированный код нельзя вызывать без специальных ухищрений - это весьма существенное ограничение.</I>
+<br>
+<br>Погоди, мы здесь имеем дело с двумя совершенно разными манипуляциями. Первое - изменение байт-кода (там где ксорится). При вызове измененного кода никаких ухищрений не надо, один раз изменил и вызывай как хочешь, смотри пример в моем втором посте. Второе - перенаправление функции (edtb() на Math.pow()). Тут я код не трогаю, а заменяю указатель в кэше методов. При компиляции этот кэш высчитывается заново, отсюда и необходимость сброса компиляции при вызове. Опять же я не настаиваю, что этот способ замены функции единственно правильный <img src="img/smilies/s1.gif" alt=""> вполне могут быть и другие, более универсальные. Моей целью было в том числе и подтолкнуть народ к их поискам, но похоже здесь Явой мало кто занимается, оставили тебя одного ветерана за всех отдуваться ;)
+<br>
+<br><I>либо ксорка, либо адресная арифметика, судя по всему, отвалится </I>
+<br>
+<br>Адресная арифметика будет работать всегда, так как getAddress и остальные учитывают системный порядок байт. XOR тоже будет работать  всегда, если читать и ксорить побайтово (то есть через getByte, а не getAddress), так как байт-код хранится независимо от системы в big-endian формате.
+<br>
+<br><b>ssx</b>
+<br>
+<br>А можно уточнить операционную систему? Судя по <i class=x>libjvm.so</i> какой-то Unix или Solaris?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=79350&amp;user=2011&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=10" class="addthx" data-post="79350"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 июня 2006 21:49 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<b>Stiver</b>
+<br>uname -a
+<br>SunOS xxxxxxx 5.8 Generic_117350-33 sun4u sparc SUNW,Ultra-Enterprise
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=79462&amp;user=33&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=11" class="addthx" data-post="79462"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Stiver[/b]','')">Stiver</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 48.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.07'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июня 2006 22:54 <br><script type="text/javascript">QU('Stiver','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Stiver" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5363.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<b>ssx</b>
+<br><I>SunOS xxxxxxx 5.8 Generic_117350-33 sun4u sparc SUNW,Ultra-Enterprise </I>
+<br>
+<br>То есть Solaris 8, если я правильно понимаю. К сожалению доступа к Солярису у меня больше нет и вряд ли будет в обозримом будущем. Но под Линуксом проверю, как из отпуска вернусь <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=79631&amp;user=2011&amp;forum_n=2&amp;topic=5363.html&amp;page=0&amp;anchor=12" class="addthx" data-post="79631"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Java crackme / proof of concept</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#13" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="2">
+<input type="hidden" name="topic" value="5363">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=5363" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,364 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Изменение базового адреса (ImageBase) загрузки dll в память - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Суть проблемы в следующем: после распаковки библиотеки возник вопрос ,по какому же адресу она должна грузиться в память. Секции с релоками нет,поэтому если сделать IB=10000000 то ловим ошибку 0хс0000005 Далее ещё интереснее: на">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=41144'>Adler</a>, <a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a> (+8 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Изменение базового адреса (ImageBase) загрузки dll в память</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 20:45 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Суть проблемы в следующем: после распаковки библиотеки возник вопрос ,по какому же адресу она должна грузиться в память. Секции с релоками нет,поэтому если сделать IB=10000000 то ловим ошибку 0хс0000005<br>Далее ещё интереснее: на разных компьютерах даже под Windows XP SP3 адрес загрузки скачет как сумасшедший, он может быть от 00280000 до 00420000. Если ImageBase&gt;00400000 то всё работает,а вот когда он меньше опять вылазит ошибка 0хс0000005<br>Можно ли как то управлять адресом,куда она будет загружаться? Есть прога ReloX но непонятно как ей пользоваться,она ругается что размеры оригинальной dll и распакованной отличаются (а как может быть иначе)?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307318&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=1" class="addthx" data-post="307318"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]NikolayD[/b]','')">NikolayD</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 189.9 (ветеран), 334thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.36'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24529">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 20:59 <br><script type="text/javascript">QU('NikolayD','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NikolayD" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Для Relox нужны два дампа но только с разными базами. <noindex><a href="http://exelab.ru/f/action=vthread&amp;forum=10&amp;topic=19893" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307319&amp;user=24529&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=2" class="addthx" data-post="307319"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]-=AkaBOSS=-[/b]','')">-=AkaBOSS=-</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/26242.png" alt=""><br><span class=txtSm>Ранг: 150.3 (ветеран), 175thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.88'>Активность: 0.16<span style='color:red'>&searr;</span>0.07</span><br>Статус: <a href="action=userinfo&amp;user=26242">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 21:02 <br><script type="text/javascript">QU('-=AkaBOSS=-','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=-=AkaBOSS=-" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+нужно в качестве ImageBase вписать тот адрес,<br>по которому грузилась библиотека, когда её дампили<br>и установить первый бит в поле Flags в PE хидере (relocation stripped)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307320&amp;user=26242&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=3" class="addthx" data-post="307320"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 21:06 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>-=AkaBOSS=-</b><br>Да это ежу понятно,что надо вбить тот адрес если нет релоков. Я же говорю,когда он меньше базы 00400000 то ничего не работает.<br><b>NikolayD</b><br>Если восстановить релоки,ошибка 0хс0000005 исчезнет? База будет соотвественно 10000000
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307321&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=4" class="addthx" data-post="307321"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 21:07 &middot; Поправил: Vovan666 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>-=AkaBOSS=-</b><br>Чё за бред? А если адрес уже занят, не грузиться вообще.<br><b>BabushkaCracker</b><br>в аттаче измененая loaddll для olly, которая позволяет грузить длл по разным imagebase.<br><br><img src="img/attach.gif" alt=""> <a href="./files/f518_16.06.2012_EXELAB.rU.tgz">f518_16.06.2012_EXELAB.rU.tgz</a> - LOADDLL.EXE
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307322&amp;user=5291&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=5" class="addthx" data-post="307322"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]-=AkaBOSS=-[/b]','')">-=AkaBOSS=-</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/26242.png" alt=""><br><span class=txtSm>Ранг: 150.3 (ветеран), 175thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.88'>Активность: 0.16<span style='color:red'>&searr;</span>0.07</span><br>Статус: <a href="action=userinfo&amp;user=26242">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 21:15 <br><script type="text/javascript">QU('-=AkaBOSS=-','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=-=AkaBOSS=-" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+а можно увидеть эту библиотеку?<br>потому что просто <I>Если ImageBase&gt;00400000</I> проблему отсутствия релоков не решает<br>и то, что при этом <I>всё работает</I>, весьма странно
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307323&amp;user=26242&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=6" class="addthx" data-post="307323"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2012 21:25 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Тогда ещё раз по пунктам:<br>1. В Олли грузится распакованный exe.<br>2. Это ехе цепляет за собой ЗАПАКОВАННУЮ dll<br>3. ImageBase запакованной dll в памяти постоянно меняется в зависимости от связки &quot;Комп+ОС&quot;<br>4. Обычно она грузится по адресам меньше 004000000, в связи с чем после распаковки её и восстановления импорта, при запуске РАСПАКОВАННОГО ехе я получаю ошибку 0хс0000005<br>5. Есть некая комбинация &quot;Комп+ОС&quot; (Core2Duo E7400+WinXP SP3) когда библиотека загрузилась по адресу выше 00400000 ,например 00420000. Я делаю дамп,прикручиваю импорт и всё работает.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307324&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=7" class="addthx" data-post="307324"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]ClockMan[/b]','')">ClockMan</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/17432.jpg" alt=""><br><span class=txtSm>Ранг: 568.2 (<b>!</b>), 464thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.99'>Активность: 0.55<span style='color:green'>&nearr;</span>0.57</span><br>Статус: <a href="action=userinfo&amp;user=17432">Участник</a><br><font color=blue>оптимист</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2012 00:03 <br><script type="text/javascript">QU('ClockMan','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ClockMan" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+Без релоков у вас ничео работать небудет,ну кроме того компа на котором был расспакован файл.
+<br><br><font size="1"><i>-----<br>Чтобы правильно задать вопрос, нужно знать большую часть  ответа. Р.Шекли.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=307328&amp;user=17432&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=8" class="addthx" data-post="307328"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2012 10:04 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Без релоков и на том же компе может не работать, если используется ASLR, и память уже занята. Поэтому предлагаю не пытаться найти тут какой-то хак, а восстановить по-нормальному релоки.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307345&amp;user=1556&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=9" class="addthx" data-post="307345"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2012 23:38 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Что-то не хочет релоки приклеивать к файлу:<br><img src="http://s1.ipicture.ru/uploads/20120617/T6DzLMHe.png" border="0" align="" alt=""><br>Ругается что нет места. Я делаю сначала дамп,потом клею 2 дополнительные секции,потом импорт,потом цепляю релоки. В аттаче файл с релоками,а вот ссылка на библиотеку где всё кроме релоков:<br><noindex><a href="http://depositfiles.com/files/2ltyrupl9" rel="nofollow" target="_blank">http://depositfiles.com/files/2ltyrupl9</a></noindex><br><br><br><img src="img/attach.gif" alt=""> <a href="./files/348d_17.06.2012_EXELAB.rU.tgz">348d_17.06.2012_EXELAB.rU.tgz</a> - relocs.txt
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307386&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=10" class="addthx" data-post="307386"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 00:02 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+есть еще новая програмка от ghandi для поиска и восстановления релоков<br>http://forum.tuts4you.com/topic/29060-relocation-builder/<br>только перед использованием обнули информацию о релоках в хидере(возможно из-за этого не работал и relox)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307390&amp;user=5291&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=11" class="addthx" data-post="307390"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 00:24 &middot; Поправил: BabushkaCracker <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<b>File already has relocation records, abort.</b><br>В хидере написано &quot;Reallocations 0000&quot;. Что ещё обнулять то?<br><br>Ещё непонятно,какую базу брать когда секцию приклеиваешь.Если без релоков,то ту которую была во время дампа. А вот с релоками,если база будет 10000000,то секция уже не приклеивается - она ниже базы<br>Тут пока несовсем понятно,или же я буду брать базу из дампа,а релоки сами переместят всё куда нужно?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307392&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=12" class="addthx" data-post="307392"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 00:41 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>BabushkaCracker пишет:<br>File already has relocation records, abort.<br>В хидере написано &quot;Reallocations 0000&quot;. Что ещё обнулять то? </I><br>LordPE-&gt;Directories-&gt;Relocations У тебя там какой-то адрес и размер вроде 14(удалил я уже файл).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307396&amp;user=5291&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=13" class="addthx" data-post="307396"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ClockMan[/b]','')">ClockMan</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/17432.jpg" alt=""><br><span class=txtSm>Ранг: 568.2 (<b>!</b>), 464thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.99'>Активность: 0.55<span style='color:green'>&nearr;</span>0.57</span><br>Статус: <a href="action=userinfo&amp;user=17432">Участник</a><br><font color=blue>оптимист</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 10:39 <br><script type="text/javascript">QU('ClockMan','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ClockMan" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>BabushkaCracker</b><br>Бабушка садомозохистка ты.<br>1.при снятии дампа в ImageBase пишется адресс по которому была загружена библа в твоём случае <b>00340000</b><br>2.при снятии дампа лучше неприменять оптимизацию файла ни лордом ни петолем.<br>3.ролексу ненравится оптимизированные дампы поэтому он неможет создать новую секцию с релоками<br>4.ваша жертва <noindex><a href="http://zalil.ru/33462753" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>5.вследующий раз услуга будет платной....
+<br><br><font size="1"><i>-----<br>Чтобы правильно задать вопрос, нужно знать большую часть  ответа. Р.Шекли.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=307404&amp;user=17432&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=14" class="addthx" data-post="307404"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 19:23 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>Vovan666 пишет:<br>LordPE-&gt;Directories-&gt;Relocations У тебя там какой-то адрес и размер вроде 14(удалил я уже файл).  </I><br>Да это помогло Релокатору,а Релокс все равно не переварил. Релоки приклеились,но всё равно ошибка 0хс0000005. Вот что я наклепал:<br><noindex><a href="http://depositfiles.com/files/qwzxq0lgl" rel="nofollow" target="_blank">http://depositfiles.com/files/qwzxq0lgl</a></noindex><br><br><I>ClockMan пишет:<br>4.ваша жертва --&gt; Link &lt;--<br>5.вследующий раз услуга будет платной....  </I><br>Это конечно круче,чем мой файл - ошибки нет.Но библиотека грузится почему то по адресу 00420000 в отладчике,а дамп сделан под 00340000 и поэтому что-то там &quot;CAN&#039;T WRITE TO ADDRESS..бла бла&quot;
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307418&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=15" class="addthx" data-post="307418"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 19:28 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+А ещё непонятно,почему мы клеили релоки из одного и того же файла,к одной и той же библиотеке, но разными прогами и размер секции релоков получился разный.<br>Надо какой-нибудь мануал,где описывалось бы что такое релоки,как их правильно приклеивать,и как ДЛЛ грузится в память с помощью них. (в разделе Подполье,наверняка завалялся)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307420&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=16" class="addthx" data-post="307420"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 19:38 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Если релоки на месте и в порядке, без разницы, где был сделан дамп, и где длл потом грузится.<br>Мануал завалялся, мануал по ПЕ от мелкомягких называется. Освой, неплохая штука.<br>И пользуйся кнопкой &quot;Правка&quot;, не создавай сообщения подряд.<br>З.Ы. QuickUnpack, когда длл анпачит, релоки восстанавливает.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307421&amp;user=1556&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=17" class="addthx" data-post="307421"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]BabushkaCracker[/b]','')">BabushkaCracker</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.07'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=32299">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 20:34 <br><script type="text/javascript">QU('BabushkaCracker','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BabushkaCracker" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Тогда задача немного меняется: длл должна загружаться в строго определенную область памяти,туда,откуда производился дамп,ниже 00400000 и эта область памяти должна быть свободна.<br>Иначе не будут работать адреса из сдампленных и приклеенных секций (можно конечно сделать переходники для этих адресов,но их там тыщи миллионов и эта задача мне пока не по зубам)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307424&amp;user=32299&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=18" class="addthx" data-post="307424"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]_ruzmaz_[/b]','')">_ruzmaz_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 114.8 (ветеран), 41thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.01'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=21589">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 20:45 <br><script type="text/javascript">QU('_ruzmaz_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_ruzmaz_" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+http://msdn.microsoft.com/library/windows/hardware/gg463125
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307425&amp;user=21589&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=19" class="addthx" data-post="307425"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Nightshade[/b]','')">Nightshade</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4618.gif" alt=""><br><span class=txtSm>Ранг: 241.9 (наставник), 107thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4618">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 22:37 <br><script type="text/javascript">QU('Nightshade','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nightshade" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+А чем длл накрыта?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307431&amp;user=4618&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=20" class="addthx" data-post="307431"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 22:38 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+Судя по секциям старфорс.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307432&amp;user=5291&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=21" class="addthx" data-post="307432"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2012 23:02 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20062.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Что ж вы сразу не сказали, что старфорс. А я-то думал, что автор такой деревянный, а это ж Буратино, не досидевший в бане гроза старфорса. Он, видимо, случайно забыл, что ещё 22 дня сидеть, и новый ник зарегал, исправлено.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=307433&amp;user=1556&amp;forum_n=5&amp;topic=20062.html&amp;page=0&amp;anchor=22" class="addthx" data-post="307433"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=18316" title="18-06-2012 20:15, ранг:102.0" target="_blank">SReg</a>, <a href="action=userinfo&user=32299" title="19-06-2012 14:07, ранг:1.4" target="_blank">BabushkaCracker</a>, <a href="action=userinfo&user=31971" title="19-06-2012 14:07, ранг:1.4" target="_blank">Svinovod</a>, <a href="action=userinfo&user=32258" title="19-06-2012 14:08, ранг:0.2" target="_blank">StarXruk</a></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Изменение базового адреса (ImageBase) загрузки dll в память</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=20062" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,219 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>[ASM] Что выполняется приведенным кодом? - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Привожу дизасм листинг двух функций, которые хотелось бы понять. Прошу помощи в силу слабого знания asm. Можно даже построчно, заранее благодарен.  Чтобы меня не закидали камнями и сразу не перекинули в раздел для нубов, уточню,">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> [ASM] Что выполняется приведенным кодом?</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]requte[/b]','')">requte</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.1 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.5'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23822">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2010 21:33 &middot; Поправил: requte <br><script type="text/javascript">QU('requte','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=requte" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Привожу дизасм листинг двух функций, которые хотелось бы понять. Прошу помощи в силу слабого знания asm. Можно даже построчно, заранее благодарен. <br><br>Чтобы меня не закидали камнями и сразу не перекинули в раздел для нубов, уточню, каждая из этих функций является единственной функцией внутри библиотеки (их тоже две), они экспортированы и имеют прототип int funcname(int, int); вызываются неким лаунчером. По идее, они имею какой-то отношение к последующему взаимодействию с неким драйвером [somedriver.sys], который лежит рядом с лаунчером. Больше в библиотеках ничего нет (на всякий случай, взять их можно <noindex><a href="http://rghost.ru/2262267" rel="nofollow" target="_blank">--&gt; здесь &lt;--</a></noindex>) <br><br><b>func1</b><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ebp</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ebp</span><span class="hl_char">,</span><span class="hl_registr">esp</span></li><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">8000h</span></li><li class="hl_l0"><span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_number">00h</span></li><li class="hl_l1"><span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_number">10h</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">0002h</span></li><li class="hl_l1"><span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">0Bh</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_number">00h</span></li><li class="hl_l1"><span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_registr">ah</span><span class="hl_char">,</span><span class="hl_registr">al</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_char">[</span><span class="hl_registr">ebp</span><span class="hl_char">+</span><span class="hl_number">08h</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_number">0CF8h</span></li><li class="hl_l0"><span class="hl_function"><b>out</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_registr">eax</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_number">0CFCh</span></li><li class="hl_l0"><span class="hl_function"><b>in</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_registr">dx</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_char">[</span><span class="hl_registr">ebp</span><span class="hl_char">+</span><span class="hl_number">0Ch</span><span class="hl_char">]</span></li><li class="hl_l0"><span class="hl_function"><b>out</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_registr">eax</span></li><li class="hl_l1"><span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l0"><span class="hl_function">leave</span></li><li class="hl_l1"><span class="hl_function"><b>retn</b></span>&nbsp;<span class="hl_number">0008h</span></li>        </ol>
+    </div>
+</div></div>
+<br><br><b>func2</b><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ebp</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ebp</span><span class="hl_char">,</span><span class="hl_registr">esp</span></li><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">8000h</span></li><li class="hl_l0"><span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_number">00h</span></li><li class="hl_l1"><span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_number">10h</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">0002h</span></li><li class="hl_l1"><span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">0Bh</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_number">00h</span></li><li class="hl_l1"><span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_registr">ah</span><span class="hl_char">,</span><span class="hl_registr">al</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_char">[</span><span class="hl_registr">ebp</span><span class="hl_char">+</span><span class="hl_number">08h</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_number">0CF8h</span></li><li class="hl_l0"><span class="hl_function"><b>out</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_registr">eax</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_number">0CFCh</span></li><li class="hl_l0"><span class="hl_function"><b>in</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_registr">dx</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ebx</span><span class="hl_char">,</span><span class="hl_registr">eax</span></li><li class="hl_l0"><span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l1"><span class="hl_function">leave</span></li><li class="hl_l0"><span class="hl_function"><b>retn</b></span>&nbsp;<span class="hl_number">0008h</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=262794&amp;user=23822&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=1" class="addthx" data-post="262794"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]OnLyOnE[/b]','')">OnLyOnE</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/1989.png" alt=""><br><span class=txtSm>Ранг: 462.8 (мудрец), 468thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.08'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1989">Участник</a><br><font color=blue>Only One!</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2010 21:52 <br><script type="text/javascript">QU('OnLyOnE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OnLyOnE" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Если я не ошибаюсь...<br><br><I>requte пишет:<br>in eax,dx <br>out dx,eax</I><br><br>1.Ввод в аккумулятор (еах) из порта ввода/вывода<br>2.Вывод в порт.
+<br><br><font size="1"><i>-----<br>aLL rIGHTS rEVERSED!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=262795&amp;user=1989&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=2" class="addthx" data-post="262795"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]requte[/b]','')">requte</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.1 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.5'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23822">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2010 22:01 <br><script type="text/javascript">QU('requte','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=requte" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+In the x86 world, the index port always located at 0CF8h and the data port is always located at 0CFCh in I/O space. Разумно.<br><br><b>OnLyOnE</b>, можно чуть подробнее о том что происходит?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=262798&amp;user=23822&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=3" class="addthx" data-post="262798"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Coderess[/b]','')">Coderess</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/16383.jpg" alt=""><br><span class=txtSm>Ранг: 355.4 (мудрец), 55thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.21'>Активность: 0.32<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=16383">Uploader</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2010 22:35 &middot; Поправил: Coderess <br><script type="text/javascript">QU('Coderess','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Coderess" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Подробно <br>256bit.ru/Assembler/Pr/Index20.htm<br><br><i class=x>OUT Вывод в порт<br><br><br>Команда out выводит в порт, указываемый первым операндом, байт или слово соответственно из регистра AL или АХ. Адрес порта помещается в регистр DX. Если адрес порта не превышает 255, он может быть указан непосредственным значением. Указание регистра-источника (AL или АХ) обязательно, хотя с другими регистрами команда out не работает, и их указывать нельзя. Команда не воздействует на флаги процессора.<br><br>Пример 1<br><br><br>mov AL,20h ;Команда конца прерывания (EOI) <br>out 20h,AL ;Вывод команды EOI в порт<br>;20h контроллера прерываний<br><br>Пример 2<br><br><br>mov DX,3CEh ; Адрес порта<br>mov AL,5 ;Данное<br>out DX,AL ;Вывод байта из AL в порт 3CEh<br><br> Допустимо использование в качестве операнда-источника расширенного регистра ЕАХ (если адресуемое устройство позволяет записать в его порт двойное слово).<br><br>Пример<br><br><br>mov ЕАХ,1А008РРЗh;Пересылаемое данное<br>mov DX,345h ;Адрес порта<br>out DX,EAX ;Вывод в порт двойного слова</i>
+<br><br><font size="1"><i>-----<br>Gutta cavat lapidem. Feci, quod potui. Faciant meliora potentes</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=262802&amp;user=16383&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=4" class="addthx" data-post="262802"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]requte[/b]','')">requte</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.1 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.5'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23822">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2010 22:48 <br><script type="text/javascript">QU('requte','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=requte" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Забудем временно про func2, с ней разберусь без проблем, поняв работу func1.<br><br>Как я понял после небольшого погружения, получается следующее...<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ebp</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ebp</span><span class="hl_char">,</span><span class="hl_registr">esp</span></li><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">8000h</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l0"><span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_number">00h</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; bus</span></li><li class="hl_l1"><span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_number">10h</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">0002h</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; device</span></li><li class="hl_l1"><span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_registr">ax</span><span class="hl_char">,</span><span class="hl_number">0Bh</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_number">00h</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; function</span></li><li class="hl_l1"><span class="hl_function"><b>or</b></span>&nbsp;<span class="hl_registr">ah</span><span class="hl_char">,</span><span class="hl_registr">al</span></li><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span><span class="hl_char">[</span><span class="hl_registr">ebp</span><span class="hl_char">+</span><span class="hl_number">08h</span><span class="hl_char">]</span>&nbsp;&nbsp;&nbsp;<span class="hl_comment">; vendor берем из первого(?) параметра функции</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_number">0CF8h</span></li><li class="hl_l0"><span class="hl_function"><b>out</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_registr"><b>eax</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; делаем наш запрос (b/d/f/v)</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_number">0CFCh</span></li><li class="hl_l0"><span class="hl_function"><b>in</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_registr"><b>dx</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; получаем ответ? (dword, ложится в eax) что с ним делаем дальше?</span></li><li class="hl_l1"><span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span><span class="hl_char">[</span><span class="hl_registr">ebp</span><span class="hl_char">+</span><span class="hl_number">0Ch</span><span class="hl_char">]</span>&nbsp;&nbsp;<span class="hl_comment">; вот тут запутался, понимаю, что это второй параметр функи</span></li><li class="hl_l0"><span class="hl_function"><b>out</b></span>&nbsp;<span class="hl_registr">dx</span><span class="hl_char">,</span><span class="hl_registr"><b>eax</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; вывод в порт (что выводится туда в итоге?)</span></li><li class="hl_l1"><span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l0"><span class="hl_function">leave</span></li><li class="hl_l1"><span class="hl_function"><b>retn</b></span>&nbsp;<span class="hl_number">0008h</span>&nbsp;&nbsp;&nbsp;<span class="hl_comment">; всегда возвращается 8h???</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=262804&amp;user=23822&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=5" class="addthx" data-post="262804"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2010 22:59 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+PCI CFG.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=262807&amp;user=17964&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=6" class="addthx" data-post="262807"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]requte[/b]','')">requte</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.1 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.5'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23822">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 августа 2010 02:33 <br><script type="text/javascript">QU('requte','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=requte" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=16548.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>Clerk</b>, спасибо, все вкурил. <br><br>Закрываю.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=262815&amp;user=23822&amp;forum_n=5&amp;topic=16548.html&amp;page=0&amp;anchor=7" class="addthx" data-post="262815"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> [ASM] Что выполняется приведенным кодом?</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=16548" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

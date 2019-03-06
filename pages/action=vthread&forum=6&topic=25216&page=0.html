@@ -1,0 +1,424 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Minifilter и фильтр запросов от драйверов - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Всем привет. Пишу MiniFilter для контроля за файловой системой, это мои первые попытки написать драйвер, поэтому могу путать терминологию и чтобы не было неоднозначностей буду приводить названия используемых функций. Фильтр">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Minifilter и фильтр запросов от драйверов</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2018 01:08 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Всем привет.<br>Пишу MiniFilter для контроля за файловой системой, это мои первые попытки написать драйвер, поэтому могу путать терминологию и чтобы не было неоднозначностей буду приводить названия используемых функций.<br>Фильтр устанавливаю с помощью FltRegisterFilter, контролирую IRP_MJ_CREATE и IRP_MJ_DIRECTORY_CONTROL. Внутри колбеков с помощью PsGetCurrentProcess получаю ссылку на PEPROCESS, дальше используется пара функций для определения идентификатора процесса (PsGetProcessId) и его названия. По полученным данным принимаю решение об фильтрации. Когда запрос идет из обычных приложений, то проблем никаких нет. Но если какой-либо драйвер работает с файловой системой напрямую, то PsGetProcessId ссылается на system процесс (тесты с несколькими драйверами не проводил, но как я понимаю у каждого драйвера будет свой уникальный PEPROCESS, который будет ссылаться на system-процесс). Отсюда возникает вопрос:<br>Можно ли как-нибудь из PEPROCESS (или любым другим способом) понять какой конкретный драйвер работает с файловой системой?<br>Можно попробовать сделать перехват системных функций, тогда по точке возврата есть шанс определить драйвер, но я так понимаю, что PatchGuard мне не даст этого сделать, а возиться с отключение защиты совсем не хочется (я так понял это не тривиальная задача).<br>Драйвер пишу для Win10 x64 и на данный момент использовать его в других системах не планирую.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=384971&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=1" class="addthx" data-post="384971"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2018 03:06 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+сильно не вникал, но глянь <noindex><a href="https://www.codeproject.com/Articles/43586/File-System-Filter-Driver-Tutorial" rel="nofollow" target="_blank">--&gt; здесь&lt;--</a></noindex>, может поможет. <br>Статье правда три года, но мне в свое время помогла найти решение для моей задачи.<br>Успеха!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=384973&amp;user=4773&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=2" class="addthx" data-post="384973"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2018 12:25 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>plutos</b>, спасибо за ссыль, но это не то. У меня нет проблем с написание самого фильтра (к тому же в этой же статье написано, что лучше использовать minifilter, что я и делаю). Мне нужно понять какой драйвер работает с файловой системой. К сожалению, я не понимаю многих нюансов нулевого кольца, поэтому и не понимаю в какую сторону копать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=384975&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=3" class="addthx" data-post="384975"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2018 20:48 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Не будет у каждого драйвера свой PEPROCESS для system-процесса.<br><br>А для чего задача фильтровать драйвера? Если это для безопасности, то смысла нет, драйвер всегда сможет при желании обойти другой драйвер.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=384989&amp;user=1556&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=4" class="addthx" data-post="384989"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2018 23:15 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>user99 пишет:<br>К сожалению, я не понимаю многих нюансов нулевого кольца </I><br><br>так может с этого и нужно начинать?<br>Да и цель не понятна, согласен с Archer&#039;oм.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=384991&amp;user=4773&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=5" class="addthx" data-post="384991"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июня 2018 23:24 &middot; Поправил: user99 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>Archer</b>, именно для безопасности и смысл есть: при желании можно много чего сделать, но чтобы это желание появилось нужно понимать, что тебя блокируют, а т.к. я свою разработку в Сеть не собираюсь выкладывать, то разработчик исходного подозрительного драйвера навряд ли будет делать лишние телодвижения.<br><br><I>Archer пишет:<br>Не будет у каждого драйвера свой PEPROCESS для system-процесса. </I><br>Не понял. У каждого драйвера свой уникальный PEPROCESS или он общий на всех? Можно ли по PEPROCESS выйти на конкретный экземпляр драйвера?<br><br><I>plutos пишет:<br>так может с этого и нужно начинать? </I><br>Может и стоит, но я понимаю на сколько глубоки эти дебри, и т.к. для меня это второстепенное направление, то тратить на изучение ринг0 несколько месяцев не могу.<br>Надеюсь, что есть люди, кто сталкивался с подобной задачей, и они смогут навести меня на путь истинный <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=384992&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=6" class="addthx" data-post="384992"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2018 02:20 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>user99 пишет:<br>Надеюсь, что есть люди, кто сталкивался с подобной задачей, и они смогут навести меня на путь истинный </I><br><br>дело, конечно, ваше личное, но если это так важно, то может пойти прямо в раздел <noindex><a href="https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=25055&amp;page=2" rel="nofollow" target="_blank">--&gt; поиск специалистов &lt;--</a></noindex>и там попросить помощи, вместо того, чтобы ждать у моря погоды.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=384993&amp;user=4773&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=7" class="addthx" data-post="384993"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2018 11:24 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>user99 пишет:<br>У каждого драйвера свой уникальный PEPROCESS или он общий на всех?</I><br>Не будет уникального. Контекст system-процесса один.<br><br>Нормально документированно задачу вряд ли решить. Но коль хочется нагородить костылей, коль оно так by design, можно попробовать походить по IO_STACK в IRP с целью выцепить DeviceObject самого нижнего драйвера. Другой вопрос, что ни разу не факт, что это он и начал изначально делать запрос. И коллстек тут тоже не поможет, запросы могут быть и отложенные.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=385004&amp;user=1556&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=8" class="addthx" data-post="385004"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=8830" title="18-06-2018 11:51, ранг:307.0" target="_blank">ajax</a>, <a href="action=userinfo&user=44014" title="18-06-2018 12:29, ранг:3.0" target="_blank">user99</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 338.5 (мудрец), 349thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 июня 2018 01:18 &middot; Поправил: difexacaw <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Разработка минифильтров обычно поставлена на поток&quot;, те разраб этим занимается много лет, он это делает на автомате. Вхождение туда с нуля просто невозможно. ТС взял неподьёмную задачу.<br><br>&gt; Можно ли как-нибудь из PEPROCESS (или любым другим способом) понять какой конкретный драйвер работает с файловой системой?<br><br>Нет. PEP* это лишь системный обьект, в контексте которого выполняется ваша задача, а для фильтров это постоянно изменяющийся контекст. Он никак не связан с драйверами. Это лишь указатель на описатель текущего контекста задачи.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=385028&amp;user=40990&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=9" class="addthx" data-post="385028"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 июня 2018 13:01 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>difexacaw пишет:<br>Вхождение туда с нуля просто невозможно. ТС взял неподьёмную задачу. </I><br>Все когда-то делается впервые и насчет неподъемности задачи явное преувеличение. Конечно полноценный антивирь (или какую-либо подобную защиту) я не напишу, особенно если учитывать разнообразность компов и что у каждого пользователя программа работает по особенному, но сделать драйвер-фильтр для себя не является такой большой проблемой (особенно если можешь хардкодить по страшному).<br><br>Всем спасибо за объяснения, у меня одна идея уже родилась как можно решить свою задачу, может чуть позже выложу основную идею - покритикуете с точки зрения своего опыта.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=385048&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=10" class="addthx" data-post="385048"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 338.5 (мудрец), 349thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 июня 2018 16:29 &middot; Поправил: difexacaw <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<b>user99</b><br><br>Кривой падающий драйвер по шаблону собрать каждый сможет. Но такое не приемлемо, должна быть разработана архитектура, отсутствие корреляций с защитой. Костыльная сборка которая через раз будет отваливать ось в синь никуда не годится. Колхозить в ядре ос - не годится, за такое руки отрезать следует.<br>Архитектура минифильтров весьма сложна, это не общего назначения драйвера, через них проходит работа с железом. Нужно много времени на изучение всей архитектуры, только потом можно пытаться что то реализовать. Так что желание не соответствует вашим возможностям. Купите реализацию, иначе никак.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=385058&amp;user=40990&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=11" class="addthx" data-post="385058"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 июня 2018 11:33 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>difexacaw пишет:<br>Так что желание не соответствует вашим возможностям. </I><br>Будем считать, что это было сказано с наилучшими пожеланиями, а не в попытке обидеть меня. Потому что глупо и непрофессионально писать такие вещи, не зная ничего о человеке.<br><I>difexacaw пишет:<br>Купите реализацию, иначе никак. </I><br>Знаешь какое у меня сложилось мнение о большинстве &quot;специалистах&quot; за то время, что живу на белом свете? Что как раз-таки им нужно руки поотрывать, потому что люди кичуются делают вид, что они все знаю и все умеют и всячески набивают себе цену, а когда начинаешь чуточку присматриваться, что же там эти горе &quot;специалисты&quot; натворили, то хочется за ними все переделать. Это касается не только программирования, но и многих вещей с которыми приходится сталкиваться (электрика, слесаря, ремонт и т.д.). Конечно это касается далеко не всех и есть действительно мастера своего дела, но отыскать нужных людей очень непросто и если тебе кто-то говорит &quot;я работал с этим человеком, он отличный спец&quot;, тоже не является гарантией.<br>В любом случае это лирика, я услышал мнение, но пока буду придерживаться своей позиции и дальше писать то &quot;что я написать не смогу&quot; <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=385080&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=12" class="addthx" data-post="385080"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 338.5 (мудрец), 349thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 июня 2018 23:31 &middot; Поправил: difexacaw <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>user99</b><br><br>Нет никакой попытки обидеть вас, лишь факты. Даже крупные конторы, в которых группы вылизывают защитные фильтры не могут добиться стабильности годами. А вы хотите самостоятельно такое реализовать. Это из области фантастики. Что бы вы не собрали оно получится анстаб и дырявое, элементарный анализ найдёт ошибки, в лучшем случае оно просто падает, но обычно через такие поделки получается доступ в км.<br><br>Хорошим примером были ав фильтры(kl, avg etc). Это показало на примере что если человек отлично может кодить в юм, то в км эти навыки бесполезны - код полное решето с точки зрения синхронизаций.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=385090&amp;user=40990&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=13" class="addthx" data-post="385090"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2018 05:23 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>user99</b>, ты зацепился языками с пылью параллельных миров. Поздравляю.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=385094&amp;user=2585&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=14" class="addthx" data-post="385094"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="21-06-2018 03:04, ранг:322.4" target="_blank">plutos</a>, <a href="action=userinfo&user=39556" title="21-06-2018 03:11, ранг:57.8" target="_blank">sefkrd</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2018 06:10 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>Gideon Vi пишет:<br>ты зацепился языками с пылью параллельных миров. Поздравляю </I><br><br>&quot;есть люди, которые будут говорить о чем угодно постольку поскольку  они говорят о себе&quot;<br>                                                                                    Ф.М.Достоевский (русский писатель).<br><br>Тут как раз тот случай.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=385095&amp;user=4773&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=15" class="addthx" data-post="385095"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=8075" title="21-06-2018 07:39, ранг:6.8" target="_blank">f13nd</a>, <a href="action=userinfo&user=26261" title="11-12-2019 07:36, ранг:36.5" target="_blank">bartolomeo</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июня 2018 15:03 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<b>difexacaw</b>, я услышал и с некоторыми моментами полностью согласен, но только с некоторыми, поэтому разработку пока не брошу <img src="img/smilies/s1.gif" alt=""><br><br><b>Gideon Vi</b>,<b>plutos</b>, моя вас не понимать.<br><br>Вернемся к тому ради чего создавалась эта тема, а то недолог час перейдем на русскую классику, софистику и прочие сугубо философские проблемы.<br><b>Напомню суть</b>: хочу отследить какой конкретный драйвер пытается получить доступ к файлу. Отследить через процесс невозможно, т.к. все драйверы работают в контексте системного процесса, но здесь и рождается идея: можно отследить поток. Для каждого потока можно узнать его стартовый адрес и получить взаимосвязь между потоком и драйвером. На данный момент вижу только пару нюансов:<br>1) некоторые потоки начинаются внутри ntoskrnl.exe (в частности с замечательной функции ExpWorkerThread), но это относится к загрузке драйвера и его выгрузке, так что это будем игнорить.<br>2) драйвер может замаскировать свою нить, делая запуск через какого-нибудь посредника, но опять-таки этот момент проигнорим, т.к. я борюсь не с вирусом, и там внутри такого мазохизма на данный момент нет (хотя может я о нем не знаю).<br>3) где-то читал, что поток можно запустить не в системном (system) процессе, а в любом другом (например, в svchost.exe или csrss.exe), на сколько знаю этим процессам нельзя полностью обрезать доступ к файлам, потому что может быть больно. Этой частью пока не занимался, но попробую почитать и провести тесты.<br>4) <b>Archer</b> писал про отложенные запросы, пока тоже не читал, что это за зверьки такие, так что будем решать проблемы по мере их поступления.<br>Прошу знающих людей покритиковать данную идею. Первые тесты показали, что механизм имеет право на существование, но вполне возможно, что есть какие-то подводные камни (механизмы), о которых я не знаю и которые не позволят данному способу выполнить мою задачу.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=385103&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=16" class="addthx" data-post="385103"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2019 11:40 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Люди добрые, подскажите какие функции контролирует ObRegisterCallbacks с параметрами PsProcessType и OB_OPERATION_HANDLE_CREATE?<br>Я так понимаю, что должна контролироваться только одна функция NtOpenProcess или есть еще какие-то функции, после которых срабатывает данный колбек?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400391&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=17" class="addthx" data-post="400391"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2019 12:16 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<b>user99</b><br>DuplicateHandle не может быть?
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400392&amp;user=11966&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=18" class="addthx" data-post="400392"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]user99[/b]','')">user99</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.1 (посетитель), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.06'>Активность: 0.16<span style='color:green'>&nearr;</span>0.29</span><br>Статус: <a href="action=userinfo&amp;user=44014">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2019 12:34 <br><script type="text/javascript">QU('user99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=user99" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<b>r_e</b>, флаг стоит только OB_OPERATION_HANDLE_CREATE (без OB_OPERATION_HANDLE_DUPLICATE) не должно
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400393&amp;user=44014&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=19" class="addthx" data-post="400393"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2019 13:49 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=25216.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+Создание процесса скорее всего этот коллбек дёрнет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400394&amp;user=1556&amp;forum_n=6&amp;topic=25216.html&amp;page=0&amp;anchor=20" class="addthx" data-post="400394"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Minifilter и фильтр запросов от драйверов</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#21" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="25216">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=25216" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

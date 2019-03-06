@@ -1,0 +1,501 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>NtDisplayString (ZwDisplayString) - control characters (\r - загадка)? - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="NtDisplayString NTSYSAPI NTSTATUS NTAPI NtDisplayString(IN PUNICODE_STRING String);  Function NtDisplayString display specified string in text-mode (typically: blue screen). Warning: Trying to display string without previously">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=39467'>hgdagon</a>, <a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> NtDisplayString (ZwDisplayString) - control characters (\r - загадка)?</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 мая 2007 22:37 &middot; Поправил: sxd <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+<b>NtDisplayString</b><br><br><u>NTSYSAPI NTSTATUS NTAPI NtDisplayString(IN PUNICODE_STRING String); </u><br><br>Function NtDisplayString display specified string in text-mode (typically: blue screen). <br><b>Warning:</b> Trying to display string without previously switch to text-mode results as system hang. <br><br><b>String</b> - Pointer to UNICODE_STRING contains string to display. Some basic control characters are implemented (like CR, LF).<br><br>По идеии должна отображать <b>юникодовскую</b> строку, переданную ей в качестве единственного параметра...<br><br>Я написал простенькую прога которая должна отображать строку.<br><b>\n</b> - работает нормально без глюков<br><b>\r</b> - с этим проблемма можете на <b>видео</b> посмотреть (чёрная полоса)<br><br>Потом покопался HIEW в <b>autochk.exe</b> (XP-ый SCANDISK) и убедился, что он использует юникод строку с возвратом каретки (можно наблюдать когда при загрузке проверяет диск)... Там в конце юникодовской строки таже последовательность байтов (<b>0D 00 0A 00</b>), что и в моей проге...<br><br>Обратился к зарубежным источникам и обнаружил, что там тоже у многих проблема с этой функцией, в частности <b>возврат каретки</b>... <br><br>Скриншоты тоже в архиве!!! Видео специально <b>без компрессора</b> записал, если у кого кодеков нет.<br><br><b>Так почемуже такой глюк?</b> Может это какая-то специальная фитча по безопасности, то есть XP определяет, что это не autochk.exe и специально не правильно отображает или...<br><br>--&gt; NATIVE_PROGRAM.rar &lt;-- http://slil.ru/24362559
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136213&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=1" class="addthx" data-post="136213"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2007 02:42 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Никакого глюка не вижу. <img src="img/smilies/s11.gif" alt=""><br>Что за полоса? Объясни словами.<br>И разделил бы файлы. Без толку видео и картинки качать.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=136226&amp;user=410&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=2" class="addthx" data-post="136226"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2007 19:25 &middot; Поправил: sxd <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>Bitfry</b> когда я использую следующий код:<br><br>    UNICODE_STRING string;<br>    RtlInitUnicodeString(&amp;string, L&quot;123456789<b>\n</b>123456789&quot;); //перевод строки<br>    NtDisplayString(&amp;string);<br><br>то всё отображается нормально белые буквы на синем фоне (файл в архиве <b>перевод строки.avi</b>), а когда такой код:<br><br>    UNICODE_STRING string;<br>    RtlInitUnicodeString(&amp;string, L&quot;123456789<b>\r</b>111111111&quot;); //возврат каретки<br>    NtDisplayString(&amp;string);<br><br>то появляется на синем фоне чёрная полоса (файл в архиве <b>возврат каретки.avi</b>), хотя в описании явно сказано, что <b>...control characters are implemented (like CR, LF).</b> Да и программа <b>autochk.exe</b> использует возврат каретки в функции NtDisplayString()...<br><br>Другие файлы из архива:<br><u>NATIVE.EXE - программа использующая возврат каретки</u> (для демонстрации скопировать в С:\windows\system32 и добавить информацию в реестр с NATIVE.REG, далее перезагружаемся...)<br><br>AUTOCHK.JPG и NATIVE.JPG показывает что autochk.exe действительно использует юникодовскую строку с возвратом каретки, как и в моей проге NATIVE.JPG <b><u>так в чём же может быть ошибка?</u></b>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136324&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=3" class="addthx" data-post="136324"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2007 20:10 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Ты напутал со строками, вот и не понятно.<br>Сам пример NATIVE.EXE работает без всяких глюков. У меня, по крайней мере.<br>Так что смотри сам, где у тебя глюк в примере со строками Hello World.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=136333&amp;user=410&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=4" class="addthx" data-post="136333"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2007 21:37 &middot; Поправил: sxd <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>Bitfry</b> да нет же я не то имею ввиду...<br>Во-первых я ничего не напутал...<br><br>UNICODE_STRING string; <br>RtlInitUnicodeString(&amp;string, L&quot;123456789\r111111111&quot;); //возврат каретки <br>NtDisplayString(&amp;string);<br><br>В этом примере просто и наглядно, а в видео (<b>возврат каретки.avi</b>) использовал следующий код:<br><br>for (i = 0; i &lt; 10; i++)<br>{<br>	sprintf(buffer, &quot;HELLO %d WORLD! \r&quot;, i );//Форматирование буффера<br><br>	RtlInitAnsiString (&amp;AnsiString, buffer);//иницилизация Ansi строки<br>	RtlAnsiStringToUnicodeString (&amp;UnicodeString, &amp;AnsiString, TRUE);//Ansi строка в Unicode строку<br><br>	NtDisplayString (&amp;UnicodeString);//выводим строку<br><br>	NtDelayExecution(FALSE, &amp;iDelayInterval); //задержка в одну секунду<br>}<br><br>но в первом и во-втором случае результат одинаков - чёрная полоса...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136345&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=5" class="addthx" data-post="136345"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Ratinsh[/b]','')">Ratinsh</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 191.8 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3333">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 12:31 <br><script type="text/javascript">QU('Ratinsh','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ratinsh" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Могу лишь посоветовать <img src="img/smilies/s4.gif" alt=""><br>Попробовать использовать функции GetConsole... SetConsole... из kernel32.dll<br>Если захочешь избавиться от использования лишней dll, посмотреть реализацию<br>функций в ней. Может конечно ещё посмотреть dwFlags в Process_Parameters.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136411&amp;user=3333&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=6" class="addthx" data-post="136411"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 14:08 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>sxd пишет:<br>но в первом и во-втором случае результат одинаков - чёрная полоса... </I><br>Ещё раз повторяю, у меня при запуске твоего NATIVE.EXE нет никаких чёрных полос (если не веришь, могу фотографию снять =).<br>Может у тебя что-то в настройках системы особое или версия...
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=136429&amp;user=410&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=7" class="addthx" data-post="136429"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 17:46 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>Ratinsh пишет:<br>Могу лишь посоветовать  <br>Попробовать использовать функции GetConsole... SetConsole... из kernel32.dll <br>Если захочешь избавиться от использования лишней dll, посмотреть реализацию <br>функций в ней. Может конечно ещё посмотреть dwFlags в Process_Parameters. </I><br>GetConsole... SetConsole... из kernel32.dll <img src="img/smilies/s1.gif" alt=""> да нет что ты Ratinsh это же native приложение, оно не может использовать WinAPI такое же ограничение как и на драйверы...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136463&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=8" class="addthx" data-post="136463"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 17:49 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>Bitfry пишет:<br>Ещё раз повторяю, у меня при запуске твоего NATIVE.EXE нет никаких чёрных полос (если не веришь, могу фотографию снять =). </I><br>Офигеть!!! Так а ты проверил как? То есть скинул в C:\Windows\System32 добавил инфу в реестр и перезагрузился? Какая у тебя система и её версия?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136464&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=9" class="addthx" data-post="136464"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 17:54 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Bitfry или ты на виртуальной машине проверял?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136465&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=10" class="addthx" data-post="136465"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Ratinsh[/b]','')">Ratinsh</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 191.8 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3333">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 17:55 <br><script type="text/javascript">QU('Ratinsh','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ratinsh" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Странно <img src="img/smilies/s3.gif" alt=""> а я думал kernel32.dll  &quot;native приложение&quot;
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136467&amp;user=3333&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=11" class="addthx" data-post="136467"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 20:12 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>Ratinsh пишет:<br>Странно  а я думал kernel32.dll &quot;native приложение&quot; </I><br>Это не native приложение, а компонент ядра и ты меня не понял я имел ввиду, что <b>GetConsole... SetConsole</b> - это WinAPI, а их использовать нельзя, что касается kernel32.dll, то я сделал небольшой файлик с именами функций экспортируемых из ней... Большая часть это <b>NtXxx</b> и <b>RtlXxx...</b>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136488&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=12" class="addthx" data-post="136488"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2007 22:34 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>sxd пишет:<br>Офигеть!!! Так а ты проверил как? То есть скинул в C:\Windows\System32 добавил инфу в реестр и перезагрузился? Какая у тебя система и её версия? </I><br>Сразу как ты создал тему, скачал я файл, глянул на код, чтоб бяку всякую не запускать, и перезагрузился с твоей записью в реестре. Никаких глюков. Две строки на синем фоне:<br>123456789<br>..........<br>Правда пришлось подправить boot.ini после Морозильника (он добавляет /noguiboot).<br>Вот и думаю - о чём речь?<br>ВМ у меня сейчас нет, так что проверить не могу. А система XP home edition SP2. <br>Но думаю тут дело не в самой системе, а в настройках.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=136510&amp;user=410&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=13" class="addthx" data-post="136510"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 мая 2007 18:20 &middot; Поправил: sxd <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+А.... вот видишь не правильно!!!!<br>Потому что должен быть возврат каретки <b>\r</b> а у тебя перевод строки - <b>\n</b>!!!<br>Если это возврат каретки то должно вывести ..........6789,<br><br>Вот посмотри этот экзешник пожалуйста, а то может тот действительно был с переводом строки... <b>\n</b> - это работает, проблема с <b>\r</b><br>Здесь я использую следущую иницилизацию строки...<br><br>RtlInitUnicodeString(&amp;string, L&quot;123456789<b>\r</b>HELLO_WORLD!!!.................&quot;);<br><br>По идеи должы быть сначала выведены символы 123456789 за тем произойдёт возврат каретки в начало строки и вывод следущей части HELLO_WORLD!!!.................<br><br>Извини <b>Bitfry</b> если я тебя напрягаю...<br><br>--&gt; NATIVE.EXE &lt;-- http://slil.ru/24377161
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136585&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=14" class="addthx" data-post="136585"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 мая 2007 19:30 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+Ну вот, теперь понятно.<br><br>1. При возврате курсора на начало строки обновляется фон консоли для данной строки.<br>Это скорее не глюк, а особенность... хотя и глупая.<br><br>2. Ты спутал коды символов:<br>\n - это 0A00-0D00<br>\r – это 0D00
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=136601&amp;user=410&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=15" class="addthx" data-post="136601"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 мая 2007 20:26 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+Так значит надо копаться в autochk.exe и искать функцию которая перерисовывает фон?<br>Вообще я хочу сделать чтоб у меня как при работе autochk.exe проценты прогонялисть, на С++ для Windows будет так примерно:<br><br><code>for (i = 100; i &lt; 1; i--)<br>{<br>     printf (&quot;Timer: %d seconds.&quot;, i);<br>     Sleep (1000);<br>}</code><br><br>В native приложении мог бы так примерно сделать:<br><code>for (i = 100; i &lt; 1; i--)<br>{<br>     sprintf (ansiString, &quot;Timer: %d seconds.\r&quot;, i);<br>     RtlAnsiStringToUnicodeString (&amp;unicodeString, &amp;ansiString, TRUE);<br>     NtDisplayString(&amp;unicodeString);<br><br>     NtDelayExecution(FALSE, &amp;iDelayInterval); //Sleep();<br>}</code><br><br>Так всё таки может по другому как нибудь проценты вывести...<br>Или надо обращаться к людям которые autochk.exe продезассемблируют и разберуться что за функция фон меняет, а может и не функция...<br>Вообще не понятно в документации сказано <b>Some basic control characters are implemented (like CR, LF).</b> а на самом деле...<img src="img/smilies/s15.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136611&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=16" class="addthx" data-post="136611"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 мая 2007 20:33 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Ещё раз.<br>У тебя ошибка в предположении что в autochk.exe используется &quot;\r&quot;.<br><I>Bitfry пишет:<br>2. Ты спутал коды символов:<br>\n - это 0A00-0D00<br>\r – это 0D00 </I><br><I>sxd пишет:<br>Вообще не понятно в документации сказано Some basic control characters are implemented (like CR, LF). а на самом деле... </I><br>На самом деле CR,LF = 0A,0D, а в unicode = 0A00,0D00.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=136612&amp;user=410&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=17" class="addthx" data-post="136612"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 мая 2007 20:37 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Если он не использует \r то как он делает это?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136613&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=18" class="addthx" data-post="136613"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Ratinsh[/b]','')">Ratinsh</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 191.8 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3333">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2007 01:55 <br><script type="text/javascript">QU('Ratinsh','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ratinsh" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+... autochk.exe продезассемблируют ...<br><br>Тогда уж проще посмотреть bootvid.dll
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136659&amp;user=3333&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=19" class="addthx" data-post="136659"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]drunk_master[/b]','')">drunk_master</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.4'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=9998">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 мая 2007 16:38 <br><script type="text/javascript">QU('drunk_master','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=drunk_master" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+sxd - хорош вату катать, ясно что надо перед перерисовкой еразить бкгрнд, а иначе как ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136918&amp;user=9998&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=20" class="addthx" data-post="136918"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]drunk_master[/b]','')">drunk_master</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.4'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=9998">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 мая 2007 16:49 <br><script type="text/javascript">QU('drunk_master','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=drunk_master" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+[img]кстати, sxd, а что-бы не покласть исходн. этой байды, може хто и поможет,<br>а так, что , дизасемблить ?...[/img]
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136920&amp;user=9998&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=21" class="addthx" data-post="136920"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 мая 2007 18:32 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+drunk_master как что дизасемблить autochk.exe ведь он когда проверяет диск использует для вывода информации на экран NtDisplayString() причём вывод процентов тоже есть и всё работает как надо! Ну сам наверное видел как проверяется диск в XP после перезагрузки...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=136934&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=22" class="addthx" data-post="136934"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Ratinsh[/b]','')">Ratinsh</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 191.8 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3333">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 мая 2007 12:22 <br><script type="text/javascript">QU('Ratinsh','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ratinsh" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<b>sxd</b> не поленись скачай исходники - давно народ советует<br>sourceforge.net/project/showfiles.php?group_id=6553<br>ну и сюда конечно<br>www.reactos.org/ru/index.html
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=137046&amp;user=3333&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=23" class="addthx" data-post="137046"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 мая 2007 19:06 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+Да-да спасибо конечно только вот осталось разобраться во всём этом... <img src="img/smilies/s15.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=137353&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=24" class="addthx" data-post="137353"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]drunk_master[/b]','')">drunk_master</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.4'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=9998">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 мая 2007 10:59 <br><script type="text/javascript">QU('drunk_master','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=drunk_master" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>sxd пишет:<br>Да-да спасибо конечно только вот осталось разобраться во всём этом...  </I><br>что ето значит, ежели не секрет, и гохда будет сырье ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=137648&amp;user=9998&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=25" class="addthx" data-post="137648"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]sxd[/b]','')">sxd</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 36.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8919">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 мая 2007 19:03 <br><script type="text/javascript">QU('sxd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sxd" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<I>drunk_master пишет:<br>что ето значит, ежели не секрет, и гохда будет сырье ? </I><br><br>Вообще я понял, что это дело тёмное...<img src="img/smilies/s13.gif" alt=""><br>В нете нашёл, что есть ещё функции типа:<br><b>HalDisplayString</b><br><u>bootvid.dll</u><br><b>VidBitBlt<br>VidBufferToScreenBlt<br>VidCleanUp<br>VidDisplayString<br>VidDisplayStringXY<br>VidInitialize<br>VidResetDisplay<br>VidScreenToBufferBlt<br>VidSetScrollRegion<br>VidSetTextColor</b><br>Много таких похожих на ZwDisplayString или ZwDisplayString...<br><br>Что касается ReactOS то скачал версию 0.3.1... Нашёл там исходник <b>autochk.exe</b>!<br>Там есть такая функция которая использует NtDisplayString():<br><code>static VOID PrintString(char* fmt,...)<br>{<br>    char buffer[512];<br>    va_list ap;<br>    UNICODE_STRING UnicodeString;<br>    ANSI_STRING AnsiString;<br><br>    va_start(ap, fmt);<br>    vsprintf(buffer, fmt, ap);<br>    va_end(ap);<br><br>    RtlInitAnsiString(&amp;AnsiString, buffer);<br>    RtlAnsiStringToUnicodeString(&amp;UnicodeString,<br>                                 &amp;AnsiString,<br>                                 TRUE);<br>    NtDisplayString(&amp;UnicodeString);<br>    RtlFreeUnicodeString(&amp;UnicodeString);<br>}</code><br><br>И есть её вызов:<br><code>case PROGRESS:<br>      Percent = (PDWORD) Argument;<br>      PrintString(&quot;%d percent completed.\r&quot;, *Percent);<br>      break;</code><br><br>Но при повторе такого же кода в своём приложении опять таже проблемма - чёрный фон <img src="img/smilies/s15.gif" alt=""><br><u>Хотя в ReactOS всё выводится нормально...</u> <b>Навождение!!!</b><br><br>Хотя может там ещё есть то что я пока не вижу... Тем более заголовочных файлов - несколько...<br><code>#include &lt;debug.h&gt;<br>#include &lt;stdio.h&gt;<br>#include &lt;windows.h&gt;<br>#include &lt;ndk/ntndk.h&gt;<br>#include &lt;fmifs/fmifs.h&gt;</code>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=137735&amp;user=8919&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=26" class="addthx" data-post="137735"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Ratinsh[/b]','')">Ratinsh</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 191.8 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3333">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 мая 2007 23:11 <br><script type="text/javascript">QU('Ratinsh','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ratinsh" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=8735.html&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<b>sxd</b><br>...То WinAPI предлагают...<br><br>Если не понимаешь, то спроси. Повторюсь.<br>Пишешь прогу на WinAPI из kernel32, а он вызывает ntdll<br>трассернёшь прогу до вызова функций из ntdll<br>дальше реализуй без вызова kernel32. А за тебя кодить<br>и исследовать никто не будет. Хочешь так ищи исходники NT<br>или 2000 - какие-то в сети были. Ну не на все функции есть описания.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=137966&amp;user=3333&amp;forum_n=6&amp;topic=8735.html&amp;page=0&amp;anchor=27" class="addthx" data-post="137966"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> NtDisplayString (ZwDisplayString) - control characters (\r - загадка)?</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#28" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="8735">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=8735" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

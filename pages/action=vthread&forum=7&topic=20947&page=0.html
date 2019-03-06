@@ -1,0 +1,249 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Анализ архитектуры Win32/Flamer - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Бродил по вконтакте и натолкнулся на такое --&gt; Видео &lt;-- Здесь ребята рассказывают о том, что они анализировали известную малварь под названием Flamer. Я не знаю, может, я последнее время предвзято отношусь к людям, но меня">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55914'>Kybyx</a>, <a target='_blank' href='?action=userinfo&amp;user=44014'>user99</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/mod.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=7&sortBy=0&page=0.html"><b>Оффтоп</b></a> <b class=bulletHead>&#8212;&#8250;</b> Анализ архитектуры Win32/Flamer</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.86'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 20:15 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Бродил по вконтакте и натолкнулся на такое <noindex><a href="http://www.youtube.com/watch?feature=player_embedded&amp;v=Jw5GtOlE5Rw" rel="nofollow" target="_blank">--&gt; Видео &lt;--</a></noindex><br><br>Здесь ребята рассказывают о том, что они анализировали известную малварь под названием Flamer. Я не знаю, может, я последнее время предвзято отношусь к людям, но меня это видео очень поразило. Поразило оно меня тем, что... ну... ну это ж хрень вообще какая-то, а не выступление. Объясню по пунктам:<br><br>1. На дворе (тогда был) 2012 год, а они рассказывают, как нереально трудно реверсить С++ код, когда его много. Ёлы-палы, да ладно! А ребят не смущает, что сейчас в любом приличном коммерческом софте применяются паттерны, виртуальные функции, я уже молчу про кастомные объекты с их конструкторами и деструкторами. Половина видео повествует о том, как чувакам было тяжело, но при этом никто не удивляется, что ж им так утяжелило жизнь. А то, что сейчас даже игровые сервера эмулируют благодаря реверсингу клиентов, так это норм. Не верите? Тогда впишите в гугл строку StarCraft II - Wings of liberty. <br>2. Ну, допустим, тяжело, ну, предположим, 3,5 месяца реверсили код. А нахрена? Что в конечном итоге было достигнуто? Какие теперь есть методики для обнаружения и удаления флеймера? Проскакивала такая фраза, что сигнатурный анализ не подходит, так а что подходит - где ответы, я ведь не думаю, что ребята сидели 3,5 месяца, хавали нодовские бабки и бесцельно реверсили флейм. Они, что, такой же флеймер хотели написать?<br>3. Меня поражает высказывание ребят о том, что, дескать, тут можно опции компилятора поменять, и флеймер сразу преобразиться, его код изменится и не надо никаких пакеров и вм. Да любой код изменится, если компилить его с разными опциями компилятора, на то они и <b>разные опции</b>, чтоб давать разный код, что тут удивительного?<br>4. Или заявление, что инструментов для анализа таких больших и сложных проектов нет. Я всё ждал, что ж в конце покажут, как ребята вышли из этой ситуации? А вышли они из неё легко, обучившись давить F5 в IDA Pro (именно это действия запускает Hex-Rays на декомпиляцию текущей функции). Долго ж, видимо, надо было думать над этим.<br>5. Но больше всего меня удивил вопрос некоего слушателя в конце - &quot;а кто написал флеймер?&quot;. Да какая, нахрен, разница? Неужели никого не интересует тот факт, что чуваки выступали 45 минут, при этом не освятив ни одного механизма внедрения флеймера в ОС, ни одного механизма сокрытия, передачи данных, обнаружения антивирусов и т.д. Дальше словоблудия дело не пошло. Где обзор реального кода, чтоб было так. Типа, вот перед вами дизасм кода, этот код во флеймере определяет, подключено ли Bluetooth устройство к данному пк, за это отвечает функция такая-то и такая-то, она использует АПИ такие-то. Или говорить конкретно сейчас не в моде?<br><br>В итоге имеем двух человек, которые называют себя аналитиками (один из них - аналитик особо сложных угроз, про второго в видео ничего не говорится), занявшими 45 минут времени у людей, которые не сказки пришли послушать, и в результате не продемонстрировали толком ничего, кроме картинок меняющего позы робота. Это выступление надо было назвать &quot;Киборг. Фотосет&quot;. Кто что скажет по этому поводу?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=320539&amp;user=6336&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=1" class="addthx" data-post="320539"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 21:01 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+а есть флеймер на паблике? дайте скачать<br>хочу глянуть на кастомный сборщик мусора и кастомный вектор<br><br>ps<br><I><br>v2 = this;<br>(this-&gt;vTable-&gt;CheckVectLimits)(a2, unk_1033a236);<br>return (v2-&gt;vector + a2 *4);<br></I><br>смапить v2 в this и установить тип int * для vector что бы получилось<br><I><br>(this-&gt;vTable-&gt;CheckVectLimits)(a2,)<br>return (this-&gt;vector[a2]);<br></I><br>не смогли что ли <img src="img/smilies/s5.gif" alt=""> или новый рейс со времен утечки больше для есетовцев недоступен?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=320542&amp;user=15381&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=2" class="addthx" data-post="320542"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Hellspawn[/b]','')">Hellspawn</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/72.gif" alt=""><br><span class=txtSm>Ранг: 990.2 <font color=red>(<b>! ! !</b>)</font>, 380thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.95'>Активность: 0.68<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=72">Модератор</a><br><font color=blue>Author of DiE</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 21:05 <br><script type="text/javascript">QU('Hellspawn','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hellspawn" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+ну это же доклад))) так и должно быть куча воды и красивых картинок.
+<br><br><font size="1"><i>-----<br>[nice coder and reverser]</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=320543&amp;user=72&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=3" class="addthx" data-post="320543"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.86'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 21:15 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>Hellspawn</b><br>Что доклад - согласен. Но каждый доклад должен содержать выводы. А какие там выводы? Картинка, где их робот сидит в задумчивой позе? <br><br><b>reversecode</b><br>Ещё меня в видео смутило, как второй выступавший говорит, что, типа, они взяли Hex-Rays и &quot;доработали его&quot;, чтоб он лучше объектно-ориентированный код анализировал. Так что это чуваки ещё улучшили. Вот непойму, почему про доработку ничего не говорится. Ильфак, что, сорцы открыл или это есетовцы занимаются вот <noindex><a href="http://lurkmore.to/Пиздёж" rel="nofollow" target="_blank">--&gt; Этим &lt;--</a></noindex>?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=320544&amp;user=6336&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=4" class="addthx" data-post="320544"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 21:18 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+времени пока нет все посмотреть, я пролистал... какая это минута?<br>скорее всего они написали плагин для рейса, который чегото улучшает, SDK ведь для рейса не зря существует<br><br>ps<br>http://amatrosov.blogspot.ru/2012/08/flame.html<br><I>В процессе статического анализа бывает сложно установить однозначное соответствие со значением в VTABLE и указателем VPTR. Для того, чтобы упростить себе жизнь в процессе статического анализа мы прибегаем к ухищрению и эмулируем конструкции С++ при помощи определения структур. Этот метод хорошо описан в статье &quot;Reversing C++ programs with IDA pro and Hex-rays&quot;.</I><br>ясно вообщем))<br><br>http://amatrosov.blogspot.ru/2012/11/win32flamer-reverse-engineering-and.html#more<br>52 страница pdf<br>офигительная схожесть!)) у меня cstring тоже похоже выглядит ))) и что?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=320545&amp;user=15381&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=5" class="addthx" data-post="320545"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.86'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 21:33 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>reversecode пишет:</b><br><i class=x>скорее всего они написали плагин для рейса, который чегото улучшает, SDK ведь для рейса не зря существует</i><br><br>Может быть, но почему-то про это ничего не говорится. Последнее время антивирусные отчёты и анализ стал больше походить на рекламу, типа, смотрите, какие мы крутые. Никаких технических деталей. А ведь на ZeroNights съезжаются не директора контор, которые хотят побухать и сказки послушать.<br><br><i class=x>какая это минута?</i><br>29 мин 30 сек - 29 мин 50 сек.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=320546&amp;user=6336&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=6" class="addthx" data-post="320546"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]bbuc[/b]','')">bbuc</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 39.2 (посетитель), 16thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.41'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1294">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 22:27 <br><script type="text/javascript">QU('bbuc','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bbuc" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Если бы вы еще 7тыщ рублей за вход заплатили, представляю каково бы было ваше негодование.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=320549&amp;user=1294&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=7" class="addthx" data-post="320549"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 22:35 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+туда восновном приходят познакомится, потому и дерут денег <img src="img/smilies/s5.gif" alt=""><br>7 это как то вообще мало ..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=320551&amp;user=15381&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=8" class="addthx" data-post="320551"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.86'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 22:54 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>reversecode</b><br>Познакомиться с кем? Там есть <strike>тёлочки</strike> девочки?<br><br><b>bbuc</b><br>Я так понимаю - этот доклад был не единственный на конференции. Там могли быть и достойные, я все не пересамтривал. Но 7 тыс. за такое, это, конечно, ни в какие ворота. Что-то вендоров антивирусных понесло: то Каспер выставит своего аналитика, который на суде мелет про переводы текста на разные языки, то аналитики <b>особо сложных</b> угроз жалуются, что код на с++ трудный. А я думаю - что за херня, почему нод половину пакеров и протов с вм (тот же впрот) палит, даже если софт, ими упакованный, вполне нормальный. А ответ вот где - код на с++ слишком сложный. Тогда какой же невероятно сложный код вмпрота. Адски сложный для аналитиков есета.<br><br>А так - я бы съездил на это мероприятие в 2013. Интересно, а оттуда могут вывести, если слишком много разговаривать? Что-то гугл не говорит, где и когда это мероприятие проводится в 2013.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=320552&amp;user=6336&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=9" class="addthx" data-post="320552"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 марта 2013 23:03 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Познакомиться с кем? Там есть тёлочки девочки? </I><br>с серьезными людьми типа тех аналитиков <img src="img/smilies/s5.gif" alt=""><br><br>а вообще устраиваются на работу светятся на публике итд, все стандартно
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=320553&amp;user=15381&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=10" class="addthx" data-post="320553"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Alchemistry[/b]','')">Alchemistry</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 145.8 (ветеран), 191thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.06'>Активность: 0.14<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=21411">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 марта 2013 05:52 &middot; Поправил: Alchemistry <br><script type="text/javascript">QU('Alchemistry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Alchemistry" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Сейчас очень модно заниматься самопиаром на всякой х*йне, первыми фишку просекли в Каспере - ведь зарубежная ЦА как-то стремно реагирует на обычные &quot;интернет-апокалипсисы&quot; в стиле Жени, который он так привык продвигать в СНГ. А рынок заполнен и расти уже практически некуда. Плюс началось сильное давление со стороны бесплатников. Поэтому чтобы хоть как-то продвигать свое бесполезное ПО нужно быть в тренде и уметь извлекать профит из него. Тренд уже несколько лет подряд это Ближний Восток - Иран, Сирия и APT кибероружие - ахинея, раздутая СМИ. Стакснет Каспер первоначально профукал (как результат они даже наняли того, кто его нашел - господина Уласеня из вирусблокады), но на остальное уже были брошены все, что там в ЛК умеют реверсить плюс всякие пиарщики типа Гостева получили мощный пинок под зад для ускорения. Интриги, разоблачения, кибероружие, политота и красной линией скрытая реклама АВ, при этом все понимают, что любой АВ будет бесполезен против APT атаки. Вот и выходит этакий аналог Speed Info для зарубежной ЦА. Помимо нескольких эксплоитов, PLC руткита в стакснете, сплоита в дуку, md5 коллизии в flame, там нет ничего интересного - те же серты воровали и раньше, а код сам по себе напоминает аутсорсинг, никакой сложности в удалении, обнаружении не представляет и рассчитан сами знаете на кого.<br><br>В общем эта истерия уже порядком надоела и эти вбросы которые приняли чуть ли не ежемесячный характер уже утратили свою первоначальную силу. Мало кто сейчас вам скажет в чем разница между гауссом и минидьюком. Приелось. Каспер разрабатывает свою никому не нужную ОС, кусок какого-то хидера которой выглядит в лучших традициях утекших сорсов КАВ6. Потом появляются сообщения о поиске разработчиков этой &quot;принципиально новой защищенной ОС&quot;.<br><br>А господин Матросов известный чувак из есета, твитерный эксперт и мастер довления ф5 в хекс-рейс 80 лвл. Так что анализ для него действительно нереально сложный, ведь надо чето делать самому (или скопировать так чтобы не было похоже на symantec, crysys или тот же лк). Поэтому обычно рядом с ним Родионов, который все и делает.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=320569&amp;user=21411&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=11" class="addthx" data-post="320569"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=14476" title="13-03-2013 16:47, ранг:97.1" target="_blank">Oott</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]ClockMan[/b]','')">ClockMan</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/17432.jpg" alt=""><br><span class=txtSm>Ранг: 568.2 (<b>!</b>), 465thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.99'>Активность: 0.55<span style='color:green'>&nearr;</span>0.57</span><br>Статус: <a href="action=userinfo&amp;user=17432">Участник</a><br><font color=blue>оптимист</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 марта 2013 10:39 <br><script type="text/javascript">QU('ClockMan','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ClockMan" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=20947.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Ну, допустим, тяжело, ну, предположим, 3,5 месяца реверсили код. А нахрена? Что в конечном итоге было достигнуто? </I><br>Они наконец поняли что программа написана не на бейсике, а на С++<img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s6.gif" alt=""><br><I>ARCHANGEL пишет:<br> А вышли они из неё легко, обучившись давить F5 в IDA Pro </I><br>Каспер ждёт их с распростёртыми руками<img src="img/smilies/s2.gif" alt=""> <img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s6.gif" alt="">
+<br><br><font size="1"><i>-----<br>Чтобы правильно задать вопрос, нужно знать большую часть  ответа. Р.Шекли.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=320576&amp;user=17432&amp;forum_n=7&amp;topic=20947.html&amp;page=0&amp;anchor=12" class="addthx" data-post="320576"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/mod.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=7&sortBy=0&page=0.html"><b>Оффтоп</b></a> <b class=bulletHead>&#8212;&#8250;</b> Анализ архитектуры Win32/Flamer</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<center><h3>У вас должно быть 20 пунктов ранга, чтобы оставлять сообщения в  этом подфоруме, но у вас только 0</h3></center><script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=20947" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

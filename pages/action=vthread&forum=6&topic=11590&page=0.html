@@ -1,0 +1,446 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Мониторинг HASP HL через перехват DeviceIoControl - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Возникла проблема с попыткой самостоятельной эмуляции HASP HL. Внедряю в процесс dll в которой хукаю CreateFileA и DeviceIoControl. Веду логи выполнения функций и контролирую входной и ответный буфер. Данные передаваемые и">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=1533'>rmn</a>, <a target='_blank' href='?action=userinfo&amp;user=8344'>Magister Yoda</a>, <a target='_blank' href='?action=userinfo&amp;user=50833'>vasilevradislav</a>, <a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a>, <a target='_blank' href='?action=userinfo&amp;user=42072'>zombi-vadim</a> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Мониторинг HASP HL через перехват DeviceIoControl</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 02:52 &middot; Поправил: ToBad <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Возникла проблема с попыткой самостоятельной эмуляции HASP HL. Внедряю в процесс dll в которой хукаю CreateFileA и DeviceIoControl. Веду логи выполнения функций и контролирую входной и ответный буфер. Данные передаваемые и получаемые с помощью функции 9C402458 постоянно разные. Как я понял почитав форум, давно уже подобное делали, так же на Wasm я нашел статейки. Вот я только одного не понял, можно это расшифровать или нет и как мне быть если я хочу без использования всем известных логгеров и эмуляторов сделать что то своё основанное на перехвате DeviceIoControl. Ведь как я понял весь обмен программы и драйвера происходит именно так.<br>Вот пример работы с реальным ключом:<br><br><code><br>\?\usb#hasp...<br>Func: 9C4024A0, InSize: 0004, OutSize: 0004, BytesRet: 0003<br>B2BAEFBE44<br>BEBAFE2A44<br><br>Func: 9C402450, InSize: 0006, OutSize: 0006, BytesRet: 2AFEBABE<br>01000000040000<br>0100FAFA560300<br><br>\?\usb#hasp...<br>Func: 9C402458, InSize: 0100, OutSize: 0100, BytesRet: 12F674<br>7A4D5BA3508E8B8DFD9004D93170FB19A0B19A685B532AD5A3A094FB14B8FB6730603B <br>D5F15E3AF55A2EE530AF48CB8257790E7853D0C37DE2EEB4C2BE2CCBEA3C6ABB249167 <br>0710DF200B6448EB5F1E4B48D027AC831B49C7481C62FCCA71273D2F0E900C910E961C <br>A762A00CCBB05D75163E1A5E1345DB8FAE0B2D8BA7FD01111B892FF35828EAAF83481A <br>EEC5915216F4D1B192704D10EBB594704B14F5D5BAB4ADA59E5C19CC863B41F3EAEEF9 <br>FB02B3C1707E925E37509C0200B704812751A98360B88E6DCB25FB5EC71E09EA4CB6A4 <br>73E53321ED3E3720E9418F6FD23D40854C925A9F6CF87A0EDF31353B4B9D7514F29172 <br>0ED129271F09D12A352EE442<br><br>7A50539E4C9597A4159C21F9549E445BE7FBE798AE916B19E3E1DA586F0423611F12B0 <br>4867DFBF86B2B873C70E6C3931474C82EEB172AAA7F322DCBB2C7E3EC9DB8A5F4A3D1E <br>EF943683E0EA2586B423814513381B52CDA7FCF11FB233B12FA80601EA72FD8A509460 <br>E468FD45BEB7BDDF8BDE473CFF4429C59D28D0C6A54522BA0CC2B3C0637B879DB6BED9 <br>F1F6020A1E3E5E82868F99B8D6F3112D375779A19B948C837FBCF73779B9FB40315E63 <br>948977C6B503EF204B385F020017CBD0D39A38D5EF12AF516C8D36D0E707A950688E24 <br>BB73B0658521B87ABF861EE90BB368BA8A1FB58A1AAD8312A06BCFF3425362AB76E42C <br>FE6BB89D537AF15683DD1C42<br><br>\?\usb#hasp...<br>Func: 9C402458, InSize: 0100, OutSize: 0100, BytesRet: 12F62C<br>73ECBCB76EEACDFBFFFAE0601A30AB6798245A2622B7A374E13B970BD9D44DA0A5B287<br>DBC3996B797F8D570D3C59994555E7054FC139030863B2EDAB21E12740B4DEB53B6494<br>B5087C5C1ADC508011246B8100E9E78F56A5EA3027AA3DF51DD5C153634EF8DC89AD19<br>4CFDEEE50986E4323DEF6F1AE853A59B7705B2C0EC70FDA24E783D5A4188796D6D6F73<br>69696B6F7C8B7C8C7A8978867E9BB8D4DF01EDEAE60DF61C02E40DFA1E12F215FA285A<br>4C42203E805E658C71B16A0200D5777DCC903BE712C1E71AC7F930D7FD34E103AB6082<br>22C7EB0CB579BA8727C8F22FE60ABA912D06A177DAF5576FD5E95065BFAB9242517EEF<br>445B8A19D5008D27FA33E342<br><br>73E9C4BC6ADBBDE8E3CBB02DF6007A3359E214DBF5B0917BE33A91FDE7B83594BDC657<br>A7CB9D737D8741F7E8521549F13404DD40AA5EEA2AC7D2C94365287AB693BB1092B461<br>04A9C714C167540827C2061B39C2405E3D8944F6E97828375E170999AB974575E75B8A<br>416AE54FCA49B81566FC24CE8ABF5E3EE1D4A61B7B9BFE2756C1C7948D7C24CA7719C7<br>6A1AC8751FDD9C5C1BD8945B1FEB986607AA5419E6C05DF9D47853F0C8734FFBE8D26B<br>57FBF0E8BFBBB0A47F7FB7020001B338338F837AF268DC54CE48C844B2A08B877CFC82<br>6AD35CE94CB7C42404E03B4AB5B8C41FFC927007E786690DF2865EC72031408D5CCA1A<br>08D23F7A335FDB59D3FCA742<br></code>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184581&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=1" class="addthx" data-post="184581"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]ClickF1[/b]','')">ClickF1</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 13.1 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.43'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=9716">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 07:13 <br><script type="text/javascript">QU('ClickF1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ClickF1" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Советую сначала перехватить в ядре обработчик IRP пакетов драйвера HASP, и смотреть что он делает допустим с вот этим. Найти смещения и в иде посмотреть алгоритм шифрования.<br>А уже узнав что как и зачем он шифрует реализовать можно в виде DLL что бы меньше гемора было.<br><code>\?\usb#hasp... <br>Func: 9C4024A0, InSize: 0004, OutSize: 0004, BytesRet: 0003 <br>B2BAEFBE44 <br>BEBAFE2A44</code>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184594&amp;user=9716&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=2" class="addthx" data-post="184594"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]AlexVel[/b]','')">AlexVel</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.82'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2596">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 10:08 <br><script type="text/javascript">QU('AlexVel','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AlexVel" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Насколько я помню - алго шифрации пакетов HASP в паблике в виде исходников не проскакивали.<br>Но их можно достать: <br> - из Глашиного эмулятора (Инферно как-то даже асмовые исходники без обфускации выкладывал)<br> - из хармеровского эмулятора (0.8 или 0.9 - но тут тоже надо обфускацию убирать )<br> - из сатароновского логгера (драйвера) - насчет обфускации не помню, но вроде вообще не обфускан
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184616&amp;user=2596&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=3" class="addthx" data-post="184616"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 10:47 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<I><b>AlexVel</b> пишет:<br>Но их можно достать </I><br><br>Тоесть, я правильно понял, что каждый эмуль и драйвер так или иначе получает теже данные что и я из DeviceIoControl, отличается лишь метод перехвата, и так или иначе все их расшифровывают ?<br>А исходники vusbbus.sys тоже должны содержать в себе агло ?<br><br><br><I><b>ClickF1</b> пишет:<br>Советую сначала перехватить в ядре обработчик IRP пакетов драйвера HASP </I><br><br>Думаю это будет очень сложно, ведь там не один sys файл, наверняка это пакетик неплохо гуляет по ним пока не дешифрован. Да и коде наверное без обфускации не обошлось.<br>Тогда проще искать алго в программе ломаемой, ведь она шифрует и передает и получая расшифровывает пакеты. Просто наверняка уже это не раз делали, не хотел изобретать велосипед...<br><br><I><b>AlexVel</b> пишет:<br>Инферно как-то даже асмовые исходники без обфускации выкладывал </I><br><br>А где их качнуть ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184619&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=4" class="addthx" data-post="184619"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 11:25 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>ToBad пишет:<br>А где их качнуть ? </I><br>в инете. hardlock.asm
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184626&amp;user=33&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=5" class="addthx" data-post="184626"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]AlexVel[/b]','')">AlexVel</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.82'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2596">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 15:37 <br><script type="text/javascript">QU('AlexVel','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AlexVel" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>ToBad пишет:<br>Тоесть, я правильно понял, что каждый эмуль и драйвер так или иначе получает теже данные что и я из DeviceIoControl, отличается лишь метод перехвата, и так или иначе все их расшифровывают ? </I><br>да. <br><I>А исходники vusbbus.sys тоже должны содержать в себе агло ?  </I><br>нет. vusbbus.sys сидит не между прогой (АПИ) и драйвером, а между драйвером хаспа и шиной USB (драйвером USB контроллеров). Точнее даже не &#039;между&#039;, а он сам эмулирует виртуальную шину. В нем совершенно другие пакеты (другое криптование). Это еще более низкий уровень (можно сказать что именно уровень общения с железом)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184658&amp;user=2596&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=6" class="addthx" data-post="184658"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 16:27 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>AlexVel</b> спасибо за разъяснение !<br><br><I><b>ssx</b> пишет:<br>в инете. hardlock.asm </I><br><br>Часа три потратил на поиск, где только не смотрел... Так и не нашел... <img src="img/smilies/s4.gif" alt=""><br>Очень прошу выложить повторно если у кого то есть.<br><br>Нашёл библиотеку hl_emu.dll с исходниками от 2002 гора, но там алгоритма нет, всё как я понял построено на перехвате уже расшифрованного пакета и имеет значение версия драйвера... Не то, что бы хотелось...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184668&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=7" class="addthx" data-post="184668"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Tolkin[/b]','')">Tolkin</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.0 (постоянный), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.92'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=131">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 17:47 <br><script type="text/javascript">QU('Tolkin','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Tolkin" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+Вопрос в тему. А при изменении версий дров к хаспу шифрование пакетов не меняется?<br>и для хасп4 и хасп HL оно одинаковое или разное? <br>про хасп 4 както писали, что там идет шифрование типа xor xx, ror(rol) xx
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184680&amp;user=131&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=8" class="addthx" data-post="184680"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Hugo Chaves[/b]','')">Hugo Chaves</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 128.8 (ветеран), 21thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.64'>Активность: 0.06<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=7963">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 19:41 <br><script type="text/javascript">QU('Hugo Chaves','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hugo Chaves" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>Tolkin</b><br><br>&quot;и для хасп4 и хасп HL оно одинаковое или разное?&quot;<br><br>Одинаковое.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184702&amp;user=7963&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=9" class="addthx" data-post="184702"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Hugo Chaves[/b]','')">Hugo Chaves</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 128.8 (ветеран), 21thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.64'>Активность: 0.06<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=7963">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 19:45 <br><script type="text/javascript">QU('Hugo Chaves','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hugo Chaves" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+&quot;про хасп 4 както писали, что там идет шифрование типа xor xx, ror(rol) xx&quot;<br><br>но не так примитивно всё же
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184704&amp;user=7963&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=10" class="addthx" data-post="184704"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 20:10 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<b>Hugo Chaves</b> на васме три статейки есть, вроде там проверили, что в хл это не xor xx, ror(rol) xx
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184708&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=11" class="addthx" data-post="184708"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 22:51 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>AlexVel пишет:<br>Насколько я помню - алго шифрации пакетов HASP в паблике в виде исходников не проскакивали.  </I><br>проскакивал на чуть ли не на руборде код Хармера на С.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184732&amp;user=33&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=12" class="addthx" data-post="184732"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]BfoX[/b]','')">BfoX</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 397.0 (мудрец), 179thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.13'>Активность: 0.17<span style='color:red'>&searr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=1865">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 марта 2008 10:03 <br><script type="text/javascript">QU('BfoX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BfoX" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>ssx</b><br><br>у CrackZa был старый Хармов соурс...
+<br><br><font size="1"><i>-----<br>...или ты работаешь хорошо, или ты работаешь много...</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=184816&amp;user=1865&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=13" class="addthx" data-post="184816"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 марта 2008 11:25 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I><b>BfoX</b> пишет:<br>у CrackZa был старый Хармов соурс... </I><br><br>Ага, нашёл, вот он:<br><br><code>//      First/Last step packet decrypt/encrypt<br>//////<br>void __fastcall Decrypt( BYTE * Buffer )<br>{<br>   int i;<br>   WORD Seed = ((PAPI_PACKET)Buffer)-&gt;CryptSeed;<br><br>   if (!((PAPI_PACKET)Buffer)-&gt;CryptVer)<br>       return;<br><br>   for( i = 0xFE; i &gt; 0xBD; i-- )<br>   {<br>       Seed -= *(WORD*)(Buffer + i) ^ i;<br>       Seed = (Seed &lt;&lt; 0x0F) | (Seed &gt;&gt; 0x01);<br>       *(WORD*)(Buffer + i) += Seed;<br>   }<br><br>   for( i = 0xB8; i &gt;= 0; i-- )<br>   {<br>       Seed += *(WORD*)(Buffer + i) ^ i;<br>       Seed = (Seed &lt;&lt; 0x0F) | (Seed &gt;&gt; 0x01);<br>       *(WORD*)(Buffer + i) -= Seed;<br>   }<br><br>   ((PAPI_PACKET)Buffer)-&gt;CryptSeed = Seed;<br>}<br><br>////////////////////////////////////////////////////////////////////// /////////<br>void __fastcall Encrypt( BYTE * Buffer )<br>{<br>   int i;<br>   WORD Seed = ((PAPI_PACKET)Buffer)-&gt;CryptSeed;<br><br>   if (!((PAPI_PACKET)Buffer)-&gt;CryptVer)<br>       return;<br><br>   for( i = 0; i &lt; 0xB9; i++ )<br>   {<br>       *(WORD*)(Buffer + i) += Seed;<br>       Seed = (Seed &gt;&gt; 0x0F) | (Seed &lt;&lt; 0x01);<br>       Seed -= *(WORD*)(Buffer + i) ^ i;<br>   }<br><br>   for( i = 0xBE; i &lt; 0xFF; i++ )<br>   {<br>       *(WORD*)(Buffer + i) -= Seed;<br>       Seed = (Seed &gt;&gt; 0x0F) | (Seed &lt;&lt; 0x01);<br>       Seed += *(WORD*)(Buffer + i) ^ i;<br>   }<br><br>   ((PAPI_PACKET)Buffer)-&gt;CryptSeed = Seed;<br>}</code><br><br>Неужели это то, что нужно ?... Буду разбираться, пробывать и портировать на Delphi.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184819&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=14" class="addthx" data-post="184819"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 марта 2008 11:43 &middot; Поправил: ToBad <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+Да, с Си я не дружен, как и следовало ожидать так просто ничего не компилируется: &#039;PAPI_PACKET&#039; : undeclared identifier<br><br>Если у кого нибудь есть время и желание, прошу помочь в переводе исходничков на Delphi.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184821&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=15" class="addthx" data-post="184821"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]sataron[/b]','')">sataron</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 23.8 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.36'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10270">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 марта 2008 13:13 <br><script type="text/javascript">QU('sataron','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sataron" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>AlexVel пишет:<br>- из сатароновского логгера (драйвера) - насчет обфускации не помню, но вроде вообще не обфускан </I><br><img src="img/smilies/s1.gif" alt=""> драйвер не мой - мое только GUI <img src="img/smilies/s1.gif" alt=""> по теме того что не обфускано - у Торо тож в первой версии все лежало как на ладони. В принципе - кому надо и так достанет <img src="img/smilies/s1.gif" alt=""><br><I>Tolkin пишет:<br>про хасп 4 както писали, что там идет шифрование типа xor xx, ror(rol) xx </I><br>Ну есть там такое - когда работаешь на уровне между дровами и прогой <img src="img/smilies/s1.gif" alt=""> когда длинна пакета примерно 0x48 (точно не помню). В данном случае делается эмуляция верхнего (юзеровского ) API для ключа (причем старого Н4).<br><br>Код расшифровки буфера обмена на подобии этого:<br><code><br>void DeHashPacket(HaspStruct &amp;packet)<br>{<br>		MOV EAX,packet<br>		MOV ECX,[EAX+0x10]<br>		JCXZ SHORT exit_<br>		ADD EAX,0x14<br>loop1:	XOR [EAX],0xAA<br>		ROR [EAX],0x4<br>		INC EAX                                         ;  &lt;HASPREAD.haspStruct.inbuffer&gt;<br>		DEC ECX<br>		JNZ SHORT loop1<br>exit_:	<br>}<br></code><br>Но в твоем случае - при подобном перехвате - этот декодер - нафиг не нужен.<br>Я тоже когда то делал подобный перехватчик на DeviceIoControl - было бы интересно сравнить сырцы <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184830&amp;user=10270&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=16" class="addthx" data-post="184830"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 марта 2008 13:20 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<I>ToBad пишет:<br>Да, с Си я не дружен, как и следовало ожидать так просто ничего не компилируется: &#039;PAPI_PACKET&#039; : undeclared identifier  </I><br>это не С виноват, а отсутствие определения структуры пакета.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184832&amp;user=33&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=17" class="addthx" data-post="184832"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]AlexVel[/b]','')">AlexVel</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 43.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.82'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2596">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 марта 2008 16:11 <br><script type="text/javascript">QU('AlexVel','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AlexVel" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I>sataron пишет: <br>было бы интересно сравнить сырцы</I><br>Ну насколько я знаю (а знаю я много <img src="img/smilies/s1.gif" alt=""> ), ты на C пишешь.<br>А у <b>ToBad</b> сырцы на Delphi будут<br>Устанешь сравнивать
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184846&amp;user=2596&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=18" class="addthx" data-post="184846"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 марта 2008 00:26 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+Что касается исходников перехвата DeviceIoControl, то тут я использовал всем известные библиотеки от Рема, ну а исходники остального выглядят очень жутко, так как писал в спешке только для того, что бы проверить принцип, работает ли перехват и увидеть что передается. <b>Sataron</b>-у ушло в личку.<br><br><I><b>ssx</b> пишет:<br>это не С виноват, а отсутствие определения структуры пакета.</I><br><br>Понимаю. Ведь это лишь кусочек кода Хармера. Вы могли бы поделится полной версией исходников ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184876&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=19" class="addthx" data-post="184876"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]ajax[/b]','')">ajax</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/8830.gif" alt=""><br><span class=txtSm>Ранг: 337.6 (мудрец), 224thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.53'>Активность: 0.21<span style='color:red'>&searr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=8830">Участник</a><br><font color=blue>born to be evil</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 апреля 2008 01:34 <br><script type="text/javascript">QU('ajax','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ajax" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<b>ToBad</b><br>[.]minator&#039;a все мучаешь ? <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>От многой мудрости много скорби, и умножающий знание умножает печаль</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=184981&amp;user=8830&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=20" class="addthx" data-post="184981"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Tolkin[/b]','')">Tolkin</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.0 (постоянный), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.92'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=131">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 апреля 2008 20:21 <br><script type="text/javascript">QU('Tolkin','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Tolkin" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+AlexVel верно сказал, &quot;алго шифрации пакетов можно достать... - из сатароновского логгера (драйвера) - насчет обфускации не помню, но вроде вообще не обфускан&quot; - не обфускан и легко алго достаются, сам проверил <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=186869&amp;user=131&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=21" class="addthx" data-post="186869"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 апреля 2008 02:08 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=11590.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+<I><b>Tolkin</b> пишет:<br>не обфускан и легко алго достаются </I><br><br>Я всё понял. Тему добивать обязательно буду сразу как разберусь со срочными делами.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=186887&amp;user=702&amp;forum_n=6&amp;topic=11590.html&amp;page=0&amp;anchor=22" class="addthx" data-post="186887"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Мониторинг HASP HL через перехват DeviceIoControl</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#23" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="11590">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=11590" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

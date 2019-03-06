@@ -1,0 +1,553 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Анализ ASProtect - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Я выложил свой первый туториал по анализу ASProtect v2.4 build 12.20 (Анализ подпрограммы эмуляции инструкций.rar http://dump.ru/files/o/o489862518/ ). В этом туториале я подробно описал процесс восстановления эмулированных">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/aspro.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=13&sortBy=0&page=0.html"><b>Протекторы</b></a> <b class=bulletHead>&#8212;&#8250;</b> Анализ ASProtect</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=1.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=1.html">2</a> . <b>3</b> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=8.html">9</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=9.html">10</a> ... <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=37.html">38</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=38.html">39</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=3.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]vnekrilov[/b]','')">vnekrilov</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 329.6 (мудрец), 192thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.08'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=5173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2008 15:30 &middot; Поправил: vnekrilov <br><script type="text/javascript">QU('vnekrilov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vnekrilov" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#1');return false;">#1</a> </span><div align=left><br>
+Я выложил свой первый туториал по анализу ASProtect v2.4 build 12.20 (Анализ подпрограммы эмуляции инструкций.rar http://dump.ru/files/o/o489862518/ ). В этом туториале я подробно описал процесс восстановления эмулированных инструкций типа:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_number">0</span></li><li class="hl_l1"><span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_number">0CC5850</span></li><li class="hl_l0"><span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_number">0DB180C</span></li><li class="hl_l1"><span class="hl_function"><b>CALL</b></span>&nbsp;<span class="hl_number">00CEB814</span></li>        </ol>
+    </div>
+</div></div>
+<br><br><b>Полный цикл статей по распаковке ASProtect</b> (Актуальная версия <b>25 декабря 2009</b>):<br>ASProtect_Unpacking_Tutorial_2009-12-25.rar http://rapidshare.com/files/325720799/ASProtect_Unpacking_Tutorial_2009-12-25.rar  7,9 МБ<br>Программы, рассматриваемые в статьях:<br>ASProtect_Unpacking_Apps_2009-12-25.rar http://rapidshare.com/files/325718084/ASProtect_Unpacking_Apps_2009-12-25.rar  22,2 МБ<br><br>Буду благодарен за критику, замечания, пожелания и отзывы.<br><br><b>Скрипты</b>:<br>Текущая рекомендуемая версия <b>ODBGScript</b> [1.78.3]:<br><img src="img/attach.gif" alt=""> <a href="./files/ecf1_03.06.2010_CRACKLAB.rU.tgz">ecf1_03.06.2010_CRACKLAB.rU.tgz</a> - ODbgScript.dll<br><br>Последний <b>текущий комплект скриптов</b> [от 19 февраля 2011]:<br><img src="img/attach.gif" alt=""> <a href="./files/69ca_18.02.2011_CRACKLAB.rU.tgz">69ca_18.02.2011_CRACKLAB.rU.tgz</a> - <b>Скрипты для распаковки Asprotect от 19 февраля 2011</b>.rar<br><br><b>Статьи по частям:</b><br>Актуальная версия <b>статей</b> [Последняя - 25.11.2010]:<br><b>Выпуск 2</b><br><img src="img/attach.gif" alt=""> <a href="./files/0754_29.11.2009_CRACKLAB.rU.tgz">0754_29.11.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 1<br><img src="img/attach.gif" alt=""> <a href="./files/2844_29.11.2009_CRACKLAB.rU.tgz">2844_29.11.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 2<br><img src="img/attach.gif" alt=""> <a href="./files/8e06_30.11.2009_CRACKLAB.rU.tgz">8e06_30.11.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 3<br><img src="img/attach.gif" alt=""> <a href="./files/50a0_03.12.2009_CRACKLAB.rU.tgz">50a0_03.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 4<br><img src="img/attach.gif" alt=""> <a href="./files/1b51_05.12.2009_CRACKLAB.rU.tgz">1b51_05.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 5<br><img src="img/attach.gif" alt=""> <a href="./files/0ff8_05.12.2009_CRACKLAB.rU.tgz">0ff8_05.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 5 (продолжение)<br><img src="img/attach.gif" alt=""> <a href="./files/a182_06.12.2009_CRACKLAB.rU.tgz">a182_06.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 6<br><img src="img/attach.gif" alt=""> <a href="./files/82b8_15.12.2009_CRACKLAB.rU.tgz">82b8_15.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 7<br><img src="img/attach.gif" alt=""> <a href="./files/74e4_16.12.2009_CRACKLAB.rU.tgz">74e4_16.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 8<br><img src="img/attach.gif" alt=""> <a href="./files/b2e1_17.12.2009_CRACKLAB.rU.tgz">b2e1_17.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 9<br><img src="img/attach.gif" alt=""> <a href="./files/532c_18.12.2009_CRACKLAB.rU.tgz">532c_18.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 10<br><img src="img/attach.gif" alt=""> <a href="./files/76af_20.12.2009_CRACKLAB.rU.tgz">76af_20.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 11<br><img src="img/attach.gif" alt=""> <a href="./files/fe67_22.12.2009_CRACKLAB.rU.tgz">fe67_22.12.2009_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 12<br><img src="img/attach.gif" alt=""> <a href="./files/079c_20.01.2010_CRACKLAB.rU.tgz">079c_20.01.2010_CRACKLAB.rU.tgz</a> - Распаковка ASProtect - Часть 13<br><img src="img/attach.gif" alt=""> <a href="./files/8415_03.06.2010_CRACKLAB.rU.tgz">8415_03.06.2010_CRACKLAB.rU.tgz</a> - Распаковка Asprotect - Часть 14<br><img src="img/attach.gif" alt=""> <a href="./files/0a66_18.02.2011_CRACKLAB.rU.tgz">0a66_18.02.2011_CRACKLAB.rU.tgz</a> - Распаковка Asprotect - Части 15 и 16<br><br>DriEm конвертировал мой цикл статей в формате PDF, который можно скачать по ссылке <noindex><a href="http://rapidshare.com/files/1103212944/vnekr_aspr.zip" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=184657&amp;user=5173&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=1" class="addthx" data-post="184657"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Kiev78[/b]','')">Kiev78</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 67.4 (постоянный), 6thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.92'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 мая 2008 06:31 &middot; Поправил: Kiev78 <br><script type="text/javascript">QU('Kiev78','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kiev78" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#2');return false;">#2</a> </span><div align=left><br>
+---
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188488&amp;user=12727&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=2" class="addthx" data-post="188488"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]vnekrilov[/b]','')">vnekrilov</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 329.6 (мудрец), 192thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.08'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=5173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 мая 2008 08:35 <br><script type="text/javascript">QU('vnekrilov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vnekrilov" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#3');return false;">#3</a> </span><div align=left><br>
+<I>Kiev78 пишет:<br>Опечатка в названии темы или в названии архивного документа??? </I><br><br>Я открыл эту тему для анализа AsProtect v2.4 build 12.20. Но эта версия пакера не содержит Stolen Bytes и Init Table, поэтому мне пришлось подробно разобрать эти темы на примере ASProtect v2.3 build 03.19. Нет необходимости создавать отдельный топик на ASProtect v2.3 build 03.19, тем более, что здесь далее будет выложен анализ AsProtect v2.4 build 12.20.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188493&amp;user=5173&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=3" class="addthx" data-post="188493"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 мая 2008 16:45 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#4');return false;">#4</a> </span><div align=left><br>
+<b>vnekrilov</b><br>для определения версии аспра стоит воспользоваться прогой ASPrINFO (автор: nik0g0r)<br><br>В аттаче распакованная ASPrINFO v1.6 Beta.<br>Фишка этой проги в том, что она не использует сигнатуры, а выдаёт инфу, которую аспр сохраняет в упакованном файле.<br><br><code>ASPrINFO v1.6 Beta<br>100% detector version of ASProtect &gt; v1.23<br><br>Важное замечание(!) последней строкой в отчёте программы идёт не имя автора программы, а имя владельца на кого зарегестрирован ASProtect. (они могут совпадать)<br>Таким образом отчёт ASPrINF выглядит след. образом:<br><br>Имя программы, версия программы, версия ASProtect + билд ASProtect, и иногда имя, на кого зарегистрирован ASProtect.<br></code><br><br><br><br><br><br><img src="img/attach.gif" alt=""> <a href="./files/e5a8_13.05.2008_CRACKLAB.rU.tgz">e5a8_13.05.2008_CRACKLAB.rU.tgz</a> - ASPriNF.v1.6.rar
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=188546&amp;user=1379&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=4" class="addthx" data-post="188546"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2008 06:30 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#5');return false;">#5</a> </span><div align=left><br>
+<I>vnekrilov пишет:<br>на версии 1.65 </I><br><br>А где сейчас ODBGScript пасётся? На sf http://sourceforge.net/project/showfiles.php?group_id=195914  последняя 1.64.3 годовалой давности...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188625&amp;user=2585&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=5" class="addthx" data-post="188625"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]vnekrilov[/b]','')">vnekrilov</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 329.6 (мудрец), 192thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.08'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=5173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2008 06:46 <br><script type="text/javascript">QU('vnekrilov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vnekrilov" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#6');return false;">#6</a> </span><div align=left><br>
+<I>Jupiter пишет:<br>для определения версии аспра стоит воспользоваться прогой ASPrINFO (автор: nik0g0r)  </I><br><br>Спасибо.<br><br><I>Gideon Vi пишет:<br>А где сейчас ODBGScript пасётся? На sf последняя 1.64.3 годовалой давности... </I><br><br>Я не помню, откуда взял версию 1.65. Прикладываю ее в аттаче.<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/68c3_13.05.2008_CRACKLAB.rU.tgz">68c3_13.05.2008_CRACKLAB.rU.tgz</a> - ODbgScript 1.65.1.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188626&amp;user=5173&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=6" class="addthx" data-post="188626"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Bronco[/b]','')">Bronco</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/3230.gif" alt=""><br><span class=txtSm>Ранг: 312.0 (мудрец), 349thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.46<span style='color:green'>&nearr;</span>0.65</span><br>Статус: <a href="action=userinfo&amp;user=3230">Участник</a><br><font color=blue>Advisor</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2008 11:18 <br><script type="text/javascript">QU('Bronco','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bronco" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#7');return false;">#7</a> </span><div align=left><br>
+Если Script-1.65.dll, то мну знакомо откуда..<img src="img/smilies/s2.gif" alt=""><br>//А ваще эта версия плуга нарисовалась в сборке для фимки, там где Олькин файлО, обсидом покрыли..
+<br><br><font size="1"><i>-----<br>Чтобы юзер в нэте не делал,его всё равно жалко..</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=188643&amp;user=3230&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=7" class="addthx" data-post="188643"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]pavka[/b]','')">pavka</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><span class=txtSm>Ранг: 1045.7 <b><u>(!!!!)</u></b>, 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.85'>Активность: 0.57<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=293">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 мая 2008 13:30 <br><script type="text/javascript">QU('pavka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=pavka" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#8');return false;">#8</a> </span><div align=left><br>
+<I>vnekrilov пишет:<br>Я не помню, откуда взял версию 1.65 </I><br>Это китайский вариант
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188660&amp;user=293&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=8" class="addthx" data-post="188660"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]4t[/b]','')">4t</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 38.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.39'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10070">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 00:37 <br><script type="text/javascript">QU('4t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=4t" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#9');return false;">#9</a> </span><div align=left><br>
+Немного оффтоп.<br>Поделитесь кто-нибудь коллекцией версий asprotect&#039;a. Буду очень признателен <img src="img/smilies/s2.gif" alt="">.<br>А то статьи есть, практиковать не на чем <img src="img/smilies/s4.gif" alt="">.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188752&amp;user=10070&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=9" class="addthx" data-post="188752"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 00:42 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#10');return false;">#10</a> </span><div align=left><br>
+<b>4t</b> rapidshare.com/files/93214337/ASProtect.rar<br>ASProtect v1.35 release 0114<br>ASProtect v1.35 release 0319<br>ASProtect v1.35 release 0425<br>ASProtect v1.35 release 0626<br><br>ASProtect v1.4 beta 0114<br>ASProtect v1.4 beta 0126<br><br>ASProtect v2.110313<br><br>ASProtect v2.2 release 0114<br>ASProtect v2.2 release 0319<br>ASProtect v2.2 release 0425<br><br>ASProtect v2.3 beta 0319<br>ASProtect v2.3 beta 0423<br>ASProtect v2.3 beta 0426<br>ASProtect v2.3 beta 0514<br>ASProtect v2.3 beta 0626.unpacked<br>ASProtect v2.3 beta 0626
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=188753&amp;user=6946&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=10" class="addthx" data-post="188753"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 04:04 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#11');return false;">#11</a> </span><div align=left><br>
+<I>vnekrilov пишет:<br>Прикладываю ее в аттаче. </I><br><br>спасибо<br><br><I>4t пишет:<br>Поделитесь кто-нибудь коллекцией версий asprotect&#039;a. </I><br><br>_http://pediy.com/tools/packers.htm
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188765&amp;user=2585&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=11" class="addthx" data-post="188765"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]0xy[/b]','')">0xy</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 218.5 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.37'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3910">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 04:47 &middot; Поправил: 0xy <br><script type="text/javascript">QU('0xy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=0xy" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#12');return false;">#12</a> </span><div align=left><br>
+del
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188768&amp;user=3910&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=12" class="addthx" data-post="188768"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]aspirin[/b]','')">aspirin</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/5336.gif" alt=""><br><span class=txtSm>Ранг: 111.0 (ветеран), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.05'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5336">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 09:04 <br><script type="text/javascript">QU('aspirin','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=aspirin" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#13');return false;">#13</a> </span><div align=left><br>
+<b>Isaev</b> мля, с этими кошками запарился, перезалей хоть на webfile
+<br><br><font size="1"><i>-----<br>Ламер - не профессия :))</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=188786&amp;user=5336&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=13" class="addthx" data-post="188786"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]4t[/b]','')">4t</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 38.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.39'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10070">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 13:36 <br><script type="text/javascript">QU('4t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=4t" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#14');return false;">#14</a> </span><div align=left><br>
+<b>Isaev</b><br>Круто!. Спасибо.<br><br><I>Gideon Vi пишет:<br>_http://pediy.com/tools/packers.htm </I><br>ок. слил. <img src="img/smilies/s1.gif" alt=""><br><br><b>aspirin</b><br>Айфолдер подойдёт? _http://ifolder.ru/6564330<br><br>Есть у кого ещё aspr? <img src="img/smilies/s5.gif" alt=""><br><br>Вот, что пока насобирал. Аттач.<br><br><img src="img/attach.gif" alt=""> <a href="./files/8a6e_16.05.2008_CRACKLAB.rU.tgz">8a6e_16.05.2008_CRACKLAB.rU.tgz</a> - asp.txt
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188823&amp;user=10070&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=14" class="addthx" data-post="188823"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]0xy[/b]','')">0xy</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 218.5 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.37'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3910">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 13:46 &middot; Поправил: 0xy <br><script type="text/javascript">QU('0xy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=0xy" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#15');return false;">#15</a> </span><div align=left><br>
+<b>Выложите, плииз, ОТДЕЛЬНО эти билды:</b><br><I><br>ASProtect 1.4 build 01.14 Beta<br>ASProtect 1.4 build 01.26 Beta<br>ASProtect 1.4.build 11.20 Release<br></I>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188825&amp;user=3910&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=15" class="addthx" data-post="188825"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 13:51 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#16');return false;">#16</a> </span><div align=left><br>
+<b>0xy</b><br>rapidshare.com/files/115052381/aspr14.rar" target="_blank">--&gt; 114, 126 &lt;--</a><br><br><b>aspirin</b> <a href="http://cocoshare.cc/1208036894/ASProtect.rar
+><br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=188826&amp;user=6946&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=16" class="addthx" data-post="188826"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]aspirin[/b]','')">aspirin</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/5336.gif" alt=""><br><span class=txtSm>Ранг: 111.0 (ветеран), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.05'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5336">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 21:31 &middot; Поправил: aspirin <br><script type="text/javascript">QU('aspirin','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=aspirin" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#17');return false;">#17</a> </span><div align=left><br>
+<b>4t</b>, <b>Isaev</b> большое спасибо, если надо, то протов имеется хорошая коллекция, только скажите как сделать список, не вручную же вбивать <img src="img/smilies/s6.gif" alt="">
+<br><br><font size="1"><i>-----<br>Ламер - не профессия :))</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=188866&amp;user=5336&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=17" class="addthx" data-post="188866"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]VAD87[/b]','')">VAD87</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/5252.jpg" alt=""><br><span class=txtSm>Ранг: 106.6 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5252">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 мая 2008 21:55 <br><script type="text/javascript">QU('VAD87','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VAD87" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#18');return false;">#18</a> </span><div align=left><br>
+<I>aspirin пишет:<br>как сделать список, не вручную же вбивать  </I><br>ну например можно заюзать сойтины Dir Lister или DIRECTORY LISTER или подобные ;) где их скачать, гугл подскажет)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188869&amp;user=5252&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=18" class="addthx" data-post="188869"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]4t[/b]','')">4t</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 38.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.39'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10070">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 мая 2008 00:37 &middot; Поправил: 4t <br><script type="text/javascript">QU('4t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=4t" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#19');return false;">#19</a> </span><div align=left><br>
+<I>aspirin пишет:<br>4t, Isaev большое спасибо, если надо, то протов имеется хорошая коллекция, только скажите как сделать список, не вручную же вбивать  </I><br>Мне то спасибо за что, эт товарищу Isaev&#039;у за подборку спасибо <img src="img/smilies/s1.gif" alt="">.<br>По поводу создания списка, можно dir использовать : dir /A:d /O:n /B,  справка по команде dir /? .Dir Lister и подобный софт и не понадобится.<br><br>Ну так что, кто-нибудь ещё аспром поделиться?,  очень интересует ASProtect 1.4.build 11.20 Release, а то у мну ток распаковыный есть, к статье плохо идет <img src="img/smilies/s6.gif" alt="">. (статья просто супер!)<br><br>Да и такой вопрос, есть ASProtect 2.4 SKE build 09.12 Beta, в хистори этот билд не упоминается (есть только 09.11). Солод конспирирует версии или это чья-то шутка.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=188885&amp;user=10070&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=19" class="addthx" data-post="188885"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]vnekrilov[/b]','')">vnekrilov</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 329.6 (мудрец), 192thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.08'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=5173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 мая 2008 17:12 <br><script type="text/javascript">QU('vnekrilov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vnekrilov" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#20');return false;">#20</a> </span><div align=left><br>
+Немного посмотрел на AsProtect v2.41 build 02.26. В нем довольно интересно организована анти-отладка путем массового применения кода типа <br>PUSH 0<br>PUSH 0CC5850<br>PUSH 0DB180C<br>CALL 00CEB814 <br><br>Этот код довольно легко восстанавливается с помощью скрипта, но программа не проходит проверку, поскольку она подсчитывает CRC мусорного кода, а не восстановленного. И таких проверок она имеет очень много. Если представляет интерес обход всех этих проверок, могу подготовить статью.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189411&amp;user=5173&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=20" class="addthx" data-post="189411"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]arnix[/b]','')">arnix</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 210.5 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.14<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 мая 2008 19:59 <br><script type="text/javascript">QU('arnix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=arnix" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#21');return false;">#21</a> </span><div align=left><br>
+<I>4t пишет:<br>Есть у кого ещё aspr?  <br><br>Вот, что пока насобирал. Аттач. </I><br><br>Залей куда-нить билды 2.4 (не 2.41, это есть) а то куда-то потерял я их )<br>У меня имеются эти, если что могу залить:<br><br><br><br><img src="img/attach.gif" alt=""> <a href="./files/81bb_19.05.2008_CRACKLAB.rU.tgz">81bb_19.05.2008_CRACKLAB.rU.tgz</a> - aspr.png
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189439&amp;user=26&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=21" class="addthx" data-post="189439"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Spirit[/b]','')">Spirit</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1419.gif" alt=""><br><span class=txtSm>Ранг: 271.6 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.35'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1419">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 мая 2008 22:01 <br><script type="text/javascript">QU('Spirit','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Spirit" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#22');return false;">#22</a> </span><div align=left><br>
+<b>arnix</b><br>Если не тяжко, залей плиз все.
+<br><br><font size="1"><i>-----<br>iNTERNATiONAL CoDE CReW</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=189464&amp;user=1419&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=22" class="addthx" data-post="189464"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]4t[/b]','')">4t</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 38.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.39'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10070">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 02:58 &middot; Поправил: 4t <br><script type="text/javascript">QU('4t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=4t" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#23');return false;">#23</a> </span><div align=left><br>
+<b>arnix</b><br>Держи: _http://rapidshare.com/files/116158182/ASProtect.7z<br>ASProtect SKE 2.4 build 09.11 Beta (только экжешник + патч)<br>ASProtect SKE 2.4 build 11.20 Release (отломаный и накрытый темидой <img src="img/smilies/s15.gif" alt=""> )<br>пасс: ASProtect<br><br><b>arnix</b><br>Если не тяжко, и вправду залей все.<br><br>Кто припрятал дистрибутив ASProtect 2.4.build 11.20 Release, поделитесь <img src="img/smilies/s6.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189518&amp;user=10070&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=23" class="addthx" data-post="189518"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 03:12 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#24');return false;">#24</a> </span><div align=left><br>
+<I>4t пишет:<br>Кто припрятал дистрибутив ASProtect 2.4.build 11.20 Release, поделитесь </I><br>Есть отломаный unpack.cn и ничем не накрытый<br>rapidshare.com/files/116161898/ASProtect_SKE_v2.4_build_11.20.zip
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=189520&amp;user=6946&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=24" class="addthx" data-post="189520"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]4t[/b]','')">4t</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 38.3 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.39'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10070">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 04:00 <br><script type="text/javascript">QU('4t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=4t" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#25');return false;">#25</a> </span><div align=left><br>
+<b>Isaev</b><br>ок. но хотелось бы всё-таки дистр найти. <br><br><b>arnix</b><br>Вот ещё 2.4 нарыл.<br><br>ASProtect 2.4 SKE build 12.20 Beta (дистрибутив) // лекарсто пока не нашёл<br>uploaded.to/?id=iibess<br>PD: Password link &quot;www.unpack.cn&quot;<br><br>PS. От китайского что-т в глазах уже рябить начинает... <img src="img/smilies/s6.gif" alt="">.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189523&amp;user=10070&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=25" class="addthx" data-post="189523"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]arnix[/b]','')">arnix</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 210.5 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.14<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 11:19 <br><script type="text/javascript">QU('arnix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=arnix" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#26');return false;">#26</a> </span><div align=left><br>
+<b>4t</b><br><br>Спасибо.<br><br><b>Spirit</b>, <b>4t</b><br><br>Завтра все залью.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189555&amp;user=26&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=26" class="addthx" data-post="189555"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Smon[/b]','')">Smon</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 500.5 (<b>!</b>), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.33'>Активность: 0.23<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 11:59 &middot; Поправил: Smon <br><script type="text/javascript">QU('Smon','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Smon" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#27');return false;">#27</a> </span><div align=left><br>
+<I>vnekrilov пишет:<br>Немного посмотрел на AsProtect v2.41 build 02.26. В нем довольно интересно организована анти-отладка путем массового применения кода типа<br>PUSH 0<br>PUSH 0CC5850<br>PUSH 0DB180C<br>CALL 00CEB814  </I><br><br>Я бы не сказал что это анти-отладка, скорей антидамп\антираспаковка.<br><br>В секции кода вызовы новой вм двух видов, например:<br><code>004A47CE   .  68 B634F099              PUSH 99F034B6<br>004A47D3   .  68 44B77F2D              PUSH 2D7FB744<br>004A47D8   .  68 24A2D700              PUSH 0D7A224<br>004A47DD   .  E8 3E228300              CALL 00CD6A20<br><br>004A4848   .  68 9363973A              PUSH 3A976393<br>004A484D   .  68 C2B87F2D              PUSH 2D7FB8C2<br>004A4852   .  68 24A2D700              PUSH 0D7A224<br>004A4857   .  E8 C4218300              CALL 00CD6A20</code><br><br>Хотя есть и такие например:<br><code>0054C54E    68 00000000                PUSH 0<br>0054C553    68 C435212D                PUSH 2D2135C4<br>0054C558    68 9C42D300                PUSH 0D3429C<br>0054C55D    E8 EAA47800                CALL 00CD6A4C<br><br>0054CBE3    3E:68 00000000             PUSH 0                                   ; Superfluous prefix<br>0054CBE9    68 6E3B212D                PUSH 2D213B6E<br>0054CBEE    68 B84BD300                PUSH 0D34BB8<br>0054CBF3    E8 549E7800                CALL 00CD6A4C</code><br><br>Как я понимаю, первого типа - это еще не инициализированные, т.е. те, которые еще не получали управления.<br><br><I>vnekrilov пишет:<br>поскольку она подсчитывает CRC мусорного кода </I><br>Вот это интересней, контрольная сумма подсчитывается маркером crc или как то еще ? Если маркером, то она отлавливается установкой бряка на чтение восстановленного кода и лечится правкой перехода на противоположный <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>&quotПусть видят, что мы не шутим. Стволы для понта, ножи для дела&quot Lock, Stock &amp Two Smoking Barrels</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=189559&amp;user=1449&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=27" class="addthx" data-post="189559"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 12:36 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#28');return false;">#28</a> </span><div align=left><br>
+<I>vnekrilov пишет:<br>Немного посмотрел на AsProtect v2.41 build 02.26 </I><br><br>Это который от <b>REVENGE Crew</b>? Насколько я вижу, в эбауте версия v2.<b>4</b> build 02.26, да и утиль для определения вресии выдаёт этот билд.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189562&amp;user=2585&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=28" class="addthx" data-post="189562"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]Smon[/b]','')">Smon</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 500.5 (<b>!</b>), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.33'>Активность: 0.23<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 12:46 <br><script type="text/javascript">QU('Smon','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Smon" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#29');return false;">#29</a> </span><div align=left><br>
+<I>Gideon Vi пишет:<br>Насколько я вижу, в эбауте версия v2.4 </I><br>Версия от REVENGE это 2.41, пока что последний (вроде как) билд, есть еще 1.41, но не отломан.<br>А почему в эбауте 2.4 - хз, наверное по той же причине что и 1999-2005 ASPack Software, который уже три года как не менялся <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>&quotПусть видят, что мы не шутим. Стволы для понта, ножи для дела&quot Lock, Stock &amp Two Smoking Barrels</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=189563&amp;user=1449&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=29" class="addthx" data-post="189563"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]vnekrilov[/b]','')">vnekrilov</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 329.6 (мудрец), 192thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.08'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=5173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 15:42 <br><script type="text/javascript">QU('vnekrilov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vnekrilov" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#30');return false;">#30</a> </span><div align=left><br>
+<I>Smon пишет:<br>В секции кода вызовы новой вм двух видов, например:<br>004A47CE . 68 B634F099 PUSH 99F034B6<br>004A47D3 . 68 44B77F2D PUSH 2D7FB744<br>004A47D8 . 68 24A2D700 PUSH 0D7A224<br>004A47DD . E8 3E228300 CALL 00CD6A20  </I><br><br>Меня интересовал код, который расположен в AsProtect.dll. До кода, который находится в секции кода, я просто не дошел. Посмотрю на него внимательно немного позже.<br><br><I>Smon пишет:<br>Вот это интересней, контрольная сумма подсчитывается маркером crc или как то еще ?  </I><br><br>Здесь вообще интересно. Подсчет CRC проводится с помощью подпрограммы, которая имеет указанный мной вид в заголовке топика. Если восстановить этот код, то подпрограмма показывает неверный CRC. Две такие проверки обойти можно довольно просто - заставив принудительно выполнить прыжок. Но имеется еще две очень интересные проверки, где с помощью CRC вычисляется offset в AsProtect.dll, который указывает, откуда должно быть продолжено выполнение программы. <br><br>00CEFBA0    68 51E29F44     PUSH 449FE251<br>00CEFBA5    68 FC540000     PUSH 54FC<br>00CEFBAA    68 A0650300     PUSH 365A0<br>00CEFBAF    68 98030000     PUSH 398<br>00CEFBB4    68 04F80300     PUSH 3F804<br>00CEFBB9    68 00500500     PUSH 55000<br>00CEFBBE    FF35 D434CF00   PUSH DWORD PTR DS:[CF34D4]<br>00CEFBC4    E8 E3C2FCFF     CALL 00CBBEAC<br>00CEFBC9    310424          XOR DWORD PTR SS:[ESP],EAX<br>00CEFBCC    8B05 D434CF00   MOV EAX,DWORD PTR DS:[CF34D4]<br>00CEFBD2    010424          ADD DWORD PTR SS:[ESP],EAX<br>00CEFBD5    C3              RET<br><br>Если будет не корректно вычислен offset, то, естественно, программа не запустится.<br><br>Именно это я и имел в виду.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189574&amp;user=5173&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=30" class="addthx" data-post="189574"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]vnekrilov[/b]','')">vnekrilov</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 329.6 (мудрец), 192thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.08'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=5173">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 мая 2008 15:46 &middot; Поправил: vnekrilov <br><script type="text/javascript">QU('vnekrilov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vnekrilov" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=13&amp;topic=11596&amp;page=2#31');return false;">#31</a> </span><div align=left><br>
+<I>Gideon Vi пишет:<br>Это который от REVENGE Crew?  </I><br><br>Да, эта версия.<br><br><I>Smon пишет:<br>есть еще 1.41, но не отломан.  </I><br><br>А нельзя ли им поделиться?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=189576&amp;user=5173&amp;forum_n=13&amp;topic=11596&amp;page=2&amp;anchor=31" class="addthx" data-post="189576"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=1.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=1.html">2</a> . <b>3</b> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=8.html">9</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=9.html">10</a> ... <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=37.html">38</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=38.html">39</a> . <a href="action=vthread&amp;forum=13&amp;topic=11596&amp;page=3.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/aspro.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=13&sortBy=0&page=0.html"><b>Протекторы</b></a> <b class=bulletHead>&#8212;&#8250;</b> Анализ ASProtect</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="13">
+<input type="hidden" name="topic" value="11596">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=11596" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

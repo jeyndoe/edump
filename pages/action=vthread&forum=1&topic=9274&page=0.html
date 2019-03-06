@@ -1,0 +1,534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>CPUID hook - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Как можно перехватить вызов инструкции CPUID ? MS-REM когда то сказал: Можно сделать cpuid привилегированной инструкцией, ловить исключения и эмулировать. Как это можно сделать, может кто примерами поделиться ? Заранее">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+8 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> CPUID hook</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=1&amp;topic=9274&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=9274&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=1&amp;topic=9274&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]SergX[/b]','')">SergX</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 226.0 (наставник), 67thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=11974">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 июля 2007 10:20 <br><script type="text/javascript">QU('SergX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SergX" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Как можно перехватить вызов инструкции CPUID ?<br><br><b>MS-REM</b> когда то сказал:<br><i class=x>Можно сделать cpuid привилегированной инструкцией, ловить исключения и эмулировать.</i><br>Как это можно сделать, может кто примерами поделиться ?<br><br>Заранее благодарен.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144835&amp;user=11974&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=1" class="addthx" data-post="144835"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]seeq[/b]','')">seeq</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/3067.jpg" alt=""><br><span class=txtSm>Ранг: 105.9 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.64'>Активность: 0.06<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3067">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 июля 2007 12:37 &middot; Поправил: seeq <br><script type="text/javascript">QU('seeq','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=seeq" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+насколько я знаю, тут MS-REM ошибся и сделать CPUID привилегированной инструкцией нельзя.  Ходят слухи, что ловить CPUID можно не только через трейсер, но вот как, это вопрос.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144855&amp;user=3067&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=2" class="addthx" data-post="144855"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]sotona[/b]','')">sotona</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.0 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.02'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5495">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 июля 2007 13:16 <br><script type="text/javascript">QU('sotona','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sotona" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+cpuid на любом уровне привилегий разрешена. может речь о каких-то багах ia32 идёт - хз...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144859&amp;user=5495&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=3" class="addthx" data-post="144859"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Error_Log[/b]','')">Error_Log</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 228.7 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.05'>Активность: 0.12<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2060">Участник</a><br><font color=blue>malware research</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 июля 2007 13:38 &middot; Поправил: Error_Log <br><script type="text/javascript">QU('Error_Log','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Error_Log" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Можно ловить исключения доступа к странице кода, анализировать его на предмет CPUID и обрабатывать.<br><br><I>seeq пишет: тут MS-REM ошибся и сделать CPUID привилегированной инструкцией нельзя </I><br><br>Можно, наверно имелось в виду использование виртуализационных расширений
+<br><br><font size="1"><i>-----<br>Research is my purpose</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=144862&amp;user=2060&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=4" class="addthx" data-post="144862"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]n0name[/b]','')">n0name</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 61.4 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.7'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=7411">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 июля 2007 13:46 <br><script type="text/javascript">QU('n0name','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=n0name" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+читай про виртуализацию.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144863&amp;user=7411&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=5" class="addthx" data-post="144863"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]rudik[/b]','')">rudik</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 2.2 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=11973">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 04:10 <br><script type="text/javascript">QU('rudik','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=rudik" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Это всё до лампочки. CPUID доступна везде, отсюда следствие - нада идти другим путём. Ты помоему программу какуето ломал, которая железо проверяет - знач рыть надо в этом направлении.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144956&amp;user=11973&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=6" class="addthx" data-post="144956"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Chingachguk[/b]','')">Chingachguk</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/8962.jpg" alt=""><br><span class=txtSm>Ранг: 113.0 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8962">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 09:50 <br><script type="text/javascript">QU('Chingachguk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Chingachguk" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Вчера посмотрел книжков... все однозначно грят что нет. Но я не специалист (например что будет если многопроцессорная система?)<br><br>Вообще любопытно - зачем нужен перехват именно CPUID? (rdtsc вроде перехватываеццо).
+<br><br><font size="1"><i>-----<br>The one derivative you manage is the one I abhore (c) Slipknot</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=144974&amp;user=8962&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=7" class="addthx" data-post="144974"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 10:35 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<b>Chingachguk</b><br>RDTSC реально перехватывается, ибо её можно сделать привилегированной.<br>CPUID перехватить может быть надо для подделки некоторого железа.<br>Судя по интеловским докам сделать привилегированной и перехватывать как rdtsc её невозможно, отсюда вариантов перехвата её 2: 1-трейсер, который трейсит всё подряд (свалится под антиотладкой+дико медленно); 2-юзать аппаратную виртуализацию (только для новых процев). Если кто подкинет линк, где хоть чо-нить написано, как это реально кодить, юзая аппаратную виртуализацию, а не просто слова, что это сделать можно, то будет респект. Если будет написано реально хорошо и понятно, тогда может я и сам смогу софт накидать такой.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144983&amp;user=1556&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=8" class="addthx" data-post="144983"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]SergX[/b]','')">SergX</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 226.0 (наставник), 67thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=11974">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 10:35 &middot; Поправил: SergX <br><script type="text/javascript">QU('SergX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SergX" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>Chingachguk пишет:<br>Вообще любопытно - зачем нужен перехват именно CPUID? (rdtsc вроде перехватываеццо) </I><br>прога привязана к железу по CPUID. RDTSC тут не поможет, разве что RTFM <img src="img/smilies/s5.gif" alt=""><br><br>Буду наверно кейгенить...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144984&amp;user=11974&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=9" class="addthx" data-post="144984"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]n0name[/b]','')">n0name</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 61.4 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.7'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=7411">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 11:14 &middot; Поправил: n0name <br><script type="text/javascript">QU('n0name','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=n0name" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>Archer</b><br>Я про виртуализацию только в доках от Intel читал. Вроде там хорошо написано, только на главы ИМХО разбили не удачно.<br>PS: Сам собираюсь такую штуку написать, только как время появится свободное.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=144991&amp;user=7411&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=10" class="addthx" data-post="144991"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]bloom[/b]','')">bloom</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/3237.gif" alt=""><br><span class=txtSm>Ранг: 327.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3237">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 11:48 <br><script type="text/javascript">QU('bloom','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bloom" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+эх. написать бы эмулятор серийных номеров железа, наиболее юзаемого протами и софтом для привязки (там серийный номер винта и т.п.) <br><br>ЗЫ не по теме, но кто-нибудь встречал эмулятор usb-драйва, способный возвращать серийный номер устройства ? Есть софт который привязывается к этой хрени.
+<br><br><font size="1"><i>-----<br>in search of sunrise</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=144996&amp;user=3237&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=11" class="addthx" data-post="144996"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]tnt17[/b]','')">tnt17</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/7417.jpg" alt=""><br><span class=txtSm>Ранг: 109.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.7'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=7417">Участник</a><br><font color=blue>Cardinal</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 12:02 <br><script type="text/javascript">QU('tnt17','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tnt17" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>bloom пишет:<br>встречал эмулятор usb-драйва </I><br>На васме была тема, в итоге забили на нее, так как там очень много подводных камней и большой обьем работы.
+<br><br><font size="1"><i>-----<br>– Почему ты работаешь по ночам ?  – Так удобнее... В одну смену с чертями...</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=144999&amp;user=7417&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=12" class="addthx" data-post="144999"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]bloom[/b]','')">bloom</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/3237.gif" alt=""><br><span class=txtSm>Ранг: 327.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3237">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 12:06 <br><script type="text/javascript">QU('bloom','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bloom" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>tnt17 пишет:<br>На васме была тема, в итоге забили на нее, так как там очень много подводных камней и большой обьем работы. </I><br>а можно ссылочку или ключевые слова, чт0-то не нахожу такой.
+<br><br><font size="1"><i>-----<br>in search of sunrise</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145000&amp;user=3237&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=13" class="addthx" data-post="145000"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]tnt17[/b]','')">tnt17</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/7417.jpg" alt=""><br><span class=txtSm>Ранг: 109.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.7'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=7417">Участник</a><br><font color=blue>Cardinal</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 12:13 <br><script type="text/javascript">QU('tnt17','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tnt17" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>bloom</b><br>wasm.ru/forum/viewtopic.php?id=20801
+<br><br><font size="1"><i>-----<br>– Почему ты работаешь по ночам ?  – Так удобнее... В одну смену с чертями...</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145002&amp;user=7417&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=14" class="addthx" data-post="145002"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]seeq[/b]','')">seeq</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/3067.jpg" alt=""><br><span class=txtSm>Ранг: 105.9 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.64'>Активность: 0.06<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3067">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 12:22 <br><script type="text/javascript">QU('seeq','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=seeq" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>SergX</b><br>Тебе ж надо Aspr пропатчить?  Ты писал на васме, что можно и распаковать, но прога часто обновляется. Если все так обстоит, тогда легче крякнуть сам аспр(я имею в виду его dll), ведь он то всегда одинаковый.  Первое, что приходит в голову хукнуть VirtualAlloc,  подождать пока dll&#039;ка распакуется, а дальше уже по смещению или по сигнатуре найти место где пропатчить cpuid.<br><br><I>bloom пишет:<br>эх. написать бы эмулятор серийных номеров железа, наиболее юзаемого протами и софтом для привязки (там серийный номер винта и т.п.)<br> </I><br>так а что там писать? похукал парочку функций и готово, благо в NT чтение биоса напрямую прикрыли, единственная проблема это CPUID. А в многопоточных протекторах отлов этой команды достаточно большой гемор.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145005&amp;user=3067&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=15" class="addthx" data-post="145005"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]bloom[/b]','')">bloom</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/3237.gif" alt=""><br><span class=txtSm>Ранг: 327.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3237">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 12:30 &middot; Поправил: bloom <br><script type="text/javascript">QU('bloom','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bloom" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>seeq пишет:<br>так а что там писать? похукал парочку функций и готово, благо в NT чтение биоса напрямую прикрыли, единственная проблема это CPUID. А в многопоточных протекторах отлов этой команды достаточно большой гемор. </I><br>Ну если бы нечего было писать, должен был бы уже быть такой эмулятор наверное.<br>Или он уже существует, где-нибудь в привате ?<br>Лично я для софта который привязывается к моей системе (есть пара прог) юзал VMware, единсвенная проблема там - это опять же CPUID (проц-то не эмулируется).
+<br><br><font size="1"><i>-----<br>in search of sunrise</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145007&amp;user=3237&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=16" class="addthx" data-post="145007"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]SergX[/b]','')">SergX</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 226.0 (наставник), 67thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=11974">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 13:37 <br><script type="text/javascript">QU('SergX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SergX" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<I>seeq пишет:<br>Тебе ж надо Aspr пропатчить?  </I><br>Нет не аспр, вызов CPUID в самой проге. <br><br>Процедура которая вызывает CPUID во всех версиях одинаковая, но в разных местах в памяти. Если её и патчить то только в памяти, но с этим у меня пока не выходит...<br>Если у кого есть пример лоадера, который инжектится и патчит поделитесь плз.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145018&amp;user=11974&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=17" class="addthx" data-post="145018"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 16:04 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I><b>Archer</b> пишет:<br>тогда может я и сам смогу софт накидать такой </I><br><br><I><b>n0name</b> пишет:<br>Сам собираюсь такую штуку написать, только как время появится свободное </I><br><br><I><b>bloom</b> пишет:<br>эх. написать бы эмулятор серийных номеров железа, наиболее юзаемого протами и софтом для привязки (там серийный номер винта и т.п.) </I><br><br>Тема давно назрела, многие об этом уже думали, но готового решения на паблике нет ! Ребята, может на кряклабе соберётся команда и сделает это ? Вот у меня например есть софт накрытый фемидой который юзает cpuid... Что и как патчить - уме не приложу...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145054&amp;user=702&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=18" class="addthx" data-post="145054"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]bloom[/b]','')">bloom</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/3237.gif" alt=""><br><span class=txtSm>Ранг: 327.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3237">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 16:54 &middot; Поправил: bloom <br><script type="text/javascript">QU('bloom','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bloom" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+параллельная темка<br>www.wasm.ru/forum/viewtopic.php?id=21479<br><br><br><I>Тема давно назрела, многие об этом уже думали, но готового решения на паблике нет ! Ребята, может на кряклабе соберётся команда и сделает это ? Вот у меня например есть софт накрытый фемидой который юзает cpuid... Что и как патчить - уме не приложу...</I><br><br>согласен конечно что такой эмуль нужен. <br>но в отсутствии такового неплохой альтернативой является VMware, <br>только в ней одна проблема - CPUID<br>также интересной является проблема переноса софта уже привязанного к конкретной машине на другую.
+<br><br><font size="1"><i>-----<br>in search of sunrise</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145060&amp;user=3237&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=19" class="addthx" data-post="145060"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]SergX[/b]','')">SergX</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 226.0 (наставник), 67thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=11974">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 20:29 <br><script type="text/javascript">QU('SergX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SergX" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+VMware конечно не плохо, но клиенту его ставить не прикол.<br><br>Давайте общими силами всё таки напишем универсальный лоадер.<br><br>Я себе представляю это следующим образом:<br><br>1. При запуске UniLoader выдаёт всевозможные ID компа, список которых постоянно обновляется в новых версиях, и позволяет это всё сохранить в INI файл.<br>2. INI файл можно открыть темже UniLoader_ом и посмотреть/поменять.<br>3. UniLoader позволяет выбрать EXE файл, чекбоксами выбрать ID которые нужно эмулить, и запустить EXE.<br>4. Полезной была бы опция которая выводит меседжбокс при срабатывании перехвата. Также лог заргузки.<br>5. По полученным ID можно генерить HardwareID для протекторов, если кому известен алго.<br>6. Готовый проект можно сохранить как отдельный ЕХЕ файл в который можно вставить рисунок и копирайты.<br><br>С перехватом APIков проблем нет, но вот CPUID… И это скорее всего не последний камень.<br><br>Если найдутся желающие принять участие, предлагаю закрыть эту тему и открыть новую.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145093&amp;user=11974&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=20" class="addthx" data-post="145093"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]drin[/b]','')">drin</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 63.8 (постоянный), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=6342">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 21:28 <br><script type="text/javascript">QU('drin','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=drin" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>bloom пишет:<br>но в отсутствии такового неплохой альтернативой является VMware </I><br><br>VMware/VPC и некоторые другие эмуляторы при желании палятся, в той же фемиде есть подобная опция...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145106&amp;user=6342&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=21" class="addthx" data-post="145106"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Chingachguk[/b]','')">Chingachguk</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/8962.jpg" alt=""><br><span class=txtSm>Ранг: 113.0 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8962">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 22:37 &middot; Поправил: Chingachguk <br><script type="text/javascript">QU('Chingachguk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Chingachguk" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Кажецца, я нашел кое-что интересное:<br><br>--- не, неверно <img src="img/smilies/s9.gif" alt="">
+<br><br><font size="1"><i>-----<br>The one derivative you manage is the one I abhore (c) Slipknot</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145119&amp;user=8962&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=22" class="addthx" data-post="145119"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Chingachguk[/b]','')">Chingachguk</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/8962.jpg" alt=""><br><span class=txtSm>Ранг: 113.0 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8962">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 22:44 &middot; Поправил: Chingachguk <br><script type="text/javascript">QU('Chingachguk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Chingachguk" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+---
+<br><br><font size="1"><i>-----<br>The one derivative you manage is the one I abhore (c) Slipknot</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145120&amp;user=8962&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=23" class="addthx" data-post="145120"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 22:55 &middot; Поправил: ToBad <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<I><b>drin</b> пишет:<br>VMware/VPC и некоторые другие эмуляторы при желании палятся, в той же фемиде есть подобная опция... </I><br><br>Правильно, а если патчить exe на тему что бы не палился, то уже патчить и cpuid и hwid... Нужна универсальность, что бы без вмешательства в exe ...<br><br><I><b>SergX</b> пишет:<br>Если найдутся желающие принять участие, предлагаю закрыть эту тему и открыть новую. </I><br><br>Ну не знаю. Желающих наверное много, а вот умеющих на пальцах сосчитать, да и у умеющих как правило нет времени ...<br><br><I>1. При запуске UniLoader выдаёт всевозможные ID компа, список которых постоянно обновляется </I><br><I>5. По полученным ID можно генерить HardwareID для протекторов, если кому известен алго </I><br><br>Бред. Какие всевозможные ID ? Где обновлять ? Кто будет капать алго протов, да и менятся оно может от верси к версии...<br>Не нужно всё усложнять. Что такое привязка к HDD ? Это волуминформейшин, строчка серийника через смарт, ну и параметры типа размера, цилиндров и т.д.<br>Биос. По минимуму строка производителя и дата, по максимуму кусок памяти... Можно целиком снимать с нужной машины... Что там ещё, мак адрес сетевухи ? Не часто используется, да и менять можно...<br>Вот о cpuid я ничего не знаю...<br>Есть одна намётка, для висты делали эмулятор биоса что ли, выбрать производителя можно и т.д. Сам не смотрел, но скачать успел... Где то валяется.<br><br><I><b>bloom</b> пишет:<br>также интересной является проблема переноса софта уже привязанного к конкретной машине на другую </I><br><br>Ну да, для этого это и нужно. Если не переносить с машины где софт зарегистрирован, то полезность этого эмуля резко упадёт... Ну разве что кликательных спонсоров разводил как в недавней ветке дурить, если кому то это ещё интересно...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145122&amp;user=702&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=24" class="addthx" data-post="145122"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]SergX[/b]','')">SergX</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 226.0 (наставник), 67thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=11974">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 23:19 &middot; Поправил: SergX <br><script type="text/javascript">QU('SergX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SergX" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>ToBad пишет: Бред. <br>Какие всевозможные ID ? </I><br>kernel32.GetSystemInfo<br>kernel32.DeviceIoControl<br>kernel32.GetDiskFreeSpaceExA<br>kernel32.GetVolumeInformationA<br>kernel32.GetComputerNameA<br>kernel32.GlobalMemoryStatus<br>и т.д.<br>Я имел в виду большой список API и всего что может быть использовано для генерации HardwareID.<br><br><I>ToBad пишет:<br>Где обновлять ? </I><br>Скорее не &quot;где обновлять&quot; а &quot;кто обновлять&quot;.<br>Имелось в виду что проэкт должен развиваться и наращивать базу. Обновлять его будет автор[ы].<br>А где можно его выложить это по моему не проблема.<br><br><I>ToBad пишет:<br>Кто будет капать алго протов, да и менятся оно может от верси к версии... </I><br>Скорее всего никто не будет. Но возможно у кого то уже есть.<br><br><I>ToBad пишет:<br>Не нужно всё усложнять. </I><br>Я хотел всё упростить. С помощью выше описанной тулзы можно будет снять половину зашит с привязкой к железу даже не включая отладчик !
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145127&amp;user=11974&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=25" class="addthx" data-post="145127"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]Chingachguk[/b]','')">Chingachguk</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/8962.jpg" alt=""><br><span class=txtSm>Ранг: 113.0 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.51'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8962">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 июля 2007 23:30 &middot; Поправил: Chingachguk <br><script type="text/javascript">QU('Chingachguk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Chingachguk" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+--
+<br><br><font size="1"><i>-----<br>The one derivative you manage is the one I abhore (c) Slipknot</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145129&amp;user=8962&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=26" class="addthx" data-post="145129"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2007 00:20 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<b>SergX</b> немного не правильно тебя понял... Но ты в данном случае имеешь ввиду перехват API функций, а эмуль - это нечто другое. Как быть например с CreateFileA(  &#92;.\Scsi... &#92;.\Phys... &#92;.\Smart... или просто &#92;.\C<img src="img/smilies/s1.gif" alt=""> ? Разные методы определения параметров винта существуют, и думаю если делать по уму, то без драйвера не обойтись... Хотя.. хз...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145133&amp;user=702&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=27" class="addthx" data-post="145133"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]k3internal[/b]','')">k3internal</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.1 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.16'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=11537">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2007 03:01 <br><script type="text/javascript">QU('k3internal','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=k3internal" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+Чуваки. Ничего вы не сделаете с CPUID. Забудьте об этом. Я же ответил на васме, что тут единственный вариант - ждать распаковки-тормозить процесс-сигнатурный скан-патч. Что то бльшее в ближайшее время- нереально.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145141&amp;user=11537&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=28" class="addthx" data-post="145141"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]SergX[/b]','')">SergX</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 226.0 (наставник), 67thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=11974">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2007 09:27 &middot; Поправил: SergX <br><script type="text/javascript">QU('SergX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SergX" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<I>ToBad пишет:<br>Как быть например с CreateFileA </I><br>С этим я давно разобрался. Подставляю лоадером любое название винта, серийку и версию.<br><br>А на счёт UniLoader я накидаю на днях пример и выложу.<br>Так будет проще понять о чём я говорил.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=145155&amp;user=11974&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=29" class="addthx" data-post="145155"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]SLV[/b]','')">SLV</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 309.8 (мудрец), 21thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.69'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=663">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2007 10:19 <br><script type="text/javascript">QU('SLV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLV" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=9274&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+&gt; kernel32.DeviceIoControl <br>интересно что ты имел ввиду, упомянув эту апи, провальность идеи или серийник винта через смарт =]
+<br><br><font size="1"><i>-----<br>Shalom ebanats!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=145159&amp;user=663&amp;forum_n=1&amp;topic=9274&amp;page=0&amp;anchor=30" class="addthx" data-post="145159"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=1&amp;topic=9274&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=9274&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=1&amp;topic=9274&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> CPUID hook</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#31" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="9274">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=9274" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

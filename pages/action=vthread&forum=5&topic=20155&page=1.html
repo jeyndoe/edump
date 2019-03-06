@@ -1,0 +1,273 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Трассировка громоздкого CALL - как найти последнюю команду перед RET? - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="В дебаггере есть полезный регистр EIP - показывает следующую команду,но мне понадобилось наоборот узнать предыдущую. Имеется ооочень большая процедура в виде CALL хххххххх, которая по команде F8 проходится за секунду. Но вот">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Трассировка громоздкого CALL - как найти последнюю команду перед RET?</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=0.html">1</a> . <b>2</b> .</b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 17:53 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#1');return false;">#1</a> </span><div align=left><br>
+В дебаггере есть полезный регистр EIP - показывает следующую команду,но мне понадобилось наоборот узнать предыдущую. Имеется ооочень большая процедура в виде CALL хххххххх, которая по команде F8 проходится за секунду. Но вот оттрассировать её как выяснилось хз как. Внутри код упаковщика,прыгающий туда-сюда между 5-6 разными блоками памяти. По F8 гнал минут 5,запутался. CTRL+F8 гнало минут 5,тоже самое - не видно ни конца ни края. Журнал трассировки переполняется на 65535 команде.<br>Т.е. я точно знаю что у нее есть выход,но не могу на него выйти.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308860&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=1" class="addthx" data-post="308860"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 21:08 &middot; Поправил: Lumpy <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#2');return false;">#2</a> </span><div align=left><br>
+<I>yagello пишет:<br>Возможно, просто криво распаковали/восстановили неправильно импорт. И всё.  </I><br>Когда неправильно восстановлен импорт (например ошибка в деморфированной API-шке) то валится эксепшен,а в стеке как правило название неправильной функции. Я уже делал так)<br>У нас New Thread ID бла бла Created ,процесс запущен - при неправильном импорте такое практически невозможно.<br>Единственное,что мне непонятно:<br><img src="http://s1.ipicture.ru/uploads/20120717/X3q2uhGx.png" border="0" align="" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308953&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=2" class="addthx" data-post="308953"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]yagello[/b]','')">yagello</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 72.1 (постоянный), 30thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.56'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=23568">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 21:26 &middot; Поправил: yagello <br><script type="text/javascript">QU('yagello','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yagello" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#3');return false;">#3</a> </span><div align=left><br>
+Кусочек из давних наблюдений<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Win98&nbsp;SE</li><li class="hl_l1">USER32<span class="hl_char">.</span>dll</li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_number">139</span>&nbsp;&nbsp;<span class="hl_char">.</span>BFC059A1&nbsp;DestroyCursor</li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_number">140</span>&nbsp;&nbsp;<span class="hl_char">.</span>BFC059A1&nbsp;DestroyIcon</li><li class="hl_l0">KERNEL32<span class="hl_char">.</span>dll</li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_number">486</span>&nbsp;&nbsp;<span class="hl_char">.</span>BFF748B4&nbsp;GlobalAlloc</li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_number">560</span>&nbsp;&nbsp;<span class="hl_char">.</span>BFF748B4&nbsp;LocalAlloc</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">WinXP&nbsp;SP2</li><li class="hl_l1">USER32<span class="hl_char">.</span>dll</li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_number">150</span>&nbsp;&nbsp;<span class="hl_char">.</span><span class="hl_number">77D4E8CE</span>&nbsp;DestroyCursor</li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_number">151</span>&nbsp;&nbsp;<span class="hl_char">.</span><span class="hl_number">77D4E8CE</span>&nbsp;DestroyIcon</li><li class="hl_l0">KERNEL32<span class="hl_char">.</span>dll</li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_number">491</span>&nbsp;&nbsp;<span class="hl_char">.</span><span class="hl_number">7C80FF2D</span>&nbsp;GlobalAlloc</li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_number">584</span>&nbsp;&nbsp;<span class="hl_char">.</span><span class="hl_number">7C8099BD</span>&nbsp;LocalAlloc</li>        </ol>
+    </div>
+</div></div>
+<br>вот хотя бы так. Где оригинальный файл, зачем нам распакованные?<br><br>Мельком посмотрел распакованное. Был старфорс, ха-ха. Наверняка остались еще какие-то проверки, хотя бы на размер файла.<br>И с TLS лажа какая-то, и указатель на цифровую подпись болтается неприкаянный.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308955&amp;user=23568&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=3" class="addthx" data-post="308955"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 21:39 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#4');return false;">#4</a> </span><div align=left><br>
+Ребята бросьте вы это дело. Это хрю-хрю старфорсу сломлю... Балаболка <img src="img/smilies/s10.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308956&amp;user=4072&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=4" class="addthx" data-post="308956"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 21:47 &middot; Поправил: Lumpy <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#5');return false;">#5</a> </span><div align=left><br>
+<I>tundra37 пишет:<br>Ребята бросьте вы это дело. Это хрю-хрю старфорсу сломлю... Балаболка  </I><br>Почему балаболка,работает же.. Я уже 9 штук поломал,осталось 2 экземпляра с SFFS и 1 с запакованной либой. Старфорс реально лажовая защита,если даже я с нулевым профитом смог его снять <img src="img/smilies/s6.gif" alt=""><br>Скоро буду пробовать снимать что-нибудь более сложное,например <b>SolidShield</b>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308957&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=5" class="addthx" data-post="308957"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]ZaZa[/b]','')">ZaZa</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/3691.jpg" alt=""><br><span class=txtSm>Ранг: 158.5 (ветеран), 219thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.43'>Активность: 0.12<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3691">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 07:04 &middot; Поправил: ZaZa <br><script type="text/javascript">QU('ZaZa','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ZaZa" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#6');return false;">#6</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>Скоро буду пробовать снимать что-нибудь более сложное,например SolidShield </I><br>Да ну нах.... Это ж сколько еще топиков наплодится? А имен то новых сколько будет? <img src="img/smilies/s16.gif" alt=""><br><br>Ну да ладно, будем делать как всегда: терпеть, ругаться, игнорировать, банить, прощать, ждать, закрывать, открывать, наталкивать, ПОМОГАТЬ... <img src="img/smilies/s7.gif" alt=""><br><br><strike>И повторится все как встарь:<br>Пустая банка вазелина,<br>Аптека. Улица. Фонарь!</strike>
+<br><br><font size="1"><i>-----<br>One death is a tragedy, one million is a statistic.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=308968&amp;user=3691&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=6" class="addthx" data-post="308968"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 19:38 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#7');return false;">#7</a> </span><div align=left><br>
+<I>ZaZa пишет:<br>Да ну нах.... Это ж сколько еще топиков наплодится? </I><br>Ну это не ко мне претензии. Был топик по распаковке Стара 4.70, он подвергся атаке троллей и его закрыли.<br>А вопросов ещё уйма.Мы так и не узнали как пофиксить привязку к CPUID (мне ща приходится делать 4 разных дампа для всех компов,а когда куплю ноут ещё 5-й надо будет клепать :s16<img src="img/smilies/s1.gif" alt="">.<br>Мы не узнали,как сделать либу для оптимизации и обрезки виртуальной памяти Стара. Какой-то товарищ с форума полгода назад пытался её написать,но ничего у него не получилось.<br>Но это всё впереди.<br>Мы не узнали,чем отлаживать 3-й Старфорс, который не пашет в 3-кольце. И 4.0 на его базе.<br>Ну и наконец выделенную память стара я тоже не понял как найти с помощью VirtualAlloc, поэтому тупо смотрю на кучу идущих друг за другом секций Private RWE и дамплю всё в один блок. Может быть это дурной тон,но рабочий дамп 10-15 МБ имею легко.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=309012&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=7" class="addthx" data-post="309012"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Nightshade[/b]','')">Nightshade</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4618.gif" alt=""><br><span class=txtSm>Ранг: 241.9 (наставник), 107thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4618">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 20:35 <br><script type="text/javascript">QU('Nightshade','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nightshade" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#8');return false;">#8</a> </span><div align=left><br>
+Солид без патча привязок дампился намного проще стара. Думаю будет меньше идиотских вопросов.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=309015&amp;user=4618&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=8" class="addthx" data-post="309015"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 20:46 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#9');return false;">#9</a> </span><div align=left><br>
+Тогда <b>Obsidium</b> буду ломать. Там тоже импорт погажен, спертый код, ВМ с шифрованием.<br>Жертвы тут:<br><noindex><a href="http://www.bolidesoft.com/rus/products.html" rel="nofollow" target="_blank">http://www.bolidesoft.com/rus/products.html</a></noindex><br>ПеИд правда пишет SysPack v0.1 [Overlay] *
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=309016&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=9" class="addthx" data-post="309016"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 21:39 &middot; Поправил: VodoleY <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#10');return false;">#10</a> </span><div align=left><br>
+Obsidium  хорошая весч.. правда сам не щупал. но ваши обильные каллы.. это видимо либо вызовы примитивов, либо обфусцированный вызовы апи. скорее второе
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=309024&amp;user=17319&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=10" class="addthx" data-post="309024"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]-=AkaBOSS=-[/b]','')">-=AkaBOSS=-</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/26242.png" alt=""><br><span class=txtSm>Ранг: 150.3 (ветеран), 175thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.88'>Активность: 0.16<span style='color:red'>&searr;</span>0.07</span><br>Статус: <a href="action=userinfo&amp;user=26242">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 21:43 &middot; Поправил: -=AkaBOSS=- <br><script type="text/javascript">QU('-=AkaBOSS=-','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=-=AkaBOSS=-" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#11');return false;">#11</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>ПеИд правда пишет SysPack v0.1 [Overlay] *  </I><br>бугага.<br>глянь <noindex><a href="http://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=19966&amp;page=0#3" rel="nofollow" target="_blank">СЮДА</a></noindex> и узнаешь, почему <img src="img/smilies/s5.gif" alt=""><br><br>/ADD<br><I>Lumpy пишет:<br>Но другие анализаторы не лучше </I><br>и какой из этого вывод?<br>походу, ProtectionId таки рулит.. <img src="img/smilies/s3.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=309025&amp;user=26242&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=11" class="addthx" data-post="309025"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июля 2012 21:57 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#12');return false;">#12</a> </span><div align=left><br>
+<b>-=AkaBOSS=-</b><br>Я читал это, бугага то что ПеИдом рекомендуют пользоваться чайникам в запросах на взлом. Странно,не правда ли? <img src="img/smilies/s5.gif" alt=""><br>Но другие анализаторы не лучше:<br><img src="http://s2.ipicture.ru/uploads/20120718/JTuFWJRq.png" border="0" align="" alt=""><br><img src="http://s2.ipicture.ru/uploads/20120718/BWd1OfVQ.png" border="0" align="" alt=""><br><img src="http://s2.ipicture.ru/uploads/20120718/WZAdS1BR.png" border="0" align="" alt=""><br><br>А хваленый ExeInfo даже Старфорс не знает :<br><img src="http://s2.ipicture.ru/uploads/20120718/adWNnPOU.png" border="0" align="" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=309026&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=12" class="addthx" data-post="309026"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 июля 2012 13:23 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=1#13');return false;">#13</a> </span><div align=left><br>
+Собственно, <img src="img/smilies/s26.gif" alt=""> Nuff said.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=309149&amp;user=1556&amp;forum_n=5&amp;topic=20155&amp;page=1&amp;anchor=13" class="addthx" data-post="309149"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=0.html">1</a> . <b>2</b> .</b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Трассировка громоздкого CALL - как найти последнюю команду перед RET?</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=20155" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

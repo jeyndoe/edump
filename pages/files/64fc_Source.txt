@@ -1,0 +1,117 @@
+
+ { Чужой процесс был запущен в режиме SUSPENDED }
+
+ { Ну и как обычно, надо смотреть начинаю с конца }
+ 
+ procedure EndlessLoopPE;
+const
+ Code : WORD = $FEEB;
+ error : LPCTSTR = 'Произошла ошибка при зацикливании EP';
+var
+ OriginalData : WORD;
+ Trash : WORD;                                                       /////////////////////////////
+ Temp_Protect : Cardinal;
+ nBytesRead, nBytesWritten : Cardinal;                              //  Эта процедура работает  //
+begin
+try                                                                 //  нормально               //
+ VirtualProtectEx(pInfo.hProcess, PPointer(EntryPoint), 2,             
+                  PAGE_EXECUTE_READWRITE, Temp_Protect);            /////////////////////////////
+ ReadProcessMemory(pInfo.hProcess, PPointer(EntryPoint),
+                   @OriginalData, 2, nBytesRead);
+ WriteProcessMemory(pInfo.hProcess, PPointer(EntryPoint), @Code,
+                    SizeOf(WORD), nBytesWritten);
+ VirtualProtectEx(pInfo.hProcess, PPointer(EntryPoint), 2,
+                  Temp_Protect, Temp_Protect);
+
+ ResumeThread(pInfo.hThread);
+ SuspendThread(pInfo.hThread);
+
+ VirtualProtectEx(pInfo.hProcess, PPointer(EntryPoint), 2,
+                  PAGE_EXECUTE_READWRITE, Temp_Protect);
+ ReadProcessMemory(pInfo.hProcess, PPointer(EntryPoint), @Trash,
+                     2, nBytesRead);
+ WriteProcessMemory(pInfo.hProcess, PPointer(EntryPoint),
+                    @OriginalData, SizeOf(WORD), nBytesWritten);
+ VirtualProtectEx(pInfo.hProcess, PPointer(EntryPoint), 2,
+                  Temp_Protect, Temp_Protect);
+
+except MessageBox(Handle, error, NIL, MB_OK);
+end; // try...except
+
+end; // EndlessLoopPE
+
+function QueryESPValue( RVAs : DWORD ) : DWORD;
+const
+ Code : WORD = $FEEB;
+var
+ OriginalData : WORD;
+ Trash : WORD;
+ Temp_Protect : Cardinal;
+ nBytesRead, nBytesWritten : Cardinal;
+begin
+ Result := 0;
+ VirtualProtectEx(pInfo.hProcess, PPointer(RVAs), SizeOf(WORD),
+                  PAGE_EXECUTE_READWRITE, Temp_Protect);
+ ReadProcessMemory(pInfo.hProcess, PPointer(RVAs), @OriginalData,
+                   SizeOf(WORD), nBytesRead);
+ WriteProcessMemory(pInfo.hProcess, PPointer(RVAs), @Code,
+                      SizeOf(WORD), nBytesWritten);
+ VirtualProtectEx(pInfo.hProcess, PPointer(RVAs), SizeOf(WORD),
+                  Temp_Protect, Temp_Protect);
+
+ ResumeThread(pInfo.hThread);
+ SuspendThread(pInfo.hThread);
+
+ VirtualProtectEx(pInfo.hProcess, PPointer(RVAs), SizeOf(WORD),
+                  PAGE_EXECUTE_READWRITE, Temp_Protect);
+ ReadProcessMemory(pInfo.hProcess, PPointer(RVAs), @Trash,
+                   SizeOf(WORD), nBytesRead);
+ WriteProcessMemory(pInfo.hProcess, PPointer(RVAs), @OriginalData,
+                      SizeOf(WORD), nBytesWritten);
+ VirtualProtectEx(pInfo.hProcess, PPointer(RVAs), SizeOf(WORD),
+                  Temp_Protect, Temp_Protect);
+
+ GetThreadContext(pInfo.hThread, context);                         /////////////////////////////
+ Result := context.Esp;                                            //                          //
+                                                                   // С этим GetThreadContext //
+end; // QueryESPValue                                             // никак разобраться не могу //
+                                                                   ////////////////////////////
+ 
+procedure DllContextLoop;
+const
+ TrueName = 'vp.dll';
+ Opcode : DWORD = $F00015FF;
+var
+ Something : DWORD;
+ nBytesRead : Cardinal;
+ EIPValue : Integer;
+ EIPPtr : DWORD;
+ ESPValue : DWORD;
+ Result : Boolean;
+begin
+ Result := False;
+ EIPValue := EntryPoint;
+repeat
+ ReadProcessMemory(pInfo.hProcess, PPointer(EIPValue),
+                   @Something, SizeOf(DWORD), nBytesRead);
+ EIPPtr := EIPValue;
+ InterlockedIncrement(EIPValue);
+if Something = Opcode then
+begin
+ ESPValue := QueryESPValue(EIPPtr);        ///////////////////////////////////////////////////
+if PChar(ESPValue) = TrueName then         //                                               //
+begin                                      //  Тут начинается какая-то бодяга со значением  //
+ Result := True;                           //  регистра ESP                                 //
+end;                                       ///////////////////////////////////////////////////
+end;                                     
+until
+ Result = True;
+
+end; // DllContextLoop 
+
+procedure RunBase;             /////////////////////////////
+begin                          //                         //
+ EndlessLoopPE;                // Это типа самое начало   //
+ DllContextLoop;               //                         //
+                               /////////////////////////////
+end; // RunBase

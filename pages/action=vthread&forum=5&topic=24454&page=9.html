@@ -1,0 +1,575 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Введение в реверсинг с нуля, используя IDA PRO - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Привет Всем. Здесь буду потихоньку выкладывать новый курс по ИДЕ (перевод статей автора Рикардо Нарваха) --&gt; Link &lt;-- А тут, красивые PDF. --&gt; Link &lt;-- Как только закончу снимать отладку, перейду на реверсинг с нуля и">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=40607'>vsv1</a>, <a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a>, <a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Введение в реверсинг с нуля, используя IDA PRO</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=8.html">&lt;&lt;</a> <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=0.html">1</a> ... <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=8.html">9</a> . <b>10</b> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=10.html">11</a> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=12.html">13</a> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=10.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 ноября 2016 22:13 &middot; Поправил: yashechka <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#1');return false;">#1</a> </span><div align=left><br>
+Привет Всем.<br>Здесь буду потихоньку выкладывать новый курс по ИДЕ (перевод статей автора Рикардо Нарваха)<br><noindex><a href="https://wasm.in/blogs/category/issledovanie-programm.19/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>А тут, красивые PDF.<img src="img/smilies/s1.gif" alt=""><br><noindex><a href="http://yasha.su/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>Как только закончу снимать отладку, перейду на реверсинг с нуля и на что-то ещё.<br><br>Буду рад услышать любые комментарии по курсу<br><noindex><a href="https://www.youtube.com/playlist?list=PL59fvn5FIiQG0CrnALLgXzdpDTOk0hrz2" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>Также всем Спасибо за лайки.<br><br>===<br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-1.3/" rel="nofollow" target="_blank">--&gt; 01 &lt;--</a></noindex> - Знакомство с IDA PRO.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-2.4/" rel="nofollow" target="_blank">--&gt; 02 &lt;--</a></noindex> - Системы счисления.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-3.5/" rel="nofollow" target="_blank">--&gt; 03 &lt;--</a></noindex> - Регистры процессора.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-4.7/" rel="nofollow" target="_blank">--&gt; 04 &lt;--</a></noindex> - Стек и самые простые инструкции.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-5.549/" rel="nofollow" target="_blank">--&gt; 05 &lt;--</a></noindex> - Инструкции LEA и MOV.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-6.550/" rel="nofollow" target="_blank">--&gt; 06 &lt;--</a></noindex> - Математические инструкции.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-7.554/" rel="nofollow" target="_blank">--&gt; 07 &lt;--</a></noindex> - Безусловный переход JMP, CALL и RET.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-8.556/" rel="nofollow" target="_blank">--&gt; 08 &lt;--</a></noindex> - Сегменты.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-9.559/" rel="nofollow" target="_blank">--&gt; 09 &lt;--</a></noindex> - Загрузчик и первые функции.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-10.561/" rel="nofollow" target="_blank">--&gt; 10 &lt;--</a></noindex> - Запуск встроенного отладчика.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-11.562/" rel="nofollow" target="_blank">--&gt; 11 &lt;--</a></noindex> - Флаги процессора.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-12.563/" rel="nofollow" target="_blank">--&gt; 12 &lt;--</a></noindex> - Первый реверс.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-13.575/" rel="nofollow" target="_blank">--&gt; 13 &lt;--</a></noindex> - IPYTHON.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-14.576/" rel="nofollow" target="_blank">--&gt; 14 &lt;--</a></noindex> - Упакованные файлы.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-15.577/" rel="nofollow" target="_blank">--&gt; 15 &lt;--</a></noindex> - Распаковка PE файла.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-16.578/" rel="nofollow" target="_blank">--&gt; 16 &lt;--</a></noindex> - Скрипт и IAT.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-17.579/" rel="nofollow" target="_blank">--&gt; 17 &lt;--</a></noindex> - Удаленная отладка.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-18.580/" rel="nofollow" target="_blank">--&gt; 18 &lt;--</a></noindex> - Практика.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-19.582/" rel="nofollow" target="_blank">--&gt; 19 &lt;--</a></noindex> - Реверсинг крекми CRUEHEADa.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-20.583/" rel="nofollow" target="_blank">--&gt; 20 &lt;--</a></noindex> - Уязвимости.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-21.584/" rel="nofollow" target="_blank">--&gt; 21 &lt;--</a></noindex> - Переполнение буфера в стеке.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-22.586/" rel="nofollow" target="_blank">--&gt; 22 &lt;--</a></noindex> - Различая в машинном коде.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-23.588/" rel="nofollow" target="_blank">--&gt; 23 &lt;--</a></noindex> - Практика.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-24.593/" rel="nofollow" target="_blank">--&gt; 24 &lt;--</a></noindex> - Практика.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-25.594/" rel="nofollow" target="_blank">--&gt; 25 &lt;--</a></noindex> - Структуры.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-26.595/" rel="nofollow" target="_blank">--&gt; 26 &lt;--</a></noindex> - Структуры.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-27-1.598/" rel="nofollow" target="_blank">--&gt; 27 &lt;--</a></noindex> - Структуры. (<noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-27-2.601/" rel="nofollow" target="_blank">--&gt; 27.2 &lt;--</a></noindex>)</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-28.602/" rel="nofollow" target="_blank">--&gt; 28 &lt;--</a></noindex> - Структуры.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-29.610/" rel="nofollow" target="_blank">--&gt; 29 &lt;--</a></noindex> - Подготовка к CVE.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-30.611/" rel="nofollow" target="_blank">--&gt; 30 &lt;--</a></noindex> - CVE-2008-4654.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-31-chast-1.612/" rel="nofollow" target="_blank">--&gt; 31 &lt;--</a></noindex> - POC для CVE. (<noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-31-chast-2.623/" rel="nofollow" target="_blank">--&gt; 31.2 &lt;--</a></noindex>)</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-32.625/" rel="nofollow" target="_blank">--&gt; 32 &lt;--</a></noindex> - Добавляем WINDBG.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-33.626/" rel="nofollow" target="_blank">--&gt; 33 &lt;--</a></noindex> - Подлючение MONA.PY.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-34.629/" rel="nofollow" target="_blank">--&gt; 34 &lt;--</a></noindex> - Знакомство с DEP.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-35.630/" rel="nofollow" target="_blank">--&gt; 35 &lt;--</a></noindex> - DEP и NO DEP.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-36.633/" rel="nofollow" target="_blank">--&gt; 36 &lt;--</a></noindex> - DEP и NO DEP.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-37.634/" rel="nofollow" target="_blank">--&gt; 37 &lt;--</a></noindex> - DEP и NO DEP.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-38.635/" rel="nofollow" target="_blank">--&gt; 38 &lt;--</a></noindex> - SEH и CANARY.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-39.627/" rel="nofollow" target="_blank">--&gt; 39 &lt;--</a></noindex> - DEP, SEH + CANARY.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-40.637/" rel="nofollow" target="_blank">--&gt; 40 &lt;--</a></noindex> - Универсальный шеллкод.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-41.638/" rel="nofollow" target="_blank">--&gt; 41 &lt;--</a></noindex> - Строки в куче, стеке и сегменте данных.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-42.639/" rel="nofollow" target="_blank">--&gt; 42 &lt;--</a></noindex> - Решение упражнения 41А.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-43.640/" rel="nofollow" target="_blank">--&gt; 43 &lt;--</a></noindex> - Решение упражнения 41B.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-44.641/" rel="nofollow" target="_blank">--&gt; 44 &lt;--</a></noindex> - HEAP.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-45.642/" rel="nofollow" target="_blank">--&gt; 45 &lt;--</a></noindex> - Упражнение 41B.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-46.643/" rel="nofollow" target="_blank">--&gt; 46&lt;--</a></noindex> - Практика с кучей.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-47.644/" rel="nofollow" target="_blank">--&gt; 47&lt;--</a></noindex> - LOW FRAGMENTATION HEAP.</b><br><b><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-48-1.645/" rel="nofollow" target="_blank">--
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=369799&amp;user=31053&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=1" class="addthx" data-post="369799"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=26065" title="28-11-2016 19:04, ранг:80.8" target="_blank">Apocalypse</a>, <a href="action=userinfo&user=31361" title="29-11-2016 05:31, ранг:25.8" target="_blank">zds</a>, <a href="action=userinfo&user=38652" title="29-11-2016 08:38, ранг:6.5" target="_blank">srm60171</a>, <a href="action=userinfo&user=3085" title="29-11-2016 09:19, ранг:244.3" target="_blank">=TS=</a>, <a href="action=userinfo&user=34475" title="29-11-2016 12:10, ранг:2.2" target="_blank">gleco1</a>, <a href="action=userinfo&user=2585" title="29-11-2016 14:22, ранг:1006.9" target="_blank">Gideon Vi</a>, <a href="action=userinfo&user=11304" title="29-11-2016 14:37, ранг:190.9" target="_blank">Djeck</a>, <a href="action=userinfo&user=31325" title="29-11-2016 19:35, ранг:6.2" target="_blank">zNob</a>, <a href="action=userinfo&user=18316" title="02-12-2016 02:14, ранг:216.0" target="_blank">SReg</a>, <a href="action=userinfo&user=29754" title="02-12-2016 14:30, ранг:64.7" target="_blank">ksol</a>, <a href="action=userinfo&user=41809" title="24-12-2016 15:24, ранг:0.0" target="_blank">filyaxxxcom</a>, <a href="action=userinfo&user=8852" title="01-02-2017 01:49, ранг:22.6" target="_blank">N_E_O</a>, <a href="action=userinfo&user=37000" title="01-02-2017 14:21, ранг:0.0" target="_blank">Orlyonok</a>, <a href="action=userinfo&user=33253" title="24-03-2017 15:19, ранг:23.2" target="_blank">Abraham</a>, <a href="action=userinfo&user=3520" title="10-05-2017 08:07, ранг:585.0" target="_blank">mak</a>, <a href="action=userinfo&user=17432" title="28-05-2017 12:00, ранг:453.8" target="_blank">ClockMan</a>, <a href="action=userinfo&user=17319" title="12-09-2017 06:03, ранг:474.9" target="_blank">VodoleY</a>, <a href="action=userinfo&user=7" title="13-09-2017 07:07, ранг:531.0" target="_blank">Bad_guy</a>, <a href="action=userinfo&user=4093" title="16-09-2017 08:07, ранг:129.0" target="_blank">verdizela</a>, <a href="action=userinfo&user=29533" title="18-09-2017 04:22, ранг:21.5" target="_blank">negoday</a>, <a href="action=userinfo&user=42070" title="30-09-2017 21:24, ранг:0.0" target="_blank">_k0NkurS</a>, <a href="action=userinfo&user=3852" title="30-09-2017 21:39, ранг:7.7" target="_blank">TOM_RUS</a>, <a href="action=userinfo&user=5173" title="02-10-2017 06:40, ранг:322.8" target="_blank">vnekrilov</a>, <a href="action=userinfo&user=43073" title="02-10-2017 22:53, ранг:2.3" target="_blank">anonymous</a>, <a href="action=userinfo&user=4554" title="09-11-2017 14:55, ранг:217.8" target="_blank">HandMill</a>, <a href="action=userinfo&user=36838" title="13-11-2017 15:18, ранг:2.7" target="_blank">DICI BF</a>, <a href="action=userinfo&user=43282" title="23-11-2017 07:09, ранг:0.2" target="_blank">olafudaf</a>, <a href="action=userinfo&user=35985" title="14-12-2017 00:44, ранг:0.0" target="_blank">tRuNKator</a>, <a href="action=userinfo&user=27749" title="27-01-2018 00:28, ранг:2.0" target="_blank">CoolMax_86</a>, <a href="action=userinfo&user=31275" title="26-02-2018 17:19, ранг:191.1" target="_blank">TryAga1n</a>, <a href="action=userinfo&user=15749" title="08-03-2018 13:21, ранг:0.6" target="_blank">AtilkaShooter</a>, <a href="action=userinfo&user=17048" title="20-03-2018 02:06, ранг:105.8" target="_blank">CyberGod</a>, <a href="action=userinfo&user=37654" title="25-03-2018 16:28, ранг:9.0" target="_blank">BiteMoon</a>, <a href="action=userinfo&user=43704" title="07-04-2018 20:56, ранг:0.5" target="_blank">d745150</a>, <a href="action=userinfo&user=22161" title="02-05-2018 07:33, ранг:0.0" target="_blank">mr_yoda2</a>, <a href="action=userinfo&user=39306" title="08-05-2018 08:03, ранг:0.6" target="_blank">IranR</a>, <a href="action=userinfo&user=5759" title="20-05-2018 19:01, ранг:0.0" target="_blank">Nau</a>, <a href="action=userinfo&user=23008" title="31-05-2018 08:15, ранг:0.0" target="_blank">AlxVD</a>, <a href="action=userinfo&user=42879" title="26-06-2018 14:27, ранг:0.0" target="_blank">needmic</a>, <a href="action=userinfo&user=34365" title="05-11-2018 14:05, ранг:10.0" target="_blank">Diabolic</a>, <a href="action=userinfo&user=21572" title="05-11-2018 14:33, ранг:57.6" target="_blank">hlmadip</a>, <a href="action=userinfo&user=21408" title="11-11-2018 16:53, ранг:76.9" target="_blank">BAHEK</a>, <a href="action=userinfo&user=43700" title="20-11-2018 13:02, ранг:2.8" target="_blank">CKAP</a>, <a href="action=userinfo&user=46997" title="02-12-2018 00:16, ранг:0.0" target="_blank">Norinke</a>, <a href="action=userinfo&user=39486" title="09-12-2018 11:47, ранг:0.0" target="_blank">Znoy</a>, <a href="action=userinfo&user=38906" title="07-01-2019 15:28, ранг:0.0" target="_blank">YoY</a>, <a href="action=userinfo&user=332" title="15-01-2019 15:11, ранг:289.4" target="_blank">Medsft</a>, <a href="action=userinfo&user=46047" title="27-01-2019 12:59, ранг:1.2" target="_blank">oxiusova</a>, <a href="action=userinfo&user=49926" title="14-06-2019 03:36, ранг:0.0" target="_blank">ww00</a>, <a href="action=userinfo&user=701" title="04-07-2019 14:54, ранг:8.6" target="_blank">awoland</a>, <a href="action=userinfo&user=6946" title="29-07-2019 13:25, ранг:752.9" target="_blank">Isaev</a>, <a href="action=userinfo&user=25117" title="29-08-2019 07:43, ранг:10.0" target="_blank">rukop84</a>, <a href="action=userinfo&user=8605" title="08-09-2019 18:58, ранг:94.1" target="_blank">Rio</a>, <a href="action=userinfo&user=7963" title="09-09-2019 04:01, ранг:125.2" target="_blank">Hugo Chaves</a>, <a href="action=userinfo&user=51110" title="13-09-2019 18:26, ранг:0.1" target="_blank">papavlo</a>, <a href="action=userinfo&user=11966" title="15-10-2019 16:08, ранг:573.8" target="_blank">r_e</a>, <a href="action=userinfo&user=36606" title="09-06-2020 10:48, ранг:12.0" target="_blank">ac86</a>, <a href="action=userinfo&user=55577" title="12-06-2020 17:39, ранг:0.0" target="_blank">ys72</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 мая 2019 20:34 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#2');return false;">#2</a> </span><div align=left><br>
+Может это поможет?<br><noindex><a href="https://github.com/pgarba/SwitchIDAProLoader" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=394555&amp;user=31053&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=2" class="addthx" data-post="394555"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 мая 2019 20:35 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#3');return false;">#3</a> </span><div align=left><br>
+<b>PhilXe</b><br>Все кроме определения библиотечных функций тянет на отдельную утилиту, конвертирующую прошивку в правильный бин. Делать для этого плагин необязательно. А загружать в иде можно прошивки любого размера, выбираешь архитектуру и на диалоге выбора процессора жмешь cancel.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=394556&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=3" class="addthx" data-post="394556"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 мая 2019 20:52 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#4');return false;">#4</a> </span><div align=left><br>
+<b>yashechka</b>,<br>благодарю за ссылку, но это не для 8051 и не увидел исходников, в которых можно что-то подчерпнуть для моей задачи, кроме того эти загрузчики, как я понял, написаны с использованием СДК, а мне показалось, что для моих загрузчиков должно хватить idc-скрипта или на python-е, хотя из-за недостатка опыта может и ошибаюсь<br><br><b>f13nd</b>,<br>благодарю за ответ, но поскольку прошивки отличаются, то вручную каждый раз выбирать я уже замучился и-за разных адресов и раскладки в памяти по сегментам. Кроме того непонятно, как переименовывать битовые переменные (нашел только способ изменения руками в i51.cfg файле, но для каждой версии приходится плодить новый вариант), также не понял как менять из idc-скрипта некоторые байты, ну, и со станицами кода не понятно как поступить, т.к. адресное пространство микроконтроллера 64К и при выходе из подпрограмм ИДА сваливается на нулевую страницу... Как бы к этому подступиться?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=394558&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=4" class="addthx" data-post="394558"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 мая 2019 21:09 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#5');return false;">#5</a> </span><div align=left><br>
+Это конечно не Ида, но вот посмотрите <noindex><a href="https://habr.com/ru/post/444562/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br><b>Добавлено спустя 2 минуты</b><br><noindex><a href="https://github.com/fireeye/idawasm/blob/master/idawasm/processor.py" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=394561&amp;user=31053&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=5" class="addthx" data-post="394561"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="10-05-2019 18:23, ранг:0.2" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 мая 2019 22:10 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#6');return false;">#6</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>что для моих загрузчиков должно хватить idc-скрипта или на python-е </I><br>idc.loadfile() и ida_bytes.patch_bytes() в принципе позволяют из скрипта загружать файлы. Наверное можно так сделать, но если собираешься перед загрузкой файл анализировать, про idc лучше забудь, только петон. Про сегменты честно говоря не представляю себе в чем проблема, единственный проц с сегментацией, который я нормально знаю, прекрасно себя чувствует без условного деления на сегменты, вся межсегментная адресация срастается правильно.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=394563&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=6" class="addthx" data-post="394563"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="10-05-2019 22:16, ранг:0.2" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 11 мая 2019 01:28 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#7');return false;">#7</a> </span><div align=left><br>
+<I>f13nd пишет:<br>idc.loadfile() и ida_bytes.patch_bytes() в принципе позволяют из скрипта загружать файлы. Наверное можно так сделать, но если собираешься перед загрузкой файл анализировать, про idc лучше забудь, только петон </I><br>благодарю, сначала попробую на idc, т.к. с python-ом я пока вообще не знаком, а если не получится, тогда буду просить помощи и пытаться смотреть примеры на нем. К сегментам вернусь после того, как что-то первоначальное заработает...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=394565&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=7" class="addthx" data-post="394565"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 мая 2019 14:13 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#8');return false;">#8</a> </span><div align=left><br>
+мне нужно было решить задачи:<br>1) опознать файл;<br>2) выбрать процессор;<br>3) загрузить файл;<br>4) модифицировать его<br>У меня было ИДА5.5, но у нее нет функционала пользовательских загрузчиков на idc и python, который появился только с версии 5.6, поэтому обновился до версии 5.7.<br>Первую задачу в черновом варианте удалось решить на основе изучения примера загрузчика БИОС в ИДА, но выбрать тип процессора не удалось. Возникло предположение, что нужна другая версия, начал искать и обновился до версии 6.1, в которой удалось выбрать тип процессора, но не удалось выбрать конкретный процессор. Долго бился, но не получилось, поэтому предположил, что нужна более старшая версия ИДА.<br>Нашел на просторах 6.8, но с упоминанием о какой-то проблеме, поэтому начал искать другую и нашел 7.0.<br>Версия 7.0 оказалась уже с установщиком, который все установил, и мне удалось выбрать процессор, однако, появился доп.вопрос:<br>вместе с установщиком имеется какой-то патч -- для чего он? нужно ли его применить? и т.п.<br>или же можно продолжить работы и никакой потом проблемы не возникнет в дальнейшем? либо наоборот нужно сначала применить патч во избежание в дальнейшем чего-то мне неизвестного сейчас?<br><br>Подскажите, пожалуйста, новичку.<br>Заранее благодарю всех откликнувшихся
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395148&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=8" class="addthx" data-post="395148"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 мая 2019 14:35 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#9');return false;">#9</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>но не удалось выбрать конкретный процессор </I><br>Насколько могу судить, выбор конкретного проца это применение профиля из \cfg (только он и содержит упоминания о конкретных процессорах). Если не найдешь апи для этого, файл всегда можно пропарсить питоноскриптом и применить его содержимое с помощью idc.set_name(), idc.create_dword() и т.д.<br><I>PhilXe пишет:<br>вместе с установщиком имеется какой-то патч -- для чего он? </I><br>Скорей всего это патч для блек-листа, чтобы более новая пиратская ида при открытии базы, созданной старой пиратской идой, не заявила, что пиратство это плохо и не закрылась.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395149&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=9" class="addthx" data-post="395149"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="27-05-2019 11:58, ранг:0.6" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 мая 2019 15:09 &middot; Поправил: PhilXe <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#10');return false;">#10</a> </span><div align=left><br>
+<I>f13nd пишет:<br>выбор конкретного проца это применение профиля из \cfg (только он и содержит упоминания о конкретных процессорах) </I><br>да, я нашел там файл i51.cfg, в котором есть образцы нескольких разных моделей процессоров этого семейства и создал по образцу несколько своих, но из моего загрузчика только выскакивает окно ИДЫ с просьбой подтвердить выбор (или изменить), а как из скрипта выбрать сразу и исключить доп.вопросы я пока не понял<br><I>f13nd пишет:<br>Если не найдешь апи для этого, файл всегда можно пропарсить питоноскриптом и применить его содержимое с помощью idc.set_name(), idc.create_dword() и т.д. </I><br>а есть какие-то примеры как этим пользоваться на практике?<br>и еще попутно вопрос: сами процессоры семейства i8051 8-разрядные с 16-разрядным адресным пространством, соответственно, ИДА позволяет для них в качестве данных задать либо 8-битный байт, либо 16-битное слово, но для меня требуется некоторые данные представлять в виде 32-битных двойных слов -- можно ли этого добиться через интерфейс или из скрипта idc / py ?<br><I>f13nd пишет:<br>это патч для блек-листа </I><br>т.е. если нет перспектив когда-то в будущем открывать свои базы с разобранными файлами в более новых версиях ИДЫ, то патч можно не использовать? а когда появится версия свежее 7.0 тогда его и применить?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395150&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=10" class="addthx" data-post="395150"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 мая 2019 15:54 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#11');return false;">#11</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>а есть какие-то примеры как этим пользоваться на практике? </I><br>Ну вот например, делалось давно, idc внутри питона. На голом питоне не сильно будет отличаться <noindex><a href="http://sendfile.su/1496647" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex> Вообще встроенные профили иды можно не использовать, в ней много каких нужных процессоров просто нет. Нажимаешь cancel при выборе процессора, а сам профиль грузишь таким скриптом и все. Если таки нужны идапрофили, парсь их регулярными выражениями, в интернете полно примеров.<br><I>PhilXe пишет:<br>требуется некоторые данные представлять в виде 32-битных двойных слов </I><br>Скорей всего достаточно будет создать 32битную область памяти. Где-то была тема про кофеварку, там 16битный проц где без проблем дворды объявляются.<br><I>PhilXe пишет:<br>патч можно не использовать? </I><br>Можно и не использовать. Не понадобится - не пользуйся, я обычно патчу сам что надо, всякие сомнительные патчи без описания не ставлю.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395151&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=11" class="addthx" data-post="395151"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="28-05-2019 19:44, ранг:0.6" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июня 2019 15:37 &middot; Поправил: PhilXe <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#12');return false;">#12</a> </span><div align=left><br>
+продвижки с версией 7.0 есть, т.е. загрузчик распознает файл и правильно его загружает, но при этом есть ряд проблем, которые хотелось бы все-таки как-то решить:<br>1) после загрузки я создаю 32-битный сегмент, но это не позволяет представлять данные в виде 32-битных двойных слов (только 8-битный байт или 16-битное слово). В результате экспериментов было установлено, что это из-за завязки не на битность сегмента, а из-за выбранного конкретного ассемблера, т.е. если вручную заменить в Target Assembler выставленный по-умолчанию ASMI на 2500A.D., то 32-битные данные можно выбирать и в 16-битном сегменте. Соответственно, вопрос: как из idc-скрипта заменить Target Assembler на нужный?<br><br>2) попутно вопрос: как  из idc-скрипта заменить значение Number of opcode bytes вместо нуля по-умолчанию на нужное, например, 3 или 4?<br><br>3) поскольку я пока не нашел способа как после задания в idc-скрипте целевого процессора (семейство 8051) дополнительно выбрать его конкретную модель, прописанную в i51.cfg, то пришлось там удалить все предустановленные модели и создать одну фиктивную, хотя это и не убрало появление этого диалогового окна. Однако, несмотря на то, что у этого фиктивного процессора я указал только сегменты, но ИДА самостоятельно задала точки входа и пометила векторы прерываний по адресам 0х0003, 0х000В, 0х0013, 0х001В, 0х0023 и 0х0033, хотя в моей модели нет последнего вектора аппаратно, а остальные программно не используются, поэтому по этим адресам находятся вместо кода данные, что вызывает неправильное дизассемблирование. Я попытался посмотреть количество точек входа сразу после загрузки функцией GetEntryPointQty() и получаю значение 0, что правильно, далее я создал нужные мне 3 точки входа для реальных векторов прерываний и через GetEntryPointQty() проверил их количество, но в базе ИДА это не изменило ее поведения, т.е. она по-прежнему дизассемблирует исходя из &quot;ее&quot; списка точек входа. Я посмотрел через &lt;Ctrl-E&gt; этот список и увидел в нем три &quot;моих&quot; точки и еще 7 &quot;ее&quot; точек (6 векторов и адрес сброса 0х0000), причем &quot;мои&quot; точки имеют заданное мной значение ординала, а &quot;ее&quot; точки для 6-ти векторов с пустыми ординалами, а для адреса сброса указан {main entry]. Чтобы я не указывал в файле i51.cfg для фиктивного процессора изменения поведения ИДА не происходит, из чего складывается впечатление, что при отсутствии выбора из загрузчика модели конкретного процессора уже после отработки загрузчика ИДА задает какие-то свои внутренние предустановки, соответсвенно, вопрос: можно ли их поменять и/или переопределить из idc-скрипта?<br><br>4) создаваемые мной в загрузчике сегменты для кода (CODE), данных (DATA) и внутренней памяти (RAM) отрабатываются нормально, но мне не удается создать сегмент для области спец.регистров микроконтроллера (FSR) так, чтобы его адресация была не с нуля, а с адреса 0х80, хотя ИДА сама создает этот сегмент правильно, но тогда из моего загрузчика нет возможности задать имена этим спец.регистрам, соответственно, вопрос: как создать такой сегмент с адресацией не с нуля, а с произвольным значением?<br><br>5) при попытке разных вариантов обходных решений по проблемам п.п.3,4 мне понадобилось выполнить из idc-скрипта запуск повторного анализа, но как это сделать я не нашел, соответственно, вопрос: как из idc-скрипта выполнить reAnalyze?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395330&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=12" class="addthx" data-post="395330"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2019 03:22 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#13');return false;">#13</a> </span><div align=left><br>
+1. idc.get_inf_attr(38) - номер выбранного ассемблера, idc.set_target_assembler(1) - установка второго<br>2. Наверное тебе надо options -&gt; general -&gt; number of opcode bytes (non-graph)<br>3. idc.del_items(0,0x0002,BADADDR)<br>4. Скорей всего никак, насколько могу судить это не сегмент вообще (не содержит неинициализированных данных), захардкожен самим дизасм-модулем. Причина в отсутствии в иде поддержки адресных пространств.<br>5. idc.auto_mark_range(0,BADADDR,40)
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395340&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=13" class="addthx" data-post="395340"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="09-06-2019 13:13, ранг:0.8" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2019 20:03 &middot; Поправил: PhilXe <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#14');return false;">#14</a> </span><div align=left><br>
+Уважаемый <b>f13nd</b>,<br>благодарю за ответы.<br>1) сработало отлично, но вопрос: а как удалось узнать, что именно attr(38)?<br>2) я в файле ida.cfg задал OPCODE_BYTES = 4, но в некоторых случаях хотелось бы не руками выставлять 3, а из загрузчика в зависимости от анализа прошивки -- может быть тоже через какой-то attr можно к этому добраться?<br>3) с этим пока разбираюсь в части конкретного применения;<br>4) самое интересное то, что если я создаю этот сегмент самостоятельно, то ИДА этот сегмент отображает с адресацией, начинающейся с нуля, но при дизассемблировании работает правильно, т.е. как буд-то бы с ее созданным сегментом, который начинается с адресации 0х80...<br>5) сработало отлично, но возник доп.вопрос: нужно ли после этого использовать команду auto_wait() ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395345&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=14" class="addthx" data-post="395345"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2019 20:43 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#15');return false;">#15</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>а как удалось узнать, что именно attr(38)? </I><br>Открой \idc\idc.idc, там расписаны апи и константы.<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">#define&nbsp;INF_ASMTYPE&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">38</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;<span class="hl_function"><b>char</b></span><span class="hl_comment">;    target assembler number (0..n)</span></li>        </ol>
+    </div>
+</div></div>
+<br><I>PhilXe пишет:<br>OPCODE_BYTES = 4 </I><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">idc<span class="hl_char">.</span>set_inf_attr<span class="hl_char">(</span>INF_BINPREF<span class="hl_char">,</span><span class="hl_number">3</span><span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div>
+<br><I>PhilXe пишет:<br>нужно ли после этого использовать команду auto_wait() ?</I><br>В описании так и сказано:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">/</span><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;Wait&nbsp;for&nbsp;the&nbsp;<span class="hl_function"><b>end</b></span>&nbsp;of&nbsp;autoanalysis</li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;<span class="hl_function"><b>This</b></span>&nbsp;function&nbsp;will&nbsp;suspend&nbsp;execution&nbsp;of&nbsp;IDC&nbsp;program</li><li class="hl_l0"><span class="hl_char">/</span><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;till&nbsp;the&nbsp;autoanalysis&nbsp;queue&nbsp;is&nbsp;empty<span class="hl_char">.</span></li><li class="hl_l1"><span class="hl_function"><b>void</b></span>&nbsp;auto_wait<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395346&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=15" class="addthx" data-post="395346"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="10-06-2019 14:43, ранг:1.4" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2019 22:10 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#16');return false;">#16</a> </span><div align=left><br>
+а можно ли из idc-скрипта запросить через открытое окно выбор из предложенных вариантов?<br><br><b>Добавлено спустя 31 минуту</b><br>и еще вопрос:<br>пытаюсь использовать сигнатуры для библиотечных функций, поэтому не зная правильной методики поступил так -- в дизассемблированном коде отыскал такие функции самостоятельно, скопировал оп-коды в отдельный pat-файл заменяя изменяемые при компиляции и линковке байты на точки, но такой процесс оказался несколько трудоемким. В раздумьях, как бы попробовать автоматизировать это из ИДы, хотя в идеале бы как-то попробовать разобрать сами библиотеки компилятора...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395347&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=16" class="addthx" data-post="395347"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2019 23:23 &middot; Поправил: f13nd <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#17');return false;">#17</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>а можно ли из idc-скрипта запросить через открытое окно выбор из предложенных вариантов?</I><br>Не слышал ничего про ide с автокомплитом для idc.<br><I>PhilXe пишет:<br>пытаюсь использовать сигнатуры для библиотечных функций </I><br>Могу только сюда отправить <noindex><a href="https://github.com/fireeye/flare-ida/blob/master/python/flare/idb2pat.py" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>, сам для этого пользуюсь своими поделками.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395348&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=17" class="addthx" data-post="395348"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2019 23:42 &middot; Поправил: PhilXe <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#18');return false;">#18</a> </span><div align=left><br>
+еще напрягает одно неудобство -- мне удобно представление некоторых переменных в двоичном виде, но по-умолчанию ИДА не отображает лидирующие нули, поэтому приходится вручную делать Toggle leading zeroes, а хочется автоматизировать скриптом либо выставить на постоянку, но set_inf_attr(INF_GENFLAGS, get_inf_attr(INF_GENFLAGS) | INFFL_LZERO) не срабатывает, хотя написано, что должно https://www.hex-rays.com/products/ida/support/idadoc/1510.shtml -- может знаете решение?<br>P.S.<br><strike>решение нашлось путем задания вместо INFFL_LZERO значения 0х02</strike> не работает!
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395349&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=18" class="addthx" data-post="395349"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 07:10 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#19');return false;">#19</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>по-умолчанию ИДА не отображает лидирующие нули </I><br>Любой юнит (инструкцию/данные) ты можешь взять (&#039;string generate_disasm_line(long ea, long flags);&#039;), переработать и заменить на свою строку (&#039;void set_manual_insn(long ea, string insn);&#039;). Альтернатива - &#039;string print_operand(long ea, long n);&#039; и &#039;success op_man(long ea, long n, string str);&#039; - для отдельных операндов.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395355&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=19" class="addthx" data-post="395355"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 11:32 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#20');return false;">#20</a> </span><div align=left><br>
+<b>f13nd</b>,<br>т.е. &quot;включить&quot; заявленный штатный режим отображения лидирующих нулей ИДА не получится?<br>а повесить Toggle leading zeroes на горячую кнопку можно? или на горячую кнопку можно только то, для чего существует функция, объявленная в idc.idc?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395362&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=20" class="addthx" data-post="395362"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 11:45 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#21');return false;">#21</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>т.е. &quot;включить&quot; заявленный штатный режим отображения лидирующих нулей ИДА не получится? </I><br>Никогда этим не интересовался.<br><I>PhilXe пишет:<br>или на горячую кнопку можно только то, для чего существует функция, объявленная в idc.idc? </I><br>Если единожды запустить этот скрипт, при нажатии Alt+1 будет вызываться anyaction()<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">#include&nbsp;<span class="hl_char">&lt;</span>idc<span class="hl_char">.</span>idc<span class="hl_char">&gt;</span></li><li class="hl_l1">static&nbsp;main<span class="hl_char">(</span><span class="hl_char">)</span>&nbsp;{&nbsp;DelHotkey<span class="hl_char">(</span><span class="hl_quote">&quot;Alt+1&quot;</span><span class="hl_char">)</span><span class="hl_comment">;AddHotkey(&quot;Alt+1&quot;,&quot;anyaction&quot;); }</span></li><li class="hl_l0">static&nbsp;anyaction<span class="hl_char">(</span><span class="hl_function">void</span><span class="hl_char">)</span>&nbsp;{&nbsp;}</li>        </ol>
+    </div>
+</div></div>
+<br>При запуске иды &lt;...&gt;ida64.exe -S&quot;autorun.idc&quot; скрипт будет запущен автоматом. Можно немного усложнить, добавив пункт в контекстное меню файла, при котором файл будет открыт в иде и с авторан-скриптом.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395363&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=21" class="addthx" data-post="395363"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 19:31 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#22');return false;">#22</a> </span><div align=left><br>
+<I>f13nd пишет:<br>#include &lt;idc.idc&gt;<br>static main() { DelHotkey(&quot;Alt+1&quot;);AddHotkey(&quot;Alt+1&quot;,&quot;anyaction&quot;); }<br>static anyaction(void) { } </I><br>а как бы сделать по anyaction() действие Toggle leading zeros для операнда текущей команды?<br><br><b>Добавлено спустя 26 минут</b><br>после загрузки открывается окно, в начале которого следующие строки:<br>CODE:0000             ; +-------------------------------------------------------------------------+<br>CODE:0000             ; |   This file has been generated by The Interactive Disassembler (IDA)    |<br>CODE:0000             ; |           Copyright (c) 2017 Hex-Rays, &lt;support@hex-rays.com&gt;           |<br>CODE:0000             ; +-------------------------------------------------------------------------+<br>CODE:0000             ; Processor       : 8032 [RAM=65791 ROM=0 EPROM=0 EEPROM=0]<br>CODE:0000             ; Target assembler: ASMI<br>CODE:0000             ; Byte sex        : Big endian<br>Как получить из скрипта Target assembler Вы мне ранее уже подсказали, а чем и как можно получить содержимое предыдущей строки <b>Processor : 8032</b> ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395375&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=22" class="addthx" data-post="395375"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 20:01 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#23');return false;">#23</a> </span><div align=left><br>
+idc.set_flag(INF_OUTFLAGS,OFLG_LZERO,1)<br>И должно быть достаточно в авторан-скрипте выполнить один раз, горячая клавиша не нужна.<br><br><b>Добавлено спустя 4 минуты</b><br><I>PhilXe пишет:<br>Как получить из скрипта Target assembler Вы мне ранее уже подсказали, а чем и как можно получить содержимое предыдущей строки Processor : 8032 ? </I><br>По идее примерно так:<br>	auto proc;<br>	proc = sprintf(&quot;%s%s%s%s%s%s%s%s&quot;,GetCharPrm(INF_PROCNAME + 0),GetCharPrm(INF_PROCNAME + 1),GetCharPrm(INF_PROCNAME + 2),GetCharPrm(INF_PROCNAME + 3),<br>		GetCharPrm(INF_PROCNAME + 4),GetCharPrm(INF_PROCNAME + 5),GetCharPrm(INF_PROCNAME + 6),GetCharPrm(INF_PROCNAME + 7));<br>Но эту возможность в 7.0 благополучно похерили. Переходи на питон, где idaapi.get_inf_structure().procname работает
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395377&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=23" class="addthx" data-post="395377"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=44028" title="11-06-2019 16:44, ранг:1.6" target="_blank">PhilXe</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 20:09 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#24');return false;">#24</a> </span><div align=left><br>
+<I>f13nd пишет:<br>set_flag(INF_OUTFLAGS,OFLG_LZERO,1) </I><br>просто нет слов, снимаю шляпу перед Вами -- работает отлично!!!<br><br>теперь бы еще как-то получить текст строки &quot;CODE:0000 ; Processor : 8032 [RAM=65791 ROM=0 EPROM=0 EEPROM=0]&quot; в скрипте и получится обойти проблему невозможности создать из загрузчика сегмент FSR
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395378&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=24" class="addthx" data-post="395378"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 20:32 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#25');return false;">#25</a> </span><div align=left><br>
+Это профиль из .cfg, можно попробовать по-колхозному<br>area CODE code           0x0000:0x10000<br>area DATA RAM            0x0000:0x0100<br>area DATA FSR            0x0080:0x0100<br>сделать в каждом профиле уникальное имя какому-то из сегментов, имя сегмента можно будет забирать из скрипта get_segm_name(ea)
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395379&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=25" class="addthx" data-post="395379"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]PhilXe[/b]','')">PhilXe</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 2.05'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=44028">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 21:16 <br><script type="text/javascript">QU('PhilXe','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PhilXe" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#26');return false;">#26</a> </span><div align=left><br>
+<I>f13nd пишет:<br>Это профиль из .cfg, можно попробовать по-колхозному<br>сделать в каждом профиле уникальное имя какому-то из сегментов, имя сегмента можно будет забирать из скрипта get_segm_name(ea) </I><br>идея мне понравилась, но эксперимент показал, что при работе с загрузчиком это не работает, т.е. можно писать любой текст, но разделы создаются либо загрузчиком, который не &quot;знает&quot; что писать, либо потом чем-то встроенным в ИДА для 8051-го семейства, поэтому остается только как-то получить в скрипт текст указанной строки, по которой все остальное сделает скрипт...<br><br>а есть ли возможность выгрузить конкретную строку во внешний файл и потом загрузить эту строку из файла?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395381&amp;user=44028&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=26" class="addthx" data-post="395381"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2019 21:46 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#27');return false;">#27</a> </span><div align=left><br>
+<I>PhilXe пишет:<br>а есть ли возможность выгрузить конкретную строку во внешний файл </I><br>Раздел &quot;F I L E   I / O&quot; в idc\idc.idc
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395384&amp;user=8075&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=27" class="addthx" data-post="395384"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 11 июня 2019 21:29 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#28');return false;">#28</a> </span><div align=left><br>
+Наконец удалось перевести главу #65. Это самая большая глава. В ней почти 90 страниц, поэтому это заняло столько времени. Она будет разбита на несколько страниц. Завтра оформлю другие.<br><noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-65-chast-1.691/" rel="nofollow" target="_blank">--&gt; 65.1&lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395435&amp;user=31053&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=28" class="addthx" data-post="395435"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=33192" title="13-06-2019 16:26, ранг:24.1" target="_blank">morgot</a>, <a href="action=userinfo&user=18316" title="13-06-2019 20:26, ранг:286.0" target="_blank">SReg</a>, <a href="action=userinfo&user=4554" title="13-06-2019 20:46, ранг:222.3" target="_blank">HandMill</a>, <a href="action=userinfo&user=7963" title="15-06-2019 06:26, ранг:125.2" target="_blank">Hugo Chaves</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 июня 2019 19:02 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#29');return false;">#29</a> </span><div align=left><br>
+<noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-65-chast-2.696/" rel="nofollow" target="_blank">--&gt; 65.2&lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395495&amp;user=31053&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=29" class="addthx" data-post="395495"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=3520" title="13-06-2019 16:54, ранг:641.8" target="_blank">mak</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2019 01:09 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#30');return false;">#30</a> </span><div align=left><br>
+<b>yashechka</b><br><br>А если себе рипнуть тело апи, могу тебе показать как это делается в десяток строк.<br><br>Тогда импорта не будет, прямое обращение к ядерному счётчику. Как же ты его изменишь, нужно отследить саму выборку(data fetch). Это не умеет отладчик.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=395505&amp;user=40990&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=30" class="addthx" data-post="395505"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июня 2019 21:58 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=24454&amp;page=9#31');return false;">#31</a> </span><div align=left><br>
+<noindex><a href="https://wasm.in/blogs/vvedenie-v-reversing-s-nulja-ispolzuja-ida-pro-chast-65-chast-3.697/" rel="nofollow" target="_blank">--&gt; 65.3&lt;--</a></noindex><br><br><b>Добавлено спустя 3 минуты</b><br>Итак, друзья. Остался всего один последний перевод. Это глава #67 И я обещаю вложить в него душу и всё то, чему я научился за эти 66 глав. Он будет сразу релизным. На его основе я буду готовить весь курс снова сначала. Буду рад услышать комментарии и критику. А сейчас нужно только подождать, потому что там 66 страниц.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=395603&amp;user=31053&amp;forum_n=5&amp;topic=24454&amp;page=9&amp;anchor=31" class="addthx" data-post="395603"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4554" title="16-06-2019 19:03, ранг:222.3" target="_blank">HandMill</a>, <a href="action=userinfo&user=3520" title="16-06-2019 19:48, ранг:642.2" target="_blank">mak</a>, <a href="action=userinfo&user=29754" title="20-06-2019 14:48, ранг:99.3" target="_blank">ksol</a></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=8.html">&lt;&lt;</a> <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=0.html">1</a> ... <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=8.html">9</a> . <b>10</b> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=10.html">11</a> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=12.html">13</a> . <a href="action=vthread&amp;forum=5&amp;topic=24454&amp;page=10.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Введение в реверсинг с нуля, используя IDA PRO</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="5">
+<input type="hidden" name="topic" value="24454">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24454" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

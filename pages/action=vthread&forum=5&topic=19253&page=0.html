@@ -1,0 +1,550 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Компиляция файла ассемблера, созданного декомпилятором - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Нужно скомпилить ассемплеровский файл, созданный декомпилятором, в данном случае IDA 6.1. FASM не берет, пишет в процессе, что у него закончилась память, MASM ругается на некоторые строчки, говоря что: : error A2066: incompatible">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a>, <a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a>, <a target='_blank' href='?action=userinfo&amp;user=41701'>_MBK_</a>, <a target='_blank' href='?action=userinfo&amp;user=41144'>Adler</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Компиляция файла ассемблера, созданного декомпилятором</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=5&amp;topic=19253&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=5&amp;topic=19253&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 ноября 2011 16:01 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Нужно скомпилить ассемплеровский файл, созданный декомпилятором, в данном случае IDA 6.1. FASM не берет, пишет в процессе, что у него закончилась память, MASM ругается на некоторые строчки, говоря что: : error A2066: incompatible CPU mode and segment size. <br>В данном случае имеется в ввиду строка: <br><br>_text segment para public &#039;CODE&#039; use32<br>assume cs:_text<br><br>Как лучше подойти к решению проблемы? <br><br>Файл ассемплера залил <noindex><a href="http://www.multiupload.com/BD2PH0TVAF" rel="nofollow" target="_blank">Discipl2.asm (32.28 MB)</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=295270&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=1" class="addthx" data-post="295270"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]F_a_u_s_t[/b]','')">F_a_u_s_t</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 16.12'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=6">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 ноября 2011 16:09 <br><script type="text/javascript">QU('F_a_u_s_t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=F_a_u_s_t" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+<b>Dim77</b><br>Я конечно извиняюсь,сорс не смотрел но что то меня гложат сомнения,а правил ли ты его или сразу с иды компилишь?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=295271&amp;user=6&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=2" class="addthx" data-post="295271"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 ноября 2011 16:18 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+32 мегабайта асма)) сильно это вы..<br><br>http://erfaren.narod.ru/Asm/Erfaren005.htm<br>вот почитайте там вроде мучились, и даже скрипты какие то писали и даже вроде скомпилялось
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=295273&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=3" class="addthx" data-post="295273"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=30627" title="02-12-2011 22:23, ранг:1.4" target="_blank">Dim77</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 ноября 2011 16:37 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Править начал, но хотелось бы понять общие принципы, что IDA не так декомпилирует, на что следует обращать внимание, как декомпилятор настроить, чтобы поменьше править было... <br><br>Так что руководство от reversecode очень кстати, спасибо. Буду изучать. <br><br>Одновременно <noindex><a href="http://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19227" rel="nofollow" target="_blank">в параллельной теме</a></noindex> пытаюсь заставить программу работать под отладчиком. Это две стороны одной медали - сначала запустить под отладчиком, потом модифицировать, затем обратно скомпилить.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=295274&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=4" class="addthx" data-post="295274"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]F_a_u_s_t[/b]','')">F_a_u_s_t</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 16.12'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=6">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 ноября 2011 16:50 <br><script type="text/javascript">QU('F_a_u_s_t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=F_a_u_s_t" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>Dim77</b><br>Единого подхода нет,у меня лично IDA часто не правильно определяет границы функций,путает данные и код,вобщем содрать исходник такого размера для не слабых духом,но для автоматизации рутины советую изучить скрипты,благо выбор есть.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=295275&amp;user=6&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=5" class="addthx" data-post="295275"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 01:18 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+После прочтения статей erfaren(а), очень полезных! удалось устранить многие ошибки компиляции. Осталась одна большая ошибка (и несколько мелких), а именно: undefined symbol... Насколько я понимаю проблема вроде бы в отсутствующем .lib файле , но дело в том, что для всех библиотек программы я создал .lib файлы. И те функции, на которые компилятор ругается там точно есть. Вот пример ошибок и пример строки кода на которую ругается компилятор:<br><br>Assembling: D2debug261111~.asm<br>D2debug261111~.asm(197) : error A2179: structure improperly initialized<br>D2debug261111~.asm(197) : error A2065: expected : )<br>D2debug261111~.asm(1166) : error A2008: syntax error : SubStr<br>D2debug261111~.asm(18603) : error A2008: syntax error : SubStr<br>D2debug261111~.asm(55008) : error A2008: syntax error : div<br>D2debug261111~.asm(16233) : error A2008: syntax error : fabs<br>D2debug261111~.asm(1537) : error A2088: END directive required at end of file<br>D2debug261111~.asm(281) : error A2006: undefined symbol : loc_6866BC<br>D2debug261111~.asm(282) : error A2006: undefined symbol : _EH_prolog<br>D2debug261111~.asm(300) : error A2006: undefined symbol : aString1<br>D2debug261111~.asm(303) : error A2006: undefined symbol : strlen<br>D2debug261111~.asm(309) : error A2006: undefined symbol : a00<br>D2debug261111~.asm(311) : error A2006: undefined symbol : strlen<br>D2debug261111~.asm(317) : error A2006: undefined symbol : a6t<br>D2debug261111~.asm(319) : error A2006: undefined symbol : strlen<br>D2debug261111~.asm(325) : error A2006: undefined symbol : aA0<br>D2debug261111~.asm(327) : error A2006: undefined symbol : strlen<br>D2debug261111~.asm(333) : error A2006: undefined symbol : a02<br>D2debug261111~.asm(335) : error A2006: undefined symbol : strlen<br>D2debug261111~.asm(341) : error A2006: undefined symbol : a6_0<br>D2debug261111~.asm(343) : error A2006: undefined symbol : strlen<br>D2debug261111~.asm(350) : error A2006: undefined symbol : _exit_0<br>D2debug261111~.asm(361) : error A2006: undefined symbol : byte_83B1EC<br>D2debug261111~.asm(363) : error A2006: undefined symbol : byte_83B1EC<br>D2debug261111~.asm(364) : error A2006: undefined symbol : byte_83B1ED<br>D2debug261111~.asm(367) : error A2006: undefined symbol : byte_83B1ED<br>D2debug261111~.asm(422) : error A2006: undefined symbol : unknown_libname_59<br><br>Строки с 281 по 301:<br><br>      mov     eax, offset loc_6866BC  ; .text:00401000		<br>      call    _EH_prolog	<br>      sub     esp, 20h  ; .text:0040100A		<br>      push    ebx  ; .text:0040100D		<br>      push    esi  ; .text:0040100E		<br>      mov     esi, ecx  ; .text:0040100F		<br>      xor     ebx, ebx  ; .text:00401011		<br>      push    edi  ; .text:00401013		<br>      mov     [ebp+var_18], esi  ; .text:00401014		<br>      mov     [ebp+var_10], ebx  ; .text:00401017		<br>      mov     [esi], ebx  ; .text:0040101A		<br>      lea     eax, [esi+4]  ; .text:0040101C		<br>      mov     [ebp+var_4], ebx  ; .text:0040101F		<br>      push    eax  ; .text:00401022		<br>      call    sub_530AE7  ; .text:00401023		<br>      mov     [ebp+var_20], ebx  ; .text:00401028		<br>      mov     [ebp+var_24], ebx  ; .text:0040102B		<br>      mov     [ebp+var_2C], ebx  ; .text:0040102E		<br>      mov     [ebp+var_28], ebx  ; .text:00401031		<br>      mov     edi, offset aString1 ; &quot;X&quot;  ; .text:00401034		<br>      mov     byte ptr	[ebp+var_4], 2  ; .text:00401039
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296843&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=6" class="addthx" data-post="296843"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 01:24 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>Dim77 пишет:<br>D2debug261111~.asm(282) : error A2006: undefined symbol : _EH_prolog</I><br>_EH_prolog  ну так проверте есть она в вашем lib или нет<br><I>Dim77 пишет:<br>D2debug261111~.asm(281) : error A2006: undefined symbol : loc_6866BC </I><br><I>Dim77 пишет:<br>mov eax, offset loc_6866BC ; .text:00401000  </I><br>ну так проверте есть у вас леибл loc_6866BC или нет<br><br>тоесть я так понимаю вы собираете asm не зная даже азов?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296844&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=7" class="addthx" data-post="296844"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 01:37 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+_EH_prolog - есть, я же про это выше и написал... Я собственно этот  .lib сам и скомилировал. <br><br>леибл loc_6866BC  - .lib файлы нужны для линковки функций насколько я понимаю, при чем тут лейбл?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296845&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=8" class="addthx" data-post="296845"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 01:45 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+стоп что вы куда компилируете?<br><I>Dim77 пишет:<br>D2debug261111~.asm(282) : error A2006: undefined symbol : _EH_prolog </I><br>на етапе компиляции оно ничего не должно вроде выдавать<br>это extern функция должна быть, т.е. подключаемая<br>а значит в .obj оно должно сначала собратся<br><br><I>Dim77 пишет:<br>леибл loc_6866BC  </I><br><strike>это вообще насколько я помню seh таблица или хендлер, посмотрите есть она у вас вообще или нет</strike><br>это леибл тоесть функция на ссылающаяся на ___CxxFrameHandler с таблицей<br>вообще разберитесь где и как что обьявлено<br>может в области видимости не попадает<br>или прототипа нет
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296846&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=9" class="addthx" data-post="296846"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 01:55 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>reversecode пишет:<br>стоп что вы куда компилируете? </I><br><br>Компилирую D2debug261111~.asm файл. В headers.inc прописал все lib файлы, которые могут понадобиться. В одном из них точно есть EH_Prolog. Этот lib файл я создал из соответствующего .def. <br><br><I>reversecode пишет:<br>на етапе компиляции оно ничего не должно вроде выдавать </I><br><br>Да, это должно быть важно потом на этапе линковки, поэтому я и в недоумении, ибо не вижу патерна в ругательствах компилятора... <br><br><br><I>reversecode пишет:<br>это вообще насколько я помню seh таблица или хендлер, посмотрите есть она у вас вообще или нет  </I><br><br>Проверю.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296847&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=10" class="addthx" data-post="296847"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 01:58 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>Dim77 пишет:<br>Компилирую D2debug261111~.asm файл. В headers.inc прописал все lib файлы, которые могут понадобиться. В одном из них точно есть EH_Prolog. Этот lib файл я создал из соответствующего .def.  </I><br>фокус в подчеркиваниях<br>в каком то из (или вызываемом или в екстерн) должно быть на одно меньше, я уже не помню точно<br><br>т.е. к примеру в коде<br>call _EH_Prolog<br>а в екстерн должны быть __EH_Prolog<br>или наоборот
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296848&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=11" class="addthx" data-post="296848"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Hexxx[/b]','')">Hexxx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 481.4 (мудрец), 109thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.37'>Активность: 0.18<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10168">Участник</a><br><font color=blue>Тот самый :)</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2011 17:44 <br><script type="text/javascript">QU('Hexxx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hexxx" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+http://rebl0g.wordpress.com/2011/09/08/реассемблирование-full-version/ на правах рекламы <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Реверсивная инженерия - написание кода идентичного натуральному</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=296886&amp;user=10168&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=12" class="addthx" data-post="296886"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 02:29 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+call _EH_Prolog<br><br>С этим разобрался. Я несколько раз сохранял асм файл и в одном из сохранений забыл раскрыть все процедуры... Спасибо за ответы, сие была ложная тревога. <br><br>Теперь компилятор ругается на следующее:  D2debug2.asm(3964) : fatal error A1010: unmatched block nesting : ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0<br><br>причем по этому адресу такого блока нет. Там есть следующее: <br><br>sub_403166      proc near	       ; CODE XREF: sub_4028B6+8Ep  ; .text:00403166<br><br>arg_0	       = dword ptr  4  ; .text:00403166<br><br>      mov     ecx, [ecx+8]  ; .text:00403166		<br>      push    [esp+arg_0]  ; .text:00403169		<br>      add     ecx, 0Ch  ; .text:0040316D		<br>      call    sub_404046  ; .text:00403170		<br>      retn    4  ; .text:00403175		<br>sub_403166      endp  ; .text:00403175<br><br>строка 3964:   call    sub_404046  ; .text:00403170<br><br><I>Hexxx пишет:<br>http://rebl0g.wordpress.com/2011/09/08/реассемблирование-full-version/ на правах рекламы </I><br><br>Спасибо. Читаю, просвещаюсь... До данного момента использовал метод Erfaren(a) (см. ссылку выше), все работает, включая большое количество скриптов, но с компилятором вот приходится возиться.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296929&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=13" class="addthx" data-post="296929"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 02:40 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I>Dim77 пишет:<br>Теперь компилятор ругается на следующее: D2debug2.asm(3964) : fatal error A1010: unmatched block nesting : ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0 </I><br>это IDA неправильно распознала<br>поставте там простой безыменный sub_403166 <br>или как он у вас там<br><br>и вообще вы IDA после анализа смотрели редактировали?<br>а то такое чуство что сразу прямым копипастом))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296930&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=14" class="addthx" data-post="296930"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 14:48 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>reversecode пишет:<br>это IDA неправильно распознала<br>поставте там простой безыменный sub_403166 </I><br><br>Не совсем понял, каким образом можно здесь подставить безымянную сабрутину, если существует явное определение процедуры с этим неудобоваримым именем?<br><br>Кажется нашел в чем дело, хотя и не до конца разобрался. СкриптEfraren(a), который соединяет чанки и чунки почему-то разбил эту сабрутину ?reserve_message... так, что ее конец оказался посередине другого кода (line 200572 )) ), а начало я вообще пока не нашел. <br><br><I>reversecode пишет:<br>и вообще вы IDA после анализа смотрели редактировали?<br>а то такое чуство что сразу прямым копипастом)) <br> </I><br><br>Руками поменял некоторые имена локальных переменных, чтобы а) они не повторялись, б) не были бы командами ассемблера. Хотя, я это сделал возможно зря, так как тогда у меня один из скриптов Erfaren(a) не работал, а он как раз заменяет имена локальных переменных на удобоваримые значения. Вообще же сейчас работать через компилятор легче, чем все сначала причесывать руками ибо в коде 1184790 строк и все их руками просматривать, это как-то не очень... ))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296964&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=15" class="addthx" data-post="296964"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 14:53 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+то ошибка IDA в распознании функции<br>поэтому я и сказал что прежде чем генерить листинг<br>нужно было в ручную проверить все функции и правильно им имена поназначать<br>ложно определенные убрать<br>плохо определенные указать явно<br>например memmove/memcpy IDA никогда не находит
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296966&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=16" class="addthx" data-post="296966"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 16:07 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+А можно на примере? Функция, как вы сказали, эта странная, ибо все что она делает это: <br><br>.text:00475466 ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0 proc near<br>.text:00475466                                         ; CODE XREF: sub_47542C+11j<br>.text:00475466                                         ; sub_47542C+22j ...<br>.text:00475466                 xor     al, al<br>.text:00475468<br>.text:00475468 locret_475468:                          ; CODE XREF: sub_47542C+5Aj<br>.text:00475468                 retn    4<br>.text:00475468 ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0 endp<br><br>Когда я по ней прохожу скриптом для убирания чанков и чунков, то этот скрипт куда-то переносит тело функции (или я глючу), а с концом не знает что делать и оставляет висеть ни к чему не прикрепленным. Теперь, чтобы перенаправить все вызовы этой функции, мне нужно знать, какой функцией ее заменить. И мне не очень понятно, как это определить?<br><br>Сейчас взял и вставил определение этой функции (без переименования), как выше написано в код, ошибка исчезла, теперь ругается на следующую. Но меня терзают смутные сомнения, что вместо определения неправильных функций я должен перенаправить обращения к правильным функциям, но я не очень вижу, как их найти, эти правильные функции...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296979&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=17" class="addthx" data-post="296979"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 16:17 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+функция определена не правильно<br>в IDA подводим курсор под ее имя и удаляем этот прототип<br>далее вообще нужно пересмотреть весь листинг в IDA<br>может это и не функция а окончание ее<br>а может это вообще виртуальный вызов<br><br>прежде чем генерить asm файл в ida, нужно было все проверить и подредактировать<br><br>дайте оригинал программы если она не большая ~2мб смогу стянуть глянуть
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296982&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=18" class="addthx" data-post="296982"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 16:31 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+кажется разобрался. В коде есть комменты типа: ; public: unsigned int __thiscall Concurrency::details::SchedulerProxy::GetNumNestedThreadSubscriptions(void).<br>Также в коде есть комменты с указанием на явное имя этой функции типа: ; int __thiscall	sub_401506(int,	int) Теперь вызовы первой (неправильной) функции заменяем на вызовы второй (sub_401506), а определение первой убираем, правильно? При этом sub_401506 не нужно делать явной (int __thiscall)?<br><br>При этом правда не очень ясно, куда девать код, что был внутри неправильного определения....<br><br>Асм большой - около 54 МБ, что является частью проблемы )). Могу выложить... Или вы хотели ехе-шник? Ехе- 4.4МБ. Выложить?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296983&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=19" class="addthx" data-post="296983"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 16:36 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+асм не нужен<br>давайте оригинальный exe с которого генерился asm<br>если екзе нет и вы это все правите только в asm, то тогда вас ждут много проблем и подводных камней<br><br><I>Dim77 пишет:<br>Теперь вызовы первой (неправильной) функции заменяем на вызовы второй (sub_401506), а определение первой убираем,  </I><br>да<br><I>Dim77 пишет:<br>При этом sub_401506 не нужно делать явной (int __thiscall)? </I><br>и да и нет, thiscall итд нужно для hexrays или для того кто разбирает код или для языков высокого уровня<br><br>компилятор же будет генерить код все равно по asm, ему конвершинал колл не нужны<br><I>Dim77 пишет:<br>Ехе- 4.4МБ. Выложить? </I><br>давайте, хотя я вижу вы уже во всем разобрались<br><br>вообще перед генерацией asm листинга, на етапе разбора exe в начале нужно было поубирать много опций которые IDA генерит в большей степени для анализа/разбора а для asm листинга они лишние и не нужны
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296984&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=20" class="addthx" data-post="296984"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Hexxx[/b]','')">Hexxx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 481.4 (мудрец), 109thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.37'>Активность: 0.18<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10168">Участник</a><br><font color=blue>Тот самый :)</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 16:53 &middot; Поправил: Hexxx <br><script type="text/javascript">QU('Hexxx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hexxx" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>Dim77 пишет:<br>но с компилятором вот приходится возиться. </I><br><br>Как я вас понимаю. (с) <br>Но все ваши проблемы из-за того что вы оставили всякое распознавание типов, библиотечных функций и т.п. Голую базу гораздо лучше выгонять в ассемблер и потом пробовать скомпилировать.
+<br><br><font size="1"><i>-----<br>Реверсивная инженерия - написание кода идентичного натуральному</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=296985&amp;user=10168&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=21" class="addthx" data-post="296985"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 17:12 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+<noindex><a href="http://www.multiupload.com/TTZXDCA82Q" rel="nofollow" target="_blank">--&gt; D2Exe &lt;--</a></noindex><br><noindex><a href="http://www.multiupload.com/XFTF8XUBEE" rel="nofollow" target="_blank">--&gt; Shw32.dll (110.03 KB) &lt;--</a></noindex><br><noindex><a href="http://www.multiupload.com/17W6EBZ04G" rel="nofollow" target="_blank">--&gt; C4dll-R.dll (127.5 KB) &lt;--</a></noindex><br><noindex><a href="http://www.multiupload.com/XDE6NMAO8Q" rel="nofollow" target="_blank">--&gt; Msvcrt.dll (271.27 KB) &lt;--</a></noindex><br><noindex><a href="http://www.multiupload.com/73JTBBGHUY" rel="nofollow" target="_blank">--&gt; Mss32.dll (338.5 KB) &lt;--</a></noindex><br><noindex><a href="http://www.multiupload.com/H5T1BGIWXJ" rel="nofollow" target="_blank">--&gt; Ha312w32.dll (355.5 KB) &lt;--</a></noindex><br><br>А что делать с кодом, который внутри неправильной функции - удалить вместе с определением?<br><br><I>reversecode пишет:<br>вообще перед генерацией asm листинга, на етапе разбора exe в начале нужно было поубирвать много опций которые IDA генерит в большей степени для анализа/разбора а для asm листинга они лишние и не нужны  </I><br><br>Возможно так и сделаю, просто было жаль времени, которое я потратил на переименование переменных, чтобы их компилятор понимал...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296986&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=22" class="addthx" data-post="296986"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 17:15 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+msvcrt это стандартная либа))<br><br><I>Dim77 пишет:<br>А что делать с кодом, который внутри неправильной функции - удалить вместе с определением? </I><br>непойму вы о чем?<br><I>Dim77 пишет:<br>Возможно так и сделаю, просто было жаль времени, которое я потратил на переименование переменных, чтобы их компилятор понимал...  </I><br>автоматизируйте это<br>что бы скрипты сами все за вас делали до генерации asm файла<br><br><I>Dim77 пишет:<br>text:00475466 ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0 proc near<br>.text:00475466 ; CODE XREF: sub_47542C+11j </I><br>да кстати это код с exe? что бы я правильно смотрел
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296987&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=23" class="addthx" data-post="296987"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 17:23 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+Есть определение функции: .text:00475466 ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0 proc near<br>.text:00475466 ; CODE XREF: sub_47542C+11j<br>.text:00475466 ; sub_47542C+22j ...<br>.text:00475466 xor al, al<br>.text:00475468<br>.text:00475468 locret_475468: ; CODE XREF: sub_47542C+5Aj<br>.text:00475468 retn 4<br>.text:00475468 ?reserve_message@?&#036;_Order_node_base@W4agent_status@Concurrency@@@Concurrency@@UAE_NH@Z_0 endp<br><br>Внутри есть код, который не будет использоваться ибо это определение я удаляю, а вызовы этой функции перенаправляю на __thiscall	sub_401506(int,	int).<br><br>reversecode пишет:<br>да кстати это код с exe? что бы я правильно смотрел <br><br>Да, код с ехе.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296988&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=24" class="addthx" data-post="296988"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 17:24 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>reversecode пишет:<br>да кстати это код с exe? что бы я правильно смотрел  </I><br><br>Да, код с ехе.<br><br><I>Hexxx пишет: Но все ваши проблемы из-за того что вы оставили всякое распознавание типов, библиотечных функций и т.п. </I><br><br>Я уже чувствую, что придется попробовать еще раз. А то придется руками все править....
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296989&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=25" class="addthx" data-post="296989"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 17:27 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+вы удалятее определение поскольку оно фейк<br>и перенаправляете на нормальное определение<br>sub_475466<br><br>вообщем то кривое определение IDA<br>вот нормальное ее содержимое<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047542C</span>&nbsp;sub_47542C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>proc</b></span>&nbsp;<span class="hl_function"><b>near</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; CODE XREF: sub_471C98+7p</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047542C</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047542C</span>&nbsp;arg_0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_function"><b>dword</b></span>&nbsp;<span class="hl_function"><b>ptr</b></span>&nbsp;&nbsp;<span class="hl_number">4</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047542C</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047542C</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">esp</span><span class="hl_char">+</span>arg_0<span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475430</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">0Ch</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475433</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jg</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475444</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475435</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">8</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475438</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jge</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475484</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047543A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">2</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047543D</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jl</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475466</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047543F</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">4</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475442</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475464</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475444</span>&nbsp;<span class="hl_comment">; ---------------------------------------------------------------------------</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475444</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475444</span>&nbsp;loc_475444<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+7j</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475444</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">16h</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475447</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jg</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475455</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475449</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475484</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047544B</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">0Fh</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047544E</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jl</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475466</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475450</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">14h</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475453</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475464</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475455</span>&nbsp;<span class="hl_comment">; ---------------------------------------------------------------------------</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475455</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475455</span>&nbsp;loc_475455<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+1Bj</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475455</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">21h</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475458</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jg</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_47546B</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047545A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475484</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047545C</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">18h</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047545F</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jl</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475466</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475461</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">1Ah</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475464</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475464</span>&nbsp;loc_475464<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+16j</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475464</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+27j</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475464</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jle</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475484</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span>&nbsp;loc_475466<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+11j</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+22j</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+33j</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+42j</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+51j</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+56j</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475466</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">al</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475468</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475468</span>&nbsp;locret_475468<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+5Aj</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475468</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>retn</b></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">4</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047546B</span>&nbsp;<span class="hl_comment">; ---------------------------------------------------------------------------</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047546B</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047546B</span>&nbsp;loc_47546B<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+2Cj</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047546B</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">28h</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047546E</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jl</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475466</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475470</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">2Ah</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475473</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jle</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475484</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475475</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">37h</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475478</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475484</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047547A</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">3Bh</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047547D</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jle</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475466</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0047547F</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">3Dh</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475482</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jg</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_475466</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span>&nbsp;loc_475484<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: sub_47542C+Cj</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+1Dj</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+2Ej</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C:loc_475464j</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+47j</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; sub_47542C+4Cj</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475484</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">al</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">1</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475486</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;locret_475468</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00475486</span>&nbsp;sub_47542C&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">endp</span></li>        </ol>
+    </div>
+</div></div>
+<br>говорюже перед генерацией asm<br>нужно ручками поработать, на то IDA и интерактивная<br>если вам нужно просто пытатся выхлоп компилировать использовали бы старый Sourcer<br><br>а вообще хорошая C++ программа, с именами классов итд<br>взяли бы и реверснули ее всю, больше бы скилов себе открыли чем банальное переганяние в asm<br><br>в c++ много подводных камней, хз как вы там с ними в asm справитесь ...<br><br>и натравите еще rtti4 скрипт что бы rtti разобралось<br>чуствую оно у вас в асме вообще никакое<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">00509530</span>&nbsp;_exit_0&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>proc</b></span>&nbsp;<span class="hl_function">near</span></li>        </ol>
+    </div>
+</div></div>
+<br>вообще не правильный прототип<br>вообщем там руками неменьше месяца работать, прежде чем asm генерить
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296990&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=26" class="addthx" data-post="296990"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]vden[/b]','')">vden</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 112.9 (ветеран), 186thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.22'>Активность: 0.09<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=28841">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 17:52 <br><script type="text/javascript">QU('vden','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vden" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<b>Dim77</b><br>А какая конечная цель? Может будет проще прицепить свою длл и в ней уже сделать то что ты хочешь?<br>Просто кода здесь около 3 МБ и даже если скомпилить асм текст, нет гарантий что все будет 100% работать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=296993&amp;user=28841&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=27" class="addthx" data-post="296993"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 21:10 &middot; Поправил: Dim77 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<I>reversecode пишет:<br>говорюже перед генерацией asm<br>нужно ручками поработать, на то IDA и интерактивная </I><br><br>Думаю, что сгенерю по новой с рекомендациями по настройкам и посмотрим, что получится. Как править я понял, придется заняться. <br><br>Кстати, а как найти правильную функцию для exit_0?<br>В коде нет никаких подсказок, что это могло бы быть...<br><br><br><I>reversecode пишет:<br>а вообще хорошая C++ программа, с именами классов итд<br>взяли бы и реверснули ее всю, больше бы скилов себе открыли чем банальное переганяние в asm </I><br><br>Интересная мысль и действительно очень заманчиво... )) Хотелось бы правда еще иметь и асмовский вариант под рукой, так сказать short term solution. <br><br><I>vden пишет:<br>А какая конечная цель? Может будет проще прицепить свою длл и в ней уже сделать то что ты хочешь? </I><br><br>Конечная цель раширить возможности программы путем вставления туда своего кода. На начальном этапе это можно было бы сделать по аналогии с тем, что уже есть, т.к. код, который нужно будет написать идентичен тому, что уже есть. <br><br>А как такую длл подцеплять или предлагаете одну из известных длл расширить?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=297011&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=28" class="addthx" data-post="297011"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 21:14 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<I>Dim77 пишет:<br>А как такую длл подцеплять  </I><br>dll inject function<br>в гейм деве все так делают<br>столько бабла тратится на всякие инжекты переинжекты<br>я даже удивляюсь<br>они бы за это время уже раза три полностью реверснули, но не хотят<br>играть им побыстрее и уже завтра хочется)))<br><br><I>Dim77 пишет:<br>Кстати, а как найти правильную функцию для exit_0?<br>В коде нет никаких подсказок, что это могло бы быть... </I><br>никак<br>это IDA ложно сработала<br>там просто какойто sub_xxxxxxxxx<br><br>PS как то изучал игруху в которую раза три инжектился всякий доп код и раза два дописывались доп секции .data .text .... это кошмар))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=297013&amp;user=15381&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=29" class="addthx" data-post="297013"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]Dim77[/b]','')">Dim77</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30627">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 декабря 2011 22:04 <br><script type="text/javascript">QU('Dim77','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dim77" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=19253&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+<I>reversecode пишет:<br>они бы за это время уже раза три полностью реверснули, но не хотят<br>играть им побыстрее и уже завтра хочется))) </I><br><br>Ну в данном случае дело не только в этом, а в том числе и в том, чтобы энтузиазм тех, кто параллельно делает графику и т.д. не угас ))<br><br><I>reversecode пишет:<br>это IDA ложно сработала<br>там просто какойто sub_xxxxxxxxx </I><br><br>Хмм, так без подсказок в коде найти нужный sub_xxxxxxxxx неполучается.. )<br><br><br><I>reversecode пишет:<br>как то изучал игруху в которую раза три инжектился всякий доп код и раза два дописывались доп секции .data .text .... это кошмар)) </I><br><br>Дык, я думаю оно все же быстрее инжектнуть, чем обратно реверсить. Вот народ и не заморачвается. <br>Опять же нужно себя настроить на довольно долгий проект, хотя как вы и сказали можно многому научиться в процессе.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=297023&amp;user=30627&amp;forum_n=5&amp;topic=19253&amp;page=0&amp;anchor=30" class="addthx" data-post="297023"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=5&amp;topic=19253&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=5&amp;topic=19253&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Компиляция файла ассемблера, созданного декомпилятором</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#31" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="5">
+<input type="hidden" name="topic" value="19253">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=19253" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

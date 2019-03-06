@@ -1,0 +1,493 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Delphi, class, ошибка доступа к private из thread, помогите разобраться. - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Помогите разобраться с проблемой. На примере это выглядит так: Code:       Type&nbsp;TStatistic=Class(TObject)privatetext:&nbsp;string;procedure&nbsp;ThreadFunc; stdcall;publicprocedure&nbsp;Test(sometext:&nbsp;string);end;&nbsp;i">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a>, <a target='_blank' href='?action=userinfo&amp;user=31361'>zds</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Delphi, class, ошибка доступа к private из thread, помогите разобраться.</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 15:41 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Помогите разобраться с проблемой. На примере это выглядит так:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Type&nbsp;TStatistic<span class="hl_char">=</span>Class<span class="hl_char">(</span>TObject<span class="hl_char">)</span></li><li class="hl_l1">private</li><li class="hl_l0">text<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">;</span></li><li class="hl_l1">procedure&nbsp;ThreadFunc<span class="hl_comment">; stdcall;</span></li><li class="hl_l0"><span class="hl_function">public</span></li><li class="hl_l1">procedure&nbsp;<span class="hl_function">Test</span><span class="hl_char">(</span>sometext<span class="hl_char">:</span>&nbsp;string<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">implementation</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Procedure&nbsp;TStatistic<span class="hl_char">.</span>ThreadFunc<span class="hl_comment">; stdcall;</span></li><li class="hl_l1">begin</li><li class="hl_l0">showmessage<span class="hl_char">(</span><span class="hl_quote">'Это сообщение будет выдано.'</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">showmessage<span class="hl_char">(</span>text<span class="hl_char">)</span><span class="hl_comment">; // Тут падает с ошибкой.</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Procedure&nbsp;TStatistic<span class="hl_char">.</span><span class="hl_function">Test</span><span class="hl_char">(</span>sometext<span class="hl_char">:</span>&nbsp;string<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">Var&nbsp;hThread<span class="hl_char">,</span>ThID<span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">text<span class="hl_char">:</span><span class="hl_char">=</span>sometext<span class="hl_comment">;</span></li><li class="hl_l0">CreateThread<span class="hl_char">(</span>nil<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span>@TStatistic<span class="hl_char">.</span>ThreadFunc<span class="hl_char">,</span>nil<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span>ThID<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>После вызова Test падает в треде на доступе к text. Задача требует именно создание треда в котором будет вызвана процедура работающая со строкой text. Если из треда вызывать процедуру которая обращается к text, то падает на обращении в этой процедуре.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242480&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=1" class="addthx" data-post="242480"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 17:11 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Выложил бы ехе, сам поглядел под отладчиком. Есть подозрение, что члены класса вызываются через указатель на класс, которого у потока нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242500&amp;user=1556&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=2" class="addthx" data-post="242500"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 18:18 &middot; Поправил: ToBad <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Немного модифицировал тут:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Procedure&nbsp;TStatistic<span class="hl_char">.</span>ThreadFunc<span class="hl_comment">; stdcall;</span></li><li class="hl_l1">begin</li><li class="hl_l0">messagebox<span class="hl_char">(</span><span class="hl_number">0</span><span class="hl_char">,</span><span class="hl_quote">'Это сообщение будет выдано.'</span><span class="hl_char">,</span><span class="hl_quote">'Msg1'</span><span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">messagebox<span class="hl_char">(</span><span class="hl_number">0</span><span class="hl_char">,</span>PAnsiChar<span class="hl_char">(</span>text<span class="hl_char">)</span><span class="hl_char">,</span><span class="hl_quote">'Msg2'</span><span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">; // Тут падает с ошибкой.</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Вызываю так:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">procedure&nbsp;TForm1<span class="hl_char">.</span>FormCreate<span class="hl_char">(</span>Sender<span class="hl_char">:</span>&nbsp;TObject<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;var&nbsp;Statistic<span class="hl_char">:</span>TStatistic<span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">Statistic<span class="hl_char">:</span><span class="hl_char">=</span>TStatistic<span class="hl_char">.</span>create<span class="hl_comment">;</span></li><li class="hl_l0">Statistic<span class="hl_char">.</span><span class="hl_function">test</span><span class="hl_char">(</span><span class="hl_quote">'11111'</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">Statistic<span class="hl_char">.</span>Free<span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br><I><b>Archer</b> пишет:<br>Есть подозрение, что члены класса вызываются через указатель на класс, которого у потока нет. </I><br><br>Да, буду смотреть под отладчиком. То, что пальцем в небо указывает, а не на строку и так понятно, вопрос в другом, как написать правильно, что бы обойти эту проблему.<br>Если в двух словах, то это всё делаю для обхода известной проблемы с InternetReadFile, которая не имеет таймаута и в случае отсутствия инета зависает довольно на долго.<br>По этому планирую вызывать это в треде и задавать таймаут через WaitForSingleObject.<br>Зачем полез создавать класс, сам уже не знаю, без него всё работало нормально...<br>Но раз уж начал, хотел бы побороть проблему...<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/2987_23.10.2009_CRACKLAB.rU.tgz">2987_23.10.2009_CRACKLAB.rU.tgz</a> - test.exe
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242509&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=3" class="addthx" data-post="242509"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Hellspawn[/b]','')">Hellspawn</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/72.gif" alt=""><br><span class=txtSm>Ранг: 990.2 <font color=red>(<b>! ! !</b>)</font>, 380thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.95'>Активность: 0.68<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=72">Модератор</a><br><font color=blue>Author of DiE</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 18:29 &middot; Поправил: <a href="action=stats#mods">Модератор</a> <br><script type="text/javascript">QU('Hellspawn','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hellspawn" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<I>ToBad пишет:<br>которая не имеет таймаута и в случае отсутствия инета зависает довольно на долго. </I><br><br>а как же:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;timeout&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_number">10</span>&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_number">1000</span><span class="hl_comment">; // 10 sec</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;InternetSetOptionA<span class="hl_char">(</span>pInet<span class="hl_char">,</span>INTERNET_OPTION_CONNECT_TIMEOUT<span class="hl_char">,</span>@timeout<span class="hl_char">,</span><span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;InternetSetOptionA<span class="hl_char">(</span>pInet<span class="hl_char">,</span>INTERNET_OPTION_RECEIVE_TIMEOUT<span class="hl_char">,</span>@timeout<span class="hl_char">,</span><span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;InternetSetOptionA<span class="hl_char">(</span>pInet<span class="hl_char">,</span>INTERNET_OPTION_SEND_TIMEOUT<span class="hl_char">,</span>@timeout<span class="hl_char">,</span><span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>[nice coder and reverser]</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=242510&amp;user=72&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=4" class="addthx" data-post="242510"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b][wl][/b]','')">[wl]</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/2760.jpg" alt=""><br><span class=txtSm>Ранг: 196.6 (ветеран), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.76'>Активность: 0.07<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=2760">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 19:17 &middot; Поправил: [wl] <br><script type="text/javascript">QU('[wl]','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=[wl]" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Если решать именно исходную проблему, то примерно так:<br>CreateThread кажется принимает одним из параметров произвольный указатель. Нужно при создании потока передать Self, а в функции потока привести этот указатель к TStatistic и уже через него обращаться к тексту.<br>и вообще, как-то криво поток создается, фунция потока должна иметь такой прототип (судя по MSDN):<br>DWORD WINAPI ThreadProc(<br>  [in]                 LPVOID lpParameter<br>);<br><br>а не void proc(); как в твоем случае. Хотя... раз твоя функция не статическая, то один параметр у неё похоже будет (указатель на класс), куда на самом деле будет передан 0.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242513&amp;user=2760&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=5" class="addthx" data-post="242513"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]_ruzmaz_[/b]','')">_ruzmaz_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 114.8 (ветеран), 41thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.01'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=21589">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 19:24 <br><script type="text/javascript">QU('_ruzmaz_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_ruzmaz_" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Если text объявить как class var, то адрес строки нормально передается. Только вот у мну даже первый бокс не всегда вылазит <img src="img/smilies/s6.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242514&amp;user=21589&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=6" class="addthx" data-post="242514"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]sendersu[/b]','')">sendersu</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 512.7 (<b>!</b>), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.56'>Активность: 0.27<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=14629">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 20:45 <br><script type="text/javascript">QU('sendersu','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sendersu" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>ToBad</b><br>Раз работаете в Дельфиях, то желательно использовать их классы, а именно - TThread<br>Замечание - если в коде потока надо обращаться к ГУИ - используем Synchronize()<br><br>Отличный пример работы с TThread можно найти в подкаталоге Demos\Threads каталога, куда Вы установили Borland Delphi.<br><br>еще можно в нете почитать, например - <br>Первые шаги с TThread в Delphi  <br>www.realcoding.net/article/view/158
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242528&amp;user=14629&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=7" class="addthx" data-post="242528"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 20:49 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I><b>Hellspawn</b> пишет:<br>а как же:<br>Code:<br>    timeout := 10 * 1000; // 10 sec<br>    InternetSetOptionA(pInet,INTERNET_OPTION_CONNECT_TIMEOUT,@timeout, 4);<br>    InternetSetOptionA(pInet,INTERNET_OPTION_RECEIVE_TIMEOUT,@timeout, 4);<br>    InternetSetOptionA(pInet,INTERNET_OPTION_SEND_TIMEOUT,@timeout,4);  </I><br><br>К сожалению не работает так как должно. Причем не у меня одного...<br><br><I><b>[wl]</b> пишет:<br>и вообще, как-то криво поток создается, фунция потока должна иметь такой прототип (судя по MSDN):<br>DWORD WINAPI ThreadProc(<br>[in] LPVOID lpParameter<br>); </I><br><br>Переделаю и попробую параметр передавать.<br><br><I><b>_ruzmaz_</b> пишет:<br>Если text объявить как class var, то адрес строки нормально передается. Только вот у мну даже первый бокс не всегда вылазит </I><br><br>Это как? Покажи пожалуйста примерчик.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242530&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=8" class="addthx" data-post="242530"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]_ruzmaz_[/b]','')">_ruzmaz_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 114.8 (ветеран), 41thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.01'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=21589">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 20:55 &middot; Поправил: _ruzmaz_ <br><script type="text/javascript">QU('_ruzmaz_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_ruzmaz_" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>ToBad пишет:<br>Это как? </I><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">class&nbsp;var&nbsp;text<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>вместо<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">text<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=242535&amp;user=21589&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=9" class="addthx" data-post="242535"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 20:59 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I><b>sendersu</b> пишет:<br>Раз работаете в Дельфиях, то желательно использовать их классы, а именно - TThread<br>Замечание - если в коде потока надо обращаться к ГУИ - используем Synchronize() </I><br><br>В длл с этим классом возникали проблемы, <a href="http://www.exelab.ru/f/action=vthread&amp;topic=15032&amp;forum=6&amp;page=-1" target="_blank">вот тут</a> об этом говорил. Как потом почитал, есть какие то проблемы с синхронизацией в случае с длл... А вообще мне тред нужен только для того, что бы поставить таймаут на выполнение функции работа которой может затянуться на долго. В случае использования TThread даже не знаю как это реализовать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242536&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=10" class="addthx" data-post="242536"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 21:05 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I><b>_ruzmaz_</b> пишет:<br>class var text: string; </I><br><br>Там же где у меня сейчас написано? Дельфи говорит что ошибка: PROCEDURE or FUNCTION expected.<br>А вообще если пишу var text: string; после implementation, то работает, и извне недоступно. А зачем вообще это писать в привате если переменная только для внутреннего пользования?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242538&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=11" class="addthx" data-post="242538"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]_ruzmaz_[/b]','')">_ruzmaz_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 114.8 (ветеран), 41thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.01'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=21589">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 21:11 <br><script type="text/javascript">QU('_ruzmaz_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_ruzmaz_" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>ToBad пишет:<br>Там же где у меня сейчас написано? </I><br>Да<br><br><I>ToBad пишет:<br>Дельфи говорит что ошибка: PROCEDURE or FUNCTION expected. </I><br>У меня ничего не говорит (Delphi 2006).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242539&amp;user=21589&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=12" class="addthx" data-post="242539"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 21:31 &middot; Поправил: ToBad <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I><b>_ruzmaz_</b> пишет:<br>У меня ничего не говорит (Delphi 2006). </I><br><br>У меня Delphi 7.0...<br><br><I><b>[wl]</b> пишет:<br>CreateThread кажется принимает одним из параметров произвольный указатель. Нужно при создании потока передать Self, а в функции потока привести этот указатель к TStatistic и уже через него обращаться к тексту. </I><br><br>Self передал, а как привести этот указатель к TStatistic что бы обращаться к text? И получается это нужно будет передавать дальше каждой вызываемой функции?<br>Дело в том, что такая конструкция тоже не работает правильно:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Type&nbsp;TStatistic<span class="hl_char">=</span>Class<span class="hl_char">(</span>TObject<span class="hl_char">)</span></li><li class="hl_l1">private</li><li class="hl_l0">text<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">;</span></li><li class="hl_l1">procedure&nbsp;Problem<span class="hl_comment">;</span></li><li class="hl_l0">function&nbsp;ThreadFunc<span class="hl_char">(</span>x<span class="hl_char">:</span><span class="hl_function">dword</span><span class="hl_char">)</span><span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">; stdcall;</span></li><li class="hl_l1"><span class="hl_function">public</span></li><li class="hl_l0">procedure&nbsp;<span class="hl_function">Test</span><span class="hl_char">(</span>sometext<span class="hl_char">:</span>&nbsp;string<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">implementation</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">Procedure&nbsp;TStatistic<span class="hl_char">.</span>Problem<span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">messagebox<span class="hl_char">(</span><span class="hl_number">0</span><span class="hl_char">,</span><span class="hl_quote">'Это сообщение будет выдано.'</span><span class="hl_char">,</span><span class="hl_quote">'Msg1'</span><span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">messagebox<span class="hl_char">(</span><span class="hl_number">0</span><span class="hl_char">,</span>PAnsiChar<span class="hl_char">(</span>text<span class="hl_char">)</span><span class="hl_char">,</span><span class="hl_quote">'Msg2'</span><span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">; // Проблемное место</span></li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;Вылет&nbsp;с&nbsp;ошибкой&nbsp;пропал&nbsp;после&nbsp;правильного&nbsp;объявления&nbsp;ThreadFunc</li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Function&nbsp;TStatistic<span class="hl_char">.</span>ThreadFunc<span class="hl_char">(</span>x<span class="hl_char">:</span><span class="hl_function">dword</span><span class="hl_char">)</span><span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">; stdcall;</span></li><li class="hl_l1">begin</li><li class="hl_l0">Problem<span class="hl_comment">; // Тут второй мессадж будет содержать пустую строку.</span></li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;Работает&nbsp;не&nbsp;правильно&nbsp;при&nbsp;вызове&nbsp;из&nbsp;треда<span class="hl_char">.</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Procedure&nbsp;TStatistic<span class="hl_char">.</span><span class="hl_function">Test</span><span class="hl_char">(</span>sometext<span class="hl_char">:</span>&nbsp;string<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">Var&nbsp;hThread<span class="hl_char">,</span>ThID<span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">text<span class="hl_char">:</span><span class="hl_char">=</span>sometext<span class="hl_comment">;</span></li><li class="hl_l0">Problem<span class="hl_comment">; // Тут будут два мессаджа и второй будет содержать строку из text</span></li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;Работает&nbsp;правильно&nbsp;при&nbsp;вызове&nbsp;отсюда<span class="hl_char">.</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">CreateThread<span class="hl_char">(</span>nil<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span>@TStatistic<span class="hl_char">.</span>ThreadFunc<span class="hl_char">,</span>Self<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span>ThID<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=242545&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=13" class="addthx" data-post="242545"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]_ruzmaz_[/b]','')">_ruzmaz_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 114.8 (ветеран), 41thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.01'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=21589">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 22:25 <br><script type="text/javascript">QU('_ruzmaz_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_ruzmaz_" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I>ToBad пишет:<br>Дельфи говорит что ошибка: PROCEDURE or FUNCTION expected. </I><br>Да, посмотрел в Delphi 7.0 - не работает, видимо позже добавили.<br><br><I>ToBad пишет:<br>А вообще если пишу var text: string; после implementation, то работает, и извне недоступно. </I><br>И так можно, но я думал что тебе нужно было чтоб text не выходила за пределы класса.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242551&amp;user=21589&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=14" class="addthx" data-post="242551"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b][wl][/b]','')">[wl]</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/2760.jpg" alt=""><br><span class=txtSm>Ранг: 196.6 (ветеран), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.76'>Активность: 0.07<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=2760">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2009 22:45 <br><script type="text/javascript">QU('[wl]','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=[wl]" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+приведение из одного типа в другой примерно так:<br><br>Function TStatistic.ThreadFunc(x:dword):dword; stdcall;<br>begin<br>  TStatictic(x).text<br>end;<br><br>Но работать это не будет мне кажется, так как ThreadFunc объявлена как нестатическая функция класса, то есть компилятор втихаря подставит лишний аргумент - указатель на Self:<br><br>Function TStatistic.ThreadFunc(Self: TStatistic, x:dword):dword; stdcall;<br><br>а нельзя никак эту функцию потока вынести из класса, чтобы не было параметра Self?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242556&amp;user=2760&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=15" class="addthx" data-post="242556"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Nowar[/b]','')">Nowar</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 13.7 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1543">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2009 11:05 <br><script type="text/javascript">QU('Nowar','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nowar" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+Во-первых, меняем<br>showmessage(&#039;Это сообщение будет выдано.&#039;);<br>showmessage(text); // Тут падает с ошибкой.<br><br>на<br><br>messagebox(0,&#039;Это сообщение будет выдано.&#039;,&#039;q&#039;,0);<br>messagebox(0,pchar(text),&#039;q&#039;,0); // Тут ничего не падает<br><br>затем меняем<br>CreateThread(nil,0,@TStatistic.ThreadFunc,nil,0,ThID);<br><br>на<br><br>CreateThread(nil,0,@TStatistic.ThreadFunc,self,0,ThID);<br><br>После этого всё работает. Как тут уже сказали, в ThreadFunc неявно передаётся параметр self, но он там, собственно, и ожидается ))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242597&amp;user=1543&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=16" class="addthx" data-post="242597"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]ToBad[/b]','')">ToBad</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/702.gif" alt=""><br><span class=txtSm>Ранг: 450.3 (мудрец), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.67'>Активность: 0.2<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=702">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2009 12:32 <br><script type="text/javascript">QU('ToBad','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ToBad" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Большое спасибо всем, кто отписался в теме, принял участие и помог!!!<br><br><I><b>Nowar</b> пишет:<br>После этого всё работает. </I><br><br>Посмотри код на 2 поста выше твоего. Вчера всё это пробовал и не работало, но сегодня прочитав такую уверенность в твоём посте попробовал ещё раз и теперь работает... <img src="img/smilies/s1.gif" alt=""> Понимаю, что звучит бредово...<br><br>Вот привожу полностью код который получился, может кому сгодится, нормального примера в инете не нашёл, лишь общие намёки, вывел процедурку PageToStr через которую получаю страничку в строку, конечно не нравится момент с буфером, нужно по умному сделать будет, но код писался под конкретную задачу, а в ней это допустимо.<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">unit&nbsp;MyInet<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">interface</li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_function"><b>Uses</b></span>&nbsp;windows<span class="hl_char">,</span>&nbsp;classes<span class="hl_char">,</span>&nbsp;wininet<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Type&nbsp;TMyInetClass<span class="hl_char">=</span>Class<span class="hl_char">(</span>TObject<span class="hl_char">)</span></li><li class="hl_l1">private</li><li class="hl_l0">Global<span class="hl_char">,</span>&nbsp;Url<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">;</span></li><li class="hl_l1">hSession<span class="hl_char">,</span>&nbsp;hURL<span class="hl_char">:</span>&nbsp;HInternet<span class="hl_comment">;</span></li><li class="hl_l0">procedure&nbsp;worker<span class="hl_comment">;</span></li><li class="hl_l1">Function&nbsp;ThreadFunc<span class="hl_char">(</span>x<span class="hl_char">:</span><span class="hl_function">dword</span><span class="hl_char">)</span><span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">; stdcall;</span></li><li class="hl_l0"><span class="hl_function">public</span></li><li class="hl_l1">TimeOut<span class="hl_char">:</span>integer<span class="hl_comment">;</span></li><li class="hl_l0">Constructor&nbsp;Create<span class="hl_comment">;</span></li><li class="hl_l1">Destructor&nbsp;Destroy<span class="hl_comment">; override;</span></li><li class="hl_l0">function&nbsp;GetInetFileToStr<span class="hl_char">(</span><span class="hl_function"><b>const</b></span>&nbsp;fileURL<span class="hl_char">:</span>&nbsp;string<span class="hl_char">)</span><span class="hl_char">:</span>string<span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">function&nbsp;PageToStr<span class="hl_char">(</span>fileURL<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">; timeout:integer):string;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">implementation</li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function">const</span></li><li class="hl_l0">&nbsp;&nbsp;BufferSize<span class="hl_char">=</span><span class="hl_number">1000000</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">function&nbsp;PageToStr<span class="hl_char">(</span>fileURL<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">; timeout:integer):string;</span></li><li class="hl_l1">var&nbsp;St<span class="hl_char">:</span>TMyInetClass<span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">St<span class="hl_char">:</span><span class="hl_char">=</span>TMyInetClass<span class="hl_char">.</span>Create<span class="hl_comment">;</span></li><li class="hl_l0">St<span class="hl_char">.</span>TimeOut<span class="hl_char">:</span><span class="hl_char">=</span>Timeout<span class="hl_comment">;</span></li><li class="hl_l1">Result<span class="hl_char">:</span><span class="hl_char">=</span>St<span class="hl_char">.</span>GetInetFileToStr<span class="hl_char">(</span>fileURL<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">St<span class="hl_char">.</span>Free<span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">constructor&nbsp;TMyInetClass<span class="hl_char">.</span>Create<span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">inherited<span class="hl_comment">;</span></li><li class="hl_l0">TimeOut<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">1000</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">destructor&nbsp;TMyInetClass<span class="hl_char">.</span>Destroy<span class="hl_comment">;</span></li><li class="hl_l0">begin</li><li class="hl_l1">inherited<span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">procedure&nbsp;TMyInetClass<span class="hl_char">.</span>worker<span class="hl_comment">;</span></li><li class="hl_l1">Var</li><li class="hl_l0">&nbsp;&nbsp;Buffer<span class="hl_char">:</span>&nbsp;array<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">.</span><span class="hl_char">.</span>BufferSize<span class="hl_char">]</span>&nbsp;of&nbsp;<span class="hl_function"><b>Byte</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;BufferLen<span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>DWORD</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;s<span class="hl_char">:</span>&nbsp;string<span class="hl_comment">;</span></li><li class="hl_l1">begin</li><li class="hl_l0">&nbsp;&nbsp;hSession<span class="hl_char">:</span><span class="hl_char">=</span>InternetOpen<span class="hl_char">(</span><span class="hl_quote">'Mozilla/4.0 (compatible; MSIE 5.0; Windows 98)'</span><span class="hl_char">,</span>INTERNET_OPEN_TYPE_PRECONFIG<span class="hl_char">,</span>&nbsp;nil<span class="hl_char">,</span>&nbsp;nil<span class="hl_char">,</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function">try</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;hURL<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;InternetOpenURL<span class="hl_char">(</span>hSession<span class="hl_char">,</span>PChar<span class="hl_char">(</span>url<span class="hl_char">)</span><span class="hl_char">,</span>nil<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">try</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InternetReadFile<span class="hl_char">(</span>hURL<span class="hl_char">,</span>&nbsp;@Buffer<span class="hl_char">,</span>&nbsp;<span class="hl_function">SizeOf</span><span class="hl_char">(</span>Buffer<span class="hl_char">)</span><span class="hl_char">,</span>&nbsp;BufferLen<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetLength<span class="hl_char">(</span>s<span class="hl_char">,</span>BufferLen<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;move<span class="hl_char">(</span>Buffer<span class="hl_char">,</span>&nbsp;s<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;BufferLen<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Global<span class="hl_char">:</span><span class="hl_char">=</span>s<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;finally</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;InternetCloseHandle<span class="hl_char">(</span>hURL<span class="hl_char">)</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;finally</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;InternetCloseHandle<span class="hl_char">(</span>hSession<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Function&nbsp;TMyInetClass<span class="hl_char">.</span>ThreadFunc<span class="hl_char">(</span>x<span class="hl_char">:</span><span class="hl_function">dword</span><span class="hl_char">)</span><span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">; stdcall;</span></li><li class="hl_l1">begin</li><li class="hl_l0">worker<span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">function&nbsp;TMyInetClass<span class="hl_char">.</span>GetInetFileToStr<span class="hl_char">(</span><span class="hl_function"><b>const</b></span>&nbsp;fileURL<span class="hl_char">:</span>&nbsp;string<span class="hl_char">)</span><span class="hl_char">:</span>string<span class="hl_comment">;</span></li><li class="hl_l0">Var&nbsp;hThread<span class="hl_char">,</span>ThID<span class="hl_char">:</span><span class="hl_function"><b>dword</b></span><span class="hl_comment">;</span></li><li class="hl_l1">begin</li><li class="hl_l0">URL<span class="hl_char">:</span><span class="hl_char">=</span>fileURL<span class="hl_comment">;</span></li><li class="hl_l1">hThread<span class="hl_char">:</span><span class="hl_char">=</span>CreateThread<span class="hl_char">(</span>nil<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span>@TMyInetClass<span class="hl_char">.</span>ThreadFunc<span class="hl_char">,</span>Self<span class="hl_char">,</span><span class="hl_number">0</span><span class="hl_char">,</span>ThID<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>if</b></span>&nbsp;WaitForSingleObject<span class="hl_char">(</span>hThread<span class="hl_char">,</span>TimeOut<span class="hl_char">)</span><span class="hl_char">=</span>WAIT_TIMEOUT&nbsp;then&nbsp;Global<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_quote">''</span><span class="hl_comment">;</span></li><li class="hl_l1">CloseHandle<span class="hl_char">(</span>hThread<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">InternetCloseHandle<span class="hl_char">(</span>hURL<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">InternetCloseHandle<span class="hl_char">(</span>hSession<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">Result<span class="hl_char">:</span><span class="hl_char">=</span>Global<span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function">end</span><span class="hl_char">.</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Вот я одного не пойму, зачем это делать классом? Может проще и лучше простой юнит? На конкретно этом примере есть недостатки или преимущества? Может кто нибудь в двух словах объяснить?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242602&amp;user=702&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=17" class="addthx" data-post="242602"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]sendersu[/b]','')">sendersu</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 512.7 (<b>!</b>), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.56'>Активность: 0.27<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=14629">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2009 16:01 <br><script type="text/javascript">QU('sendersu','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sendersu" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Класс лучше по многим причинам<br>- инкапсуляция кода и данных в одном месте<br>- незасорение пространства имен<br>- простой реюз в будущих проектах<br>- возможность унаследовать и изменить настроить надо (не внося изменений в базовый код)<br><br>хочу услишать аргументы за не-классовый подход
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242630&amp;user=14629&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=18" class="addthx" data-post="242630"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]SLV[/b]','')">SLV</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 309.8 (мудрец), 21thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.69'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=663">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2009 16:30 <br><script type="text/javascript">QU('SLV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SLV" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+namespace может почти всё из поста #18.
+<br><br><font size="1"><i>-----<br>Shalom ebanats!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=242631&amp;user=663&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=19" class="addthx" data-post="242631"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]the_laser[/b]','')">the_laser</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 2.6 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=11952">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 октября 2009 16:14 <br><script type="text/javascript">QU('the_laser','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=the_laser" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+если интересно, то данная проблема есть одно из проявлений того, что VCL НЕ thread safe.<br>а именно, showMessage в глубине себя создает форму, что НЕЛЬЗЯ делать из потока.<br>да, МОЖЕТ прокатить. но с вероятностью 50% - подвиснет,свалится и тд.<br><br>посему надобно практически всегда использовать synchronize, если есть обращение к VCL...<br><br>сорри,ежели баян.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=242805&amp;user=11952&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=20" class="addthx" data-post="242805"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]vitokop[/b]','')">vitokop</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 17.6 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.58'>Активность: 0.01=0.01</span><br>Статус: <a href="action=userinfo&amp;user=8405">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 октября 2009 19:30 <br><script type="text/javascript">QU('vitokop','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vitokop" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15185.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+В Delphi нужно использовать класс TTРread использование CreateThread некорректоно , подробности<br>у Рихтера
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=243219&amp;user=8405&amp;forum_n=6&amp;topic=15185.html&amp;page=0&amp;anchor=21" class="addthx" data-post="243219"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Delphi, class, ошибка доступа к private из thread, помогите разобраться.</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#22" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="15185">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=15185" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

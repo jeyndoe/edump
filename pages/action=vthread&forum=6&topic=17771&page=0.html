@@ -1,0 +1,534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Запись в адресное пространство приложения - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Есть приложение, которое ставит драйвер хукающий NtOpenProcess и NtQuerySystemInformation, дабы спрятать своё присутствие в списке процессов и не дать открыть свой процесс через OpenProcess. Задача: писать в память этого">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a>, <a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Запись в адресное пространство приложения</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=6&amp;topic=17771&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=6&amp;topic=17771&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=6&amp;topic=17771&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 15:53 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Есть приложение, которое ставит драйвер хукающий NtOpenProcess и NtQuerySystemInformation, дабы спрятать своё присутствие в списке процессов и не дать открыть свой процесс через OpenProcess.<br>Задача: писать в память этого процесса.<br><br>При восстановлении SDT и снятии хуков приложение начинает работать некорректно, поэтому этот способ отпадает. Я инжекчу свою длл в этот процесс, поэтому в принципе все данные по нему и так есть. И даже из этой длл в его адресное пространство можно писать что угодно. Вопрос вот в чём: как в данной ситуации сделать так, чтобы в память этого процесса могло писать <b>любое другое</b> приложение? Тот же самый ArtMoney?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277107&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=1" class="addthx" data-post="277107"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 16:05 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Как вариант-переписать функции записи артмани на свои. К примеру, заинжекченая длл предоставляет интерфейс для записи. В артмани пихаешь свою длл, которая получает управление при необходимости записи и использует этот интерфейс.<br>Без снятия хука в том или ином виде и без ковырянии в артмани вариантов не вижу.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277108&amp;user=1556&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=2" class="addthx" data-post="277108"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24616" title="15-02-2011 13:26, ранг:8.4" target="_blank">noph</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Rouse_[/b]','')">Rouse_</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 35.1 (посетитель), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.07'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5245">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 16:07 <br><script type="text/javascript">QU('Rouse_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Rouse_" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Инжектись посредством лоадера. Т.е. CreateProcess + CREATE_SUSPENDED, инжект, ResumeThread
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277109&amp;user=5245&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=3" class="addthx" data-post="277109"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 16:11 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<I>Rouse_ пишет:<br>Инжектись посредством лоадера. Т.е. CreateProcess + CREATE_SUSPENDED, инжект, ResumeThread  </I><br>инжектить то я и так инжекчу.. с этим проблем нет. Как дать остальным программам возможность работать с этим скрытым процессом - вот в чём вопрос.<br><br><I>Archer пишет:<br>Как вариант-переписать функции записи артмани на свои. К примеру, заинжекченая длл предоставляет интерфейс для записи. В артмани пихаешь свою длл, которая получает управление при необходимости записи и использует этот интерфейс.<br>Без снятия хука в том или ином виде и без ковырянии в артмани вариантов не вижу.  </I><br>да вот хотелось бы универсальный для любого подобного ПО способ
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277110&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=4" class="addthx" data-post="277110"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 16:42 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Ну можешь попытаться сделать более-менее универсально, инжектить длл в артмани, которая хучит нужные апи, лучше сразу из нтдлл. На опенпроцесс возвращает какой-нить свой псевдохендл. При попытке читать/писать из/в него, использовать интерфейс. Тогда сам ехе артмани не придётся патчить, что-то особо хардкодить.<br>Понятное дело, что способ не фонтан, могут попадаться новые апи, которые хукать придётся, что может потребовать ресёча, но лучше, чем ничего. Другого варианта не вижу.<br>Либо как-то играться с хуком: снимать/разбираться, почему падает, как-то свой хук ставить, чтоб разрешать части процессов видеть и тд.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277112&amp;user=1556&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=5" class="addthx" data-post="277112"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 16:48 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>Archer пишет:<br>Archer </I><br>Да, это зло. Лучше правда играться с хуками..<br>А если наша длл находится в адресном пространстве процесса, она же может получить хэндл этого процесса? Аналогичный тому, который мы получаем через OpenProcess
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277113&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=6" class="addthx" data-post="277113"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 17:00 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Хендл получить полно способов, я уверен на 99%, что его можно получить и даже не из длл, а из другого процесса тоже. Всё зависит от драйвера, хуков и их реализации.<br>То же самое и длл касается, сможет получить, если драйвер, опять же, не будет мешать.<br>Другой вопрос, что ты делать с ним будешь, если, опять же, интерфейс как-то не прокидывать.<br>А там фиг его знает, вдруг, кто-нить что более подходящее посоветует.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277114&amp;user=1556&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=7" class="addthx" data-post="277114"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 17:21 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>Archer пишет:<br>Хендл получить полно способов, я уверен на 99%, что его можно получить и даже не из длл, а из другого процесса тоже. Всё зависит от драйвера, хуков и их реализации.<br>То же самое и длл касается, сможет получить, если драйвер, опять же, не будет мешать.<br>Другой вопрос, что ты делать с ним будешь, если, опять же, интерфейс как-то не прокидывать.<br>А там фиг его знает, вдруг, кто-нить что более подходящее посоветует.  </I><br>ну у меня была такая идея:<br>создавать фейковый процесс, хукать в нужной программе (в юзермоде) OpenProcess. И в этой самой нужной программе (в той же артмани), при открытии фейкового процесса подсовывать хэндл скрытого процесса. <br>На сколько идея реальная?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277116&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=8" class="addthx" data-post="277116"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 17:36 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Попробуй-узнаешь. Я думаю, вполне реально. Для этого только нужен, опять же, интерфейс из прикрытого процесса. Можешь и перечисление процессов тогда уж похукать и вставить его туда, обходясь без фейкового. И тупо копировать хендл не катит, придётся через DuplicateHandle работать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277117&amp;user=1556&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=9" class="addthx" data-post="277117"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 18:04 &middot; Поправил: Clerk <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Нафиг вобще всякие анхуки. Да и вобще сам менеджер сисколов(сст и всё остальное) не нужен для вызова сервисов.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277118&amp;user=17964&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=10" class="addthx" data-post="277118"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 19:43 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>Clerk пишет:<br>Нафиг вобще всякие анхуки. Да и вобще сам менеджер сисколов(сст и всё остальное) не нужен для вызова сервисов.  </I><br>не понял о чём ты :/ как это поможет мне открывать скрытый процесс?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277120&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=11" class="addthx" data-post="277120"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Nightshade[/b]','')">Nightshade</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4618.gif" alt=""><br><span class=txtSm>Ранг: 241.9 (наставник), 107thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4618">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2011 20:37 <br><script type="text/javascript">QU('Nightshade','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nightshade" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Вы не фрост случаем копаете?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277125&amp;user=4618&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=12" class="addthx" data-post="277125"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 07:53 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>noph</b><br>Никак не поможет. Сейчас фаеры уже все легальные пути доступа к процессам закрыли, нет смысла пытаться получить описатель. Такие манипуляции только из ядра нужно выполнять. По сути вам нужен сплоет(механизм обхода защиты), так как именно он и есть решение вашей задачи.<br><br>&gt; как в данной ситуации сделать так, чтобы в память этого процесса могло писать любое другое приложение?<br>Ну давайте подумаем. Есть высокоуровневый фильтр который выполнил редирект ссылок в сервисных таблицах на себя. Значит можно использовать следующее:<br> o Установка своего фильтра поверх первого.<br> o Изменение менеджера сисколов. Тут варианов куча.<br>   - Перенос сервисных таблиц в другое место. Текущие не используются и не изменяются в дальнейшим.<br>   - Установка своего менеджера.<br>   - Изменение текущего менеджера(например впилить часть, которая заменит оригинальную работу с сст, например пропатчить(фуу) KiSystemServiceRepeat/kssdoit etc).<br>Технически проблем в реализации не должно быть никаких, брать и кодить.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277147&amp;user=17964&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=13" class="addthx" data-post="277147"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 09:47 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>Clerk пишет:</b><br><br><i class=x>Есть высокоуровневый фильтр который выполнил редирект ссылок в сервисных таблицах на себя. Значит можно использовать следующее:<br>o Установка своего фильтра поверх первого.<br>o Изменение менеджера сисколов. Тут варианов куча.</i><br><br>Как минимум, есть ещё и третий вариант - патч самого фильтра. Если он не проверяет свою CRC, то проблем быть не должно. Если проверяет - нужно искать место проверки и патчить его. Т.е. говоря просто, вам нужно не анхучить перехват в ssdt, а патчить код перехвата так, чтоб он никогда не выполнялся.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277154&amp;user=6336&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=14" class="addthx" data-post="277154"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Alchemistry[/b]','')">Alchemistry</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 145.8 (ветеран), 191thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.05'>Активность: 0.14<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=21411">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 10:30 <br><script type="text/javascript">QU('Alchemistry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Alchemistry" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>noph</b><br>Т.е. есть дров, который грузится приложением и патчит рутины в сдт? Или он установлен и грузится сам по себе с системой? Какие именно рутины он патчит помимо NtOpenProcess и NtQuerySystemInformation?<br>Если изменениям подверглись только эти две тогда ваша задача решается элементарным образом из юзермода элементарным же лоадером который будет подсывавать хэндл с полными правами целевому приложению, когда оно попытается выполнить NtOpenProcess c ID защищенного процесса.<br><br>Господа Клерк и Архангел. Вы развели теоретический флуд о дурацких хаках. Сразу видно что-либо серьезное никто из вас никогда не писал.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277156&amp;user=21411&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=15" class="addthx" data-post="277156"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 10:47 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<b>Alchemistry пишет:</b><br><br><i class=x>Вы развели теоретический флуд о дурацких хаках</i><br><br>Какие есчо дурацкие хаки? Вы о чём? Метод патча перехвата использовался ещё сто лет назад при анпаке eXtreme Protector&#039;a. Вполне реальные вещи описал и <b>Clerk</b>. Про PoC первой идеи писал ещё Ms-Rem, а также Хоглунд. Второй вариант - вполне логичное развитие перехвата _KiSystemService.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277158&amp;user=6336&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=16" class="addthx" data-post="277158"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 11:58 <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<I>Nightshade пишет:<br>Вы не фрост случаем копаете? </I><br>Вы находите фрост сложной для снятия &quot;защитой&quot;?
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277161&amp;user=13651&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=17" class="addthx" data-post="277161"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 12:13 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I>Alchemistry пишет:<br>Т.е. есть дров, который грузится приложением и патчит рутины в сдт? Или он установлен и грузится сам по себе с системой? Какие именно рутины он патчит помимо NtOpenProcess и NtQuerySystemInformation?<br>Если изменениям подверглись только эти две тогда ваша задача решается элементарным образом из юзермода элементарным же лоадером который будет подсывавать хэндл с полными правами целевому приложению, когда оно попытается выполнить NtOpenProcess c ID защищенного процесса. </I><br>Вот я эту идею и рассматриваю. Вопрос тогда конкретнее, где брать этот хэндл с полными правами, который вы предлагает подсовывать?<br>Хукаются только два указанных API. Драйвер грузится при запуске защищённого приложения.<br><br><br><I>HiEndsoft пишет:<br>Nightshade пишет:<br>Вы не фрост случаем копаете? <br>Вы находите фрост сложной для снятия &quot;защитой&quot;?  </I><br>Смотря о каком элементе фроста идёт речь. Анхукать API легко, а вот сделать так, чтобы всё при этом работало - теперь сложно.<br><br><I>ARCHANGEL пишет:<br>Как минимум, есть ещё и третий вариант - патч самого фильтра. Если он не проверяет свою CRC, то проблем быть не должно. Если проверяет - нужно искать место проверки и патчить его. Т.е. говоря просто, вам нужно не анхучить перехват в ssdt, а патчить код перехвата так, чтоб он никогда не выполнялся.  </I><br>вот этот вариант тоже интересен. Пропатчить файл драйвера не представляется возможным, т.к. защищённое приложение проверяет чексуммы всех своих файлов. Возможно ли патчить и на сколько сложно уже загруженный драйвер, так сказать, &quot;на лету&quot;?<br>Рассматриваю ещё вариант замены драйвера в момент его подрузки. Но тут дело в том, что загружает драйвер библиотека упакованная фемидой. Вызываемые ей API так просто не перехватываются :/
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277163&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=18" class="addthx" data-post="277163"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 12:22 &middot; Поправил: HiEndsoft <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<b>noph</b><br>Судя по вашим темам...<br>Если это то что я думаю - пишите в запросы на взлом или мне в ЛС <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277165&amp;user=13651&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=19" class="addthx" data-post="277165"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 12:59 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<b>noph пишет:</b><br><i class=x>Возможно ли патчить и на сколько сложно уже загруженный драйвер, так сказать, &quot;на лету&quot;?</i><br><br>Почему нет? Метод тот же, что и для ринг 3 - сделали страницу валидной для записи, и патчте, сколько вашей душе угодно.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277168&amp;user=6336&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=20" class="addthx" data-post="277168"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 19:15 &middot; Поправил: Clerk <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<b>Alchemistry</b><br>&gt; Сразу видно что-либо серьезное никто из вас никогда не писал. <br>Я написал двиг, который это делает автоматически. В данном случае будет отморфлен менеджер и интегрирована надстройка. А вот ты нуб и вобще не способен это реализовать, даже гипотетически, так как теорию вы не знаете <img src="img/smilies/s11.gif" alt=""><br><br>В крайнем случае можно скрыть вызов от сторонних процессов подменив физиклпейдж. Но это весьма сложно в реализации.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277196&amp;user=17964&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=21" class="addthx" data-post="277196"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Nightshade[/b]','')">Nightshade</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4618.gif" alt=""><br><span class=txtSm>Ранг: 241.9 (наставник), 107thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4618">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 февраля 2011 20:37 <br><script type="text/javascript">QU('Nightshade','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nightshade" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+На dev.rf-cheats.ru расписана работа фроста. Там же есть драйвер для его обхода. Думаю вам стоит написать туда
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277202&amp;user=4618&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=22" class="addthx" data-post="277202"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 09:44 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+Что за фрост? А то я не в теме, даже не знаю, что у гугла спросить.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277213&amp;user=6336&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=23" class="addthx" data-post="277213"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]noph[/b]','')">noph</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.34'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24616">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 11:40 <br><script type="text/javascript">QU('noph','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=noph" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Почему нет? Метод тот же, что и для ринг 3 - сделали страницу валидной для записи, и патчте, сколько вашей душе угодно.  </I><br>У вас нет случаем ссылки на стоящие статьи, посвещённые этому поводу? А то с ключевыми словами для гугла затруднения.<br><br><I>ARCHANGEL пишет:<br>Что за фрост? А то я не в теме, даже не знаю, что у гугла спросить.  </I><br>Защита локализованных в России онлайн игр. Фемида в юзер моде, драйвер в кернел моде.<br><br><br><I>Clerk пишет:<br>Я написал двиг, который это делает автоматически. </I><br>Он подойдёт для данной конкретной задачи? Исходники есть в публичном доступе? <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277219&amp;user=24616&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=24" class="addthx" data-post="277219"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]SReg[/b]','')">SReg</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 315.1 (мудрец), 631thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.78'>Активность: 0.3<span style='color:green'>&nearr;</span>0.33</span><br>Статус: <a href="action=userinfo&amp;user=18316">Модератор</a><br><font color=blue>CrackLab</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 11:47 &middot; Поправил: SReg <br><script type="text/javascript">QU('SReg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SReg" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Что за фрост?  </I><br>www.google.ru/search?hl=ru&amp;source=hp&amp;q=frost+security&amp;aq=2&amp;aqi=g8g-s1g1&amp;aql=&amp;oq=frost+<br>upd:<br>уже ответили.<br>PointBlank опять хачат, 100 пудоф...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277220&amp;user=18316&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=25" class="addthx" data-post="277220"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 12:40 &middot; Поправил: HiEndsoft <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Что за фрост? А то я не в теме, даже не знаю, что у гугла спросить. </I><br>Фрост - это простая ring-0/ring-3 защита, применяют для защиты игр и обычно дополняют gameguard&#039;ом. А саму игру часто &quot;до кучи&quot; защищают Win License.<br>Фрост, маяк  - одинаковые поделки с одинаковыми принципами (патч SDT+ нотификаторы + проверка наличия драйверов известных тулз и отладчиков + &quot;контрольный&quot; поток в защищаемом процессе..). Но фрост снимается быстрее (для ХР даже драйвер писать не нужно).
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277222&amp;user=13651&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=26" class="addthx" data-post="277222"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 13:23 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<b>noph</b><br>Статьи? Хм, посмотрите статью Рема про перехват АПИ на васме (третью часть)<br><noindex><a href="http://www.wasm.ru/article.php?article=apihook_3" rel="nofollow" target="_blank">--&gt; Tutorial &lt;--</a></noindex><br><br><b>HiEndsoft</b><br>Т.е. бедные юзвери не могут юзать АртМани? Так надо помочь )) А есть ли для исследований игра офф-лайн, защищённая таким способом?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277224&amp;user=6336&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=27" class="addthx" data-post="277224"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 14:01 <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Т.е. бедные юзвери не могут юзать АртМани? Так надо помочь ))  </I><br>уже помог некоторым ))<br><I>ARCHANGEL пишет:<br>А есть ли для исследований игра офф-лайн, защищённая таким способом? </I><br>не видел
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=277225&amp;user=13651&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=28" class="addthx" data-post="277225"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]ELF_7719116[/b]','')">ELF_7719116</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 419.0 (мудрец), 647thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.73'>Активность: 0.46<span style='color:green'>&nearr;</span>0.51</span><br>Статус: <a href="action=userinfo&amp;user=26651">Участник</a><br><font color=blue>&quotТибериумный реверсинг&quot</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 18:43 <br><script type="text/javascript">QU('ELF_7719116','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ELF_7719116" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+Мда. Если есть инжект, можно ведь застопорнуть процесс до того, как будут танцы с драйвером и дать другим получить хендл. Или все равно не даст записать?<br>Но с ArtMoney возиться точно потребуется.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277239&amp;user=26651&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=29" class="addthx" data-post="277239"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]Ratinsh[/b]','')">Ratinsh</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 191.8 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.17<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3333">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2011 20:20 <br><script type="text/javascript">QU('Ratinsh','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ratinsh" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=17771&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+как-то занесло на один сайт - мож пригодится<br>www.opensc.ws/snippets-unsorted/9822-process-injection.html
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=277249&amp;user=3333&amp;forum_n=6&amp;topic=17771&amp;page=0&amp;anchor=30" class="addthx" data-post="277249"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=6&amp;topic=17771&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=6&amp;topic=17771&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=6&amp;topic=17771&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Запись в адресное пространство приложения</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#31" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="17771">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=17771" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

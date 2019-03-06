@@ -1,0 +1,534 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Неприятная и трудноустранимая Information Disclosure / Denial of Service уязвимость в Windows 7 - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="С нижеописанной уязвимостью я столкнулся недавно, после чего долго гуглил надеясь что эта багофича и способы ее закрытия уже известны, но не нашел ничего внятного. Теперь пытаюсь решить проблему сам, и заодно выношу её на">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=1533'>rmn</a>, <a target='_blank' href='?action=userinfo&amp;user=55940'>exp50848</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Неприятная и трудноустранимая Information Disclosure / Denial of Service уязвимость в Windows 7</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=1&amp;topic=18837&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=18837&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 июля 2011 23:02 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+С нижеописанной уязвимостью я столкнулся недавно, после чего долго гуглил надеясь что эта багофича и способы ее закрытия уже известны, но не нашел ничего внятного. Теперь пытаюсь решить проблему сам, и заодно выношу её на обсуждение.<br><br>Итак, проблема заключается в небезопасных дефолтовых ACL для объектов процесса, токена и потока. В их дефолтовые ACL добавлен SID формата S-1-5-5-0-xxxxx которому разрешены некоторые действия в некоторых случаях ломающие границы системы безопасности и приводящие к раскрытию приватной информации и отказу в обслуживании. <br>Для демонстрации Denial of Service создайте пользователя test с паролем 1 <b>net user test 1 /add</b> и запустите TaskManager от этого пользователя <b>runas /user:test taskmgr</b>. В окне TaskManager&#039;a вы увидите процессы своего основного пользователя (например explorer.exe) и сможете их убить. Пользователь test не имеет прав администратора, как же получается, что он может убивать процессы других пользователей? Но это ещё полбеды, теперь запустите процесс требующий повышения прав до администратора, например regedit.exe, и он будет успешно убиваться другим пользователем с пониженными правами.<br>Если вы думаете что это всё, то вы ошибаетесь, дальше - больше. Теперь <noindex><a href="http://sourceforge.net/projects/processhacker/files/processhacker2/processhacker-2.18-bin.zip/download" rel="nofollow" target="_blank">--&gt; скачаем &lt;--</a></noindex> утилиту Process Hacker 2, извлечем из архива один только файл ProcessHacker.exe (без драйвера) и запустим под пользователем test. И что мы видим? ProcessHacker успешно показывает полную командную строку и переменные окружения всех процессов основного пользователя и других ограниченных пользователей (спасибо хоть что не администраторов), а также легко сканирует их память и показывает хранящиеся там строки. Если завершение процессов можно было как-то терпеть, то это полный ахтунг! Явки, пароли, секретные планы порабощения мира, всё может быть прочитано любой программой запущенной от отдельного пользователя, которого создали для того чтобы предотвратить такой непорядок. Обидно, да?<br>Теперь с помощью ProcessHacker&#039;а ищем причины этой фигни. Сразу смотрим permissions процессов и видим странный SID  формата S-1-5-5-0-xxxxx (разрешены действия Query limited information, Query information, Read memory, Terminate, Syncronize и Read permissions), лезем на вкладку Token и смотрим ACL примари токена, опять видим этот SID (разрешены Assign as primary token, Duplicate, Impersonate, Query, Query source, и Read permissions), получается что загадочный S-1-5-5-0-xxxxx может скопировать себе токен процесса, имперсонироваться и получить доступ к файлам другого пользователя. Замечательно, да? Ну и напоследок смотрим permissions потоков процесса, опять видим наш SID (разрешены Query limited information, Query information, Get context, Syncronize и Read permissions), мда, но ничего хорошего и не ожидалось.<br>Теперь о том, кто же такой этот S-1-5-5-0-xxxxx. Поиск S-1-5-5- в WDK дал такое описание в ntifs.h <b>(Logon IDs) S-1-5-5-X-Y</b>. Получается что этот SID связал с logon id с которым запущен процесс. Для проверки пробуем сделать Switch user, зайти как test и повторить предыдущие действия. Теперь система безопасности отрабатывает как надо и не дает сделать лишнего. Но это не решает проблему того, что <b>runas страшно небезопасен</b>!<br><br>Теперь давайте вместе попробуем ответить на извечные вопросы &quot;кто виноват&quot; и &quot;что делать&quot;. Как вернуть в Windows безопасный runas, который всегда был замечательным средством изоляции програм от друг-друга?
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288419&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=1" class="addthx" data-post="288419"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=18950" title="08-08-2011 14:05, ранг:47.1" target="_blank">Vol4ok</a>, <a href="action=userinfo&user=22838" title="29-11-2011 18:06, ранг:0.0" target="_blank">RETOR</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Enigma[/b]','')">Enigma</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 88.3 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.58'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8396">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 июля 2011 23:58 <br><script type="text/javascript">QU('Enigma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Enigma" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Предположу, что так, впринципе, оно и должно работать. Ведь для того что запустить процесс действительно под другим пользователем, Windows надо как минимум загрузить окружение того пользователя. Т.е. сделать тоже самое что и делает Switch User. А то, с какой скоростью система отрабатывает запуск через RunAs, уже понятно, что окружение другого пользователя винда не загружает..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288421&amp;user=8396&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=2" class="addthx" data-post="288421"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 00:03 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<I>Enigma пишет:<br>уже понятно, что окружение другого пользователя винда не загружает.. </I><br>Загружать или не загружать окружение - настраивается ключами runas, по-умолчанию оно загружается. И в Windows XP/2003 runas давал нормальную изоляцию процессов, без таких сюрпризов. Так что эта багофича новая.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288422&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=3" class="addthx" data-post="288422"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Enigma[/b]','')">Enigma</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 88.3 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.58'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8396">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 00:10 <br><script type="text/javascript">QU('Enigma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Enigma" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+вот только проверил, да, все работает так как ты написал, на Win 7.<br><br>Попробовал на Win Xp SP2, &quot;runas /user:guest taskmgr&quot;, тоже самое, видно все процессы администратора, и так же их убить можно... разницы с Win 7 никакой..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288423&amp;user=8396&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=4" class="addthx" data-post="288423"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 09:24 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>Enigma пишет:<br>Попробовал на Win Xp SP2, &quot;runas /user:guest taskmgr&quot;, тоже самое, видно все процессы администратора, и так же их убить можно... разницы с Win 7 никакой.. </I><br>Guest у вас какой-то неправильный. По-умолчанию нельзя сделать runas для guest, так как ему запрещен локальный вход в систему и отсутстует пароль (runas без пароля не делается). Если специально подкрутить настройки и поставить пароль, то таскменеджер видит все процессы (собственно винда не умеет фильтровать выдачу при перечислении процессов, и хз как её этому научить), но ничего не убивает.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288437&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=5" class="addthx" data-post="288437"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Av0id[/b]','')">Av0id</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 516.1 (<b>!</b>), 39thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1378">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 10:33 <br><script type="text/javascript">QU('Av0id','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Av0id" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+допустим инжектимся через runas в процесс, созданный системой или админом, повышение привилегий возможно?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288439&amp;user=1378&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=6" class="addthx" data-post="288439"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Error_Log[/b]','')">Error_Log</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 228.7 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.05'>Активность: 0.12<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2060">Участник</a><br><font color=blue>malware research</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 11:11 <br><script type="text/javascript">QU('Error_Log','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Error_Log" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>Av0id пишет:<br>допустим инжектимся через runas в процесс, созданный системой или админом, повышение привилегий возможно? </I><br>Доступ на запись запрещен. Но имеется доступ на чтение, а это значит что User1 может читать память User2 - в том числе его пароли и прочую security - информацию. Это можно расценивать как уязвимость безопасности системы. <br>В качестве решения проблемы можно <u>попробовать</u> отказаться от runas, и использовать самописный аналог, который при запуске процесса вырубает Logon SID в токене (LogonUser/CreateRestrictedToken/CreateProcessAsUser). Но, подозреваю, что может отвалиться какая-то часть системного АПИ. Т.е. по-хорошему надо исследовать где и для чего этот самый SID еще используется системой.
+<br><br><font size="1"><i>-----<br>Research is my purpose</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288441&amp;user=2060&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=7" class="addthx" data-post="288441"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 11:26 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+сдается мне это особенность Desktop версии <br>есть у кого Server вариант, проверте там
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288443&amp;user=15381&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=8" class="addthx" data-post="288443"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Av0id[/b]','')">Av0id</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 516.1 (<b>!</b>), 39thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1378">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 14:34 &middot; Поправил: Av0id <br><script type="text/javascript">QU('Av0id','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Av0id" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<i class=x>Доступ на запись запрещен</i><br><br>этого в принципе достаточно <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288456&amp;user=1378&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=9" class="addthx" data-post="288456"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 16:29 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>Av0id пишет:<br>допустим инжектимся через runas в процесс, созданный системой или админом, повышение привилегий возможно? </I><br>Возможен перескок в контекст безопасности другого пользователя через имперсонацию на токене чужого процесса, т.к. к токенам тоже разрешен излишний доступ.<br><br><I>Error_Log пишет:<br>В качестве решения проблемы можно попробовать отказаться от runas, и использовать самописный аналог, который при запуске процесса вырубает Logon SID в токене </I><br>Но explorer запускающийся от основного пользователя и запущенные им процессы по преждему будут иметь Logon SID. А кто сказал, что експлореру и всякой срани в автозагрузке должно быть разрешено чтение чего угодно?<br>Вообщем решение уже есть. Я написал простенький драйверок отслеживающий создание процессов и потоков и удаляющий левый SID откуда надо. На первый взгляд это работает, но толком еще не тестировал.<br><br><I>reversecode пишет:<br>есть у кого Server вариант, проверте там </I><br>Проверил на Win2008 R2 SP1 со всем патчами, работает.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288470&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=10" class="addthx" data-post="288470"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 16:31 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>ntldr пишет:<br>Я написал простенький драйверок отслеживающий создание процессов и потоков и удаляющий левый SID откуда надо. </I><br><br>версию под х64 ожидать можно?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288471&amp;user=2585&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=11" class="addthx" data-post="288471"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Wyfinger[/b]','')">Wyfinger</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 52.1 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.52'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8834">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 16:38 <br><script type="text/javascript">QU('Wyfinger','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Wyfinger" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Простите, а что по этому поводу думает Microsoft?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288474&amp;user=8834&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=12" class="addthx" data-post="288474"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 июля 2011 16:53 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>Gideon Vi пишет:<br>версию под х64 ожидать можно? </I><br>Сегодня-завтра будет выложена подписанная версия с исходниками.<br><br><I>Wyfinger пишет:<br>Простите, а что по этому поводу думает Microsoft? </I><br>Знать бы как у них спросить...
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288475&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=13" class="addthx" data-post="288475"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=2585" title="25-07-2011 13:51, ранг:772.3" target="_blank">Gideon Vi</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июля 2011 04:25 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Выкладываю драйвер решающий проблему.<br><br><noindex><a href="https://diskcryptor.net/_tools/psstrict.zip" rel="nofollow" target="_blank">--&gt; psstrict.zip &lt;--</a></noindex>
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288504&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=14" class="addthx" data-post="288504"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Wyfinger[/b]','')">Wyfinger</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 52.1 (постоянный), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.52'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=8834">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июля 2011 05:43 &middot; Поправил: Wyfinger <br><script type="text/javascript">QU('Wyfinger','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Wyfinger" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>ntldr</b><br>Спросил <noindex><a href="http://social.technet.microsoft.com/Forums/ru-RU/windows7ru/thread/c4f4acf9-a1e4-498b-9d65-ddfe349ef00c" rel="nofollow" target="_blank">здесь</a></noindex>.<br><br>Надеюсь заметят, подождем ответа.<br><br>UPD:<br>Один из ответов<br><i class=x>Ilya Tumanov (MSFT)<br>Даже если все так, то сценарий сам по себе сомнителен. Ведь пользователь А который использовал runas для запуска от имени пользователя Б и так может убивать процессы пользователя А, видеть их командные строки и т.п. Т.е. если &quot;за рулем&quot; &quot;злодей&quot; без присмотра то ему никакие runas не потребуются, все и так доступно. То же касается &quot;злодейского приложения&quot; который под любым эккаунтом будет иметь слишком много прав.<br><br>Кстати, runas скорее является средством для запуска от лица другого пользователя (например с целью получения прав которых у текущего пользователя нет), а не средством изоляции (понижения доступа).<br><br>Так же рекомендую посмотреть тут: http://technet.microsoft.com/en-us/library/cc722487.aspx, пункты #1, #3.</i>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288506&amp;user=8834&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=15" class="addthx" data-post="288506"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]ClockMan[/b]','')">ClockMan</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/17432.jpg" alt=""><br><span class=txtSm>Ранг: 568.2 (<b>!</b>), 464thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.99'>Активность: 0.55<span style='color:green'>&nearr;</span>0.57</span><br>Статус: <a href="action=userinfo&amp;user=17432">Участник</a><br><font color=blue>оптимист</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июля 2011 05:47 <br><script type="text/javascript">QU('ClockMan','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ClockMan" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>Enigma пишет:<br>Попробовал на Win Xp SP2, &quot;runas /user:guest taskmgr&quot;, тоже самое, видно все процессы администратора, и так же их убить можно... разницы с Win 7 никакой.. </I><br>Так там же пишется при создании учётной записи делать полный доступ или огранниченный,если выбираешь огранниченный то нефига ты там неувидешь...
+<br><br><font size="1"><i>-----<br>Чтобы правильно задать вопрос, нужно знать большую часть  ответа. Р.Шекли.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288507&amp;user=17432&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=16" class="addthx" data-post="288507"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июля 2011 12:39 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Итак, достигнутые результаты:<br>Удалось украсть токен из уязвимого процесса, имперсонироваться на нем и получить полный доступ к файлам другого пользователя (на чтение и на запись).<br>Удалось украсть Elevated токен из процесса администратора, удалось имперсонироваться на нем но непонятно что делать дальше, по такому токену винда никуда доступа не дает.<br>Не удалось сделать CreateProcessAsUser, потому что нужны привилегии SE_ASSIGNPRIMARYTOKEN_NAME и SE_INCREASE_QUOTA_NAME, которых у нас нет.<br><br>В аттаче прилагаю эксплоит демонстрирующий доступ к файлам других пользователей.<br><br><img src="img/attach.gif"><a href="/f/getattach.php?id=djnijdtepcktnxkk">___</a> - exploit.zip
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288533&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=17" class="addthx" data-post="288533"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 июля 2011 22:35 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I>Wyfinger пишет:<br>Один из ответовIlya Tumanov (MSFT)Даже если все так, то сценарий сам по себе сомнителен. Ведь пользователь А который использовал runas для запуска от имени пользователя Б и так может убивать процессы пользователя А, видеть их командные строки и т.п. Т.е. если &quot;за рулем&quot; &quot;злодей&quot; без присмотра то ему никакие runas не потребуются, все и так доступно. То же касается &quot;злодейского приложения&quot; который под любым эккаунтом будет иметь слишком много прав. </I><br>Сейчас уже не эпоха Windows 9x, где любое приложение могло делать что заблагорассудится. Windows начиная с NT4 позиционируется как многопользовательская ОС имеющая все нужные средства разграничения доступа. А runas может использоваться (и успешно использовался в XP/2003) для изоляции небезопасных сетевых приложений, таких как браузер, что позволяло защититься от большинства атак. <br>То что я вижу в Windows 7 - это существенная брешь в безопасности системы. Но полагаю что это никогда не будет исправлено, баг объявят фичей, скажут что так надо и забудут.<br><br><br>Похоже что в топике на microsoft.com наметилось непонимание сути уязвимости. Объясняю подробней: допустим у нас в системе есть небезопасное приложение, например браузер, содержащее уязвимости, которое тем не менее нам нужно использовать. Для запуска этого приложения создается аккаунт ограниченного пользователя и запуск производится с помощью runas. Этим мы желаем добиться изоляции уязвимого приложения от остальной системы, чтобы любая атака на него не вышла за пределы ограниченного пользователя. В Windows XP/2003 всё так и работало, а в Windows 7 благодаря вышеописанной уязвимости атакующий может получить доступ к данным основного пользователя и других ограниченных пользователей, от имени которых через runas могут быть запущены другие изолированные приложения, чего не должно быть.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288550&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=18" class="addthx" data-post="288550"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=1379" title="26-07-2011 21:15, ранг:462.4" target="_blank">Jupiter</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 03:58 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<I>ntldr пишет:<br>Выкладываю драйвер решающий проблему. </I><br><br>привяжи его к какой-нибудь софтине, плз. Так ставить не удобно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288560&amp;user=2585&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=19" class="addthx" data-post="288560"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Alchemistry[/b]','')">Alchemistry</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 145.8 (ветеран), 190thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.05'>Активность: 0.14<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=21411">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 08:52 <br><script type="text/javascript">QU('Alchemistry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Alchemistry" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+Разговарить с манагерами и быдлоадминами на technet бесполезно. Они ничего не решают.<br><br>Вам сюда secure@microsoft.com<br>Инструкции здесь http://technet.microsoft.com/ru-ru/security/ff852094.aspx<br><br>Максимально подробно изложить проблему, приложить PoC, все писать на английском. Если нет ответа в течение суток продублировать сообщение.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288570&amp;user=21411&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=20" class="addthx" data-post="288570"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]C/Kashmir[/b]','')">C/Kashmir</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.3 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.52'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23759">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 09:54 &middot; Поправил: C/Kashmir <br><script type="text/javascript">QU('C/Kashmir','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=C/Kashmir" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<noindex><a href="http://kitrap08.blogspot.com/2011/07/blog-post.html" rel="nofollow" target="_blank">Забавно</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288572&amp;user=23759&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=21" class="addthx" data-post="288572"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 10:33 &middot; Поправил: <a href="action=stats#mods">Модератор</a> <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Ну автор этого уютного бложика не первый раз смотрит на форум и участников косо https://ssl.exelab.ru/f/action=vthread&amp;forum=7&amp;topic=18520 Непонятно только, чего он продолжает сюда ходить или почему не может прямо здесь аргументированно отстаивать свою точку зрения.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288578&amp;user=1556&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=22" class="addthx" data-post="288578"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 11:14 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<I>C/Kashmir пишет:<br>Забавно </I><br>Раз забавно, почему бы автору не ответить здесь? Ну так и быть, отвечу ему здесь: Уважаемый автор, в моем посте не было ни слова ни про IE ни про Integrity Level, потому что это ни в малейшей мере к делу не относится. Речь шла о <b>небезопасном runas</b>. Ваше право считать что доступ одного ограниченного пользователя к данным другого, когда это не разрешено явно, - это не уязвимость. Но у меня другое мнение.<br>По теме: ок, напишу на secure@microsoft.com, и нет смысла дальше толочь воду в ступе. Все что надо я для себя выяснил, воркараунд сделал, а дальше пусть объявляют это хоть багом хоть фичей.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288585&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=23" class="addthx" data-post="288585"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]xetis[/b]','')">xetis</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 15.7 (новичок), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.07'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=25654">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 11:21 <br><script type="text/javascript">QU('xetis','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=xetis" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+а задать программе  Integrity Level нельзя?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288586&amp;user=25654&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=24" class="addthx" data-post="288586"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 11:40 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>xetis пишет:<br>а задать программе  Integrity Level нельзя? </I><br>Можно. icacls program.exe /setintegritylevel Low, но это не предотвращает чтения папки &quot;мои документы&quot;. Integrity Levels это полезный и удобный механизм, но выполняет другую задачу нежели runas.<br>Установка Low Integrity Level на процессы запускаемые из-под runas частично решает проблему, но только частично, потому что процессы с Low Integrity Level могут получить доступ к данным друг друга, хотя они запущены от разных пользователей.<br>И процесс с Low Integrity Level отлично убивает explorer, можете сами убедиться.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288588&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=25" class="addthx" data-post="288588"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 13:19 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+Давайте не будем переходить на личности и меряться у кого ум длиннее. Топик о конкретной уязвимости и хотелось бы обсуждать конкретную уязвимость, а не разводить очередной срач.<br>Прошу модераторов почистить топик и надеюсь в дальнейшем на конструктивные посты.<br><br>З.Ы. свои неполиткорректные высказывания я уже подчистил.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288604&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=26" class="addthx" data-post="288604"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 13:41 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<i class=x>Ведь пользователь А который использовал runas для запуска от имени пользователя Б и так может убивать процессы пользователя А, видеть их командные строки и т.п. Т.е. если &quot;за рулем&quot; &quot;злодей&quot; без присмотра то ему никакие runas не потребуются, все и так доступно</i><br><br>Какой-то неадекватный коммент. Говорится же именно про то, что &quot;злодей&quot; - процесс, запущенный от имени пользователя Б, который должен быть ограничен в правах. Пользователь А и так имеет/может иметь суперпривилегии, и именно их нужно ограничить за счёт рестрикт токена при runas. Никто не в курсе, у мелкомягких есть что-то типа книги жалоб на таких вот консультантов?<br><br>Кажется, <b>ntldr</b> говорил, что это объявят фишкой? Нате, пожалуйста:<br><i class=x>Я подозреваю что это было сделано вполне намерено. Если пользователь А запустил процесс под пользователям Б то логично ожидать что данный процесс имеет доступ к ресурсам пользователя А который, собственно, и запустил процесс. Скорее всего в ХП это не работало и поведение было изменено.</i><br><br><i class=x>Если бы все было так просто то наверное никто не выпускал бы специальные &quot;песочницы&quot;, нет?</i><br>Ну это вообще агонь. Песочницы выпускают не только (и иногда даже не столько) для рестрикта, сколько для анализа и обнаружения, какие имеено зловредные действия выполняет тот или иной софт. Или я что-то пропустил?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288606&amp;user=6336&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=27" class="addthx" data-post="288606"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июля 2011 13:48 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+Не надо ни на кого жаловаться. В Microsoft работает много людей, и все не обязаны понимать работу системы безопасности и сходу въезжать в суть проблемы. Напишем официально на secure@microsoft.com, а там посмотрим.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288607&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=28" class="addthx" data-post="288607"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июля 2011 10:39 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+А на форуме мелкомягких Илюха продолжает жечь:<br><i class=x>Кстати, тут тоже интересный вопрос: кнопочка Х нажимает от пользователя или админа? Как на счет меню &quot;выход&quot; в самом окне? А комбинация ALT-F4 чья?</i><br><br>Или я не могу понять его глубоких мыслей, или мои представления про Windows в корне неправильны. Товарищи, поправьте меня. При нажатии на кнопочку Х или выборе меню Выхода/нажатии ALT-F4 в окне приложения окно этого приложения получает сообщение WM_CLOSE, управление передаётся каллбэку этого окна (оконной процедуре обработки сообщений) и, как обычно происходит, процесс того же блокнота сам себя завершает посредством вызова системного сервиса ZwTerminateProcess, при этом вызов PsGetCurrentProcessId при, например, перехвате сервиса, это ясно даёт понять. Что ж тут непонятно?<br><br><i class=x>Допустим рассеяный админ делая что то на компьютере пользователя открыл блокнот и забыл его закрыть. Как минимум пользователь имеет неубиваемое окно. Как максимум злобный пользователь имеет неубиваемое окно которое выполняется с правами админа и позволяет читать, записывать и менять любые файлы к которым админ (не обязательно локальный) имеет доступ.</i><br><br>Опа! Если раньше он хоть глюк в семёрке называл фичей, то сейчас он runas XP называет глюком, да и более того - приводит пример сценария, которого не было при нормальной работе в ХР. Попробуйте в ХР запустить под учёткой пользователя калькулятор от имени админа. Что он у вас, не закроется потом? <br><br>Туманов, ты звезда!
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288661&amp;user=6336&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=29" class="addthx" data-post="288661"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=3756" title="25-08-2011 15:07, ранг:16.2" target="_blank">==DJ==[ZLO]</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июля 2011 11:12 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18837&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+Не знаю причем тут какие-то кнопочки, это всё неконкретная демагогия. <br>Мой тезис: <b>если пользователь A имеет доступ к данным пользователя B, при этом пользователь A не является администратором и разрешение на доступ к данным пользователя B не было дано явно - то это уязвимость</b>. С тезисом согласны? Нет - приводите аргументы.<br>Теперь разбор нашей ситуации по пунктам: <br>1 - Пользователь A имеет доступ к данным пользователя B (его домашней директории на чтение и запись и памяти его процессов на чтение).<br>2 - Пользователь A не является администратором.<br>3 - Ни пользователь B ни администратор не разрешали пользователю A такой доступ. Использование runas не подразумевает что мы что-либо разрешаем пользователю A, мы просто хотим запустить приложение от пользователя A в его контексте безопасности.<br>4 - Из пунктов 1-3 делаем вывод что уязвимость налицо. Неважно что такое поведение может быть следствием какой-либо фичи или архитектурной особенности системы, уязвимость от этого не перестанет быть уязвимостью.<br>Не согласны - приводите аргументы в тезисном формате, без не относящихся к делу предположений и без аналогий. Т.е. &quot;я не согласен с тем-то, потому что...&quot;. Именно так должен происходить конструктивный диалог, а не демагогия и словоблудие.<br><br>Что из вышесказанного могут попытаться опровергнуть несогласные? Во-первых можно не согласиться с определением уязвимости, т.е. признать что явно не разрешенный доступ пользователя A к данным пользователя B это нормально. Во-вторых можно попытаться доказать что запуск через runas должен давать какие-то дополнительные права пользователю A, если так - то прошу ссылку на сайт MS где документировано такое поведение.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288664&amp;user=12867&amp;forum_n=1&amp;topic=18837&amp;page=0&amp;anchor=30" class="addthx" data-post="288664"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=1&amp;topic=18837&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=18837&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Неприятная и трудноустранимая Information Disclosure / Denial of Service уязвимость в Windows 7</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#31" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="18837">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=18837" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

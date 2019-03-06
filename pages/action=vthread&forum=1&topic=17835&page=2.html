@@ -1,0 +1,561 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Использование WinDbg - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Странно - топики с вопросами по использованию Ida, Syser есть, а по использованию WinDbg нет. Понимаю, что он более менее документирован, но в его документации черт ногу сломит и в его статьях нередко нет перекрестных ссылок.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+8 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование WinDbg</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=1.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=1.html">2</a> . <b>3</b> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=3.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 марта 2011 12:29 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#1');return false;">#1</a> </span><div align=left><br>
+Странно -  топики с вопросами по использованию Ida, Syser есть, а по использованию WinDbg нет. Понимаю, что он более менее документирован, но в его документации черт ногу сломит и в его статьях нередко нет перекрестных ссылок. Хотя сами вопросы были в других темах... Предлагаю здесь задавать вопросы по использованию отладчика WinDbg. Собственно, я первый вопрос задам:<br><br>Возникла задача, суть которой проверить предположение, что р0-файловый монитор(драйвер) отлавливает все обращения к файлу, выполняет некоторые проверки, и если условия выполняются, то передает команду (возможных схем много) р3-службе(процессу), в следствие которой эта служба открывает тот же файл. Многочисленные поиски по chm-файлу и переносы ссылок во вкладки ie, <strike>по</strike>пытки методом тыка привели вот к такой команде:<br><br>bp &lt;адрес инструкции обращения к сервису ZwCreateFile&gt; &quot;dd /c 1 @esp + 8 L1; dt nt!_OBJECT_ATTRIBUTES ObjectName @@masm(&#036;p); bp /1 /p &lt;EPROCESS службы&gt; nt!ZwCreateFile &#92;&quot;dd /c 1 @esp + 0xC L1; dt nt!_OBJECT_ATTRIBUTES ObjectName @@masm(&#036;p)&#92;&quot;; g&quot;<br><br>Команда установки точек останова еще будет улучшаться, суть не в этом! Использование псевдорегистра &#036;p, который дает последний вывод команд d*- тормозит весь процесс на секунду-две. В итоге составная команда<br>dd /c 1 @esp + 8 L1; dt nt!_OBJECT_ATTRIBUTES ObjectName @@masm(&#036;p);<br>- не лучший способ достижения описанной цели. Вопрос: <b>можно ли заменить более быстрым аналогом в WinDbg ?</b>
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=278235&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=1" class="addthx" data-post="278235"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=35123" title="09-07-2013 01:11, ранг:0.0" target="_blank">stereo2013</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]im_infamous[/b]','')">im_infamous</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.0 (новичок), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36088">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 апреля 2015 20:35 <br><script type="text/javascript">QU('im_infamous','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=im_infamous" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#2');return false;">#2</a> </span><div align=left><br>
+<b>artkar</b><br>Т.к. не было дополнительных сведений о том, в чем конкретно проблема(команды, вывод), предположу, что поможет <noindex><a href="http://blogs.msdn.com/b/ntdebugging/archive/2009/02/09/remote-debugging-connecting-to-a-remote-stub-using-the-microsoft-debugging-tools-for-windows.aspx" rel="nofollow" target="_blank">--&gt; это &lt;--</a></noindex> и .dump /ma mydump.dmp
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=354202&amp;user=36088&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=2" class="addthx" data-post="354202"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=2937" title="30-04-2015 09:24, ранг:9.1" target="_blank">artkar</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2015 20:39 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#3');return false;">#3</a> </span><div align=left><br>
+Кто-нибудь пробовал отлаживать Windows 2000 using WinDbg on VMWare?<br><br>vmware workstation -  8.0.0 build-471780<br>windbg - 6.12.2.633 <br><br>Host: Windows 7 Professional, 64-bit 6.1.7601, Service Pack 1<br>Guest: Windows 5.0 Build 2195 SP4<br><br>&quot;C:\Program Files (x86)\Debugging Tools for Windows\windbg&quot; -b -k com:pipe,port=&#92;.\pipe\com_1,resets=0<br>Результат:<br><br>Microsoft (R) Windows Debugger Version 6.12.0002.633 X86<br>Copyright (c) Microsoft Corporation. All rights reserved.<br><br>Opened &#92;.\pipe\com_1<br>Waiting to reconnect...<br><br>В то же время к Windows 2003 Server windbg  присоединяется без проблем на той же машине (физической и виртуальной).<br><br>Так что вопрос: возможно ли это даже теоретически?<br>Заранее спасибо!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=356926&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=3" class="addthx" data-post="356926"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июля 2015 08:26 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#4');return false;">#4</a> </span><div align=left><br>
+<b>plutos</b><br>А Local Kernel Debugging воркает? (для теста)<br><br><I>plutos пишет:<br>Так что вопрос: возможно ли это даже теоретически? </I><br>Многие утверждают, что да. Но сам не пробовал.<br><br><I>plutos пишет:<br>windbg - 6.12.2.633 </I><br>Попробуй <noindex><a href="https://exelab.ru/download.php?action=get&amp;n=ODkw" rel="nofollow" target="_blank">--&gt; 6.11 &lt;--</a></noindex>, а вдруг?<br><br>Проверь <noindex><a href="https://msdn.microsoft.com/en-us/library/windows/hardware/ff556253(v=vs.85).aspx" rel="nofollow" target="_blank">--&gt; debug parameters for Windows 2000 and XP only &lt;--</a></noindex><br><noindex><a href="https://msdn.microsoft.com/en-us/library/windows/hardware/ff542279(v=vs.85).aspx" rel="nofollow" target="_blank">--&gt; Boot Parameters to Enable Debugging &lt;--</a></noindex><br><br>В помощь по 2000 <noindex><a href="http://infoman.teikav.edu.gr/~stpapad/WindowsInternalsPart16thEdition.pdf" rel="nofollow" target="_blank">--&gt; книжечка &lt;--</a></noindex>, может там чего.<br><br>Ну, кажется, <noindex><a href="http://www.osronline.com/showThread.cfm?link=80970" rel="nofollow" target="_blank">--&gt; решение &lt;--</a></noindex> аналогичной проблемы нашёл:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">First&nbsp;up<span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;they&nbsp;can&nbsp;communicate&nbsp;bidirectionally&nbsp;with&nbsp;hypertrm<span class="hl_char">,</span>&nbsp;</li><li class="hl_l1">you&nbsp;must&nbsp;have&nbsp;turned&nbsp;the&nbsp;boot<span class="hl_char">.</span>ini&nbsp;switches&nbsp;off&nbsp;<span class="hl_char">&amp;</span>&nbsp;rebooted&nbsp;first<span class="hl_char">,</span>&nbsp;right<span class="hl_char">?</span>&nbsp;&nbsp;</li><li class="hl_l0">Otherwise&nbsp;you're plugged into the wrong COM port on the target.  Sometimes what </li><li class="hl_l1">the&nbsp;case&nbsp;labels&nbsp;as&nbsp;COM1&nbsp;is&nbsp;really&nbsp;COM2<span class="hl_char">.</span>&nbsp;&nbsp;Next&nbsp;you&nbsp;should&nbsp;look&nbsp;at&nbsp;the&nbsp;target's </li><li class="hl_l0">BIOS&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;disable&nbsp;legacy&nbsp;USB&nbsp;support<span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;there&nbsp;is&nbsp;an&nbsp;<span class="hl_function"><b>option</b></span>&nbsp;for&nbsp;it<span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_function"><b>If</b></span>&nbsp;<span class="hl_function"><b>this</b></span>&nbsp;</li><li class="hl_l1">doesn't fix it, you should send output from windbg of the following commands:</li>        </ol>
+    </div>
+</div></div>
+<br><br>Что-то подобное у меня с XP было, 7 часов подряд не могло до меня дойти, что надо порт переименовать ))<br><br>P.S. В 2007 году некие &quot;программисты&quot; 1С, обучавшие своему искусству(установка/обновление), готовящих преемников, бредили, что винды лучше 2000 нет <img src="img/smilies/s5.gif" alt="">
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=356933&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=4" class="addthx" data-post="356933"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="08-07-2015 15:08, ранг:161.5" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июля 2015 18:08 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#5');return false;">#5</a> </span><div align=left><br>
+DenCoder!<br>Oгромное спасибо за столь подробные советы и внимание!<br><br>На target&#039;e (Win2K) было 2 COM port&#039;a: COM1 и СОМ2. <br>Попробовал самое простое и по вашему совету поменял COM1 на COM2 в ini.bat и все робит!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=356941&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=5" class="addthx" data-post="356941"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2015 18:51 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#6');return false;">#6</a> </span><div align=left><br>
+Пытаюсь вникнуть в детали Windows XP&#039;s and 2003&#039;s NTLDR startup  процесса.<br>На Hex Blog нашел описание сценария IDA + Bochs plugin.<br>А вот для связки VMware +  WinDbg как-то ничего толкового не удалось накопать.<br><br>Вот здесь: http://reboot.pro/topic/13188-debugging-ntldr/ описывается ситуация с использованием WinDbg + QEmu virtual machine.<br>Есть также статья про недокументированый  /DEBUGBREAK flag (breaks into the debugger immediately after it is initialized, allowing you to single-step through the rest of the boot process.)<br>Но мне как-то не очень хочется устанавливать еще одну виртуальную машину (QEmu), а вариант с  /DEBUGBREAK пока оставил про запас.<br><br>Bопрос: кто-нибудь пробовал отлаживать NTLDR startup  процесс используя именно VMware +  WinDbg?
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=357710&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=6" class="addthx" data-post="357710"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2015 19:04 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#7');return false;">#7</a> </span><div align=left><br>
+imho оно не будет отлаживать ntldr<br>потому что работает через ком порт который активирует сам ntldr, часть кода по активации потомоему была в нем самом, часть в ядре винды, поэтому максимум провалишься на загрузке драйверов<br>в целом оно стартует только когда уже выбираешь из бутпромт меню загрузку самой оси<br><br>нужно в cpu брякаться, а это windbg+wmware помоему не умеет, оно проваливается только в <br>эмулированую систему где ком порт настроен<br><br><b>Добавлено спустя 3 минуты</b><br>да бош нормально должен сработать<br>главное правильно понять что у него есть два режима<br>1) эмуляция x86 с любого места кода<br>2) виртуальная машина где управление идет прямо к cpu, тогда можно и ntldr отладить
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=357713&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=7" class="addthx" data-post="357713"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="05-08-2015 16:27, ранг:162.6" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 января 2016 01:12 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#8');return false;">#8</a> </span><div align=left><br>
+Исходные данные, хотя они наверное и не нужны в данном случае:<br>vmware workstation - 8.0.0 build-471780<br>windbg - 6.12.2.633 <br><br>Host: Windows 7 Professional, 64-bit 6.1.7601, Service Pack 1<br>Guest: Windows 2003 Server <br><br>Boot into WRK и вижу, что единственный loaded module: <br>start              end           module name<br>80800000 80a42000                  nt         (private pdb symbols)  C:\...\WindowsResearchKernel-WRK\WRK-v1.2\base\ntos\BUILD\EXE\wrkx86.pdb<br> CompanyName:      Microsoft Corporation<br>    ProductName:      Microsoft® Windows® Academic Operating System (WRK)<br>    InternalName:     ntkrnlmp.exe<br>    OriginalFilename: ntkrnlmp.exe<br><br>Если пытаюсь Open Executable или Attach To Process  - эти опции недоступны (not active in the File manu)<br><br>Собственно вопрос: при использовании WRK, debug никакие другие процессы user mode невозможно?<br> А если возможно, то как именно?<br><br>Хотя дело собственно не в user-mode process debugging.<br>user-mode process мне нужен для того, чтобы из него вызвать DebugActiveProcess(IN DWORD dwProcessId), которая постепенно привела бы меня внутрь kernel&#039;a.<br>Поскольку Windows Research Kernel дает полный source code dbgkobj.c, dbgkport.c, dbgkproc.c, то я смог бы пройти через все вызовы и посмотреть изнутри  на работу системы.<br>Может быть в WinDbg есть способ как-нибудь иначе выходить на breakpoints внутри kernel&#039;a, минуя систему вызовов?
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362122&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=8" class="addthx" data-post="362122"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 января 2016 12:39 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#9');return false;">#9</a> </span><div align=left><br>
+Никогда не пользовался WRK. Мне думалось, что он больше подходит для изучения. О том, что из него ядро можно скомпилить, и что оно будет полноценно выполнять те же функции, и не предполагал даже...<br><br>Но по идее принципы должны быть те же, как и при дебаге обычного ядра:<br>в kernel mode debugging не будут доступны опции user mode debugging. Вместо этого по мере<br>загрузки и инициализации винды, и после полной загрузки, к нужному процессу можно подцепиться командой .process. Первый пользовательский процесс - smss.exe, критичный, без gui. К нему тоже можно подцепиться.<br><br>Но если у тебя только один единственный модуль ядра видно и при полной загрузке, то это странно...<br>Такое видел только при старте загрузки винды(не WRK, конечно). Может, ты на этом этапе и находишься? ))<br><br>Что даёт<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">lm</li><li class="hl_l1"><span class="hl_char">!</span>process&nbsp;<span class="hl_number">0</span>&nbsp;<span class="hl_number">0</span></li>        </ol>
+    </div>
+</div></div>
+ ?
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362126&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=9" class="addthx" data-post="362126"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="19-01-2016 17:13, ранг:188.0" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 января 2016 20:13 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#10');return false;">#10</a> </span><div align=left><br>
+Уважаемый DenCoder!<br>Спасибо за ответ!<br> В общем и целом Вы подтолкнули меня в нужном направлении. Я теперь понял куда копать. <br>Если Вам интересно, то поделюсь результами &quot;раскопок&quot;.<br>А вообще WRK очень классная штука. <br>Компеллируем свой kernel и получаем как бы самостоятельную ОС:<br>Microsoft® Windows® Academic Operating System (WRK)!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362135&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=10" class="addthx" data-post="362135"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2016 14:32 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#11');return false;">#11</a> </span><div align=left><br>
+<b>plutos</b><br>А в общем и целом уже 11 лет назад вычитал фразу в книге Румянцева, которой ни разу не пользовался - <I>RTFM</I> <img src="img/smilies/s5.gif" alt=""><br>У WinDbg есть своя chm-справка, где по Debuggers -&gt; Debugger Reference -&gt; Debugger Commands -&gt; ...<br>можно получить необходимую базу. Chm неудобен в навигации, нет дополнительных вкладок... Но есть старый ослик, который понимает chm-урлы. Ну а может есть и продвинутый chm-ридер )<br><br><b>Добавлено спустя 1 минуту</b><br>И, кстати, да -кто поставил MSDN локально, у того он есть )<br><br><b>Добавлено спустя 7 минут</b><br><I>plutos пишет:<br>Если Вам интересно, то поделюсь результами &quot;раскопок&quot; </I><br>Интересно может быть не только мне. Есть желание - делитесь. А то использовать WinDbg бывает геморно, какие-то секреты могли бы многим помочь. )
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362155&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=11" class="addthx" data-post="362155"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 января 2016 00:43 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#12');return false;">#12</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>11 лет назад вычитал фразу в книге Румянцева, которой ни разу не пользовался - RTFM У WinDbg есть своя chm-справка, где по Debuggers -&gt; Debugger Reference -&gt; Debugger Commands -&gt; ... </I><br><br>Не совсем понял при чем тут Read the Fucking (WinDbg ?) Manual (RTFM).<br><br>Справку по WinDbg я могу пересказать &quot;близко к тексту&quot;. Вопрос мой, хоть он и появился в ветке, посвященой <br>  WinDbg, вовсе не об этом debugger&#039;e. Мой вопрос: почему WRK не грузит другие модули? Похоже, что я почти ответил на него, но хочу убедится, что мой ответ правильный и тогда помещу его здесь для тех, кому интересно.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362170&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=12" class="addthx" data-post="362170"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 января 2016 15:19 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#13');return false;">#13</a> </span><div align=left><br>
+<I>plutos пишет:<br>Не совсем понял при чем тут Read the Fucking (WinDbg ?) Manual (RTFM). </I><br>Сорри! Вы не поясняете ход Ваших мыслей, потому подумалось...<br><br><I>plutos пишет:<br>Мой вопрос: почему WRK не грузит другие модули? </I><br>То есть под WRK не грузится винда? Или WRK по каким-то причинам не выдаёт дебаггеру модули?
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362175&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=13" class="addthx" data-post="362175"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 января 2016 03:25 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#14');return false;">#14</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>То есть под WRK не грузится винда? Или WRK по каким-то причинам не выдаёт дебаггеру модули? </I><br><br>Теперь моя очередь сказать &quot;Sorry!&quot;.<br>Все модули и процессы на месте как обычно, wrk тут ни при чем.<br> Просто я тормозил процесс загрузки слишком рано из-за непонимания одного ньюанса.<br> Сегодня помучался и кое-что прояснилось. <br>Продолжение следует.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362182&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=14" class="addthx" data-post="362182"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 февраля 2016 03:33 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#15');return false;">#15</a> </span><div align=left><br>
+Коротко говоря,  сам запутался и запутал всех, кто читал мое сообщение номер #8.<br>Я пытался debug user-mode process from kernel mode debugger in WinDbg. <br>У меня не получалось и я думал, что вся загвоздка в WRK.<br> Но  WRK тут совершенно ни при чем.<br>Все оказалось  гораздо проще и подробно описано здесь: https://www.osronline.com/article.cfm?article=576.<br>Так что, кому интересно, найдет там все, что нужно для моего сценария.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=362800&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=15" class="addthx" data-post="362800"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 марта 2016 03:08 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#16');return false;">#16</a> </span><div align=left><br>
+Исходные данные:<br>vmware workstation - 8.0.0 build-471780<br>windbg - 6.12.2.633 <br><br>Host: Windows 7 Professional, 64-bit 6.1.7601, Service Pack 1<br>Guest: Windows 2003 Server <br><br>Присоединяюсь к user-mode процессу на Windows 2003 Server (.process /i), все хорошо, пока я в своем коде, а когда из него хочу зайти в kernel32!DebugActiveProcess, то получаю<br><br><br>No prior disassembly possible<br>kernel32!DebugActiveProcess:<br>001b:7c82ade3 ??              ???<br>001b:7c82ade4 ??              ???<br>001b:7c82ade5 ??              ???<br>001b:7c82ade6 ??              ???<br>001b:7c82ade7 ??              ???<br>001b:7c82ade8 ??              ???<br>001b:7c82ade9 ??              ???<br>001b:7c82adea ??              ???<br><br>Все символы загружены:<br>kd&gt; .reload /f @&quot;kernel32.dll&quot;<br>DBGHELP: kernel32 - public symbols  <br>         c:\websymbols\kernel32.pdb\488CB2D82D0144C8BA7E08E8EA2C19481\kernel32.pdb<br><br>kd&gt; ? &#036;scopeip<br>Evaluate expression: 2088938979 = 7c82ade3<br><br>Вот еще на всякий случай:<br>kd&gt; version<br>Windows Server 2003 Kernel Version 3800 (Service Pack 1) MP (1 procs) Free x86 compatible<br>Product: Server, suite: Enterprise TerminalServer SingleUserTS<br>Built by: 3800.WRKP1.2(daveprobert)<br>Machine Name:<br>Kernel base = 0x80800000 PsLoadedModuleList = 0x808a0398<br>Debug session time: Mon Mar 14 15:32:57.701 2016 (UTC - 5:00)<br>System Uptime: 0 days 0:12:18.656<br>Remote KD: KdSrv:Server=@{&lt;Local&gt;},Trans=@{COM:Port=&#92;.\pipe\com_1,Baud=19200,Pipe,Timeout=4000}<br>Microsoft (R) Windows Debugger Version 6.12.0002.633 X86<br>Copyright (c) Microsoft Corporation. All rights reserved.<br>command line: &#039;&quot;C:\Program Files (x86)\Debugging Tools for Windows\windbg&quot;  -b -k com:pipe,port=&#92;.\pipe\com_1,resets=0&#039;  Debugger Process 0x2F20 <br>dbgeng:  image 6.12.0002.633, built Mon Feb 01 14:08:31 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\dbgeng.dll]<br>dbghelp: image 6.12.0002.633, built Mon Feb 01 14:08:26 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\dbghelp.dll]<br>        DIA version: 20921<br>Extension DLL search Path:<br>    C:\Program Files (x86)\Debugging Tools for Windows\WINXP;<br>...............<br>Extension DLL chain:<br>    dbghelp: image 6.12.0002.633, API 6.1.6, built Mon Feb 01 14:08:26 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\dbghelp.dll]<br>    ext: image 6.12.0002.633, API 1.0.0, built Mon Feb 01 14:08:31 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\winext\ext.dll]<br>    exts: image 6.12.0002.633, API 1.0.0, built Mon Feb 01 14:08:24 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\WINXP\exts.dll]<br>    kext: image 6.12.0002.633, API 1.0.0, built Mon Feb 01 14:08:22 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\winext\kext.dll]<br>    kdexts: image 6.1.7650.0, API 1.0.0, built Mon Feb 01 14:08:19 2010<br>        [path: C:\Program Files (x86)\Debugging Tools for Windows\WINXP\kdexts.dll]<br><br>Кто-нибудь может подсказать в чем тут дело?
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=363434&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=16" class="addthx" data-post="363434"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 марта 2016 01:32 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#17');return false;">#17</a> </span><div align=left><br>
+Похоже, что я тут сам с собою беседую, но если кому интересно, то решение проблемы описаной в моем посте номер 16 следующее:<br><br>bp kernel32!DbgUiConnectToDbg <br><br>(фунция может быть любая, просто DbgUiConnectToDbg меня интересует  в данном случае).<br><br>Когда execution reaches this breakpoint, kernel32.dll disassembly на месте, как и должно быть.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=363473&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=17" class="addthx" data-post="363473"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24257" title="17-03-2016 01:36, ранг:263.3" target="_blank">DenCoder</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 марта 2016 04:53 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#18');return false;">#18</a> </span><div align=left><br>
+<I>plutos пишет:<br>Похоже, что я тут сам с собою беседую </I><br>Да мне просто сейчас не до этого, некогда. Сам непрочь побеседовать в своём блоге.<br><br><I>plutos пишет:<br>No prior disassembly possible<br>kernel32!DebugActiveProcess:<br>001b:7c82ade3 ?? ???<br>001b:7c82ade4 ?? ???<br>001b:7c82ade5 ?? ???<br>001b:7c82ade6 ?? ???<br>001b:7c82ade7 ?? ???<br>001b:7c82ade8 ?? ???<br>001b:7c82ade9 ?? ???<br>001b:7c82adea ?? ??? </I><br>Давно кернел-отладкой не маялся. Но помню, что не попадалась ещё такая версия виндбг, чтоб, присоединившись к процессу, можно б было не беспокоиться о слётах страниц. По крайне мере я это так тогда понял. Есть у .process опции кроме /i, из которых что-то может быть для решения этой проблемы, но сейчас уже не вспомню, что я пробовал.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=363475&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=18" class="addthx" data-post="363475"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 октября 2016 16:42 <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#19');return false;">#19</a> </span><div align=left><br>
+Существует несколько интересных плагинов для подсветки синтаксиса WinDBG по этому линку <noindex><a href="http://dbgext.biglasagne.com/index.html" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>К сожалению у меня они не работают, как на ВМВаре, так и на реальной машине, плагины загружаются из директорий без ошибок, моя версия виндовс - Windows 10 Ent Version 14393<br>Остальное - Processor type - i7 - 4910mq, windbg - 10.0.14321.1024 AMD64 <br><br>После долгих испытаний я написал автору плагина, он мне всегда отвечал, но и всегда очень смутно, по его словам на этой же версии виндовс с этой же версией WinDBG на его машине всё отлично работает, у меня команда hlcfg возвращает &quot;No export hlcfg found&quot;, с этим вопросом автор плагинов сообщил мне, что исправит и протестирует ещё раз последние билды WinDBG, больше ответов от него я не получал. <br><br>Мой вопрос - у кого-то есть опыт использования этого плагина?! Может кто-то уже устанавливал его себе на новые системы ..
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=368645&amp;user=3520&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=19" class="addthx" data-post="368645"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="10-08-2019 19:46, ранг:478.6" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]bizdon[/b]','')">bizdon</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 6.7 (гость), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.92'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22011">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 октября 2016 12:19 &middot; Поправил: bizdon <br><script type="text/javascript">QU('bizdon','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bizdon" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#20');return false;">#20</a> </span><div align=left><br>
+<b>mak</b><br>у меня работает только подсветка в окне &quot;Command output&quot; (версия 6.11.0001.404)<br>С плагином в аттаче работает подсветка дизассемблергого листинга (файл ini - общий для х32/х64)<br><br>Тоже есть вопрос по windbg/ida про этот плагин:  <noindex><a href="http://rmadair.github.io/windbg2ida/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>как его подправить под версию IDA 6.8?<br><br><img src="img/attach.gif" alt=""> <a href="./files/6cab_17.10.2016_EXELAB.rU.tgz">6cab_17.10.2016_EXELAB.rU.tgz</a> - asm.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=368658&amp;user=22011&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=20" class="addthx" data-post="368658"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]dma[/b]','')">dma</a></b><br></div>
+<img src="img/s0.gif" alt=""><br><span class=txtSm>Ранг: -12.6 (нарушитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.59'>Активность: 0.05<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=36364">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 августа 2017 18:34 <br><script type="text/javascript">QU('dma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dma" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#21');return false;">#21</a> </span><div align=left><br>
+Всем доброго времени суток.<br>Никто не подскажет есть ли в windbg возможность отладки <b>DLL-ок</b>? У IDA - это вроде бы без проблем, а вот как с этим делом в windbg - непонятно. Вроде бы считается самым сложным и &quot;крутым&quot; отладчиком. Видимо, я еще не дорос до его уровня крутизны?<img src="img/smilies/s1.gif" alt=""> Может есть все же какие-нибудь команды? Подскажите куда &quot;копать&quot;?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=378077&amp;user=36364&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=21" class="addthx" data-post="378077"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 августа 2017 21:33 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#22');return false;">#22</a> </span><div align=left><br>
+<b>dma</b><br><br>Вы знаете почему менеджер памяти использует бинарные деревья или к примеру разницу между состоянием страниц ?<br>Если нет, то закройте и удалите данный инструмент, он для разрабов ядра. Им можно решать примитивные задачи, но он для этого не предназначен. Им ядро дебажат.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=378080&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=22" class="addthx" data-post="378080"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="18-08-2017 19:11, ранг:252.2" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 августа 2017 22:17 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#23');return false;">#23</a> </span><div align=left><br>
+абсолютно согласен с difexacaw.<br>Зачем вам вдруг понадобился kernel debugger для user mode dll?<br>Мазохизм?
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=378082&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=23" class="addthx" data-post="378082"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 августа 2017 13:14 <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#24');return false;">#24</a> </span><div align=left><br>
+New WinDbg available in preview!<br><br><img src="https://msdnshared.blob.core.windows.net/media/2017/08/top.png" border="0" align="" alt=""><br><br>We are excited to announce a preview version of a brand new WinDbg. We&#039;ve updated WinDbg to have more modern visuals, faster windows, a full-fledged scripting experience, built with the easily extensible debugger data model front and center. I&#039;ll start this by saying that WinDbg Preview is using the same underlying engine as WinDbg today, so all the commands, extensions, and workflows you&#039;re used to will still work just as they did before. <br><br><noindex><a href="https://blogs.msdn.microsoft.com/windbg/2017/08/28/new-windbg-available-in-preview/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>P.S. Синтаксис так и остался без подсветки. Видимо гуй только переделали под Апп <img src="img/smilies/s5.gif" alt=""> Вопрос теперь как скачать это чудо без ВинСтор
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=378407&amp;user=3520&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=24" class="addthx" data-post="378407"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="01-09-2017 00:06, ранг:254.6" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 августа 2017 13:36 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#25');return false;">#25</a> </span><div align=left><br>
+only 10.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=378408&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=25" class="addthx" data-post="378408"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]v00doo[/b]','')">v00doo</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 80.6 (постоянный), 194thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.07'>Активность: 0.1<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=35168">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 августа 2017 15:40 <br><script type="text/javascript">QU('v00doo','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=v00doo" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#26');return false;">#26</a> </span><div align=left><br>
+<b>mak</b>,надо ждать новый SDK, там все будет, так же по моим данным он будет и для Win7 <img src="img/smilies/s3.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=378415&amp;user=35168&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=26" class="addthx" data-post="378415"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]VOLKOFF[/b]','')">VOLKOFF</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 173.8 (ветеран), 208thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.95'>Активность: 0.12<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=5846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 августа 2017 16:18 <br><script type="text/javascript">QU('VOLKOFF','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VOLKOFF" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#27');return false;">#27</a> </span><div align=left><br>
+<I>v00doo пишет:<br>по моим данным он будет и для Win7 </I><br>хотелось бы, чтобы вопреки последним тенденциям это было так
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=378418&amp;user=5846&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=27" class="addthx" data-post="378418"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 октября 2017 09:54 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#28');return false;">#28</a> </span><div align=left><br>
+<I>mak пишет:<br>New WinDbg available in preview! </I><br><br>Давно не дебажил ось, понадобилось...<br><br>Слегка разочарован этой версией:<br>1) Наверное, все версии WinDbg объединяет одно: чудная математика, благодаря которой показываются странные смещения. Например, ставим бряк <b>bp /p &lt;EPROCESS&gt; ntdll!LdrpInitializeProcess + 0x98b</b> и bl(список бряков): показывает смещение от начала функции почему-то  0x10e5. Жмём g - остановилось на 0x98b, но показывает всё равно 0x10e5.<br>2) Также нередкость - такие чудеса, когда поставили бряк для процесса, а он не сработал. Обязательно надо сначала .process /i &lt;EPROCESS&gt;; g, иначе не сработает. <br>3) Контекст треда иногда может долго обновляться<br>4) Бывают случаются такие странные вещи, когда в окошке Memory вместо содержимого памяти по адресу видишь надпись Query engine was cancelled<br>5) Способен подвесить систему, особенно когда долго с ним работаешь. Но самые терпеливые могут дождаться её отвисания <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=379652&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=28" class="addthx" data-post="379652"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]VOLKOFF[/b]','')">VOLKOFF</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 173.8 (ветеран), 208thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.95'>Активность: 0.12<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=5846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 октября 2017 13:03 <br><script type="text/javascript">QU('VOLKOFF','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VOLKOFF" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#29');return false;">#29</a> </span><div align=left><br>
+25 сентября было выпущено обновление, добавляющее в новый WinDbg важную фичу — отладку с возможностью двигаться по ходу работы программы в обратном направлении (Time Travel Debugging)<br><br><img src="https://habrastorage.org/webt/59/ed/b6/59edb60439f51908260634.png" border="0" align="" alt=""><br><br><noindex><a href="https://blogs.msdn.microsoft.com/windbg/2017/09/25/time-travel-debugging-in-windbg-preview/" rel="nofollow" target="_blank">--&gt; Анонс фичи в блоге WinDbg &lt;--</a></noindex><br><noindex><a href="https://habrahabr.ru/company/infopulse/blog/340744/" rel="nofollow" target="_blank">--&gt; Заметка на Хабре &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=379659&amp;user=5846&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=29" class="addthx" data-post="379659"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 октября 2017 16:48 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#30');return false;">#30</a> </span><div align=left><br>
+<I>VOLKOFF пишет:<br>Time Travel Debugging </I><br>Да, только для ядра не работает
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=379669&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=30" class="addthx" data-post="379669"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]VOLKOFF[/b]','')">VOLKOFF</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 173.8 (ветеран), 208thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.95'>Активность: 0.12<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=5846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 октября 2017 17:06 <br><script type="text/javascript">QU('VOLKOFF','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VOLKOFF" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=2#31');return false;">#31</a> </span><div align=left><br>
+Я бы вообще не возлагал больших надежд на прямую реализацию этой фичи.<br>Просто сама идея хорошая, иногда не хватает такой кнопки, но полноценно внедрить подобный механизм, чтобы он работал в 100% случаев в принципе малореально.<br>Было бы неплохо увидеть нечто такое <strike>во всех кинотеатрах страны</strike> в x64dbg, или полузаброшенной ольге, или иде на худой конец как часть базового функционала <u>с удобной интеграцией</u>, на данный момент механизм трейсов мягко говоря далек от идеала, хорошо хоть dbi есть.<br><br>Так что пост не стоит воспринимать как восторг от &quot;киллерфичи&quot;, лишь интересное наблюдение, майки сделали перспективную функцию, притом штатно, что на них не похоже, но запилили ее как обычно криво, что вполне в их репертуаре... хотя о чем это я, главное же в отладчике это &quot;more modern visuals&quot; <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=379672&amp;user=5846&amp;forum_n=1&amp;topic=17835&amp;page=2&amp;anchor=31" class="addthx" data-post="379672"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=1.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=1.html">2</a> . <b>3</b> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=3.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование WinDbg</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="17835">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=17835" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Использование IDA Pro (part 2) - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Обмен опытом использования и настройки интерактивного дизассемблера и отладчика IDA Pro. Прошлый топик Использование IDA Pro">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+9 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование IDA Pro (part 2)</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=8.html">&lt;&lt;</a> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=0.html">1</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=8.html">9</a> . <b>10</b> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=10.html">11</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=12.html">13</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=13.html">14</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=14.html">15</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=15.html">16</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=16.html">17</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=17.html">18</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=18.html">19</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=20.html">21</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=21.html">22</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=10.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 11:54 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#1');return false;">#1</a> </span><div align=left><br>
+Обмен опытом использования и настройки интерактивного дизассемблера и отладчика IDA Pro.<br>Прошлый топик <noindex><a href="https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=12507&amp;page=-1.html" rel="nofollow" target="_blank">Использование IDA Pro</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373856&amp;user=1556&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=1" class="addthx" data-post="373856"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=46816" title="22-11-2018 09:30, ранг:0.0" target="_blank">oxfemale</a>, <a href="action=userinfo&user=50040" title="03-08-2019 05:19, ранг:0.0" target="_blank">gent0o0</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 21:03 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#2');return false;">#2</a> </span><div align=left><br>
+<I>reversecode пишет:<br>видели и действовали с люминатами </I><br><br>И какие впечатления?
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388802&amp;user=1379&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=2" class="addthx" data-post="388802"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 21:10 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#3');return false;">#3</a> </span><div align=left><br>
+пока рано судить, у меня только аес распознала пару фунок<br>была бы там база с миллионом функций тогда можно было бы оценить на что оно способно<br>хотя в целом удобно, только не приятно имена фунок кому то отправлять, я за локальный люма сервер, но таких пока не раздают<br><br>а так для пентестеров наверняка будет не заменимо<br>загрузил какой то файл, спросил у люмы какие функции она уже знает<br>люма применила 99% фунок в именах<br>и работа сделана
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388803&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=3" class="addthx" data-post="388803"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 21:39 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#4');return false;">#4</a> </span><div align=left><br>
+А твои распознанные функи к ним на сервер попадают?
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388806&amp;user=1379&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=4" class="addthx" data-post="388806"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 21:49 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#5');return false;">#5</a> </span><div align=left><br>
+в окне иды где функции слева <br>можно отметить функции одну или выборочно<br>и отправить эти данные на сервер<br>за это ида пишет в консоль благодарочки а судя по инфо ильфак таких пользователей контрибюторов в дальнейшем будет как то поощрять<br><br>тоже самое и для получения, можно спросить сервер и он скажет какие имена функций он видит на сервере на основе файла<br>и потом выбрать что понравиться и применить мета инфо(имя функи и еще что то там)<br><br>можно настроить что все автоматически применялось после окончания распознавания файла<br><br>судя по инфо, на сервере хранятся только хеши+имена(+ некая мета инфо мелочная)<br>но все равно не приятно для тех кто работает постоянно чем то кастомным да еще и приватным<br>а не опен ссл кадый день распознает
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388809&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=5" class="addthx" data-post="388809"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 22:35 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#6');return false;">#6</a> </span><div align=left><br>
+Но ты же можешь отправлять какие-угодно функи, он же не проверяет &quot;качество&quot; отправленных тобой данных. Таким образом заработать некие поощрения, не раскрывая ценной инфы.
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388814&amp;user=1379&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=6" class="addthx" data-post="388814"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 22:41 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#7');return false;">#7</a> </span><div align=left><br>
+могу<br>что это за поощрения пока не понятно<br>но выровнять это что бы отсеять спамеров думаю можно легко<br>по отношению отправленных и замаченных функций другими
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388815&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=7" class="addthx" data-post="388815"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2018 11:17 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#8');return false;">#8</a> </span><div align=left><br>
+Hex-Rays v7.2 Decompiler Comparison Page <noindex><a href="https://www.hex-rays.com/products/decompiler/v72_vs_v71.shtml" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389179&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=8" class="addthx" data-post="389179"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2018 13:14 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#9');return false;">#9</a> </span><div align=left><br>
+<I>reversecode пишет:<br>Hex-Rays v7.2 Decompiler Comparison Page </I><br>Когда смотришь эти примеры, то офигеваешь, смотря на левую часть (как было): неужели было настолько усложнено?<br>Лучи иногда настолько хитро интерпретируют код, что иной раз проще в дизасме посмотреть и разобраться.
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389182&amp;user=1379&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=9" class="addthx" data-post="389182"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 ноября 2018 13:21 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#10');return false;">#10</a> </span><div align=left><br>
+смотря что именно<br>1) все инструкции перерабатываются в микрокод<br>2) а потом по микрокоду матчатся шаблоны в свертку микрокода<br>3) микрокод в СИ листинг<br>если матчить сразу по асму, сложно трекать регистры и можно напортачить<br>по асму матчится когда есть большая статистика шаблонов<br><br>поэтому 1) уделяется больше внимания, 2) меньше и по мере каких то настроений улучшается
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389183&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=10" class="addthx" data-post="389183"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Katana[/b]','')">Katana</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок), 5thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.22'>Активность: 0.01=0.01</span><br>Статус: <a href="action=userinfo&amp;user=20807">Участник</a><br><font color=blue>iOS expert</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 01:58 <br><script type="text/javascript">QU('Katana','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Katana" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#11');return false;">#11</a> </span><div align=left><br>
+<I>Jupiter пишет:<br>Когда смотришь эти примеры, то офигеваешь </I><br>от такого кол-ва вранья, ибо:<br><br>&gt;Better recognition of inlined standard functions<br><br>Почему тогда сложно распознать банальный <b>memset</b> или <b>strcpy</b> в начале функции? Причем в функции, в которой по асм коду видно, что тут явно оно - блок последовательных инструкций, которые даже не перемешаны другим кодом (что иногда может быть следствием оптимизаций компиляторов). Ну почему? Ну т.е. через раз оно работает, согласен. Но в принципе и раньше &quot;как-то&quot; работало. Явное указание типа переменной-приемника работает 50/50.<br><br>&gt;Added support for RRX addressing mode in ARM<br><br>Добавьте лучше поддержку обработки ситуации, когда в ARM коде функция возвращает - регистр флагов! Попытка прописать это явно обламывается (например, через __usercall или смена типа возвращаемого значения с void на что-то еще), генерируемый псевдокод получается невалидным полностью.<br><br>&gt;Added support for virtual calls<br><br>Пожалуйста, хоть один пример когда это работает? Вот прямо дайте мне файл, и чтобы я это увидел. Ну хоть раз. Проверял: 16 бит код, 32 и 64 бит код - винда, линь, мак, армы - андроид, айос. Ни разу не видел этой заявленной фишки. ЧЯДНТ? Я продолжаю выделять vtable мышкой, как и делал это раньше и правым кликом &quot;Create struct from data&quot;. А потом еще базовую структуру класса создавать. Для clang кода с символами (в мире UNIX реверсинга без strip) это все делается скриптами автоматически, в винде - довольно сложно не перепутать vtable с чем-то еще.<br><br>Почему я это пишу сюда? Чтобы люди без лицензии не строили иллюзии по красивым маркетинговым &quot;vs&quot; и прочим штукам. Недавно я запостил баг Ильфаку на почту, он попытался исправить, потом сказал, что исправлять не будет, но может быть когда-нибудь в будущем...<br><br>В целом IDA развивается, и очень неплохо, переход 7.0 -&gt; 7.1 был каким-то вялым, 7.1 -&gt; 7.2 выглядит более оптимистично. Но IDA остается тем, чем всегда и являлась - интерактивным инструментом, больше половины работы все равно делать руками и глазами.<br><br><I>Jupiter пишет:<br>Лучи иногда настолько хитро интерпретируют код, что иной раз проще в дизасме посмотреть и разобраться.  </I><br>Как человек который реверсит часто и много, могу сказать следующее. Лучи даже выдавая неправильный код все равно приятнее, чем асм. Реально быстрее понимаешь что происходит. Не под все есть лучи, и знаешь, на тех архитектурах где их нет, это реальная боль нажимать F5 и видеть сообщение, что мечтать не вредно. Поэтому это крайне здорово, что у тебя есть этот &quot;иной раз&quot;, хуже когда его нет. Ну т.е. изучать код можно хоть в HEX-редакторе, если память достаточная чтобы КОПы запомнить. Поэтому плохому танцору мешают вовсе не яйца, а неудобные трусы в добавок к уровню мотивации.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389196&amp;user=20807&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=11" class="addthx" data-post="389196"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 02:05 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#12');return false;">#12</a> </span><div align=left><br>
+у меня вопрос к корефеям IDA, reverscode, Jupiter, и другим, кто глубоко в теме.<br>Я пишу небольшую статейку или туториал, пока сам еще не определился, и хочу убедиться, что правильно понимаю, и соответственно, правильно излагаю:<br><br><b><i class=x>&quot;Поскольку процесс декомпилляции (трансформации машиного кода в исходный код языков программирования высокого уровня) можно рассматривать как процесс обратный компилляции (трансформации исходного кода языков программирования высокого уровня в машиный код), то стадии процесса  с определенными упрощениями можно рассматривать как зеркальное отражение друг друга, но с противоположным содержанием. Так, например, термин microcodes, используемый создателеями IDA, соответствует термину  &quot;intermediate representation&quot;, используемому в теории компилляции.&quot;<br></i><br></b><br>Хотелось бы услышать конструктивые замечания и критику. Спасибо!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389197&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=12" class="addthx" data-post="389197"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 10:44 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#13');return false;">#13</a> </span><div align=left><br>
+<b>Katana</b><br>теперь есть микрокод апи, и матчинг мемсет итд можно реализовать самому<br>каждый ида пользователь хочет свою хотелку и считает что она важнее <br>туду у ильфака переполнено, он часто об этом отписывает<br>и ему как цео виднее что приоритетнее(економически выгодно окупается и пользователи останутся на ида)<br>как минимум по частоте хотелок пользователей<br>если писько тестеры надавили в 7.2 на новый арм в айфонах, то они свое получили<br><br>идеальное время для проталкивание новых хотелок это как раз после релиза + еще какое то время<br><br><b>plutos</b><br>эти красивые слова для людей искусства театра и балета ?<br>я думал для кодеров  можно по проще
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389200&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=13" class="addthx" data-post="389200"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]SReg[/b]','')">SReg</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 315.1 (мудрец), 631thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.78'>Активность: 0.3<span style='color:green'>&nearr;</span>0.33</span><br>Статус: <a href="action=userinfo&amp;user=18316">Модератор</a><br><font color=blue>CrackLab</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 11:13 <br><script type="text/javascript">QU('SReg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SReg" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#14');return false;">#14</a> </span><div align=left><br>
+ну если у вас даже мемсет относится к хотелкам которые надо самому пилить, то тогда и цена у деконпиля должна быть как мопеда а не автомобиля
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389201&amp;user=18316&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=14" class="addthx" data-post="389201"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 11:21 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#15');return false;">#15</a> </span><div align=left><br>
+если бы в хексрее все время тратили на мемсеты то ида бы вообще не было<br>если количество легальных пользователей хотят новый арм а не мемсет, то результат очевиден<br>количество ревереров уменьшается с каждым годом и их единицы<br>бизнес писько тестеров растет, зачем им мемсет или точнее почему им не нужен мемсет ?<br>спросите у них<br><br><b>Добавлено спустя 1 минуту</b><br>писько тестеры = пентестеры<br><br><b>Добавлено спустя 1 час 9 минут</b><br>ида сейчас все больше начала превращаться в лего конструктор<br>при которой любую хотелку можно сделать и самому через апи <br>будь то питон или С<br>поэтому сложно понять что должно быть из коробки
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389202&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=15" class="addthx" data-post="389202"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.4 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 13:27 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#16');return false;">#16</a> </span><div align=left><br>
+<b>reversecode</b><br>Дык предложи Ильфаку ТУДУ в паблик вынести с голосовалкой на приоритет реализации.
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389203&amp;user=11966&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=16" class="addthx" data-post="389203"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 13:37 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#17');return false;">#17</a> </span><div align=left><br>
+они как то по своим критериям проверяют<br>вот была голосовалка какой декомпилер делать<br>мипс или ппц<br>с перевесом в несколько голосов как я помню победил мипс<br>сделали ппц, чему я рад конечно<br>думается мне потому что ппц ильфак по молодости ковырял<br>а может по положению звезд<br>но вряд ли потому что я так хотел<br><br>они когда то хотели жиру для клиентов поднять, что то тестили даже<br>думаю и клиентам было бы классно, видишь свои репорты итд<br>но не срослось
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389204&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=17" class="addthx" data-post="389204"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]Katana[/b]','')">Katana</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок), 5thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.22'>Активность: 0.01=0.01</span><br>Статус: <a href="action=userinfo&amp;user=20807">Участник</a><br><font color=blue>iOS expert</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 15:46 &middot; Поправил: Katana <br><script type="text/javascript">QU('Katana','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Katana" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#18');return false;">#18</a> </span><div align=left><br>
+<I>reversecode пишет:<br>если бы в хексрее все время тратили на мемсеты то ида бы вообще не было </I><br>Мне не обидно, что их нет. Это мелочь по сравнению с более интересными челенджами, но к чему это в changelog пихать?)<br><br><I>reversecode пишет:<br>если количество легальных пользователей хотят новый арм а не мемсет </I><br>Вот очень хочу найти этих людей. Найти и наказать))) Самое угарное, что наш коллега из Европы предвосхищает почти все что добавляется в IDA за долго до факта добавления:<br><br><noindex><a href="https://github.com/xerub/idastuff" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>Он &quot;предсказал&quot; объединенный MOV в ARM (я вообще противник чего-то, что придумано от себя и без документации, объединенный MOV невозможен, если две половинки регистра &quot;разрезаны&quot; другой инструкцией), потом PAC. Вы видите сколько кода это заняло у него?) А Ильфак это преподнес как целую фичу. Все уже давно используют скрипты, я не верю что это кто-то реквестил. Поэтому<br><br><I>r_e пишет:<br>предложи Ильфаку ТУДУ в паблик вынести </I><br>это вряд ли, соглашусь с <b>reversecode</b>, что критерии у них свои там<br><br><I>reversecode пишет:<br>сделали ппц, чему я рад конечно </I><br>я готов платить за оба, но видимо PPC используют несколько человек (помню фразу с форума лучей - типа &quot;мы не получили тот ажиотаж, который бы заставил нас сделать упор на эти архитектуры, а по сложности и PPC и MIPS делать одинаковое время, поскольку дельта небольшая, мы решили взяться за PPC первым&quot;), и Ильфак не воодушевлен делать еще один продукт для &quot;избранных&quot;<br><br>P.S. Видимо, чтобы мы наконец уже увидели MIPS, надо начать финансирование малварщегов, чтобы тысячи одептов av-помоек начали реквестить декомпиль под MIPS. Вон, IoT сейчас пока на хайпе еще, даешь малварь под MIPS роутеры!<br><br><I>reversecode пишет:<br>ченжлог порсится с лога репы всего лишь  </I><br>Я про тот, что с картинками)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389206&amp;user=20807&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=18" class="addthx" data-post="389206"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 ноября 2018 16:24 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#19');return false;">#19</a> </span><div align=left><br>
+ченжлог порсится с лога репы всего лишь
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389208&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=19" class="addthx" data-post="389208"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 декабря 2018 02:37 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#20');return false;">#20</a> </span><div align=left><br>
+An IDA Python script to extract information from string constants<br><br><noindex><a href="https://github.com/joxeankoret/idamagicstrings#idamagicstrings" rel="nofollow" target="_blank">--&gt; IDAMagicStrings&lt;--</a></noindex><br><br>The current version of the plugin is able to:<br>•Display functions to source files relationships (in a tree and in a plain list, a chooser in IDA language).<br>•Display guessed function names for functions.<br>•Rename functions according to the source code file their belong + address (for example, memory_mgmt_0x401050).<br>•Rename functions according to the guessed function name
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389574&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=20" class="addthx" data-post="389574"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=3085" title="01-12-2018 14:09, ранг:250.6" target="_blank">=TS=</a>, <a href="action=userinfo&user=3520" title="14-12-2018 15:11, ранг:630.4" target="_blank">mak</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]hash87szf[/b]','')">hash87szf</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.9 (постоянный), 47thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.33'>Активность: 0.12<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=34301">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2018 01:43 <br><script type="text/javascript">QU('hash87szf','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hash87szf" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#21');return false;">#21</a> </span><div align=left><br>
+В какой тред вопросы писать то? Про Иду7 или сюда и какая разница?<br><br>Вопрос по скриптам.<br>У меня на входе функи Ида68 видит:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>call</b></span>&nbsp;a</li><li class="hl_l1"><span class="hl_function"><b>jmp</b></span>&nbsp;b</li><li class="hl_l0">start&nbsp;<span class="hl_function"><b>endp</b></span>&nbsp;<span class="hl_comment">; sp-analysis failed</span></li>        </ol>
+    </div>
+</div></div>
+<br>функа по&#039;chunk&#039;аная.<br>В конце есть два chunkа с двумя ret.<br><br>Например<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>call</b></span>&nbsp;x</li><li class="hl_l1"><span class="hl_function">nop</span></li><li class="hl_l0"><span class="hl_function">ret</span></li>        </ol>
+    </div>
+</div></div>
+<br>и <br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>call</b></span>&nbsp;y</li><li class="hl_l1"><span class="hl_function">ret</span></li>        </ol>
+    </div>
+</div></div>
+<br>мне хочется последний, главный ret.<br><br>idc.GetFunctionAttr(ea, idc.FUNCATTR_END)<br>даёт мне jmp с самого начала, а<br>idc.GetFchunkAttr(еа, idc.FUNCATTR_END)<br>даёт концы chunk&#039;ов, что помоему не значит шо chunk кончается на ret<br>idc.NextFuncFchunk<br>даёт следующий chunk, но по моему гарантий нет что последний == Последний<br><br>а мне нужен то ret к которому стрелочки идут, если они есть<br><br>как его найти?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389603&amp;user=34301&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=21" class="addthx" data-post="389603"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2018 10:27 <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#22');return false;">#22</a> </span><div align=left><br>
+<I>hash87szf пишет:<br>а мне нужен то ret к которому стрелочки идут, если они есть </I><br>Когда ходют стрелочки, значит там коде хрефы:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">#define&nbsp;RfirstB<span class="hl_char">(</span>To<span class="hl_char">)</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_first_cref_to</span><span class="hl_char">(</span>To<span class="hl_char">)</span></li><li class="hl_l1">#define&nbsp;Rnext<span class="hl_char">(</span>From<span class="hl_char">,</span>&nbsp;current<span class="hl_char">)</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;get_next_cref_from<span class="hl_char">(</span>From<span class="hl_char">,</span>&nbsp;current<span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div>
+<br>Слева апи староиды, справа новоида. Можно сделать например простенький скрипт, который перечислит все хрефы выбранной функции в лог, тогда ни одна стрелочка не скроется.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389609&amp;user=8075&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=22" class="addthx" data-post="389609"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=34301" title="27-03-2019 17:19, ранг:61.7" target="_blank">hash87szf</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]hash87szf[/b]','')">hash87szf</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 64.9 (постоянный), 47thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.33'>Активность: 0.12<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=34301">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2018 16:52 <br><script type="text/javascript">QU('hash87szf','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hash87szf" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#23');return false;">#23</a> </span><div align=left><br>
+оказалось шо тот рет шо со стрелками, не обязательно главный<br>и я по всем чанкам, хэдам прошёлся, isCode and isRet, и первый попавшийся ret в бряки <br>теперь лень на хрефы смотреть...<br>всё равно не угадаешь какой правильный, со стрелками или нет...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389617&amp;user=34301&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=23" class="addthx" data-post="389617"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 декабря 2018 18:08 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#24');return false;">#24</a> </span><div align=left><br>
+<noindex><a href="https://twitter.com/ilfak/status/1068173375930015745" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=389619&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=24" class="addthx" data-post="389619"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2018 03:44 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#25');return false;">#25</a> </span><div align=left><br>
+наверное все знакомы с функцией <b> idaapi.get_arg_addrs().</b><br>Если ее вызвать с адресом какой-нибудь фукции в коде (к примеру, idaapi.get_arg_address(0xFFFFFFFF82491199))<br>то она вернет адреса всех аргументов в том порядке, в каком они были даны при вызове.<br>Очень удобно, но нет ли такой функции, которая возвращала бы сразу ЗНАЧЕНИЯ этих аргументов? Искал, но толи прохо искал, толи не там, где нужно.<br>Конечно, зная адреса, можно посмотреть и их значения, но это дополнительные усилия.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389763&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=25" class="addthx" data-post="389763"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 декабря 2018 01:30 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#26');return false;">#26</a> </span><div align=left><br>
+вот, совсем свежее, сам еще не успел попробовать, но звучит интересно:<br><br><noindex><a href="https://github.com/fireeye/flare-emu" rel="nofollow" target="_blank">--&gt; <b>flare-emu </b>&lt;--</a></noindex>marries IDA Pro’s binary analysis capabilities with Unicorn’s emulation framework to provide the user with an easy to use and flexible interface for scripting emulation tasks. It is designed to handle all the housekeeping of setting up a flexible and robust emulator for its supported architectures so that you can focus on solving your code analysis problems. Currently, flare-emu supports the x86, x86_64, ARM, and ARM64 architectures.<br><br>It currently provides three different interfaces to serve your emulation needs, along with a slew of related helper and utility functions.<br><br>1.emulateRange – This API is used to emulate a range of instructions, or a function, within a user-specified context. <br><br>2.iterate - This API is used to force emulation down specific branches within a function in order to reach a given target. <br><br>3.emulateBytes – This API provides a way to simply emulate a blob of extraneous shellcode. The provided bytes are not added to the IDB and are simply emulated as is.<br><br>flare-emu was written using the new IDA Pro 7x API, it is not backwards compatible with previous versions of IDA Pro.<img src="img/smilies/s14.gif" alt="">
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=389828&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=26" class="addthx" data-post="389828"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=3520" title="23-12-2018 09:21, ранг:630.4" target="_blank">mak</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]UniSoft[/b]','')">UniSoft</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1288.png" alt=""><br><span class=txtSm>Ранг: 52.0 (постоянный), 146thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.41'>Активность: 0.03<span style='color:green'>&nearr;</span>0.08</span><br>Статус: <a href="action=userinfo&amp;user=1288">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 декабря 2018 10:19 &middot; Поправил: UniSoft <br><script type="text/javascript">QU('UniSoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=UniSoft" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#27');return false;">#27</a> </span><div align=left><br>
+Товарищи, есть вопрос по IDA...<br>Есть девайс на ARM (Cortex) контроллере, и свой формат прошивки.<br>Написал свой загрузчик, и все бы хорошо, но оказалось, что многие секции накладываются друг на друга.<br>Ну т.е. что-то типа страничной адресации.<br>В общем в файле прошивки описаны секции, <br>(CODE(смещение в файле, базовый адрес, размер); DATA(смещение в файле, базовый адрес, размер); BSS(базовый адрес, размер)).<br>И вот некоторые секции так называемые overlapped, занимают одно и тоже адресное пространство, и подгружаются динамически в нужные моменты (видимо из-за нехватки памяти, реализовали страничную адресацию).<br>Так вот возможно ли в IDA создать виртуальную секцию, но т.е. чтобы физически секция располагалась по одному адресу, а виртуально считала что лежит там где нужно?<br>(Ведь есть же контроллеры типа AVR где и RAM и ROM лежат с адреса 0).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=390023&amp;user=1288&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=27" class="addthx" data-post="390023"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]f13nd[/b]','')">f13nd</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/8075.png" alt=""><br><span class=txtSm>Ранг: 271.2 (наставник), 331thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.63'>Активность: 0.32<span style='color:green'>&nearr;</span>1.49</span><br>Статус: <a href="action=userinfo&amp;user=8075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 декабря 2018 10:50 &middot; Поправил: f13nd <br><script type="text/javascript">QU('f13nd','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f13nd" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#28');return false;">#28</a> </span><div align=left><br>
+<I>UniSoft пишет:<br>И вот некоторые секции так называемые overlapped </I><br>Необязательно у ARM Cortex, с этим можно столкнуться и когда в оперативку прошивка в разных режимах загружает разные обработчики по пересекающимся областям. Решения скорей всего нету, создавай разные проекты для этого, синхронизируй изменения в них через экспорт в *.idc<br><br>ЗЫ: ну либо совсем наркоманский вариант расположить их таки по разным адресам, но переработать все xref&#039;ы скриптом так, чтобы все вело туда, куда нужно. Пользы от такой меры не много.
+<br><br><font size="1"><i>-----<br>2 оттенка серого</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=390024&amp;user=8075&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=28" class="addthx" data-post="390024"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]dma[/b]','')">dma</a></b><br></div>
+<img src="img/s0.gif" alt=""><br><span class=txtSm>Ранг: -12.6 (нарушитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.59'>Активность: 0.05<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=36364">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 декабря 2018 18:08 <br><script type="text/javascript">QU('dma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dma" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#29');return false;">#29</a> </span><div align=left><br>
+Никто не поделится PIN tool версии 6.8 (можно уже скомпилированый) и IDA SDK 6.8
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=390053&amp;user=36364&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=29" class="addthx" data-post="390053"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]dma[/b]','')">dma</a></b><br></div>
+<img src="img/s0.gif" alt=""><br><span class=txtSm>Ранг: -12.6 (нарушитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.59'>Активность: 0.05<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=36364">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 декабря 2018 23:20 <br><script type="text/javascript">QU('dma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dma" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#30');return false;">#30</a> </span><div align=left><br>
+Source code PIN tool ver. 6.8 - нашел, а вот с SDK проблема. Может IDA SDK 6.8 у кого-нибудь найдётся?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=390108&amp;user=36364&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=30" class="addthx" data-post="390108"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]sendersu[/b]','')">sendersu</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 512.7 (<b>!</b>), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.56'>Активность: 0.27<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=14629">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 декабря 2018 23:39 <br><script type="text/javascript">QU('sendersu','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sendersu" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=9#31');return false;">#31</a> </span><div align=left><br>
+<b>dma</b><br>https://www.sendspace.com/file/kt758p
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=390109&amp;user=14629&amp;forum_n=1&amp;topic=24661&amp;page=9&amp;anchor=31" class="addthx" data-post="390109"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=36364" title="25-12-2018 00:50, ранг:4.3" target="_blank">dma</a></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=8.html">&lt;&lt;</a> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=0.html">1</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=8.html">9</a> . <b>10</b> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=10.html">11</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=12.html">13</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=13.html">14</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=14.html">15</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=15.html">16</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=16.html">17</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=17.html">18</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=18.html">19</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=20.html">21</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=21.html">22</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=10.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование IDA Pro (part 2)</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="24661">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24661" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

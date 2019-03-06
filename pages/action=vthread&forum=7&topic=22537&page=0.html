@@ -1,0 +1,447 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>DebugAPI vs Ring0 - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Интересная тема для оффтопа. С разрешения автора привожу текст (все ники, какие возможно, убраны): &lt;здесь был ник&gt; пишет: Нет смысла делать отладчик без хвостов в нулевом уровне. DEBUG API винды это архитектурный понос.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55914'>Kybyx</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/mod.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=7&sortBy=0&page=0.html"><b>Оффтоп</b></a> <b class=bulletHead>&#8212;&#8250;</b> DebugAPI vs Ring0</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=7&amp;topic=22537&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=7&amp;topic=22537&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 16:09 &middot; Поправил: hors <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Интересная тема для оффтопа.<br><br>С разрешения автора привожу текст (все ники, какие возможно, убраны):<br><br><I>&lt;здесь был ник&gt; пишет:<br><br>Нет смысла делать отладчик без хвостов в нулевом уровне. DEBUG API винды это архитектурный понос. Поделок на базе него сделано уже овер 1000 и <b>&lt;здесь был ник&gt;</b> при все моем уважении к нему делает очередную поделку. О вкусах не спорят, но какие могут быть вкусы, если я за 5 минут могу наваять программу, которая выбросит OllyDbg или в вылет или в синий экран (при наличии фантома). Никто просто качественный софт в мире реверс-инженерии не видел, а все кто хотел не справились с задачей морально, отсюда и все холивары. А идея в том (не только у меня, а вообще у всех кто имеет представление об отладке и о внутреннем устройстве DEBUG API) чтобы обойти DEBUG API и делать все на прямую - где перехватом IDT (например, захват pagefault&#039;ов в обход механизма свопа, чтобы тот не испоганил наши хак-методы бряков на память и абсолютно невидимых точек останова), где через KiDispatchException (куда летят все исключения всех программ, дабы обработать их через SEH/VEH или вызовом AeDebug). Еще отладка ускоряется тем, что API выглядят НЕ так:<br><br>BOOL WINAPI WaitForDebugEvent(<br>_Out_ LPDEBUG_EVENT lpDebugEvent,<br>_In_ DWORD dwMilliseconds<br>);<br>BOOL WINAPI ContinueDebugEvent(<br>_In_ DWORD dwProcessId,<br>_In_ DWORD dwThreadId,<br>_In_ DWORD dwContinueStatus<br>);<br><br>А вот так:<br><br>DBGAPI_API<br>int CALLING_CONVENTION dbg_continue_event(<br>PVOID remote_id,<br>HANDLE proc_id,<br>u32 status,<br>PEXCEPTION_RECORD new_record<br>);<br><br>На хуя две API??? Каким наркотиком надо было колоться, чтобы это придумать??? Индуссо-китайский код мелкософта, работникам которого важней получить премию в конце года против написать хороший код и концепт. В итоге имеем два системных вызова, которая идут следом друг за другом. В NIX&#039;ах вообще всю отладку делает одна функция - ptrace(). Там у них на это хватило ума.<br><br>А чем плохо? А плохо тем, что каждое отладочное событие обрабатывается в два раз медленнее, т.к. процессор выполняет огромное число операций по переходу из ring3 в ring0 и обратно. А такие переходы требуются каждый системный вызов. А если еще эмулятор подключить на поддерживаемые наборы инструкций, отладка будет занимать считанные секунды, программа не будет так тормозить как это было раньше.<br><br>Вы почему-то путаете ядерный отладчик и концепцию <b>&lt;здесь было название отладчика&gt;</b>. Все говорят, на кой хрен GUI к ядерному отладчику (типа намек на удаленную отладку). Ну так вот. <b>&lt;здесь было название отладчика&gt;</b> никогда не планировался быть ядерным отладчиком, а драйвер нужен чтобы сделать его невидимым. Абсолютно невидимым, если у защиты нет драйвера. А от драйверов большинство &quot;защитников&quot; отказались. Вот и все. И поэтому немного смешно наблюдать за поделиями вроде умершего уже EDB, умирающей OllyDbg (а она умрет) и &quot;рожденного мертвым&quot; отладчика <b>&lt;здесь был ник&gt;</b>. GUI там вроде годный намечается, но я боюсь, они его сильно испортят жестким натягиванием на x86_64/x86 архитектуру и Windows DEBUG API. </I><br><br>Давайте обсудим:<br><br>1) Концепцию идеального отладчика.<br>2) DebugAPI vs Ring0.<br>3) Умрет ли OllyDbg.<br>4) Нужно ли, если задача только скрытие отладки, писать новый отладчик. (Возможно для этого достаточно написания плагинов к уже существующим?)
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337240&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=1" class="addthx" data-post="337240"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]ELF_7719116[/b]','')">ELF_7719116</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 419.0 (мудрец), 647thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.74'>Активность: 0.46<span style='color:green'>&nearr;</span>0.51</span><br>Статус: <a href="action=userinfo&amp;user=26651">Участник</a><br><font color=blue>&quotТибериумный реверсинг&quot</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 17:31 <br><script type="text/javascript">QU('ELF_7719116','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ELF_7719116" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+5) Пусть &lt;здесь был ник&gt; сам возьмет и напишет идеальный отладчик. После и поговорим.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337248&amp;user=26651&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=2" class="addthx" data-post="337248"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Veliant[/b]','')">Veliant</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 301.4 (мудрец), 194thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.62'>Активность: 0.17<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3136">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 17:52 <br><script type="text/javascript">QU('Veliant','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Veliant" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Я потихоньку пытаюсь отвязать Ollydbg от debugapi, заменив его двумя dll:<br>1)frontend. Внутри Olly, которая перехватывает CreateProcessW, WaitForDebugEvent, ContinueDebugEvent, Get/SetThreadContext и вместо них синхронизируется с backend<br>2)backend. Инжектится при старте дочернего процесс, вешает свой VEH обработчик + пару хуков. При всяких событиях собирает структуру DEBUG_EVENT и отправляет ее в frontend.<br><br>Теоретически большую часть этого можно вынести в ring0.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337253&amp;user=3136&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=3" class="addthx" data-post="337253"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:11 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Сайд очень гибкий, большинство антидебаг метод обходит. Если сделать нотифи на потоки и проецирование модулей(что весьма просто), то получится полный аналог дебагапи.<br><br>Нужно есчо шадова колбек отслеживать, так как его юзание доставляет неразрешимые в юзермоде проблемы.<br><br>Про TF можно сразу забыть.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337258&amp;user=33727&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=4" class="addthx" data-post="337258"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:39 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+1) есть интересный концепт) но нереализуемый, при котором все бросается в емуляцию вирутального CPU в ring3, этот концепт еще можно было бы натянуть если отладчик сам запускает приложение,<br><br>но концепт рушится , если обдумывать вариант при котором такой отладчик будет аттачится к уже запущеному приложению, <br><br>2) ни тот ни другой, потому что дебуг апи хоть это и стандартный интерфейс - это ограничения,<br> а ринг0 ... да с таким же успехом тогда через bochs в иде отлаживать можно хоть всю ось, ограничений не припомню<br><br>3) с++ уже который год закапывают)))<br><br>4) проще плагин для скрытия
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337263&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=5" class="addthx" data-post="337263"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:44 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Эту тему поднимали уже лет шесть назад. Имхо нужно писать <b>полностью</b> виртуальную машину, в который будет встроен отладчик, структуры, дефайны, аналитика и т.д. Но это довольно трудоемко, и разработка будет стоить где то 80к&#036;.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337266&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=6" class="addthx" data-post="337266"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:50 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>Nimnul пишет:<br>Имхо нужно писать полностью виртуальную машину, в который будет встроен отладчик </I><br><br>для нее насколько я помню все же драйвера уровня ring0, нужны,<br>а мой 1) концепт предполагал все в ring3<br><br><I>Nimnul пишет:<br>разработка будет стоить где то 80к&#036;.  </I><br>если заказывать у мелкософта?)) а если это пишут те кому это надо, то это не стоит ничего<br><br>поэтому здесь вариант аля ида+bochs проще<br>тоже самое, и уже все готово<br>тогда останутся всякие плюшки в виде плагинов для скриптов, если кому то надо
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337269&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=7" class="addthx" data-post="337269"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:51 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+bochs работает слишком медленно. Кстати если кто начнет делать такой проект я могу дать пару практических советов, как сделать &quot;быстрый&quot; виртуальный процессор.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337270&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=8" class="addthx" data-post="337270"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:53 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>Nimnul пишет:<br>bochs работает слишком медленно  </I><br>код боша открыт, изменяй не хочу)<br><br>а что конкретно там медленное? полагаю что то типа отладки всяких игрушек? ну так этот дебаггер не для игрушек если я правильно понимаю
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337271&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=9" class="addthx" data-post="337271"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 18:56 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+&gt;&gt; для нее насколько я помню все же драйвера уровня ring0, нужны,<br><br>В том то и дело, что для полностью виртуальной машины никаких дров, все стандартное. Отладчик будет надсистемным. Представь что ты мог бы физически тормознуть проц, и посмотреть что в регистрах, что в памяти.<br><br>&gt;&gt; код боша открыт, изменяй не хочу)<br><br>== Переписывать все с нуля<br><br>&gt;&gt; а что конкретно там медленное?<br><br>Да все прогрузи там винду, я не знаю как сейчас, но раньше это занимало добрый час. Отладчик должен быть быстрым, должен делать аналитику, давать подсказки по структурам системы, PE, встроенный просмотр памяти, управление планировщиком потоков. Ну вобщем нужно целый доклад писать, что должен уметь нормальный полноэмулирующий отладчик ))
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337272&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=10" class="addthx" data-post="337272"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 19:00 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>Nimnul пишет:<br> Представь что ты мог бы физически тормознуть проц, и посмотреть что в регистрах, что в памяти. </I><br>все это я уже давно представил,<br>я только не понял как такой отладчик будет атачится и перехватывать на себя уже например запущенное приложение или процесс ?<br><br>некоторые данные по процессу уже уйдут глубоко в систему, и их через ring3 не вытянешь
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337273&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=11" class="addthx" data-post="337273"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 19:05 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Да он не будет атачиться )), он и будет моделировать виртуальный проц и память, а так же исполнять код. В любой момент этот процесс можно тормознуть. Кстати забыл добавить, что в таком случае можно ставить интеллектуальные бряки на которые только фантазии хватит.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337274&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=12" class="addthx" data-post="337274"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 19:08 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>reversecode</b> Ты просто путаешь полностью виртуальную машину, с псевдо виртуальными машинами, которые сейчас существуют. Псолькольку мне известно нет еще ни одной полностью виртуальной машины.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337275&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=13" class="addthx" data-post="337275"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 19:15 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I>Nimnul пишет:<br>Да он не будет атачиться )), он и будет моделировать виртуальный проц и память, </I><br>медленно медитирую...<br>написали мы отладчик который ты хотел за 80к,<br>запустили его, хотим аттачнутся к уже готовому процессу что бы поотлаживать его<br>контекст cpu мы можем свичнут, а что с памятью делать? а всю страничную адрессацию?<br>ну вообщем тяжеловато именно этот момент во мне переваривается<br><br>и да, что это за отладчик, в котором ты только cpu емулируешь?<br>остальные данные как ты по процессу вытянешь?<br>или это будет псевдо отладчик только с состоянием cpu и бряками?<br><br>у того же ida+bochs, есть два режима, один из которых именно емуляция CPU
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337277&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=14" class="addthx" data-post="337277"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 января 2014 20:02 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+Память будет просто кусок реальной памяти, с которой работает ЦПУ. Другие устройства можно мапить в виртуальную машину, а можно их тоже эмулировать. Процессор этот не должен эмулировать всю архитектуру например Core i7, с его кешами, выборками и т.д. Процессор будет эмулировать только логическую модель команд x64\x86\arm. <br><br>&gt;&gt; запустили его, хотим аттачнутся к уже готовому процессу что бы поотлаживать его<br><br>Хорошо тут подробнее. Захотел ты отлаживать процесс. Нажимаешь паузу в ВМ, и теперь ты отлаживаешь ВСЕ вместе с ядром и IO железяк. В этот отладчик можно будет встроить механизм Step Out для переходов в Ring0, если ты отлаживаешь просто процесс. <br><br>Как работает обычный процессор? По сути он парсит команды, потом что то делает. Так же и виртуальный проц, будет парсить команды потом что то делать. ВМ которые есть сегодня практически ничего не парсят, код исполняет <b>реальный</b> проц. Если ты сделал программу которая эмулирует железо, память, hdd, то что мешает организовать в этой программе надсистемный отладчик?
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337279&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=15" class="addthx" data-post="337279"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 01:53 <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+Итак. Пришли к выводу, что идеальный отладчик это виртуальная машина, эмулирующая всё и быстро работающая. Тогда разработка обойдется не в 80k, а раз в 5 больше(минимум).
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337297&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=16" class="addthx" data-post="337297"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 01:59 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+не совсем виртуальная машина, виртуальный cpu и только,<br>цена 80к поделеная на 100к, потому что готовых и приватных дохрена и больше.<br>главное это завести хотя бы как то,<br>а дальше уже проще поддерживать и развивать<br><br>но <strike>весь концепт</strike> всю архитектура у меня например нет времени продумать, а поверхностно все равно не складывается
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337298&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=17" class="addthx" data-post="337298"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 02:29 &middot; Поправил: hors <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<b>reversecode</b>, одного виртуального CPU не хватит, так как нужно будет эмулировать еще к примеру и windowsAPI(сам же об этом писал).
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337299&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=18" class="addthx" data-post="337299"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]F_a_u_s_t[/b]','')">F_a_u_s_t</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 16.12'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=6">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 03:14 <br><script type="text/javascript">QU('F_a_u_s_t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=F_a_u_s_t" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<I>reversecode пишет: потому что готовых и приватных дохрена и больше. </I><br><br>Не только в привате ( там и с jit есть ), вполне себе концепты и на паблике лежат, но не видно что бы народ особо пилил.<br>Например <noindex><a href="http://sourceforge.net/projects/pokasdbg/" rel="nofollow" target="_blank">pokasdbg</a></noindex> кто не видел осторожнее перед запуском, автор нуб и выложил зараженный сектором бинарь, на основе поковского эмуля есть библиотека <br><noindex><a href="https://github.com/AmrThabet/winSRDF" rel="nofollow" target="_blank">winSRDF</a></noindex> и еще больше десятка подобных прожектов.<br>Оперативная память несложно эмулится, как и апишки, тем более готовая малварная база уже есть, а в малварке юзается тоже самое, что и в протах.<br>Вообще все сводится ко времени, точнее к отсутствию оного, многие начинали, но погрязли в работе и положили болт на эмуль.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337300&amp;user=6&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=19" class="addthx" data-post="337300"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 03:30 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+Думаю трудоемкость эмулирования Windows API выше, чем трудоемкость написания полноценной виртуальной машины с отладчиком, на которую будет установленна обычная винда\линукс\андроид\осх. И конечно все проекты загнутся без финансирования, жрать же что то надо... Есть выход собрать бапки на кикстартере, а потом продавать буржуям лицензии. Полноэмулирующая ВМ со встроенным отладчиком, имеющая к тому же несколько виртуальных процессоров, x64,x86,arm etc позволит создать офигенный инструмент для разработчиков софта под всякое железо.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337301&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=20" class="addthx" data-post="337301"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]F_a_u_s_t[/b]','')">F_a_u_s_t</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 16.12'>Активность: 0.25<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=6">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 03:54 <br><script type="text/javascript">QU('F_a_u_s_t','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=F_a_u_s_t" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>Nimnul пишет:<br>Думаю трудоемкость эмулирования Windows API выше, чем трудоемкость написания полноценной виртуальной машины с отладчиком </I><br><br>Зачем все эмулить?<br>Особой сложности нет, рутина и один человек мягко говоря устанет сидеть и пилить эмуль апишек, сродни конвейеру от которого едет крыша.<br>Эмулить нужно только то, от чего может настать звиздец, остальное можно запилить, как прокси, ну например _GetProcess() { return GetProcess(); }<br>Запилил от фонаря, лишь бы донести суть.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337302&amp;user=6&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=21" class="addthx" data-post="337302"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 04:55 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+То о чем я говорю позволит сделать универсальный отладчик любого кода любой платформы. То о чем вы говорите, мне представляется как отладка процесса с весьма ограниченными возможностями. Кроме того процесс сможет опознать такую отладку вызвав то что вы не эмулируете. Все дырки всеравно не заткнешь. Достаточно сравнить время исполнения. Представляю себе прога дергает АПИ из контекста отладчика. Первая проблема это прятать дллки отладчика. Вторая проблема это полностью эмулить работу с памятью. Полностью эмулить работу с хендлерами, потоками, кэллбеками. Дядя жо будет вашим лучшим другом.<br><br>&gt;&gt; Эмулить нужно только то, от чего может настать звиздец<br><br>А звидец настанет от чего угодно, помните что в программе нет ни единого лишнего байта.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337303&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=22" class="addthx" data-post="337303"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 10:22 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<b>hors</b> я про эмуляцию винапи ничего не писал, и даже не подразумевал
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337308&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=23" class="addthx" data-post="337308"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 11:07 <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<b>reversecode</b>, значит я неправильно понял твою фразу про &quot;данные о процессе уйдут глубоко в систему&quot;. Тогда выходит твоя идея вообще не в тему.
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337309&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=24" class="addthx" data-post="337309"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 11:27 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+мою идею в целом не только я поддержал)<br>я всего лишь сказал, &quot;что я пока не придумал как взять данные о процессе который уже запущен, для такого виртуального дебагера&quot;, когда его надо прервать для отладки,<br>и в этом случае даже емуляция апи ничем не поможет<br>но выход думаю можно найти, а вот времени для проработки такой идеи нет
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337310&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=25" class="addthx" data-post="337310"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 17:39 &middot; Поправил: hors <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<I>reversecode пишет:<br>цена 80к поделеная на 100к, потому что готовых и приватных дохрена и больше. </I><br><br>Стоимость разработки это не сколько денег нужно заплатить, чтобы написали программу.<br>Стоимость разработки расчитывается как количество затраченных часов умноженных на стоимость часа работы разработчика.<br>Есть ли уже наработки или программисты согласны работать бесплатно, не влияет на стоимость разработки.
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337321&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=26" class="addthx" data-post="337321"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 17:58 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<I>hors пишет:<br>Есть ли уже наработки или программисты согласны работать бесплатно, не влияет на стоимость разработки.  </I><br><br>именно<br><br>поэтому убранные ники и названия программ из начала топика, очень подозрительны и не одному мне хотелось бы их узнать на публике)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337322&amp;user=15381&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=27" class="addthx" data-post="337322"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 18:14 &middot; Поправил: hors <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<I>reversecode пишет:<br>поэтому убранные ники и названия программ из начала топика, очень подозрительны и не одному мне хотелось бы их узнать на публике)  </I><br><br>&lt;здесь был ник&gt; читает этот топик, так что можно написать ему здесь пожелания по будущему отладчику. <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337323&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=28" class="addthx" data-post="337323"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 18:23 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<b>hors</b> Это тот чье имя можно произносить только шопотом? ))) Тьма, тьма глубоко сидит внутри ваших мозгов друзья <img src="img/smilies/s1.gif" alt="">)
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337324&amp;user=1619&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=29" class="addthx" data-post="337324"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]hors[/b]','')">hors</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/31056.jpg" alt=""><br><span class=txtSm>Ранг: 136.0 (ветеран), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.53'>Активность: 0.27<span style='color:red'>&searr;</span>0.14</span><br>Статус: <a href="action=userinfo&amp;user=31056">Участник</a><br><font color=blue>Qt Developer</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2014 18:36 &middot; Поправил: hors <br><script type="text/javascript">QU('hors','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hors" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=7&amp;topic=22537&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+<I>Nimnul пишет:<br>hors Это тот чье имя можно произносить только шопотом? ))) Тьма, тьма глубоко сидит внутри ваших мозгов друзья )  </I><br><br>У него может быть с сотню причин не называться. Это его личное дело. <br>Главное, что он решительно настроен написать (почти) идеальный отладчик.<br>Лично я не разделяю его скепсиса по отношению к OllyDBG и к другому отладчику для которого я сейчас кое-что пишу.
+<br><br><font size="1"><i>-----<br>http://ntinfo.biz</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337325&amp;user=31056&amp;forum_n=7&amp;topic=22537&amp;page=0&amp;anchor=30" class="addthx" data-post="337325"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=7&amp;topic=22537&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=7&amp;topic=22537&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/mod.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=7&sortBy=0&page=0.html"><b>Оффтоп</b></a> <b class=bulletHead>&#8212;&#8250;</b> DebugAPI vs Ring0</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<center><h3>У вас должно быть 20 пунктов ранга, чтобы оставлять сообщения в  этом подфоруме, но у вас только 0</h3></center><script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=22537" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

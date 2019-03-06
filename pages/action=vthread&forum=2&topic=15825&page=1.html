@@ -1,0 +1,553 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Идея отладчика на основе принципа API-шпиона - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="В голову хорошая идея пришла. Хотя, если точнее, она уже давно формировалась и частично реализовывалась, но сейчас сформировалась до нового уровня. Я не прочь поделиться ей на обсуждение. Идея отладчика, в основу которого">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=40607'>vsv1</a>, <a target='_blank' href='?action=userinfo&amp;user=42610'>r0lka</a>, <a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a>, <a target='_blank' href='?action=userinfo&amp;user=55550'>testrev1337</a>, <a target='_blank' href='?action=userinfo&amp;user=19256'>johnniewalker</a>, <a target='_blank' href='?action=userinfo&amp;user=55914'>Kybyx</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Идея отладчика на основе принципа API-шпиона</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=0.html">1</a> . <b>2</b> . <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=2.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 февраля 2010 21:45 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#1');return false;">#1</a> </span><div align=left><br>
+В голову хорошая идея пришла. Хотя, если точнее, она уже давно формировалась и частично реализовывалась, но сейчас сформировалась до нового уровня. Я не прочь поделиться ей на обсуждение.<br><br>Идея отладчика, в основу которого положены не бряки, а апи хуки и инжект dll-модуля. А также возможность загружать программы из-под такого отладчика. Смысл идеи в том, что dll-модуль, внедрившись в усыпленный перед этим процесс, получает от приложения-сервера (своего рода отладчика) команды на перехват тех или иных функций, установку пре- и/или пост-обработчиков. Приложение-сервер получает от этого модуля всю нужную информацию от такого модуля и, в частности, по требованию может приостановить работу отлаживаемого таким образом приложения с помошью функции NtSuspendProcess. Важное преимущество пост-обработчиков перехватываемых функций - способность выявлять весь набор стековых аргументов в тех случаях, когда функции не ebp-based, то есть не используют регистр ebp для сохранения указателя фрейма. Но, конечно, никакого выигрыша при конвенциях __fastcall и __cdecl. Здесь все же придется анализировать обращения к стеку за пределами адреса возврата и первые чтения регистров без их инициализации в начале функции. Но такое уже делал для трассировщика команд Spectrum&#039;а.<br><br>Нетрудно добавить дизассемблер в такой отладчик, такой модуль с анализом логической структуры функции наподобие Graph View в Ida 5.5 Pro уже разработан 3 года назад. Зачастую не нужно передавать весь листинг программ, передаваться и анализироваться будет только то, что мы захотим, и мз отдельного потока, экономя время на выполнение программы и наше. А накопленный листинг можно сохранять.<br><br>Как идея?
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251805&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=1" class="addthx" data-post="251805"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 февраля 2010 22:58 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#2');return false;">#2</a> </span><div align=left><br>
+<I>cppasm пишет:<br>Там и консольный отладчик нормальный </I><br>Нормальный? Да это просто ужоснах, с таким отладчиком можно работать только от полнейшей безысходности. Трудно придумать что-то более неудобное. <br><br><I>cppasm пишет:<br>Да и фронтэнды графические к нему есть. </I><br>Можно пару ссылок?
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251913&amp;user=12867&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=2" class="addthx" data-post="251913"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 февраля 2010 23:26 &middot; Поправил: mak <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#3');return false;">#3</a> </span><div align=left><br>
+<img src="img/smilies/s1.gif" alt=""> на вин версии гуи только в привате , те что в свободном доступе только под линуксы и т.п. В основном их разрабатывают активно любителя создания новых ОС , там в ихних командах вообще даже конкуренция на гуи) Кто лучше сделает) Кто хочет се оторвать , ищите там.<br><br><b>DenCoder</b> а ты кодить будешь? <br><br>Добавлено - тогда закрывай тему и пиши , делать тут больше нечего , одобрения ты  всеравно не найдешь в любом случае.<br><br><b>cppasm</b> Приватный , с давних пор , на том же форуме где вы искали. Если еще поищите мож еще что найдете <img src="img/smilies/s1.gif" alt=""><br><br><img src="img/attach.gif" alt=""> <a href="./files/6a07_18.02.2010_CRACKLAB.rU.tgz">6a07_18.02.2010_CRACKLAB.rU.tgz</a> - doc.rar
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251915&amp;user=3520&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=3" class="addthx" data-post="251915"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]cppasm[/b]','')">cppasm</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 251.3 (наставник), 81thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.77'>Активность: 0.14<span style='color:red'>&searr;</span>0.11</span><br>Статус: <a href="action=userinfo&amp;user=6859">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 февраля 2010 23:32 &middot; Поправил: cppasm <br><script type="text/javascript">QU('cppasm','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=cppasm" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#4');return false;">#4</a> </span><div align=left><br>
+<I>ntldr пишет:<br>Нормальный? Да это просто ужоснах, с таким отладчиком можно работать только от полнейшей безысходности. </I><br>Я в основном бутлоадеры отлаживал.<br>Не фонтан, но пользоваться можно.<br><br><I>ntldr пишет:<br>Можно пару ссылок?  </I><br><noindex><a href="http://forum.osdev.org/viewtopic.php?f=2&amp;t=17546" rel="nofollow" target="_blank">http://forum.osdev.org/viewtopic.php?f=2&amp;t=17546</a></noindex><br><noindex><a href="http://code.google.com/p/peter-bochs/" rel="nofollow" target="_blank">http://code.google.com/p/peter-bochs/</a></noindex><br><br>И вроди есть уже родной GUI Debugger<br><noindex><a href="http://bochs.sourceforge.net/doc/docbook/user/features.html" rel="nofollow" target="_blank">http://bochs.sourceforge.net/doc/docbook/user/features.html</a></noindex><br><i class=x>GUI Debugger	Yes	Chourdakis Michael and Bruce Ewing contributed very powerful GUI frontend for Bochs internal debugger. GUI debugger frontend is supported for Win32 and GTK hosts. </i><br>Как включать написано тут:<br><noindex><a href="http://wiki.osdev.org/Bochs#GUI_debugger" rel="nofollow" target="_blank">http://wiki.osdev.org/Bochs#GUI_debugger</a></noindex><br>Не знаю есть ли он в собранном бинарнике (вроди должен быть).<br>В исходниках есть, конфигурировать надо с --enable-debugger и --enable-debugger-gui<br><br><I>mak пишет:<br>на вин версии гуи только в привате </I><br>Какой такой приват, если официальные исходники в репозитарии лежат <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=251917&amp;user=6859&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=4" class="addthx" data-post="251917"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 февраля 2010 23:56 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#5');return false;">#5</a> </span><div align=left><br>
+<b>mak</b>, Объявляю начало разработки после 10 марта. <img src="img/smilies/s1.gif" alt=""><br><br><b>cppasm</b>, я такую картинку уже видел в WinDbg. И что? Перезапускаем винду с ключом /debug, запускаем WinDbg, Local Kernel Debugging, вводим g и он нам отвечает &quot;No debuggee&quot;. Вот с виртуальной машиной можно.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251918&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=5" class="addthx" data-post="251918"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2010 08:00 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#6');return false;">#6</a> </span><div align=left><br>
+<b>DenCoder</b><br>&gt; что именно не нравится? В определении отладичка не сказано, что он обязан юзать Debugging API и определенно именно INT 3 или аппаратные точки останова.<br>Ондолжен использовать однобайтные инструкции генерирующие исключения, это может быть как Int3, так и привилегированные инструкции типо hlt и пр. Почему однобайтные думаю не нужно обьяснять.<br>Хардварные точки останова нужны для отслеживания доступа к памяти.<br>Дебугапи это стандартный фуикционал, по сути это способ доставки событий отладчику, таких как исключения. Если не нравится - используйте собственную реализацию в виде надстройки в ядре.<br>&gt; а апи хуки и инжект dll-модуля.<br>Наверно имеются ввиду перехваты, зачем они, если можно записать останов. Тоесть при трассировке процедурного ветвления, без захода в него вы предлогаете вместо точки останова за процедурным ветвлением использовать джамп на код отладчика или захват адреса возврата в стеке <img src="img/smilies/s11.gif" alt=""><br>Если мониторить вызовы, то это логгер, а не дебуггер. Отладчик должен быть вне процесса, всмысле иным процессом или выполняться на более низком уровне привилегий в отлаживаемом процессе, либо являться частью виртуапльной машины, это также должно быть понятно. Например малварь, драйвера, либо триальные приложения я отлаживаю на варе. В данном случае лучшим решением являласьбы надстройка над варей в виде отладчика.<br>Далее например приложение самодостаточно, тоесть использует прерывания для своей работы. Как вы это будите отлаживать, вобщето ось на винапи не заканчивается <img src="img/smilies/s3.gif" alt=""><br>&gt; И как ВЫ судите о том, новичок человек или нет? По рангу на этом форуме?<br>По форме мышления, уровню знаний и опыта.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=251942&amp;user=17964&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=6" class="addthx" data-post="251942"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2010 08:03 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#7');return false;">#7</a> </span><div align=left><br>
+&gt; Объявляю начало разработки после 10 марта.<br>Вначале продумайте все нюансы, дабы появилась архитектура. Иначе в процессе коденга окажется что всё  зря и идея не жизнеспособна <img src="img/smilies/s2.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=251943&amp;user=17964&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=7" class="addthx" data-post="251943"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2010 09:36 <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#8');return false;">#8</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>Помогли исходники W32Dasm </I><br>поделишся?
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251946&amp;user=13651&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=8" class="addthx" data-post="251946"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2010 11:12 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#9');return false;">#9</a> </span><div align=left><br>
+<b>cppasm</b><br>Спасибо за ссылки. С гуи будет куда приятней работать.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251951&amp;user=12867&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=9" class="addthx" data-post="251951"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2010 13:48 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#10');return false;">#10</a> </span><div align=left><br>
+<b>HiEndsoft</b>, сомневаюсь, что они сохранились в чистом виде, что-то я там добавил или изменил, не помню - давно было.<br><br><br><br><img src="img/attach.gif" alt=""> <a href="./files/05cc_19.02.2010_CRACKLAB.rU.tgz">05cc_19.02.2010_CRACKLAB.rU.tgz</a> - w32dasm.rar
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=251961&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=10" class="addthx" data-post="251961"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 марта 2010 01:53 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#11');return false;">#11</a> </span><div align=left><br>
+17 марта - день начала. Есть одна прога, обфусцирована до ужаса, с антиотладкой, палит все дебаггеры, даже если они не лезут в нее и отказывается работать. Так вот, в помощь реверсу пишу заявленную тулзу. Пока под определенный проект. За ним на очереди второй. <br><br>Уже готов скелет и потихоньку обрастает мясом. Планируется добавить простенький скрипт для управления. Собственно, пока все идет хорошо. Единственное, что скоро может понадобиться - быстрый модуль дизассемблера, еще лучше, если с исходниками. w32Dasm пятилетней давности плохо подходит, поскольку там есть некоторые нюансы, которые долго переписывать так, чтоб сразу не глючило. Например поиск команды в нем заключается в последовательном переборе команд по маске. Это должно быть быстрее.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254181&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=11" class="addthx" data-post="254181"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 марта 2010 18:45 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#12');return false;">#12</a> </span><div align=left><br>
+Тут дизасм лежит достаточно хороший в плане возможности анализировать код mika0x65.livejournal.com Ещё не релиз, но близок к этому.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254260&amp;user=1556&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=12" class="addthx" data-post="254260"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 04:50 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#13');return false;">#13</a> </span><div align=left><br>
+<I>Archer пишет:<br>mika0x65.livejournal.com </I><br><br>у кого-нибудь по его ссылкам качается?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254302&amp;user=2585&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=13" class="addthx" data-post="254302"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Kiev78[/b]','')">Kiev78</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 67.4 (постоянный), 6thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.92'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 07:14 &middot; Поправил: Kiev78 <br><script type="text/javascript">QU('Kiev78','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kiev78" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#14');return false;">#14</a> </span><div align=left><br>
+---
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254306&amp;user=12727&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=14" class="addthx" data-post="254306"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Av0id[/b]','')">Av0id</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 516.1 (<b>!</b>), 39thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1378">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 08:46 <br><script type="text/javascript">QU('Av0id','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Av0id" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#15');return false;">#15</a> </span><div align=left><br>
+Kiev78, очень даже хорош
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254311&amp;user=1378&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=15" class="addthx" data-post="254311"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 09:09 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#16');return false;">#16</a> </span><div align=left><br>
+<I>Kiev78 пишет:<br>не знаю, насколько он хорош </I><br><br>не плох, на его основе <b>FullDisasm</b> под ольгу делается
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254313&amp;user=2585&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=16" class="addthx" data-post="254313"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]HandMill[/b]','')">HandMill</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 222.2 (наставник), 115thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.21'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4554">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 12:05 &middot; Поправил: HandMill <br><script type="text/javascript">QU('HandMill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HandMill" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#17');return false;">#17</a> </span><div align=left><br>
+Разнообразные дизасм движки(раз тут ссылки выкладывают):<br><b>// продвинутые</b><br><noindex><a href="http://ragestorm.net/distorm" rel="nofollow" target="_blank">distorm</a></noindex> поддержка x64<br><noindex><a href="http://www.beaengine.org" rel="nofollow" target="_blank">beaengine</a></noindex> поддержка x64<br><noindex><a href="http://udis86.sourceforge.net" rel="nofollow" target="_blank">udis86</a></noindex> поддержка x64<br><noindex><a href="http://mika0x65.livejournal.com" rel="nofollow" target="_blank">движок от mika0x65</a></noindex> поддержка x64<br><noindex><a href="http://patkov-site.narod.ru" rel="nofollow" target="_blank">hde</a></noindex> дизассемблер длин, поддержка x64.<br><noindex><a href="http://sites.google.com/site/x86pfxlab/projects" rel="nofollow" target="_blank">X86IME</a></noindex> ассемблирование инструкций, поддержка x64<br><noindex><a href="http://nibble.develsec.org/get/x86im-1.0b.tar.gz" rel="nofollow" target="_blank">X86IME</a></noindex> patch to compile in UNIX by nibble<br><noindex><a href="http://pvdasm.reverse-engineering.net/" rel="nofollow" target="_blank">pvdasm</a></noindex><br><br><noindex><a href="http://www.ollydbg.de/disasm.zip" rel="nofollow" target="_blank">ollydbg</a></noindex> official disasm engine(supports x86 only) source code<br><noindex><a href="http://accessroot.com/arteam/site/download.php?view.263" rel="nofollow" target="_blank">ollydbg</a></noindex> Fixed OllyDbg disasm DLL by CondZero<br><br><b>// устаревшее</b><br><noindex><a href="http://vx.netlux.org/vx.php?id=ec11" rel="nofollow" target="_blank">catchy32</a></noindex><br><noindex><a href="http://cyberdoomsystems.narod.ru/CDS/cadt_masm32_fix.rar" rel="nofollow" target="_blank">cadt</a></noindex> (masm 1.1 version by cyberdoomsystems)<br><br>[cadt c version]<br><noindex><a href="http://code.google.com/p/ngdbg/source/browse/trunk/Disasm.h" rel="nofollow" target="_blank">cadt.h</a></noindex><br><noindex><a href="http://code.google.com/p/ngdbg/source/browse/trunk/Disasm.c" rel="nofollow" target="_blank">cadt.c</a></noindex><br><br><noindex><a href="http://www.piotrbania.com/all/disit" rel="nofollow" target="_blank">disit</a></noindex><br><br>p.s.: Может стоит завести отдельную тему по дизасм/отладочным движкам, где постить только ссылки и описания?
+<br><br><font size="1"><i>-----<br>все багрепорты - в личные сообщения</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254323&amp;user=4554&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=17" class="addthx" data-post="254323"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]progopis[/b]','')">progopis</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 12:08 <br><script type="text/javascript">QU('progopis','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=progopis" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#18');return false;">#18</a> </span><div align=left><br>
+<I>Gideon Vi пишет:<br>у кого-нибудь по его ссылкам качается?  </I><br>Пнул автора, думаю перевыложит.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254324&amp;user=2449&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=18" class="addthx" data-post="254324"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 14:40 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#19');return false;">#19</a> </span><div align=left><br>
+<I>HandMill пишет:<br>Может стоит завести отдельную тему по дизасм/отладочным движкам, где постить только ссылки и описания? </I><br><br>до-до, поддерживаю<br><br><I>progopis пишет:<br>Пнул автора, думаю перевыложит. </I><br><br>спасибо
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254327&amp;user=2585&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=19" class="addthx" data-post="254327"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Kiev78[/b]','')">Kiev78</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 67.4 (постоянный), 6thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.92'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 марта 2010 19:45 &middot; Поправил: Kiev78 <br><script type="text/javascript">QU('Kiev78','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kiev78" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#20');return false;">#20</a> </span><div align=left><br>
+---
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254352&amp;user=12727&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=20" class="addthx" data-post="254352"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 марта 2010 05:02 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#21');return false;">#21</a> </span><div align=left><br>
+с движками ушел <a href="http://exelab.ru/f/action=vthread&amp;forum=12&amp;topic=15991" target="_blank">туда</a>, там и ответил.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254370&amp;user=2585&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=21" class="addthx" data-post="254370"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 марта 2010 13:39 &middot; Поправил: HiEndsoft <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#22');return false;">#22</a> </span><div align=left><br>
+<b>DenCoder</b><br>Прикрути дров или через обработку исключений - как минимум, т.к. идея сплайсинга давно уже как померла.<br>ADD: за сорцы w32dasm спасибо.
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254420&amp;user=13651&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=22" class="addthx" data-post="254420"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 марта 2010 18:52 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#23');return false;">#23</a> </span><div align=left><br>
+<b>HiEndsoft</b><br>&gt; Прикрути дров или через обработку исключений - как минимум, т.к. идея сплайсинга давно уже как померла.<br>Полностью согласен. Это должен быть ядерный трейсер, для юзермода есть олли, а эти костыли с абсолютно не продуманной архитектурой и нафег никому не нужны <img src="img/smilies/s2.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254446&amp;user=17964&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=23" class="addthx" data-post="254446"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 марта 2010 03:42 <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#24');return false;">#24</a> </span><div align=left><br>
+Вам бы посмотреть, чем ТС в своем дневнике занят и заканчивать советовать актуальное <img src="img/smilies/s2.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254466&amp;user=2585&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=24" class="addthx" data-post="254466"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2010 07:31 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#25');return false;">#25</a> </span><div align=left><br>
+Clerk, у Вас хорошие эвристические решения системных задач. Может, подскажете, как Олю попросить переключиться на неё, если отлаживаемая прога переключила видеорежим и блокирует Alt-tab? Но вот в остальном Вам эвристика плохо помогает делать правильные выводы.<br><br>Я сам за ядерный отладчик, трейсер и все ядерное. )) Пишу эту тулзу, пробую ее на проге, защищенной HASP и в одном том же месте вылетаю в бсод. n-ый по счету вызов DeviceIoControl с хендлом hardlock.sys последнее, что я вижу в лог-файле.... после перезарузки. А чуть выше, в другом потоке начал вызываться еще один DeviceIoControl с хендлом от другого драйвера, но еще не завершился... Создается ощущение, что юзермодная тулза в неравной схватке против ядерной защиты. Что ж делать, придется учиться писать дрова... надеюсь, что скоро...<br><br>Нет, мне не нужен эмулятор хаспа, он стоит. Мне нужно пока оттрейсить прогу до конца работы и без бсодов. Затем подменять на лету некоторые параметры. Пробую найти причину бсода, буду делать все возможное, пока не исчерпаю юзермод. )) <br><br>Уже есть первая версия. Требует еще большой работы. Внизу ссылка на ее скриншот в действии.<br><br>P.S. На счет дневника: кто считает, что я месяц времени впустую потратил, поставьте себе 16-битный драйвер для какого-нить устройства, запустите сиську и посмотрите, как она посинеет <img src="img/smilies/s5.gif" alt=""><br><br><img src="img/attach.gif" alt=""> <a href="./files/938a_26.03.2010_CRACKLAB.rU.tgz">938a_26.03.2010_CRACKLAB.rU.tgz</a> - MyTool3.JPG
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254820&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=25" class="addthx" data-post="254820"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]__[/b]','')">__</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 115.1 (ветеран), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.73'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=7172">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2010 07:47 <br><script type="text/javascript">QU('__','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=__" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#26');return false;">#26</a> </span><div align=left><br>
+<I>cppasm пишет:<br>Ты дизассемблированный код какой-нибудь CRC32 </I><br><br>Пример супер. Прям дебри из одной функи =)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254822&amp;user=7172&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=26" class="addthx" data-post="254822"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2010 08:52 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#27');return false;">#27</a> </span><div align=left><br>
+Ну, код не выбирал, на паузу нажал в этом абчолютно случайно... 2 достоинства есть у тулзы: <br><br>1) Проезжает детект отладки (если на нем прога не зациклена) и можно в любой отладчик, не оснащенный плагином типа фантома<br>2) Не меняет первые байты апи-функций, другой механизм хука. <br><br>Дизасм с эвристикой потом прикручу. Сейчас под задачу точу.<br><br>Выкладываю<br><br><img src="img/attach.gif" alt=""> <a href="./files/4d4e_26.03.2010_CRACKLAB.rU.tgz">4d4e_26.03.2010_CRACKLAB.rU.tgz</a> - Release.rar
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254827&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=27" class="addthx" data-post="254827"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Gideon Vi[/b]','')">Gideon Vi</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/2585.jpg" alt=""><br><span class=txtSm>Ранг: 1131.7 <b><u>(!!!!)</u></b>, 447thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.83'>Активность: 0.67<span style='color:red'>&searr;</span>0.2</span><br>Статус: <a href="action=userinfo&amp;user=2585">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2010 09:09 &middot; Поправил: Gideon Vi <br><script type="text/javascript">QU('Gideon Vi','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Gideon Vi" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#28');return false;">#28</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>кто считает, что я месяц времени впустую потратил </I><br><br>Я такого не говорил.<br><br><I>DenCoder пишет:<br>поставьте себе 16-битный драйвер для какого-нить устройства, запустите сиську и посмотрите, как она посинеет </I><br><br>выдерни шнур из системного блока и увидишь, как экран почернеет. Вот твой пример из той же оперы
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254829&amp;user=2585&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=28" class="addthx" data-post="254829"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2010 13:58 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#29');return false;">#29</a> </span><div align=left><br>
+)) ну ладно, я только сейчас выспался. Почему hardlock.sys бсодит и как его победить?<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">f546ac20&nbsp;f58d0bc6&nbsp;<span class="hl_number">00479008</span>&nbsp;f546ac90&nbsp;<span class="hl_number">83657b08</span>&nbsp;hardlock<span class="hl_char">+</span>0x183ab</li><li class="hl_l1">f546ac50&nbsp;<span class="hl_number">8057fc67</span>&nbsp;<span class="hl_number">8360f780</span>&nbsp;<span class="hl_number">00000001</span>&nbsp;<span class="hl_number">00479008</span>&nbsp;hardlock<span class="hl_char">+</span>0x25bc6</li><li class="hl_l0">f546ad00&nbsp;<span class="hl_number">8057fbfa</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;nt<span class="hl_char">!</span>IopXxxControlFile<span class="hl_char">+</span>0x261</li><li class="hl_l1">f546ad34&nbsp;<span class="hl_number">804df06b</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;nt<span class="hl_char">!</span>NtDeviceIoControlFile<span class="hl_char">+</span>0x2a</li><li class="hl_l0">f546ad34&nbsp;<span class="hl_number">7c90eb94</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;nt<span class="hl_char">!</span>KiFastCallEntry<span class="hl_char">+</span>0xf8</li><li class="hl_l1"><span class="hl_number">0131fe94</span>&nbsp;<span class="hl_number">7c90d8ef</span>&nbsp;<span class="hl_number">7c801671</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;ntdll<span class="hl_char">!</span>KiFastSystemCallRet</li><li class="hl_l0"><span class="hl_number">0131fe98</span>&nbsp;<span class="hl_number">7c801671</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;ntdll<span class="hl_char">!</span>ZwDeviceIoControlFile<span class="hl_char">+</span>0xc</li><li class="hl_l1"><span class="hl_number">0131fef8</span>&nbsp;<span class="hl_number">001505b6</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">9c402494</span>&nbsp;<span class="hl_number">00479008</span>&nbsp;kernel32<span class="hl_char">!</span>DeviceIoControl<span class="hl_char">+</span>0xdd</li><li class="hl_l0"><span class="hl_number">0131ff54</span>&nbsp;<span class="hl_number">00465dfb</span>&nbsp;<span class="hl_number">00000128</span>&nbsp;<span class="hl_number">9c402494</span>&nbsp;<span class="hl_number">00479008</span>&nbsp;0x1505b6&nbsp;<span class="hl_char">-</span>&nbsp;мой&nbsp;перехватчик</li>        </ol>
+    </div>
+</div></div>
+<br><br>команда, которая сбоит<br>f58c3814 8a1408          mov     dl,byte ptr [eax+ecx]      ds:0023:6cd17bd3=??<br><br>________________________________________________________________<br><br>Разберусь с этим багом, прикручу код подмены SEH обработчика. Как раз для этой проги, офигела она бряки игнорировать, что INT 3, что Hardware.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254841&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=29" class="addthx" data-post="254841"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]Clerk[/b]','')">Clerk</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 255.8 (наставник), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.86'>Активность: 0.15<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=17964">Участник</a><br><font color=blue>vx</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2010 21:46 <br><script type="text/javascript">QU('Clerk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Clerk" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#30');return false;">#30</a> </span><div align=left><br>
+<b>DenCoder</b><br>&gt; Почему hardlock.sys бсодит<br>Смотрите контекст, определяете причину падения, далее уже бактрейс и параметры функи разбираете. За вас нет желания делать это, в сети есть куда более интересные крэши в системных драйверах.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=254868&amp;user=17964&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=30" class="addthx" data-post="254868"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 марта 2010 01:27 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=15825&amp;page=1#31');return false;">#31</a> </span><div align=left><br>
+<b>Clerk</b><br>&gt; в сети есть куда более интересные крэши в системных драйверах.<br>Интересно...<br><br>Вообще интересно, капризная у меня система: чуть что - сразу бсод. Фантом тоже как-то в бсод вылетел... С hardlock немного поразбирался - заметил на момент креша, что данные, которые передавались - строки ntdll.dll и NtTerminateThread. И еще несколько данных. Для 2 функций добавлю явные пре и пост-обработчики: DeviceIoControl и CreateFile (A, W)...<br><br>Подмену импорта еще не забыть бы...
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=254880&amp;user=24257&amp;forum_n=2&amp;topic=15825&amp;page=1&amp;anchor=31" class="addthx" data-post="254880"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=0.html">1</a> . <b>2</b> . <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=2&amp;topic=15825&amp;page=2.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Идея отладчика на основе принципа API-шпиона</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="2">
+<input type="hidden" name="topic" value="15825">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=15825" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

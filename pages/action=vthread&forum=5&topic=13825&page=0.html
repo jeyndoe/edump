@@ -1,0 +1,314 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Зацикливание (EBFE) и как отладить процесс подключаемый к основному - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Привет, кто знаком с защитой Crypkey или просто с техникой зацикливания в реверсинге, поясните пожалуйста сл. ситуацию. Есть прога, при запуске она создает файл cksXX.tmp, которому впоследствии передается управление над ней и он">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a>, <a target='_blank' href='?action=userinfo&amp;user=41701'>_MBK_</a>, <a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Зацикливание (EBFE) и как отладить процесс подключаемый к основному</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]artemiusgreat[/b]','')">artemiusgreat</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.57'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=19130">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2009 02:10 <br><script type="text/javascript">QU('artemiusgreat','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=artemiusgreat" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Привет, кто знаком с защитой Crypkey или просто с техникой зацикливания в реверсинге, поясните пожалуйста сл. ситуацию.<br>Есть прога, при запуске она создает файл cksXX.tmp, которому впоследствии передается управление над ней и он становится отладчиком данной проги используя CreateDebugEvent, ContinueDebugEvent, WriteProcessMemory<br>Мне надо отлаживать именно этот cksXX.tmp а не саму прогу, поэтому для этого сразу после создания этого файла на диске в коде основной проги надо как-то зациклить отладчик чтобы он остановился на месте передачи управление в cksXX.tmp<br>1. попробовал изменять файл cksXX.tmp на диске, сразу после его создания основной программой, во время ее выполнения<br>2. попробовал патчить этот файл прямо в памяти основной проги во время выполнения<br>Результат один, программа зацикливается, только почему-то не в пропатченном месте, где должен вызываться cksXX.tmp, а где-то в недрах ntdll и выйти отсюда я уже не могу.<br><br>Вобщем, в двух словах, я не знаю как мне отладить процесс, который подключается к тому, что уже отлаживается через OllyDebug но надеюсь кто-то может пояснить мне как это сделать.<br><br>Спасибо <img src="img/smilies/s1.gif" alt=""><br><br>P.S. Скорее всего это вопрос к Archer&#039;u, как человеку знакомому с CrypKey.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=221816&amp;user=19130&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=1" class="addthx" data-post="221816"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2009 12:01 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Это читал?<br><a href="http://exelab.ru/rar/dl/CRACKLAB.rU_52.rar" target="_new">http://exelab.ru/rar/dl/CRACKLAB.rU_52.rar</a>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=221852&amp;user=423&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=2" class="addthx" data-post="221852"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2009 20:13 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+А чо сразу Archer, я так, не при делах.<br>А если серьёзно-то статья тут лежит, в принципе хорошая, по ней вполне можно сделать. Непонятно, где он у тебя застревает в нтдлл, если там циклов нет. Видимо, аттачишься олькой. Дык она при аттаче стопится в нтдлл-это нормально, надо отпустить на выполнение и остановить руками уже. Ещё олька аттачится иногда коряво, надо заново запускать ольку перед аттачем. Короче, не совсем понятен вопрос, где оно у тебя застряло и что ты сделал.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=221892&amp;user=1556&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=3" class="addthx" data-post="221892"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]artemiusgreat[/b]','')">artemiusgreat</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.57'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=19130">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2009 23:06 <br><script type="text/javascript">QU('artemiusgreat','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=artemiusgreat" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<a href="http://exelab.ru/rar/dl/CRACKLAB.rU_52.rar" target="_new">http://exelab.ru/rar/dl/CRACKLAB.rU_52.rar</a><br>Это читал. В связи с этим собственно и возник вопрос.<br><br>После создания CRYPKEY debugger (файл cksXX.tmp) основная прога пишет в него код, который теперь будет ее парсить, т.е. заменять в ней места СС на реальный код. Вот этот &quot;парсер&quot; я и попытался отладить двумя вышеописаными способами.<br>1. пока основная прога висит в Olly, пошел во временную папку, нашел там свежесозданный cksXX.tmp, открыл его, переписал первые 2 байта на EBFE (прыжок на себя), сохранил, в Olly нажал F9, потом F12 но остановился в NTDLL (7C90EB94h) а не на цикле EBFE<br>2. второй способ - дописал байты EBFE в код &quot;парсера&quot; в основной проге еще до записи их cksXX.tmp, но оказываюсь там же<br><br>Если я правильно понял, мне надо не F9 нажимать а CTRL+F8  и суметь вовремя остановить цикл на EBFE?<br>Как-то это непрофессионально, или я не понимаю намеков?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=221920&amp;user=19130&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=4" class="addthx" data-post="221920"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]artemiusgreat[/b]','')">artemiusgreat</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.57'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=19130">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 февраля 2009 23:12 &middot; Поправил: artemiusgreat <br><script type="text/javascript">QU('artemiusgreat','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=artemiusgreat" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+А вообще в данном туториале непонятна одна фраза вот здесь:<br><br>&quot;А теперь можно запустить OD и приаттачиться к cksXX.tmp. Затем надо приостановить процесс, жмем F9 и затем F12, теперь мы на EP лоадера.&quot;<br><br>Я не понимаю что значит приаттачиться к процессу? Это ведь можно только DLL, при чем здесь Olly Debug, как им можно приаттачиться к чему-то?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=221921&amp;user=19130&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=5" class="addthx" data-post="221921"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]kioresk[/b]','')">kioresk</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/10650.gif" alt=""><br><span class=txtSm>Ранг: 154.2 (ветеран), 66thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.31'>Активность: 0.08<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10650">Участник</a><br><font color=blue>REVENGE Crew</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 февраля 2009 11:44 <br><script type="text/javascript">QU('kioresk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=kioresk" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>artemiusgreat пишет:<br>Я не понимаю что значит приаттачиться к процессу? Это ведь можно только DLL, при чем здесь Olly Debug, как им можно приаттачиться к чему-то? </I><br><br>Меню «File» — «Attach». <img src="img/smilies/s2.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=221967&amp;user=10650&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=6" class="addthx" data-post="221967"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 февраля 2009 19:23 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Сдаётся мне, автор слабо понимает возможно отладчика, что такое процесс, как происходит его отладка и тд. Почитайте общие статьи для ликбеза, потом уже вернитесь к этой лучше.<br>Аттач-это аттач олькой к новому процессу, либы здесь вообще не при чём.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=222031&amp;user=1556&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=7" class="addthx" data-post="222031"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]artemiusgreat[/b]','')">artemiusgreat</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.57'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=19130">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 февраля 2009 22:21 <br><script type="text/javascript">QU('artemiusgreat','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=artemiusgreat" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+Сдается мне, автор создал тему в разделе &quot;Вопросы новичков&quot; а не &quot;Я крут, т.к. хакнул 5000 прог и знаю дебаггер наизусть&quot;<br>1. Мануал по дебаггеру читал, но запоминать все его функции и нужные и ненужные как-то нерационально (я бы даже сказал, не побоюсь сего слова, невозможно), да и запоминается все в основном уже при использовании<br>2. В разработке Windows не участвовал, увы, но зато писал под него, в том числе и подобие виндового Task Manager, поэтому кое-что о процессах и тредах мне, как это ни странно, известно <img src="img/smilies/s1.gif" alt=""><br>Поэтому собственно и возник вопрос, Olly ведь работает в Ring3 а поэтому оказаться в адресном пространстве процесса можно лишь в качестве подгруженной в него DLL, дочернего процесса или WriteProcesMemory. Вот я и подумал что возможно в мануале что-то другое имелось в виду, решил уточнить чтобы на пустом месте не гадать несколько дней <img src="img/smilies/s1.gif" alt=""><br><br><I>kioresk пишет:<br>Меню «File» — «Attach» </I><br><br>Большое спасибо.<br>Все бы так писали а не описывали теретические возможности Гугла и мануалов <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=222051&amp;user=19130&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=8" class="addthx" data-post="222051"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]artemiusgreat[/b]','')">artemiusgreat</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.57'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=19130">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 февраля 2009 02:01 <br><script type="text/javascript">QU('artemiusgreat','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=artemiusgreat" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Матриализовалось еще некоторое кол-во вопросов <img src="img/smilies/s14.gif" alt=""><br>Простите что я юн и зелен <img src="img/smilies/s1.gif" alt=""><br>1. Хотелось бы поинтересоваться, если в CRYPKEY запакован не основной ЕХЕ а подключаемая DLL, надо ли в ней после распаковки восстанавливать таблицу импорта, ОЕР и производить еще какие-то изменения?<br>2. Как понять что таблица импорта неправильная?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=222723&amp;user=19130&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=9" class="addthx" data-post="222723"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]kioresk[/b]','')">kioresk</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/10650.gif" alt=""><br><span class=txtSm>Ранг: 154.2 (ветеран), 66thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.31'>Активность: 0.08<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10650">Участник</a><br><font color=blue>REVENGE Crew</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 февраля 2009 11:52 &middot; Поправил: kioresk <br><script type="text/javascript">QU('kioresk','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=kioresk" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=13825.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>1. Хотелось бы поинтересоваться, если в CRYPKEY запакован не основной ЕХЕ а подключаемая DLL, надо ли в ней после распаковки восстанавливать таблицу импорта, ОЕР и производить еще какие-то изменения?</I><br><br>С CrypKey дел не имел, но обычно достаточно просто понять чем скомпилирован файл и проверить указан ли OEP в секции кода/похож ли он на нормальный/нет ли редиректа с OEP на другой код.<br><br>Например:<br>1. для Delphi либо в конце секции .CODE (для старых версий), либо во 2-й секции .itext (если кратко, то можно найти OEP, если посмотреть конец секции .text — там будет ссылка на процедуру в .itext, после которой расположен OEP).<br>2. для Borland C — в начале секции кода перед строкой «C++HOOK».<br>3. для Microsoft C — на OEP&#039;е часто идет push 58/60/70.<br><br>Обычно достаточно просто сравнить в Ida нормальный файл и подопытный и все станет понятно.<br><br><I>2. Как понять что таблица импорта неправильная?</I><br><br>С импортом тоже самое. Смотришь где он расположен в нормальном файле и сравниваешь со своим. У Delphi/Borland C импорт обычно храниться отдельно в секции .idata, у Miscrosoft C — в секции .rdata (Thunk&#039;и или указатели на функции хранятся в самом начале файла, а IAT или директория импорта — почти в самом конце секции).<br><br>Открой файл в PE Tools, посмотри что указано в таблице импорта (Directories — Import Directory), т.е. где он храниться и просмотри сам импорт (...), т.е. сколько библиотек/функций используется.<br>У упакованных файлов в импорте обычно хранятся только пара функций (нужных для распаковки файла и заполнения импорта) вроде GetModuleHandle/LoadLibrary/GetProcAddress/VirtualAlloc.<br><br>П.С.<br>Еще не забывай, что у библиотеки обязательно должны быть релоки (relocation table) и если файл был запакован и изменена TLS, то ее тоже надо подправить.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=222751&amp;user=10650&amp;forum_n=5&amp;topic=13825.html&amp;page=0&amp;anchor=10" class="addthx" data-post="222751"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Зацикливание (EBFE) и как отладить процесс подключаемый к основному</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#11" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="5">
+<input type="hidden" name="topic" value="13825">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=13825" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,265 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>немного про AES (rijndael-256) - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Сейчас приходится писать php страничку с возможностью авторизации и прочее. Задумался насчет возможности взлома этого алгоритма при известном векторе инициализации(32 символа), и ключе, который представляет из себя хэщ whirlpool,">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=42072'>zombi-vadim</a>, <a target='_blank' href='?action=userinfo&amp;user=31361'>zds</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> немного про AES (rijndael-256)</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Dart Sergius[/b]','')">Dart Sergius</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/22828.jpg" alt=""><br><span class=txtSm>Ранг: 105.6 (ветеран), 36thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22828">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 13:47 &middot; Поправил: Dart Sergius <br><script type="text/javascript">QU('Dart Sergius','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Sergius" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Сейчас приходится писать php страничку с возможностью авторизации и прочее.<br>Задумался насчет возможности взлома этого алгоритма при известном векторе инициализации(32 символа), и ключе, который представляет из себя хэщ whirlpool, от некоторой информации, которая со временем изменяется.<br>За что можно очень сильно меня покарать - шифруются всегда одни и те же данные. <br><br>Реально ли задать новый вектор инициализации, не расшифровывая текст? Информации кодируется не так уж и много. <br><br>зы с криптографией лицом к лицу столкнулся в первый раз, так что я криптодевственник можно сказать. Ну или уже нет <img src="img/smilies/s5.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=324902&amp;user=22828&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=1" class="addthx" data-post="324902"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 14:42 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Зачем тебе там вообще аес? От каких угроз защищаешься?<br>AES в каком режиме работает?
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324909&amp;user=11966&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=2" class="addthx" data-post="324909"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Dart Sergius[/b]','')">Dart Sergius</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/22828.jpg" alt=""><br><span class=txtSm>Ранг: 105.6 (ветеран), 36thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22828">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 14:51 &middot; Поправил: Dart Sergius <br><script type="text/javascript">QU('Dart Sergius','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Sergius" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<I>r_e пишет:<br>Зачем тебе там вообще аес? От каких угроз защищаешься? </I><br>Паранойа + возможность sql инъекции(работаю над устранением)<img src="img/smilies/s6.gif" alt=""> Система управления мониторами, освещением для филиала одной организации, которая владеет очень многим. Филиалы есть в каждом городе. <br><br><I>r_e пишет:<br>AES в каком режиме работает?  </I><br>OFB.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=324912&amp;user=22828&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=3" class="addthx" data-post="324912"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 15:42 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>Dart Sergius</b><br>Что касается сикля, то непонятно каким боком там АЕС.<br><br>В ОФБ режиме Ключ+ИВ дают гамму. Соответственно, перешифровать можно элементарно.<br>New = Old ^ (OFB(K, OldIV) ^ OFB(K, NewIV))
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324921&amp;user=11966&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=4" class="addthx" data-post="324921"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=22828" title="17-05-2013 11:48, ранг:88.4" target="_blank">Dart Sergius</a>, <a href="action=userinfo&user=33253" title="17-05-2013 14:34, ранг:11.0" target="_blank">Abraham</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Dart Sergius[/b]','')">Dart Sergius</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/22828.jpg" alt=""><br><span class=txtSm>Ранг: 105.6 (ветеран), 36thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22828">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 16:31 &middot; Поправил: Dart Sergius <br><script type="text/javascript">QU('Dart Sergius','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Sergius" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>r_e пишет:<br>Что касается сикля, то непонятно каким боком там АЕС. </I><br>быдлокодерство оно карает <img src="img/smilies/s15.gif" alt=""><br><I>r_e пишет:<br>перешифровать можно элементарно </I><br>K - ключ? А если его не знаешь, а он - 64 символа, и ключ этот меняется раз в час допустим, то за час перешифровать никак?<br><br>зы самостоятельно начинаю осиливать крипто.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=324926&amp;user=22828&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=5" class="addthx" data-post="324926"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 16:50 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Если б можно было перешифровать не зная ключ, то на кой такой шифр вообще нужен?
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324927&amp;user=11966&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=6" class="addthx" data-post="324927"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24946" title="17-05-2013 13:12, ранг:80.8" target="_blank">DimitarSerg</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 17:27 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+1 - из всех поточных режимов стоит использовать только CTR<br>2 - никогда не шифруй два разных текста одной гаммой. в режиме CTR можно задать случайное начальное значение счетчика и хранить его вместе с зашифрованным сообщением.<br>3 - перешифровать элементарно. расшифровать и зашифровать. ключ естественно надо знать.<br>4 - если помимо шифрования нужен контроль целостности сообщений, нужно использовать HMAC, либо специальные режимы authenticated encryption (CCM, OCB, GCM)
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324936&amp;user=12867&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=7" class="addthx" data-post="324936"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=22828" title="17-05-2013 16:18, ранг:88.4" target="_blank">Dart Sergius</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 17:39 &middot; Поправил: r_e <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<b>ntldr</b><br>Не могли бы Вы подробней осветить изложенные замечания?<br>1. С чего бы вдруг CTR был бы более стойкий чем OFB? Только за счет рандомного значения счетчика? Дык OFB можно посолить немного.<br>2. Почему два? Ну получишь ты M1 ^ M2 и что? Вот если хотя бы 3 сообщения одной гаммой - тогда да.
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324938&amp;user=11966&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=8" class="addthx" data-post="324938"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Dart Sergius[/b]','')">Dart Sergius</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/22828.jpg" alt=""><br><span class=txtSm>Ранг: 105.6 (ветеран), 36thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22828">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 мая 2013 20:40 &middot; Поправил: Dart Sergius <br><script type="text/javascript">QU('Dart Sergius','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Sergius" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+В общем одной гаммой у меня ничего шифроваться не будет. Повторений векторов инициализаций не будет,  а whirpool от некоторой величины, которая со времен меняется(ключ временный, коим все шифруется), не даст за вменяемые сроки раскрыть ключ, и перешифровать всю информацию с другим вектором. А я не думаю что при шифротексте байтов в 32, а то и больше(информация авторизации). Ну и я не слышал чтобы вскрывали whirpool.<br>Так что все что можно шифром накрыл с 512 битным ключем. Думаю проблем с атакой не возникнет.<br><br>ps Спасибо, вы меня успокоили-)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=324948&amp;user=22828&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=9" class="addthx" data-post="324948"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 мая 2013 03:47 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>r_e пишет:<br>1. С чего бы вдруг CTR был бы более стойкий чем OFB? </I><br>CTR более простой режим с наиболее изученными свойствами. У OFB гамма теоретически может зацикливаться в периоде меньшем чем 2^block_size, либо может произойти линеаризация и ухудшиться стойкость при наличии серьезных дефектов в шифре, у CTR это исключено. Еще существенным плюсом CTR является легкость параллелизации и произвольный доступ к блокам сообщения.<br><br><I>r_e пишет:<br>2. Почему два? Ну получишь ты M1 ^ M2 и что? Вот если хотя бы 3 сообщения одной гаммой - тогда да. </I><br>Зная что-нибудь о M1 можно узнать и о M2 и наоборот. Что это дает в конкретном случае зависит от применения, может быть у нас M1 станет целиком известен атакующему.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324983&amp;user=12867&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=10" class="addthx" data-post="324983"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 мая 2013 11:55 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<b>ntldr</b><br>По поводу второго замечание нельзя не согласиться.<br>Что касается первого, не скинешь ссылок на отчеты по этой проблеме?<br>Насколько я вижу, что OFB, что CTR имеют одно ядро. Поскольку AES считается стойким, то PRNG на его основе тоже &quot;стойкий&quot;. В связи с этим зацикливания должны быть в пределах стандартов на генераторы.<br>IV у CTR в два раза меньше. CTR легко распараллелить.<br>Или ты про общий случай (не АЕС)?
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324989&amp;user=11966&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=11" class="addthx" data-post="324989"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 мая 2013 14:09 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Общий случай для произвольного шифра: допустим при шифровании блочный шифр преобразует открытый текст в шифртетекст такими парами: a-&gt;b, b-&gt;c, c-&gt;d, d-&gt;a, тогда получение любого члена этой последовательности порождает короткий цикл и создает дополнительную уязвимость которой не обладает применяемый шифр. Уже не помню точно оценку этой вероятности, но она ощутимо ниже 1/2^block_size. Это особенно актуально для старых шифров с 64 битным блоком (можно реально поймать короткий цикл на потоках всего в гигабайты), но и для современных шифров со 128 битным блоком эта уязвимость может сработать если сильно неповезет.<br><br>Уязвимость с линеаризацией работает если применяемый шифр обладает такими свойствами, что повторное зашифрование данных тем-же ключом ухудшает его стойкость (создает какие-либо различители). Такие свойства могут быть неожиданно обнаружены и у AES, их отсутствие никто не доказал.<br>Это большей частью теоретические уязвимости, разве что кроме циклов в шифрах с 64 битным блоком, которые вполне могут быть где-нибудь использованы, но сама возможность получения таких уязвимостей уже достаточна чтобы нигде не использовать OFB.<br><br><I>r_e пишет:<br>Поскольку AES считается стойким, то PRNG на его основе тоже &quot;стойкий&quot;. В связи с этим зацикливания должны быть в пределах стандартов на генераторы. </I><br>Современные стандарты PRNG на блочном шифре используют именно CTR. OFB использовать в этом применении крайне нежелательно, так как зацикливание это проблема самого режима шифрования. Оно может возникнуть даже с идеальным шифром внутри.<br>У CTR длина цикла всегда равна 2^(block_size/2), достаточно лишь следить чтобы длина потока не вышла за этот предел. Т.е. в случае AES-CTR на одном ключе может быть безопасно зашифровано 2^64 сообщений, длиной до 2^64 каждое. Думаю этого вполне достаточно для любых применений.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=324991&amp;user=12867&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=12" class="addthx" data-post="324991"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=11966" title="18-05-2013 10:59, ранг:309.0" target="_blank">r_e</a>, <a href="action=userinfo&user=22828" title="18-05-2013 23:09, ранг:89.4" target="_blank">Dart Sergius</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Dart Sergius[/b]','')">Dart Sergius</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/22828.jpg" alt=""><br><span class=txtSm>Ранг: 105.6 (ветеран), 36thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.1<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22828">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2013 16:47 &middot; Поправил: Dart Sergius <br><script type="text/javascript">QU('Dart Sergius','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dart Sergius" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=21775.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+проблема решена
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=326006&amp;user=22828&amp;forum_n=6&amp;topic=21775.html&amp;page=0&amp;anchor=13" class="addthx" data-post="326006"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> немного про AES (rijndael-256)</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=21775" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

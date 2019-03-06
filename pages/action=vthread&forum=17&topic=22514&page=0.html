@@ -1,0 +1,413 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Отладка BIOS/EFI - аппаратные отладчики - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="В общем, суть в следующем: хочу отлаживать BIOS на реальной тачке. Надоело свои эксперименты проводить со связками QEMU/GDB, VMWare/GDB и так далее - это очень далеко от реальности. Есть программатор, им пробовал модифицировать и">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=21426'>Dart Raiden</a>, <a target='_blank' href='?action=userinfo&amp;user=242'>Alf</a>, <a target='_blank' href='?action=userinfo&amp;user=55930'>bedop66938</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/rt.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=17&sortBy=0&page=0.html"><b>Электроника</b></a> <b class=bulletHead>&#8212;&#8250;</b> Отладка BIOS/EFI - аппаратные отладчики</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Crawler[/b]','')">Crawler</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4825.jpg" alt=""><br><span class=txtSm>Ранг: 216.9 (наставник), 85thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.31<span style='color:red'>&searr;</span>0.15</span><br>Статус: <a href="action=userinfo&amp;user=4825">Участник</a><br><font color=blue>X-Literator</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 13:56 &middot; Поправил: Crawler <br><script type="text/javascript">QU('Crawler','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Crawler" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+В общем, суть в следующем: хочу отлаживать BIOS на реальной тачке. Надоело свои эксперименты проводить со связками QEMU/GDB, VMWare/GDB и так далее - это очень далеко от реальности. Есть программатор, им пробовал модифицировать и шить, но отладка, сами понимаете, очень затруднена - через COM (в редких случаях) или вообще никак (чаще всего) - зависит от стадии загрузки.<br><br>Может, есть какие-то варианты вроде XDP или JTAG-отладчиков?<br><br>А еще - интересно, чем отличаются внутрисхемные отладчики от эмуляторов? В качестве примера:<br><br>1) http://www.prosoft.ru/products/brands/windriver/436319/436325.html<br>2) http://www.arium.com/product/55/ECM-XDP3-Intel-JTAG-Debugger.html<br><br>Первый - эмулятор, второй - внутрисхемный отладчик.<br><br>Вроде бы JTAG-отладчики - это проще и дешевле, но хуже, если верить этому: http://phyton.ru/pages/page83.html#jtag<br><br>Буду благодарен за любую инфу по теме отладки BIOS (не на виртуалках, а на реальном железе).
+<br><br><font size="1"><i>-----<br>Харе курить веники и нюхать клей, к вам едет из Америки бог Шива, и он еврей.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336784&amp;user=4825&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=1" class="addthx" data-post="336784"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 14:58 &middot; Поправил: spinz <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+В принципе БИОС отлаживать все же можно и на реальном железе без аппаратного отладчика, но только после INIT# - после RESET# на entry point  никак не тормознуться. Только подходящего софта для этого все равно нет. <br><I>Crawler пишет:<br> чем отличаются внутрисхемные отладчики от эмуляторов </I><br>Имхо, отличие чисто семантическое, по приведенным ссылкам оба девайса называются JTAG debugger
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336788&amp;user=22831&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=2" class="addthx" data-post="336788"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.4 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 15:40 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Отличие в том что один работает на серийном железе, а второй - отладочный стенд. На кристалле второго расположен дополнительный блок поддержки отладки. Соответственно, поддерживаются расширенные режимы отладки. Второй обычно дороже первого.<br>Впрочем, может @hors подключится и расскажет детали.
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336790&amp;user=11966&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=3" class="addthx" data-post="336790"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4825" title="23-01-2014 12:12, ранг:180.7" target="_blank">Crawler</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]connect6[/b]','')">connect6</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.2 (новичок), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.61'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33417">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 18:16 &middot; Поправил: connect6 <br><script type="text/javascript">QU('connect6','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=connect6" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Для XDP отлаживания нужна мамка с XDP разъёмом. Таких мало. Если найдешь, то она вряд ли будет с интересующим тебя чипсетом/BIOS...A остальное железо уже не так дорого: <noindex><a href="http://www.ebay.com/itm/141170050206" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336804&amp;user=33417&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=4" class="addthx" data-post="336804"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Crawler[/b]','')">Crawler</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4825.jpg" alt=""><br><span class=txtSm>Ранг: 216.9 (наставник), 85thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.31<span style='color:red'>&searr;</span>0.15</span><br>Статус: <a href="action=userinfo&amp;user=4825">Участник</a><br><font color=blue>X-Literator</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 18:45 <br><script type="text/javascript">QU('Crawler','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Crawler" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>connect6</b>, штуковина более чем сомнительная. JTAG-отладчик под Intel за 30 баксов? Буду рад, если предоставишь хоть какую-то информацию о нем (уверен, ее нет)
+<br><br><font size="1"><i>-----<br>Харе курить веники и нюхать клей, к вам едет из Америки бог Шива, и он еврей.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336808&amp;user=4825&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=5" class="addthx" data-post="336808"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 19:08 <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Вот более вменяемая поделка http://www.arium.com/product/55/
+<br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336810&amp;user=6801&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=6" class="addthx" data-post="336810"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4825" title="24-01-2014 09:13, ранг:182.7" target="_blank">Crawler</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]connect6[/b]','')">connect6</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.2 (новичок), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.61'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33417">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 января 2014 19:38 &middot; Поправил: connect6 <br><script type="text/javascript">QU('connect6','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=connect6" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>Crawler</b><br>Раз ты уверен, что инфо нет, то нет.  ;) Принимаю коммереских задач по теме x86/x64 биосов...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336813&amp;user=33417&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=7" class="addthx" data-post="336813"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2014 06:36 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+Варианта ровно два: post карта и вывод отладочной инфы в ком порт. Еще понадобится программатор. Модифицируешь модули BIOS, чтобы они выводили нужную тебе отладочную информацию, прошиваешься, смотришь что получилось. Я так отлаживал.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336838&amp;user=12867&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=8" class="addthx" data-post="336838"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4825" title="24-01-2014 09:34, ранг:182.7" target="_blank">Crawler</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Crawler[/b]','')">Crawler</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4825.jpg" alt=""><br><span class=txtSm>Ранг: 216.9 (наставник), 85thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.31<span style='color:red'>&searr;</span>0.15</span><br>Статус: <a href="action=userinfo&amp;user=4825">Участник</a><br><font color=blue>X-Literator</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2014 13:12 <br><script type="text/javascript">QU('Crawler','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Crawler" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>ntldr</b>, оно понятно, но именно от этого варианта я и хочу уйти - не всегда ком инициализируется, когда мне это нужно. Если ком-порта нет, видео - тем более - остается очень мало вариантов (вроде eb fe на нужное место и смотреть, виснет комп или нет).
+<br><br><font size="1"><i>-----<br>Харе курить веники и нюхать клей, к вам едет из Америки бог Шива, и он еврей.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336843&amp;user=4825&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=9" class="addthx" data-post="336843"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Crawler[/b]','')">Crawler</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4825.jpg" alt=""><br><span class=txtSm>Ранг: 216.9 (наставник), 85thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.31<span style='color:red'>&searr;</span>0.15</span><br>Статус: <a href="action=userinfo&amp;user=4825">Участник</a><br><font color=blue>X-Literator</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2014 13:15 &middot; Поправил: Crawler <br><script type="text/javascript">QU('Crawler','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Crawler" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>OKOB</b><br>Да, реально крутая штука. Единственное - его нужно где-то взять. Да и если он стоит 20 тысяч баксов, это чуть дороговато для удовлетворения моего любопытства)))
+<br><br><font size="1"><i>-----<br>Харе курить веники и нюхать клей, к вам едет из Америки бог Шива, и он еврей.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336844&amp;user=4825&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=10" class="addthx" data-post="336844"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 января 2014 19:39 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>Crawler пишет:<br> остается очень мало вариантов </I><br>POST карта позволяет выводить отладочные коды даже из бутблока, начиная с первых инструкций процессора. Главное чтобы она была подключена к шине на которую по-умолчанию декодируются IO циклы 0x80 порта, на современных мамках это pci-x линии идущие прямо из проца (pci-x16 разьем для видеокарты), другие шины (pci, pci-x1, lpc) могут потребовать инициализации южного моста и superio.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=336857&amp;user=12867&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=11" class="addthx" data-post="336857"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 января 2014 16:59 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+На многоядерных процессорах или многопроцессорных системах, как известно, только одно ядро(процессор) при рестарте системы фактически выполняет код, начиная c FFFFFFF0. Остальные находятся в состоянии wait-for-SIPI, после получения SIPI они выполняют кодес, начиная at 000VV000H,where VV is the vector contained in the SIPI message. Можно на bootstrap ядре послать другим ядрам SIPI с вектором, указывающим<br>на наш код, который взведет на целевом ядре TF и передаст управление на FFFFFFF0. Таким образом можно протрейсить биос от первой инструкции без всякого доп. железа
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336949&amp;user=22831&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=12" class="addthx" data-post="336949"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]connect6[/b]','')">connect6</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.2 (новичок), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.61'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33417">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 января 2014 20:59 &middot; Поправил: connect6 <br><script type="text/javascript">QU('connect6','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=connect6" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+spinz, что за консоль/интерфейс будет у такого отладчика? Как выживет его код при проверки/стирания RAM? Что будет с SMM? Без виртуализаций железа (чипсет/периферий) не обойтись....
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336967&amp;user=33417&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=13" class="addthx" data-post="336967"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4825" title="27-01-2014 09:42, ранг:182.7" target="_blank">Crawler</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 января 2014 02:23 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Сложностей здесь действительно немало, но принципильно непреодолимы нет. Виртуализация всей &quot;обвязки&quot; компутера (по аналогии с варей и пр.) не нужна
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336979&amp;user=22831&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=14" class="addthx" data-post="336979"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]connect6[/b]','')">connect6</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.2 (новичок), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.61'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33417">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 января 2014 06:29 <br><script type="text/javascript">QU('connect6','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=connect6" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+Какая разница вся - не вся, все же виртуализация нужна. И вообще глупо говорить что НЕ нужно. Гораздо важнее что надо сделать ;)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336987&amp;user=33417&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=15" class="addthx" data-post="336987"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 января 2014 10:09 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>connect6 пишет:<br>Гораздо важнее что надо сделать </I><br>Это будет сильно зависеть от биоса, универсального решения тут быть не может (а никто ведь, как я понял, и не ставит цель научиться отлаживать все биосы в мире). Какую-то часть функционала в любом случае надо будет затачивать под вполне конкретный целевой биос. Это конечно весьма  затратно по времени и силам, но покупать железку за 20к тоже затратно ;)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336990&amp;user=22831&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=16" class="addthx" data-post="336990"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Rockphorr[/b]','')">Rockphorr</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 62.8 (постоянный), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.71'>Активность: 0.06<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22848">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 января 2014 23:41 <br><script type="text/javascript">QU('Rockphorr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Rockphorr" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<b>Crawler</b> <br>для отладки процедур инициализации всяких узлов нужно наверно и какие-то средства мониторинга состояния этого узла<br><br>про jtag я насколько понял это всего лишь электрический интерфейс выдающий сигнал о том как устройство нормально включилось или нет -- я  хз как с его помощью конфиг миросхем смотреть (если можно значит я сильно отстал от темы)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337034&amp;user=22848&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=17" class="addthx" data-post="337034"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 января 2014 08:30 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I>spinz пишет:<br>Остальные находятся в состоянии wait-for-SIPI, после получения SIPI они выполняют кодес, начиная at 000VV000H,where VV is the vector contained in the SIPI message... </I><br>Впрочем, такая методика вряд ли позволит стартовать целевое ядро действительно &quot;с нуля&quot;, т.е. состояния, идентичного состоянию после reset. Если бы это было так, то девелоперы биосов полные идиоты. Правильней, с точки зрения секьюрности, было бы проинициализировать каждое non-bootastrap ядро (установить, например, &quot;правильный&quot; SMBASE, указывающий на защищенную память, а не 0x30000; SMRR; IA32_FEATURE_CONTROL и пр). А потом опять отправить ядро в состояние wait-for-SIPI посылкой INIT&#039; а (при этом указанные регистры, как известно, не изменятся) Как на самом деле реализована инициализация разных ядер в современных биосах - я хз, если кто в курсе или просто не лень покопаться в бисое, поделитесь инфой.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=337061&amp;user=22831&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=18" class="addthx" data-post="337061"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Crawler[/b]','')">Crawler</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/4825.jpg" alt=""><br><span class=txtSm>Ранг: 216.9 (наставник), 85thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.31<span style='color:red'>&searr;</span>0.15</span><br>Статус: <a href="action=userinfo&amp;user=4825">Участник</a><br><font color=blue>X-Literator</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 января 2014 13:49 <br><script type="text/javascript">QU('Crawler','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Crawler" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=17&amp;topic=22514.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<b>Rockphorr</b>, ну, не сказал бы<br><br>http://www.intel.my/content/dam/www/public/us/en/documents/white-papers/jtag-101-ieee-1149x-paper.pdf<br><br><I>spinz пишет:<br>Можно на bootstrap ядре послать другим ядрам SIPI с вектором, указывающим<br>на наш код, который взведет на целевом ядре TF и передаст управление на FFFFFFF0. Таким образом можно протрейсить биос от первой инструкции без всякого доп. железа  </I><br><br>Да.  А можно еще написать свой гипервизор и отладчик впридачу, но вот только как его самого писать и отлаживать?)
+<br><br><font size="1"><i>-----<br>Харе курить веники и нюхать клей, к вам едет из Америки бог Шива, и он еврей.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=337081&amp;user=4825&amp;forum_n=17&amp;topic=22514.html&amp;page=0&amp;anchor=19" class="addthx" data-post="337081"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/rt.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=17&sortBy=0&page=0.html"><b>Электроника</b></a> <b class=bulletHead>&#8212;&#8250;</b> Отладка BIOS/EFI - аппаратные отладчики</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#20" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="17">
+<input type="hidden" name="topic" value="22514">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=22514" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

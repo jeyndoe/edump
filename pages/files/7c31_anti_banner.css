@@ -1,0 +1,131 @@
+﻿@charset "utf-8";
+/*
+ * Various standard banner sizes; often hidden behind an iframe so the image
+ * lacks size. May be worth investigating changing the 'a' to a[target="_top"]
+ */
+
+object[id="sgLow"],
+iframe[width="88"][height="31"], a img[width="88"][height="31"],
+object[width="88"][height="31"],
+object[width="100"][height="100"],
+/* NoName */
+object[width="120"][height="300"][classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000"],
+iframe[width="120"][height="600"], a img[width="120"][height="600"],
+object[width="120"][height="600"],
+iframe[width="125"][height="300"], a img[width="125"][height="300"],
+iframe[width="125"][height="600"], a img[width="125"][height="600"],
+iframe[width="150"][height="100"], a img[width="150"][height="100"],
+iframe[width="150"][height="600"], a img[width="150"][height="600"],
+iframe[width="160"][height="600"], a img[width="160"][height="600"],
+iframe[width="180"][height="150"], a img[width="180"][height="150"],
+/* obkom.net.ua */
+a img[width="240"][height="350"],
+iframe[width="270"][height="60"],
+iframe[width="300"][height="250"], a img[width="300"][height="250"],
+iframe[width="336"][height="280"], a img[width="336"][height="280"],
+iframe[width="468"][height="60"],  a img[width="468"][height="60"],
+object[width="468"][height="60"],
+iframe[width="470"][height="62"],  a img[width="470"][height="62"],
+object[width="600"][height="90"],
+iframe[width="728"][height="90"],  a img[width="728"][height="90"],
+iframe[width="730"][height="92"],  a img[width="730"][height="92"],
+iframe[width="760"][height="90"],  a img[width="760"][height="90"],
+object[width="760"][height="90"] {
+	display: none !important;
+}
+
+/* Generic Doubleclick iframes */
+body > a[target="_top"] > img {
+	display: none !important;
+}
+
+/*
+ * Generic Doubleclick <script> hacks 
+ *
+ * Really we want to select only img without width/height.  Maybe with CSS3.
+ */
+/* Disabled
+a[target="_blank"] img {
+	display: none;
+} */
+
+/*
+ * More generic banner killing making use of most common attributes.
+ * Potential false positives on frames based sites; unlikely, though,
+ * since their nagivation bars will rarely target outside the frameset.
+ * I don't think Opera supports selecting on border, unfortunately.
+ */
+a[target="_top"] img[border="0"],a[target="_blank"] img[border="0"] {
+	display: none !important;
+}
+
+/*
+ * CSS3 selectors
+ *
+ * src/href selecting, mostly from Adrian Holovaty;
+ * <F4gh7lReFYEgaA4FuSq0000a673@hotmail.com> on css-discuss
+ */
+*[href*="doubleclick.net"], *[href*="doubleclick.net"] *,
+*[src*="doubleclick.net"], *[src*="doubleclick.net"] *,
+*[href*="/adx/"], *[href*="/adx/"] *,
+*[src*="/adx/"], *[src*="/adx/"] *,
+*[href*="/ads/"], *[href*="/ads/"] *,
+*[src*="/ads/"], *[src*="/ads/"] *,
+*[href*="/adserver."], *[href*="/adserver."] *,
+*[src*="/adserver."], *[src*="/adserver."] *,
+*[href*="/adfarm."], *[href*="/adfarm."] *,
+*[src*="/adfarm."], *[src*="/adfarm."] *,
+*[href*="/adlog.pl"], *[href*="/adlog.pl"] *,
+*[src*="/banner/"], *[src*="/banner/"] *,
+*[src*="/adview.php"], *[src*="/adview.php"] *,
+*[href*="logging.to"] {
+        display: none !important;
+}
+
+/*
+ * Site-specific rulesets
+ */
+
+/* The Register */
+/* FIXME: can probably match something specific to gallery to avoid this */
+/*td[valign="top"] a img[width="150"],*/
+img[alt="Advertisement"], .advert {
+	display: none !important;
+}
+
+/* The Inquirer, with it's Flash-based adverts */
+iframe[width="600"][height="120"], object[width="125"][height="300"] {
+	display: none !important;
+}
+
+/* SlashDot middle-of-the-article ads */
+table table table[width="346"][height="280"] {
+	display: none !important;
+}
+
+/* Freshmeat's new side adverts */
+a[target="_top"] img[width="125"][height="375"] {
+	display: none !important;
+}
+
+/* Webbugs - of questionable value and potentially breaking spacer-gif using
+ * sites.  Seems OK here, *shrug*.
+ *
+ * Won't help much in Opera, which requests banners even with display: none;
+ */
+img[width="1"][height="1"] { display: none; }
+
+/* The Register and their oddball zero size cookie setting images */
+img[width="0"][height="0"] { display: none; }
+
+/* Давим Rambler`овские счетчики */
+img[alt="Rambler's Top100"] { display: none; }
+
+/* Давим счетчики V.I.P. Banner Network */
+a[title="V.I.P. Banner Network"] { display: none; }
+
+/* PayPal */
+form[action="https://www.paypal.com/cgi-bin/webscr"] { display: none; }
+
+/* Яндекс.Деньги */
+form input[alt="Яндекс.Деньги"] { display: none !important; }

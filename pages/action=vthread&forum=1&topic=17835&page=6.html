@@ -1,0 +1,577 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Использование WinDbg - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Странно - топики с вопросами по использованию Ida, Syser есть, а по использованию WinDbg нет. Понимаю, что он более менее документирован, но в его документации черт ногу сломит и в его статьях нередко нет перекрестных ссылок.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+8 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование WinDbg</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=5.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=5.html">6</a> . <b>7</b> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=7.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 марта 2011 12:29 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#1');return false;">#1</a> </span><div align=left><br>
+Странно -  топики с вопросами по использованию Ida, Syser есть, а по использованию WinDbg нет. Понимаю, что он более менее документирован, но в его документации черт ногу сломит и в его статьях нередко нет перекрестных ссылок. Хотя сами вопросы были в других темах... Предлагаю здесь задавать вопросы по использованию отладчика WinDbg. Собственно, я первый вопрос задам:<br><br>Возникла задача, суть которой проверить предположение, что р0-файловый монитор(драйвер) отлавливает все обращения к файлу, выполняет некоторые проверки, и если условия выполняются, то передает команду (возможных схем много) р3-службе(процессу), в следствие которой эта служба открывает тот же файл. Многочисленные поиски по chm-файлу и переносы ссылок во вкладки ie, <strike>по</strike>пытки методом тыка привели вот к такой команде:<br><br>bp &lt;адрес инструкции обращения к сервису ZwCreateFile&gt; &quot;dd /c 1 @esp + 8 L1; dt nt!_OBJECT_ATTRIBUTES ObjectName @@masm(&#036;p); bp /1 /p &lt;EPROCESS службы&gt; nt!ZwCreateFile &#92;&quot;dd /c 1 @esp + 0xC L1; dt nt!_OBJECT_ATTRIBUTES ObjectName @@masm(&#036;p)&#92;&quot;; g&quot;<br><br>Команда установки точек останова еще будет улучшаться, суть не в этом! Использование псевдорегистра &#036;p, который дает последний вывод команд d*- тормозит весь процесс на секунду-две. В итоге составная команда<br>dd /c 1 @esp + 8 L1; dt nt!_OBJECT_ATTRIBUTES ObjectName @@masm(&#036;p);<br>- не лучший способ достижения описанной цели. Вопрос: <b>можно ли заменить более быстрым аналогом в WinDbg ?</b>
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=278235&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=1" class="addthx" data-post="278235"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=35123" title="09-07-2013 01:11, ранг:0.0" target="_blank">stereo2013</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]AE[/b]','')">AE</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.8 (новичок), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 0.82'>Активность: 0.17=0.17</span><br>Статус: <a href="action=userinfo&amp;user=51133">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 сентября 2019 09:16 &middot; Поправил: AE <br><script type="text/javascript">QU('AE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AE" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#2');return false;">#2</a> </span><div align=left><br>
+<I>plutos пишет:<br>x64dbg </I><br>Только у него мааааленькая проблемка существует:<br><br><I>Fine-grained memory breakpoint. Unlike other debuggers, memory breakpoint is supported only on a whole memory page, but not on a subrange of the memory page.</I>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=398647&amp;user=51133&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=2" class="addthx" data-post="398647"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 сентября 2019 10:09 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#3');return false;">#3</a> </span><div align=left><br>
+<I>AE пишет:<br>Только у него мааааленькая проблемка существует: </I><br><br>Да, есть такая беда. И наверняка не только эта.<br>Ну и что с того? я что, утверждал, что это какое-то совершенное чудо? The ULTIMATE DEBUGGER?<br>Никто и не говорит, что это идеальный и навсегда законченый tool, да таких и на свете нет. <br>Как вам наверное известно это open-source проэкт, который все еще находится в стадии развития и постоянно совершенствуется. <br>Bы можете помочь авторам устранить выявленые вами недоработки. <img src="img/smilies/s2.gif" alt="">
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=398650&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=3" class="addthx" data-post="398650"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=51133" title="26-09-2019 07:27, ранг:0.5" target="_blank">AE</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]AE[/b]','')">AE</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 10.8 (новичок), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 0.82'>Активность: 0.17=0.17</span><br>Статус: <a href="action=userinfo&amp;user=51133">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 сентября 2019 10:31 <br><script type="text/javascript">QU('AE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AE" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#4');return false;">#4</a> </span><div align=left><br>
+<I>plutos пишет:<br>Bы можете помочь авторам устранить выявленные вами недоработки. </I><br>Я бы с радостью это сделал, но до этого еще дорасти надо, а пока можно попользоваться плагином миграции (OllyMigrate), вроде эту проблему можно обойти с его помощью...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=398651&amp;user=51133&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=4" class="addthx" data-post="398651"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 декабря 2019 19:52 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#5');return false;">#5</a> </span><div align=left><br>
+последняя версия которая preview только для win10 ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400436&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=5" class="addthx" data-post="400436"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 декабря 2019 22:28 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#6');return false;">#6</a> </span><div align=left><br>
+<b>reversecode</b><br>В сис требованиях раньше никак по-другому не было. Сейчас не знаю, может, адаптировали под 7ку.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400438&amp;user=24257&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=6" class="addthx" data-post="400438"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 00:43 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#7');return false;">#7</a> </span><div align=left><br>
+<I>reversecode пишет:<br>последняя версия которая preview только для win10 ? </I><br><br>Да. Про семерку ни разу не слыхал...<img src="img/smilies/s14.gif" alt="">
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400440&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=7" class="addthx" data-post="400440"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 15:55 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#8');return false;">#8</a> </span><div align=left><br>
+что бы придумать для тайм трейсинга под семерку....
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400465&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=8" class="addthx" data-post="400465"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 16:47 <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#9');return false;">#9</a> </span><div align=left><br>
+App Web Downloader - <noindex><a href="https://store.rg-adguard.net/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>Вставить линк -
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">https<span class="hl_char">:</span><span class="hl_char">/</span><span class="hl_char">/</span>www<span class="hl_char">.</span>microsoft<span class="hl_char">.</span>com<span class="hl_char">/</span>en<span class="hl_char">-</span>us<span class="hl_char">/</span>p<span class="hl_char">/</span>windbg<span class="hl_char">-</span>preview<span class="hl_char">/</span>9pgjgd53tn86</li>        </ol>
+    </div>
+</div></div>
+<br><br>Последний релиз -<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Microsoft<span class="hl_char">.</span>WinDbg_1<span class="hl_char">.</span><span class="hl_number">1912</span><span class="hl_char">.</span><span class="hl_number">11001</span><span class="hl_char">.</span>0_neutral__8wekyb3d8bbwe<span class="hl_char">.</span>appx&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">2019</span><span class="hl_char">-</span><span class="hl_number">12</span><span class="hl_char">-</span><span class="hl_number">13</span>&nbsp;<span class="hl_number">14</span><span class="hl_char">:</span><span class="hl_number">11</span><span class="hl_char">:</span><span class="hl_number">14</span>&nbsp;GMT&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">4548313184d8536952144fba34d22e7bb1539503</span>&nbsp;&nbsp;<span class="hl_number">48</span><span class="hl_char">.</span><span class="hl_number">86</span>&nbsp;MB</li>        </ol>
+    </div>
+</div></div>
+<br><br>Удачный запуск на вин 7, Running WinDbgX on Windows 7 - <noindex><a href="https://lifeinhex.com/running-windbgx-on-windows-7/" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400470&amp;user=3520&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=9" class="addthx" data-post="400470"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=15381" title="13-12-2019 13:54, ранг:1015.1" target="_blank">reversecode</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 17:23 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#10');return false;">#10</a> </span><div align=left><br>
+а какой там последний качается со стора ?<br>WinDbg_1.1902.7001.0_neutral__8wekyb3d8bbwe<br>другая ошибка<br>где то в самих dbgsrv.exe
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400471&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=10" class="addthx" data-post="400471"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 17:25 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#11');return false;">#11</a> </span><div align=left><br>
+<b>reversecode</b><br><br>&gt; что бы придумать для тайм трейсинга<br><br>Этот инструмент нужен крайне редко, врядле вам нужно какие то проблемы с ядром разбирать. Стрелять по мухам с пушки.. Юзер визоры покрывают все задачи.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400472&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=11" class="addthx" data-post="400472"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 17:30 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#12');return false;">#12</a> </span><div align=left><br>
+не был бы нужен не спрашивал бы<br>ядро и визоры мне сейчас точно не нужны
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400474&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=12" class="addthx" data-post="400474"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 18:18 <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#13');return false;">#13</a> </span><div align=left><br>
+<I>reversecode пишет:<br>а какой там последний качается со стора ?<br>WinDbg_1.1902.7001.0_neutral__8wekyb3d8bbwe<br>другая ошибка<br>где то в самих dbgsrv.exe<br> </I><br><br>Насколько знаю по опыту, со стора скачиваются идентичные версии как и с App Web Downloader-а, т.е. версия Microsoft.WinDbg_1.1912.11001.0_neutral__8wekyb3d8bbwe.appx должна быть последней. Запатчил и переименовал как в статейке и падает? С какой ошибкой?<br><br>  <I>difexacaw пишет:<br>reversecode<br><br>&gt; что бы придумать для тайм трейсинга<br><br>Этот инструмент нужен крайне редко, врядле вам нужно какие то проблемы с ядром разбирать. Стрелять по мухам с пушки.. Юзер визоры покрывают все задачи.  </I><br><br>Мне страшно запускать этот отладчик) В последний раз он подвесил всю систему, т.к. размеры слепков для тайминг шифтинга были огромные <img src="img/smilies/s5.gif" alt="">
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400475&amp;user=3520&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=13" class="addthx" data-post="400475"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 18:22 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#14');return false;">#14</a> </span><div align=left><br>
+я пошел дальше<br>я запустил сами dbgsrv которые к дотнету вообще не относятся<br>и лежат в других папочках<br>и вот они крашатся<br><br>мое предположение что не хватает какого то рантайма от win10<br>подробно не вникал
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400476&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=14" class="addthx" data-post="400476"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 19:38 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#15');return false;">#15</a> </span><div align=left><br>
+<b>mak</b><br><br>Использовать его без нужды это нубство. Мощный, но очень не удобный инструмент. А машинная трассировка и вовсе затея бессмысленная.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400479&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=15" class="addthx" data-post="400479"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]VOLKOFF[/b]','')">VOLKOFF</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 173.8 (ветеран), 208thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.95'>Активность: 0.12<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=5846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:17 &middot; Поправил: VOLKOFF <br><script type="text/javascript">QU('VOLKOFF','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VOLKOFF" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#16');return false;">#16</a> </span><div align=left><br>
+<I>Life In Hex пишет:<br>If you try to run DbgX.Shell.exe on Windows 7, it will fail with Exception</I><br><br>У меня при запуске (без патчей) ошибки:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">на&nbsp;компьютере&nbsp;отсутствует&nbsp;api<span class="hl_char">-</span>ms<span class="hl_char">-</span>win<span class="hl_char">-</span>downlevel<span class="hl_char">-</span>kernel32<span class="hl_char">-</span>l2<span class="hl_char">-</span><span class="hl_number">1</span><span class="hl_char">-</span><span class="hl_number">0</span><span class="hl_char">.</span>dll</li><li class="hl_l1"><span class="hl_char">+</span></li><li class="hl_l0"><span class="hl_char">*</span><span class="hl_char">*</span><span class="hl_char">*</span>FATAL&nbsp;ERROR&nbsp;ENCOUNTERED<span class="hl_char">*</span><span class="hl_char">*</span><span class="hl_char">*</span></li><li class="hl_l1">Error&nbsp;<span class="hl_char">:</span>&nbsp;DbgX<span class="hl_char">.</span>dll&nbsp;<span class="hl_char">:</span>&nbsp;WindowsDebugger<span class="hl_char">.</span>WindowsDebuggerException<span class="hl_char">:</span>&nbsp;Could&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;load&nbsp;dbghelp<span class="hl_char">.</span>dll&nbsp;from&nbsp;<span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">\</span>WinDbgX<span class="hl_char">\</span>amd64&nbsp;<span class="hl_char">:</span>&nbsp;System<span class="hl_char">.</span>ComponentModel<span class="hl_char">.</span>Win32Exception&nbsp;<span class="hl_char">(</span>0x80004005<span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;Не&nbsp;найден&nbsp;указанный&nbsp;модуль</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;в&nbsp;DbgX<span class="hl_char">.</span>DbgEngModule<span class="hl_char">.</span>LoadLibraryFromDirectory<span class="hl_char">(</span>String&nbsp;<span class="hl_function">directory</span><span class="hl_char">,</span>&nbsp;String&nbsp;<span class="hl_function">library</span><span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;в&nbsp;DbgX<span class="hl_char">.</span>DbgEngModule<span class="hl_char">.</span>LoadDbgEngModule<span class="hl_char">(</span><span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;в&nbsp;DbgX<span class="hl_char">.</span>EngineThread<span class="hl_char">.</span>ThreadProc<span class="hl_char">(</span><span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">WindowsDebugger<span class="hl_char">.</span>WindowsDebuggerException<span class="hl_char">:</span>&nbsp;Could&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;load&nbsp;dbghelp<span class="hl_char">.</span>dll&nbsp;from&nbsp;<span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">\</span>WinDbgX<span class="hl_char">\</span>amd64&nbsp;<span class="hl_char">:</span>&nbsp;System<span class="hl_char">.</span>ComponentModel<span class="hl_char">.</span>Win32Exception&nbsp;<span class="hl_char">(</span>0x80004005<span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;Не&nbsp;найден&nbsp;указанный&nbsp;модуль</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;в&nbsp;DbgX<span class="hl_char">.</span>DbgEngModule<span class="hl_char">.</span>LoadLibraryFromDirectory<span class="hl_char">(</span>String&nbsp;<span class="hl_function">directory</span><span class="hl_char">,</span>&nbsp;String&nbsp;<span class="hl_function">library</span><span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;в&nbsp;DbgX<span class="hl_char">.</span>DbgEngModule<span class="hl_char">.</span>LoadDbgEngModule<span class="hl_char">(</span><span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;в&nbsp;DbgX<span class="hl_char">.</span>EngineThread<span class="hl_char">.</span>ThreadProc<span class="hl_char">(</span><span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Причем закидывание api-ms-win-downlevel-kernel32-l2-1-0.dll в папку просто игнорится <img src="img/smilies/s1.gif" alt=""><br>Так-то шелл 32-битный, нафега ему х64 модули...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400480&amp;user=5846&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=16" class="addthx" data-post="400480"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:23 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#17');return false;">#17</a> </span><div align=left><br>
+<b>difexacaw</b><br>спец по отладкам блокнотов ))))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400481&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=17" class="addthx" data-post="400481"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:27 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#18');return false;">#18</a> </span><div align=left><br>
+<b>reversecode</b><br><br>Мне уже давно и вовсе отладчик не нужен, всё можно решать по простому. Могу всю страницу с запросов на взлом решить за вечер, пока вы будите ковыряться в этих тулзах <img src="img/smilies/s5.gif" alt=""><br><br>Может стоит послушать, если тебе советуют лучший метод.)
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400482&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=18" class="addthx" data-post="400482"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:28 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#19');return false;">#19</a> </span><div align=left><br>
+<b>VOLKOFF</b><br>оно файлы помоему в user\AppData\Local\Microsoft\WindowsApps ищет<br><br><b>Добавлено спустя 1 минуту</b><br><b>difexacaw</b><br>причем здесь запросы на взлом ?<br>ах ну да, ты других применений отладчиков ты не знаешь
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400483&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=19" class="addthx" data-post="400483"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]VOLKOFF[/b]','')">VOLKOFF</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 173.8 (ветеран), 208thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.95'>Активность: 0.12<span style='color:green'>&nearr;</span>0.36</span><br>Статус: <a href="action=userinfo&amp;user=5846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:33 <br><script type="text/javascript">QU('VOLKOFF','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VOLKOFF" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#20');return false;">#20</a> </span><div align=left><br>
+<I>reversecode пишет:<br>оно файлы помоему в user\AppData\Local\Microsoft\WindowsApps ищет </I><br><br>Не, пути он в ошибке правильно до каталога показывает (я их просто &quot;подчистил&quot;), не понятно другое, шелл х32, а модули пытается загрузить х64, хотя это походу мой косяк, я скачанный пакет просто архиватором распаковал <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400485&amp;user=5846&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=20" class="addthx" data-post="400485"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:35 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#21');return false;">#21</a> </span><div align=left><br>
+<b>reversecode</b><br><br>Я этот иногда использую для анализа аварийных дампов, зачем оно есчо нужно для обычных задач я хз. Разве что драйвера отлаживать, аверские в основном.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400486&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=21" class="addthx" data-post="400486"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:39 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#22');return false;">#22</a> </span><div align=left><br>
+для разного рода софта который глючит и сложно найти последовательсть приводящую к глюкам<br>тогда ttd записывается и проблема отматывается для поиска точки бифуркации
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400488&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=22" class="addthx" data-post="400488"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:42 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#23');return false;">#23</a> </span><div align=left><br>
+<b>reversecode</b><br><br>Ну вот значит покажи пример и запиши трейс падения сиськи. Не возможно ?
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400489&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=23" class="addthx" data-post="400489"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 20:52 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#24');return false;">#24</a> </span><div align=left><br>
+клерк не уводи тему в свой аул
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400491&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=24" class="addthx" data-post="400491"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]difexacaw[/b]','')">difexacaw</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/40990.png" alt=""><br><span class=txtSm>Ранг: 337.5 (мудрец), 348thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.02'>Активность: 2.11<span style='color:green'>&nearr;</span>2.42</span><br>Статус: <a href="action=userinfo&amp;user=40990">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 21:05 <br><script type="text/javascript">QU('difexacaw','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=difexacaw" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#25');return false;">#25</a> </span><div align=left><br>
+<b>reversecode</b><br><br>Лучше всего показать на примере, верно ?<br><br>И это не мой аул&quot;, а как раз таки твой <img src="img/smilies/s1.gif" alt=""><br><br>Придумали очередной костыль, ttd. Нельзя трассировать ядро локальной автоматикой, только вирт машиной; из за аппаратных синхронизаций. А все повелись на маркетинг. Разрабов за новые пусть и бесполезные фишки держат.
+<br><br><font size="1"><i>-----<br>vx</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400493&amp;user=40990&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=25" class="addthx" data-post="400493"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 декабря 2019 21:08 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#26');return false;">#26</a> </span><div align=left><br>
+причем здесь сисер и ядро ? клерк выпей кокаколы и отдохни<br>я совершенно про другой софт
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=400494&amp;user=15381&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=26" class="addthx" data-post="400494"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 декабря 2019 06:28 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#27');return false;">#27</a> </span><div align=left><br>
+<noindex><a href="https://github.com/ohjeongwook/windbgtool" rel="nofollow" target="_blank">--&gt; <b>WINDBGTOOL </b>&lt;--</a></noindex><br>This is a WinDbg Toolbox package. <br>This tool runs more complicated operations based upon PyKD package.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=400534&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=27" class="addthx" data-post="400534"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 мая 2020 09:24 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#28');return false;">#28</a> </span><div align=left><br>
+Отдельной темы по SysInternals вроде нет, но поскольку тут &quot;замешан&quot; liveKD, то оставлю здесь, может кому-то будет интересно.<br><br>Updates for <b>Sysmon</b> (v11.0), <b>Coreinfo</b> (v3.5),<b> Process Explorer </b>(v16.32) and <b>LiveKD</b> (v5.63) have now been posted!<br><br>What&#039;s New (April 28, 2020)<br><noindex><a href="https://docs.microsoft.com/en-us/sysinternals/" rel="nofollow" target="_blank">--&gt; <b>Link </b>&lt;--</a></noindex><br><noindex><a href="https://live.sysinternals.com/" rel="nofollow" target="_blank">--&gt; <b>Link </b>&lt;--</a></noindex><br><br>•Sysmon v11.0<br> This major update to Sysmon includes file delete monitoring and archive to help responders capture attacker tools, adds an option to disable reverse DNS lookup, replaces empty fields with ‘-‘ to work around a WEF bug, fixes an issue that caused some ProcessAccess events to drop, and doesn’t hash main data streams that are marked as being stored in the cloud.<br><br>•Sysinternals April 27 Update Video<br> Mark Russinovich covers what’s new in this update, with a demo of Sysmon’s new file delete monitoring and capture capability.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=405948&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=28" class="addthx" data-post="405948"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 мая 2020 05:46 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#29');return false;">#29</a> </span><div align=left><br>
+WinDbg — the Fun Way: <noindex><a href="https://medium.com/@yardenshafir2/windbg-the-fun-way-part-1-2e4978791f9b" rel="nofollow" target="_blank">--&gt; <b>Part 1</b> &lt;--</a></noindex><br>WinDbg — the Fun Way: <noindex><a href="https://medium.com/@yardenshafir2/windbg-the-fun-way-part-2-7a904cba5435" rel="nofollow" target="_blank">--&gt; <b>Part 2</b> &lt;--</a></noindex>
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=406340&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=29" class="addthx" data-post="406340"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 мая 2020 00:08 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#30');return false;">#30</a> </span><div align=left><br>
+<noindex><a href="https://github.com/yardenshafir/WinDbg_Scripts" rel="nofollow" target="_blank">--&gt;<b> WinDbg_Scripts </b> &lt;--</a></noindex><br>Useful scripts for WinDbg using the debugger data model
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=406392&amp;user=4773&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=30" class="addthx" data-post="406392"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]morgot[/b]','')">morgot</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33192.png" alt=""><br><span class=txtSm>Ранг: 69.9 (постоянный), 81thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.69'>Активность: 0.14<span style='color:green'>&nearr;</span>0.73</span><br>Статус: <a href="action=userinfo&amp;user=33192">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 июня 2020 17:41 <br><script type="text/javascript">QU('morgot','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=morgot" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=17835&amp;page=6#31');return false;">#31</a> </span><div align=left><br>
+Есть код вида
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>invoke</b></span>&nbsp;VirtualQuery<span class="hl_char">,</span>pMem<span class="hl_char">,</span><span class="hl_function"><b>addr</b></span>&nbsp;memInfo<span class="hl_char">,</span><span class="hl_function"><b>sizeof</b></span>&nbsp;MEMORY_BASIC_INFORMATION</li>        </ol>
+    </div>
+</div></div>
+<br>Как отобразить структуру со значениями ? Что я делаю не так? Символов ес-но нет, адрес правильный.<br><br>0:000:x86&gt; dt PMEMORY_BASIC_INFORMATION 0040101e <br>Symbol PMEMORY_BASIC_INFORMATION not found.<br><br>0:000:x86&gt; dt MEMORY_BASIC_INFORMATION 0040101e <br>Symbol MEMORY_BASIC_INFORMATION not found.<br><br>0:000:x86&gt; dt nt!_MEMORY_BASIC_INFORMATION 0040101e <br>Symbol nt!_MEMORY_BASIC_INFORMATION not found.<br><br>0:000:x86&gt; dt kernel32!_MEMORY_BASIC_INFORMATION 0040101e <br>Symbol kernel32!_MEMORY_BASIC_INFORMATION not found.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=407050&amp;user=33192&amp;forum_n=1&amp;topic=17835&amp;page=6&amp;anchor=31" class="addthx" data-post="407050"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=5.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=5.html">6</a> . <b>7</b> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=1&amp;topic=17835&amp;page=7.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование WinDbg</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="17835">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=17835" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

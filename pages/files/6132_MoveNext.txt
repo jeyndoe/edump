@@ -1,0 +1,109 @@
+Public Function MoveNext() As Boolean
+      Me._1 = Nothing
+      Dim num1 As Integer = Me._2
+      If (((num1 = 33639248) OrElse (num1 = 101010256)) OrElse ((num1 = 84233040) OrElse (num1 = 101075792))) Then
+            Return False
+      End If
+      If ((num1 = 134695760) OrElse (num1 = 808471376)) Then
+            num1 = Me._2
+      End If
+      If (num1 <> 67324752) Then
+            Throw New InvalidOperationException
+      End If
+      Me._1 = New _4
+      Me._1
+      Dim num2 As Integer = Me._1
+      Dim num3 As Integer = Me._1
+      Me._2
+      Me._2
+      Dim num4 As Integer = Me._2
+      Dim num5 As Integer = Me._2
+      Dim num6 As Integer = Me._1
+      Dim num7 As Integer = Me._1
+      Dim buffer1 As Byte() = Me._1(num6)
+      Me._1._1(Encoding.ASCII.GetString(buffer1, 0, buffer1.Length))
+      Me._1(num7)
+      If ((num2 And 1) = 1) Then
+            Throw New NotSupportedException
+      End If
+      If (((num3 <> 0) AndAlso (num3 <> 8)) OrElse ((num3 = 0) AndAlso (num4 <> num5))) Then
+            Throw New InvalidOperationException
+      End If
+      Dim _1 As New _2
+      Dim stream1 As New MemoryStream(num5)
+      Dim num8 As Integer = 4096
+      Dim buffer2 As Byte() = New Byte(num8  - 1) {}
+      Do While (num8 > 0)
+            num8 = buffer2.Length
+            Dim flag1 As Boolean = False
+            If (num3 = 0) Then
+                  If ((num8 > num4) AndAlso (num4 >= 0)) Then
+                        num8 = num4
+                  End If
+                  num8 = Me._1.Read(buffer2, 0, num8)
+                  If (num8 > 0) Then
+                        num4 = (num4 - num8)
+                        num5 = (num5 - num8)
+                  End If
+                  If (num4 <> 0) Then
+                        flag1 = True
+                        Exit Do
+                  End If
+                  If (num8 < 0) Then
+                        Throw New InvalidOperationException
+                  End If
+                  Exit Do
+            End If
+            If (num3 = 8) Then
+                  Do While True
+                        Dim num9 As Integer = _1._1(buffer2, 0, num8)
+                        If (num9 > 0) Then
+                              num8 = num9
+                              Exit Do
+                        End If
+                        If _1._4 Then
+                              Throw New InvalidOperationException
+                        End If
+                        If _1._5 Then
+                              num8 = 0
+                              Exit Do
+                        End If
+                        If Not _1._3 Then
+                              Throw New NotSupportedException
+                        End If
+                        Dim buffer3 As Byte() = New Byte(1024  - 1) {}
+                        num9 = Me._1.Read(buffer3, 0, buffer3.Length)
+                        If (num9 <= 0) Then
+                              Throw New InvalidOperationException
+                        End If
+                        _1._1(buffer3, 0, num9)
+                  Loop
+                  If (num8 <= 0) Then
+                        If Not _1._5 Then
+                              Throw New InvalidOperationException
+                        End If
+                        Me._1.Position = (Me._1.Position - _1._3)
+                        If (((num2 And 8) = 0) AndAlso ((_1._2 <> num4) OrElse (_1._1 <> num5))) Then
+                              Throw New InvalidOperationException
+                        End If
+                        _1 = New _2
+                        flag1 = True
+                  End If
+            End If
+            If (flag1 AndAlso ((num2 And 8) <> 0)) Then
+                  num1 = Me._2
+                  If (num1 <> 134695760) Then
+                        Throw New InvalidOperationException
+                  End If
+                  num4 = Me._2
+                  num5 = Me._2
+            End If
+            stream1.Write(buffer2, 0, num8)
+      Loop
+      stream1.Position = 0
+      buffer2 = New Byte(CType(stream1.Length, Integer)  - 1) {}
+      stream1.Read(buffer2, 0, buffer2.Length)
+      Me._1._1(buffer2)
+      Return True
+End Function
+

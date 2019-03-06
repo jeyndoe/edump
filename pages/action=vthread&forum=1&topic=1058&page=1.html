@@ -1,0 +1,613 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Отладка и patch программ написанных на .NET - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Вобщем то имеем некую программу, при анализе которой PeID выплюнул: Microsoft Visual C# / Basic .NET после привлечения известного всем замечательного дизассемблера (ИДА) оно дало почти исходник ....  вобщем то все хорошо и не">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a> (+10 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Отладка и patch программ написанных на .NET</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=1058&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=1058&amp;page=0.html">1</a> . <b>2</b> .</b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]egor2fsys[/b]','')">egor2fsys</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 9.1 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.63'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=775">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 декабря 2004 10:50 &middot; Поправил: <a href="action=stats#mods">Модератор</a> <br><script type="text/javascript">QU('egor2fsys','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=egor2fsys" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#1');return false;">#1</a> </span><div align=left><br>
+Вобщем то имеем некую программу, при анализе которой PeID выплюнул:
+<br>Microsoft Visual C# / Basic .NET
+<br>
+<br>после привлечения известного всем замечательного дизассемблера (ИДА) оно дало почти исходник .... <img src="img/smilies/s1.gif" alt="">
+<br>
+<br>вобщем то все хорошо и не долго я искал то место которое надо пропатчить, но как это сделать ?
+<br>
+<br>ИДА выдала вот это в том месте где надо патчить:
+<br>
+<br> callvirt class System.String FirePanelXP.main::kc(class System.String username, class System.Object var1, class System.Object var2, class System.Object var3, class System.Object var4)
+<br>    ldloc.0
+<br>    ldc.i4.0
+<br>    call int32 [Microsoft.VisualBasic]Microsoft.VisualBasic.CompilerServices.StringTy pe::StrCmp(class  System.String, class System.String, bool) -а вот тут бы отладить, и узнать ключ
+<br>    ldc.i4.0
+<br>    bne.un.s loc_7447 - вот это переход надо поменять!
+<br>    ldstr &quot;Thank You&quot;
+<br>    ldc.i4.0
+<br>    ldnull
+<br>
+<br>
+<br>Вобщем то 2 вопроса:
+<br>
+<br>1) чем можно сию прогу написаную на .НЕТ отладить
+<br>2) если отладить низзя, то как можно запатчить ?
+<br>
+<br>З. Ы. прога юзает Frameworks
+<br>
+<br>2З.Ы. в месте где стоит тот переход который мне надо пропатчить, в ИДЕ в Hex-view стоит 33 5B, это что за странные соотвествия джампу ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=10755&amp;user=775&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=1" class="addthx" data-post="10755"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]NIKOLA[/b]','')">NIKOLA</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/247.jpg" alt=""><br><span class=txtSm>Ранг: 500.6 (<b>!</b>), 7thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=247">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 15:29 <br><script type="text/javascript">QU('NIKOLA','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NIKOLA" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#2');return false;">#2</a> </span><div align=left><br>
+<i>Nimnul пишет:
+<br>Ну что ломанул ? </i>
+<br>
+<br>Лень стало копать. Через пару дней займусь снова.
+<br>
+<br>
+<br><i>Nimnul пишет:
+<br>можно уже свой вариант показываеть? </i>
+<br>
+<br>По твоему желанию или скажи правильно я место нашёл где патчить или нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=34444&amp;user=247&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=2" class="addthx" data-post="34444"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 17:31 &middot; Поправил: Nimnul <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#3');return false;">#3</a> </span><div align=left><br>
+Да ты был прав, но если посудить эта функция вобще не нужна, можно пойти другим путем, она вызывается два раза из countdown, если первая проверка проходит, то прога работает, а второй раз и не нужен если срабатывает первый, так что можно удалить саму функцию проверки и вырезать ее из countdown. 
+<br>
+<br>в аттаче твой реализованный метод
+<br>Все пропаченные места обозначенны //Crack
+<br>
+<br><img src="img/attach.gif" alt=""> <a href="./files/893b_traffic.rar">893b_traffic.rar</a>
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=34464&amp;user=1619&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=3" class="addthx" data-post="34464"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]NIKOLA[/b]','')">NIKOLA</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/247.jpg" alt=""><br><span class=txtSm>Ранг: 500.6 (<b>!</b>), 7thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=247">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 19:54 <br><script type="text/javascript">QU('NIKOLA','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NIKOLA" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#4');return false;">#4</a> </span><div align=left><br>
+<b>Nimnul</b>
+<br>
+<br>Так я и ни хрена не понял с опкодами. Читал, пока глаза не заболели.
+<br>Плюнул нах. на это дело. Оставил на потом.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=34478&amp;user=247&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=4" class="addthx" data-post="34478"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 20:30 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#5');return false;">#5</a> </span><div align=left><br>
+<b>NIKOLA</b>
+<br>
+<br>А что конкретно ты не понял?
+<br>
+<br>Вот к стати второй вариант тот о котором я говорил:
+<br>Мучался часа полтора, хренов компилятор, вот это условие проверяется так:
+<br>If Me.compdatas(StringType.FromObject(obj2), regact.nst(65536)) Then
+<br>я от сюда 
+<br>      //IL_0116:  ldarg.0
+<br>      //IL_0117:  ldloc.3
+<br>      //IL_0118:  call       string [Microsoft.VisualBasic]Microsoft.VisualBasic.CompilerServices.StringTy pe::FromObject(object)
+<br>      //IL_011d:  ldc.i4     0x10000
+<br>      //IL_0122:  call       string networkexperiments.regact::nst(int32)
+<br>до сюда не вырезал, и тупил полтора часа немог дорубиться че за хня, т.к. отладчик вопил на обработчик исключений вот я и шарился выше думал мож там накосипорил
+<br>//      IL_0127:  callvirt   instance bool networkexperiments.Form1::compdatas(string, string)
+<br>//      IL_012c:  ldc.i4.1
+<br>//      IL_012d:  bne.un     IL_01e4 // все что ниже этой метки больше не пригодится
+<br>//                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+<br>
+<br>Есть еще маленькие хитрости:
+<br>1. .maxstack  3   
+<br>записи подобного рода можна бахать бес сожаления в методах которые правите
+<br>
+<br>2. IL_0127 
+<br>это метки и одновременно указатель на opcode len на это можно не обращать внимание, они работают только как метки
+<br>
+<br>3. при декомпиле можно задать расширение .h т.е. ildasm myexe.exe /out:myexe.h - это для того что бы файл править редактором VS, всетаки синтаксис кое какой показывает и самое главное тама можна Многа! заремить <img src="img/smilies/s1.gif" alt="">, а если ставить расширение .cs тоже синтаксис подсвечивает, но студия умирает, т.к. в .cs она проверяет всяки синтакс ошибки, а в с+ только в момент компила.
+<br>
+<br>4. D:&#92;Program Files&#92;traffic&#92;Crack&gt;ilasm networkexperiments.h /debug /listing /Clock  &gt;&gt; log.txt
+<br>
+<br> /listing показывает подробности компила в том числе опкоды, доп инфу и т.д.
+<br>
+<br> log.txt потому что все в консоль не влазит <img src="img/smilies/s1.gif" alt="">
+<br>
+<br> 
+<br>
+<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/74c2_networkexperiments.rar">74c2_networkexperiments.rar</a>
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=34481&amp;user=1619&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=5" class="addthx" data-post="34481"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]NIKOLA[/b]','')">NIKOLA</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/247.jpg" alt=""><br><span class=txtSm>Ранг: 500.6 (<b>!</b>), 7thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=247">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 21:21 <br><script type="text/javascript">QU('NIKOLA','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NIKOLA" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#6');return false;">#6</a> </span><div align=left><br>
+<b>Nimnul</b>
+<br>
+<br>Попробовал я пропатчить в хекс редакторе. Прога работает но запускается с ошибкой.
+<br>Еденицу положил туда, куда надо было.
+<br>
+<br>Переделал по другому. Изменил условные переходы, как было написано в начале топика,
+<br>прога работает нормально и пишет registered.
+<br>
+<br>Но, всётаки хотелось бы положить еденицу туда, куда надо.
+<br>
+<br>Хотелось бы вкраце узнать: 
+<br>
+<br><i>Nimnul пишет:
+<br>PS: Не забывайте резать SN  </i>
+<br>
+<br>Как ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=34487&amp;user=247&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=6" class="addthx" data-post="34487"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 21:43 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#7');return false;">#7</a> </span><div align=left><br>
+<i>Как ? </i>
+<br>в хедере меняешь ~1-ое вхождение 0x80 на 00
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=34491&amp;user=33&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=7" class="addthx" data-post="34491"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 21:50 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#8');return false;">#8</a> </span><div align=left><br>
+я в хекс редакторе даже заморачиваться не хочу резать SN, как? очень просто дизасемблиш, срезаеш, асемблиш. Темболее эта прога, это полный отстой, в плане защиты. CLR позволяет понатыкать проверки SN даже перед вызовом методов, более того можно делать проверки на то какой exe загрузил эту dll и все по SN, так что я пока еще не сада-маза что бы хекс едитором тама капашиться, да и еще есть сильное подозрение что после правки хекс едитором, если ты вырежеш кусок кода или вставиш прога завалится, т.к. в таблице метаданных прописанны стат адреса классов и методов. Иногда еще может потребываться после правки подписать сборку своим SN, это если сборка обязанна валяться в GAC. Так что не слушай нехороших людей <img src="img/smilies/s1.gif" alt="">, которые сбивают с пути истинного, ilasm&#92;ildasm рулит, смотри мои примеры по меткам //Crack.
+<br>
+<br>PS: что бы тебе компильнуть, то что я показывал в аттачах нужны еще ресурсы которые я туда не положил, но они сгенерятся после декомпила.
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=34493&amp;user=1619&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=8" class="addthx" data-post="34493"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]NIKOLA[/b]','')">NIKOLA</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/247.jpg" alt=""><br><span class=txtSm>Ранг: 500.6 (<b>!</b>), 7thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=247">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 22:46 <br><script type="text/javascript">QU('NIKOLA','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NIKOLA" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#9');return false;">#9</a> </span><div align=left><br>
+Случаем ни у кого нет ключика к <b>9Rays.Spices.Net</b>.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=34501&amp;user=247&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=9" class="addthx" data-post="34501"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2005 23:11 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#10');return false;">#10</a> </span><div align=left><br>
+У меня есть но Виктор его разработчик мой корифан <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=34505&amp;user=1619&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=10" class="addthx" data-post="34505"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]NIKOLA[/b]','')">NIKOLA</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/247.jpg" alt=""><br><span class=txtSm>Ранг: 500.6 (<b>!</b>), 7thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=247">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 августа 2005 11:41 <br><script type="text/javascript">QU('NIKOLA','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NIKOLA" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#11');return false;">#11</a> </span><div align=left><br>
+<i>Nimnul пишет:
+<br>У меня есть но Виктор его разработчик мой корифан  </i>
+<br>
+<br>Мог бы не писать. Ты ведь понял, что я имею ввиду.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=34554&amp;user=247&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=11" class="addthx" data-post="34554"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Broken Sword[/b]','')">Broken Sword</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 40.9 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.68'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=679">Участник</a><br><font color=blue>diProtector Software</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 июня 2006 22:54 <br><script type="text/javascript">QU('Broken Sword','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Broken Sword" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#12');return false;">#12</a> </span><div align=left><br>
+кто нить может прилепить сюда ilasm.exe? у меня какая-то странная студия (2005 профессионал): ildasm.exe и куча другого есть, а ilasm-а нет...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=75193&amp;user=679&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=12" class="addthx" data-post="75193"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]jfx[/b]','')">jfx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.4 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.38'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3875">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июня 2006 10:48 <br><script type="text/javascript">QU('jfx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=jfx" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#13');return false;">#13</a> </span><div align=left><br>
+А ты его поищи в &#92;WINDOWS&#92;Microsoft.NET&#92;Framework&#92;
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=75555&amp;user=3875&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=13" class="addthx" data-post="75555"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ev1l_4[/b]','')">ev1l_4</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/4842.gif" alt=""><br><span class=txtSm>Ранг: 66.5 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4842">Участник</a><br><font color=blue>Повелитель ЗЛА</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июня 2006 12:40 <br><script type="text/javascript">QU('ev1l_4','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ev1l_4" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#14');return false;">#14</a> </span><div align=left><br>
+Вот декомпилятор .NET прог.
+<br>www.9rays.net/products/spices.net/download/spices.zip
+<br>Может пригодиться...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76076&amp;user=4842&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=14" class="addthx" data-post="76076"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]back_analys[/b]','')">back_analys</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 34.9 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4645">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июня 2006 14:14 <br><script type="text/javascript">QU('back_analys','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=back_analys" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#15');return false;">#15</a> </span><div align=left><br>
+Имхо .NET это тупиковая ветвь, и как бы мелкомягкие не продвигали ее все скоро забудется...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76315&amp;user=4645&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=15" class="addthx" data-post="76315"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]jfx[/b]','')">jfx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.4 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.38'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3875">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 11 июня 2006 21:45 <br><script type="text/javascript">QU('jfx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=jfx" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#16');return false;">#16</a> </span><div align=left><br>
+Угу, про Java тоже так говорили. А ведь .NET это таже Java вот только пропиаренная как следует да и продвигаемая Micro&#036;oft очень активно... Про форточки тоже кстати говорили что все это фуфло и ни кому не нужно <img src="img/smilies/s6.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76678&amp;user=3875&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=16" class="addthx" data-post="76678"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]back_analys[/b]','')">back_analys</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 34.9 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4645">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 11 июня 2006 23:31 <br><script type="text/javascript">QU('back_analys','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=back_analys" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#17');return false;">#17</a> </span><div align=left><br>
+Знаешь чем отличается .NET от Java? у java ест переносимость, а мелкие официально поддерживают вынь.вот и вся разница, .NET умрет!
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76711&amp;user=4645&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=17" class="addthx" data-post="76711"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]jfx[/b]','')">jfx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.4 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.38'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3875">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 июня 2006 13:08 <br><script type="text/javascript">QU('jfx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=jfx" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#18');return false;">#18</a> </span><div align=left><br>
+И когда? Умрет в смысле? Сколько ты ей еще даешь? Что-то я пока агонии не замечаю, как раз наоборот, все больше и больше разработчиков пересаживаются за C#. 
+<br>Кстати, а многим ли нужна кросс-платформенность Java? Лично я знаю не так много софта, который в чистом виде работает, например и под Win32 и под Linux. В основном это всякая мелочь, кросс-платформенность которой и не нужна вовсе. А вот серьезный софт имеет разные пакеты инсталляции для тех же Win32 и Linux, потому что не хватает ему той платформо-независимости, которую предлагает Sun и приходится часть функционала реализовывать на нативном уровне, отдельно для Win32 и отдельно для Linux. Переносимость, как таковая, нужна очень небольшому числу разработчиков, которые в основном работают в корпоративном секторе, ИМХО. Вот вы сами пишите на Java? И как часто вы используете ее переносимость? И если используете, какое кол-во строк в ваших программах? Наверняка это небольшие поделки, ценные исключительно для вас. 
+<br>Поэтому, мое личное мнение, что .NET будет жить.
+<br>
+<br>Все выше сказанное ИМХО. Ничего личного. Сори за флейм.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76810&amp;user=3875&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=18" class="addthx" data-post="76810"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]back_analys[/b]','')">back_analys</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 34.9 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.19'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4645">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 июня 2006 13:48 <br><script type="text/javascript">QU('back_analys','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=back_analys" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#19');return false;">#19</a> </span><div align=left><br>
+Я не судья чтобы срок давать, но тормознутость дотнета видна невооруженным глазом. это пустой спор. з.ы сорри за оффтоп, больше не буду))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76820&amp;user=4645&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=19" class="addthx" data-post="76820"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]jfx[/b]','')">jfx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.4 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.38'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3875">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 июня 2006 15:11 <br><script type="text/javascript">QU('jfx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=jfx" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#20');return false;">#20</a> </span><div align=left><br>
+&quot;Вооружите&quot; взгляд - обратитесь к тестам производительности. Да это не натив, но драйвера на нем писать ни кто и не собирается. А для прикладных задачь само то. Вы, простите, на чем пишите?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76826&amp;user=3875&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=20" class="addthx" data-post="76826"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Valenok Pirojkov[/b]','')">Valenok Pirojkov</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 15.3 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.33'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4048">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 июня 2006 16:11 <br><script type="text/javascript">QU('Valenok Pirojkov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Valenok Pirojkov" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#21');return false;">#21</a> </span><div align=left><br>
+<I>back_analys пишет:
+<br> тормознутость дотнета видна невооруженным глазом </I>
+<br>тормознут он при первом запуске когда компилит IL в натив код данной конкретной машины
+<br>дальше тягает уже скомпиленное
+<br>почитай книжки про архитектуру нета а потом поноси если найдешь что
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=76852&amp;user=4048&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=21" class="addthx" data-post="76852"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]ev1l_4[/b]','')">ev1l_4</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/4842.gif" alt=""><br><span class=txtSm>Ранг: 66.5 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.15'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4842">Участник</a><br><font color=blue>Повелитель ЗЛА</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2006 15:32 <br><script type="text/javascript">QU('ev1l_4','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ev1l_4" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#22');return false;">#22</a> </span><div align=left><br>
+Декомпилятор .NET
+<br>public.int3.net/share/Decompiler.Net.V.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=77384&amp;user=4842&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=22" class="addthx" data-post="77384"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Nimnul[/b]','')">Nimnul</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1619.gif" alt=""><br><span class=txtSm>Ранг: 218.9 (наставник), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.16<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1619">Участник</a><br><font color=blue>dotnet</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июня 2006 03:18 <br><script type="text/javascript">QU('Nimnul','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Nimnul" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#23');return false;">#23</a> </span><div align=left><br>
+Скорее натив умрет чем дотнет, а ведь так и будет, поговаривают что в висте весь АПИ будет дотнетовским, так что поживем увидим <img src="img/smilies/s6.gif" alt="">
+<br><br><font size="1"><i>-----<br>have a nice day</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=77483&amp;user=1619&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=23" class="addthx" data-post="77483"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Valenok Pirojkov[/b]','')">Valenok Pirojkov</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 15.3 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.33'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4048">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 июня 2006 17:31 <br><script type="text/javascript">QU('Valenok Pirojkov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Valenok Pirojkov" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#24');return false;">#24</a> </span><div align=left><br>
+<I>Nimnul пишет:
+<br> в висте весь АПИ будет дотнетовским </I>
+<br>микрософт за совместимость удавиться
+<br>поэтому нормальный апи останется
+<br>
+<br><I>back_analys пишет:
+<br>у java ест переносимость, а мелкие официально поддерживают вынь.вот и вся разница, .NET умрет! </I>
+<br>есть такая бодяга Mono - реализация .Net под линукс
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=77586&amp;user=4048&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=24" class="addthx" data-post="77586"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]MiHaN[/b]','')">MiHaN</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 47.2 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.18'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1784">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2006 08:04 <br><script type="text/javascript">QU('MiHaN','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MiHaN" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#25');return false;">#25</a> </span><div align=left><br>
+<I>Nimnul пишет:
+<br>поговаривают что в висте весь АПИ будет дотнетовским </I>
+<br>Интересно, как это АПИ будет .NET&#039;овским, если сами .NET&#039;овские dll&#039;ки импортируют стандартыне АПИ.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78134&amp;user=1784&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=25" class="addthx" data-post="78134"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]Valenok Pirojkov[/b]','')">Valenok Pirojkov</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 15.3 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.33'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4048">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 июня 2006 16:28 <br><script type="text/javascript">QU('Valenok Pirojkov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Valenok Pirojkov" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1058&amp;page=1#26');return false;">#26</a> </span><div align=left><br>
+<I>MiHaN пишет:
+<br>Интересно, как это АПИ будет .NET&#039;овским, если сами .NET&#039;овские dll&#039;ки импортируют стандартыне АПИ.</I>
+<br>очень просто нетовская либа может соcтоять из натив кода в который можно напихать int 2eh/sysenter
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=78198&amp;user=4048&amp;forum_n=1&amp;topic=1058&amp;page=1&amp;anchor=26" class="addthx" data-post="78198"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=1058&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=1058&amp;page=0.html">1</a> . <b>2</b> .</b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Отладка и patch программ написанных на .NET</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#27" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="1058">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=1058" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

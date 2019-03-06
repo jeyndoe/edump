@@ -1,0 +1,698 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Подробная статья про GPScript - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Все же решил я познакомить народ со своим интерпретатором/полукомпилятором поподробнее. Все лениво было статью писать, да и времени не было, а документацию без примеров врядли кто читал... вот всеже выискал минутку на статью.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=42610'>r0lka</a>, <a target='_blank' href='?action=userinfo&amp;user=31053'>yashechka</a> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Подробная статья про GPScript</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 июля 2005 22:35 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Все же решил я познакомить народ со своим интерпретатором/полукомпилятором поподробнее. Все лениво было статью писать, да и времени не было, а документацию без примеров врядли кто читал... вот всеже выискал минутку на статью. Просьба сильно не пинать - язык был написан 2 года назад <img src="img/smilies/s1.gif" alt="">
+<br>
+<br>Вот статья собственно: www.dotfix.net/module.php?module=@6e786b366d757766746a7073
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31523&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=1" class="addthx" data-post="31523"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Black Neuromancer[/b]','')">Black Neuromancer</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/56.gif" alt=""><br><span class=txtSm>Ранг: 209.1 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=56">Участник</a><br><font color=blue>программист априори</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 июля 2005 23:51 <br><script type="text/javascript">QU('Black Neuromancer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Black Neuromancer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+мама, страшно как %-)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31552&amp;user=56&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=2" class="addthx" data-post="31552"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]DeMiLiCH[/b]','')">DeMiLiCH</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 22.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2268">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 июля 2005 23:54 <br><script type="text/javascript">QU('DeMiLiCH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DeMiLiCH" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Да.... Ночным кошмаром отдает... <img src="img/smilies/s15.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31553&amp;user=2268&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=3" class="addthx" data-post="31553"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Ara[/b]','')">Ara</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/24.jpg" alt=""><br><span class=txtSm>Ранг: 1288.1 <b><u>(!!!!)</u></b>, 273thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 1.29<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 июля 2005 23:56 <br><script type="text/javascript">QU('Ara','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ara" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+==========================================
+<br>вычесть @ецеикс@,1,ецеикс
+<br>перейти ключ_a, если ецеикс &gt; 0
+<br>перейти всекруто, если Форма.Текст5.Caption = @пасс@
+<br>===========================================
+<br>Да уж.... 
+<br><img src="img/smilies/s6.gif" alt="">
+<br>не хватает некоторых важных команд: пропатчить_процедуру_регистрации, выдать_серийный_номер и распаковать_файл
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31554&amp;user=24&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=4" class="addthx" data-post="31554"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]DeMiLiCH[/b]','')">DeMiLiCH</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 22.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2268">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 31 июля 2005 23:58 <br><script type="text/javascript">QU('DeMiLiCH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DeMiLiCH" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Вот вот... Что-то похожее в наших школах лет 10 назад преподавали с таким видом как будто это язык программирования (а на самом деле имхо самая простая прога была для обучения основам алгоритмов для полных даунов и совсем имбецилов) <img src="img/smilies/s5.gif" alt=""> <img src="img/smilies/s6.gif" alt=""> <img src="img/smilies/s5.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31556&amp;user=2268&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=5" class="addthx" data-post="31556"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Black Neuromancer[/b]','')">Black Neuromancer</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/56.gif" alt=""><br><span class=txtSm>Ранг: 209.1 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=56">Участник</a><br><font color=blue>программист априори</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 00:01 <br><script type="text/javascript">QU('Black Neuromancer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Black Neuromancer" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+это клон языка Лого %-)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31558&amp;user=56&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=6" class="addthx" data-post="31558"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]deNULL[/b]','')">deNULL</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 174.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.83'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=321">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 01:14 <br><script type="text/javascript">QU('deNULL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=deNULL" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Мда... Вывод: создавать язык программирования на русском бессмысленно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31564&amp;user=321&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=7" class="addthx" data-post="31564"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Red Bar0n[/b]','')">Red Bar0n</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/1630.jpg" alt=""><br><span class=txtSm>Ранг: 221.8 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.25'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1630">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 03:28 <br><script type="text/javascript">QU('Red Bar0n','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Red Bar0n" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<i>deNULL пишет:
+<br>программирования на русском бессмысленно </i>
+<br>
+<br>Нет при нормальной реализации извини (GPcH:s1) это даже очень круто. ошибок меньше понимания и скорость набора больше. ИМХО Русский рулит<img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31571&amp;user=1630&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=8" class="addthx" data-post="31571"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 04:05 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>Red Bar0n</b>
+<br>Не думаю, что многим будет лучше кодить на русском.
+<br>Компьютер любит формализованный подход, а что у нас есть:
+<br><i>Red Bar0n пишет:
+<br>. ошибок меньше понимания и скорость набора больше. </i>
+<br>- Первая буква предложения.
+<br>- Знаки препинания.
+<br>- Несогласованность.
+<br><i>Red Bar0n пишет:
+<br>ИМХО Русский рулит </i>
+<br>ИМХО, русский язык пишется с маленькой буквы, даже если он &quot;рулит&quot;. <img src="img/smilies/s2.gif" alt="">
+<br>
+<br>И это только в одной строке, а проги отлаживать мы теперь будем с учебником Розенталя &#61514;.
+<br>
+<br><b>GPcH</b>
+<br>Цитата:
+<br>&quot;…воспроизвести &lt;полный путь к WAV файлу&gt;&quot;
+<br>
+<br>Ну, согласись что &quot;play&quot; куда удобнее чем &quot;воспроизвести&quot;. 
+<br>Устанешь запоминать, - &quot;Так, что тут у нас, воспроизвести, воспроизведение...&quot;.
+<br>
+<br>Кодить лучше на английском... Хотя идея благородная.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31573&amp;user=410&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=9" class="addthx" data-post="31573"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 11:24 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Прикольная вещь, реальный патриот. Я, например, к своему стыду даже для себя проги на буржуйском пишу.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31585&amp;user=1556&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=10" class="addthx" data-post="31585"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 13:50 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<i>DeMiLiCH пишет:
+<br>Что-то похожее в наших школах лет 10 назад преподавали с таким видом как будто это язык программирования  </i>
+<br>У вас в школах преподавали язык с поддержкой консоли, GUI интерфейса, VB и асм вставками, возможностью добавления данных в ресурсы, компиляцией, встроенным трассировщиком, кучей операторов (около 100) ? Чтото мне не верится... прежде чем нести чушь прочитал бы хотябы хелп к языку и статью. Этот язык даже API функции поддерживает почти все.
+<br>
+<br><i>Ara пишет:
+<br>не хватает некоторых важных команд: пропатчить_процедуру_регистрации, выдать_серийный_номер и распаковать_файл </i>
+<br>Эти процедуры можно написать самому используя операторы языка и API функции
+<br>
+<br>
+<br><i>Black Neuromancer пишет:
+<br>это клон языка Лого %-) </i>
+<br>Еще один. Твой Лого поддерживет GUI, API и вставки из других языков?
+<br>
+<br>PS: народ, зачем писать бред, если не знакомы с языком... потому я и написал статью, что 99% тех кто скачал GPScript с моего сайта даже не знают и 10% его возможностей.
+<br>PPS: <b>Просьба писать конструктивную критику</b>
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31608&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=11" class="addthx" data-post="31608"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]FEUERRADER[/b]','')">FEUERRADER</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/39.jpg" alt=""><br><span class=txtSm>Ранг: 55.8 (постоянный), 6thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=39">Участник</a><br><font color=blue>[www.AHTeam.org]</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 01 августа 2005 16:40 <br><script type="text/javascript">QU('FEUERRADER','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=FEUERRADER" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Половина кто здесь написал в теме такой штуки сами не напишут, поэтому уважайте чужую работу!
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31636&amp;user=39&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=12" class="addthx" data-post="31636"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 03:51 &middot; Поправил: Bitfry <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<i>GPcH пишет:
+<br>Просьба писать конструктивную критику </i>
+<br>Куда уж конкретнее, операторы кириллицей всех коробят.
+<br>А &quot;язык&quot; - крут, тут сомнений нет. Но я вряд ли смогу себя перебороть, использовать его буду, только если совсем прижмёт <img src="img/smilies/s1.gif" alt="">.
+<br>А вот если бы были &quot;play, obj., load, begin, end...&quot;. Может, сделаешь перевод для &quot;немцев&quot;?
+<br>Я бы с радостью использовал.
+<br>Или продолжай русификацию, вводи анализ падежей. Но это задача убойная может быть она и не очень нужна?
+<br>Хотя было бы круто излагать свои желания компу на родном языке.
+<br>Одна проблема, чем больше он будет понимать, тем меньше нужны наши идеи, но это уже не про то.
+<br>
+<br>Только вот ты пишешь:
+<br>&quot;...так как уже нет у меня исходников GPScript’а&quot;
+<br>Это значит, что новой версии не будет?
+<br>
+<br>Короче, GPcH, ты молодец. Крутое дело затеял. 
+<br>Вот бы ещё гранд получить <img src="img/smilies/s1.gif" alt="">.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31649&amp;user=410&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=13" class="addthx" data-post="31649"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]deNULL[/b]','')">deNULL</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 174.2 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.83'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=321">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 05:18 <br><script type="text/javascript">QU('deNULL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=deNULL" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<i>FEUERRADER пишет:
+<br>Половина кто здесь написал в теме такой штуки сами не напишут, поэтому уважайте чужую работу! </i>
+<br>Да мы не только уважаем, но конструктивно критикуем заодно <img src="img/smilies/s1.gif" alt="">
+<br>
+<br><i>GPcH пишет:
+<br>народ, зачем писать бред, если не знакомы с языком... потому я и написал статью, что 99% тех кто скачал GPScript с моего сайта даже не знают и 10% его возможностей. </i>
+<br>В том-то и дело, что твоя статья как раз и должна нас с GPScript&#039;ом познакомить. А если мы после её прочтения не осознали широчайшего спектра представленных в этом языке возможностей, значит как следует ты их в статье не описал.
+<br>
+<br><i>Bitfry пишет:
+<br>Или продолжай русификацию, вводи анализ падежей. Но это задача убойная может быть она и не очень нужна? 
+<br>Хотя было бы круто излагать свои желания компу на родном языке. </i>
+<br>Во-во. Если русский язык реализовать так, чтобы можно было вместо алгоритмов сочинения писать, то тогда это действительно серьезная вещь будет. А от одного перевода операторов толку никакого.
+<br>
+<br><i>Bitfry пишет:
+<br>Только вот ты пишешь: 
+<br>&quot;...так как уже нет у меня исходников GPScript’а&quot; </i>
+<br><i>Bitfry пишет:
+<br>Короче, GPcH, ты молодец. Крутое дело затеял. </i>
+<br>Затеять-то он затеял, а вот развивать, судя по всему, он это дело не собирается. Разве что возьмется реверсить собственный проект <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31652&amp;user=321&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=14" class="addthx" data-post="31652"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 07:03 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<i>Bitfry пишет:
+<br>Это значит, что новой версии не будет?  </i>
+<br>Да, скорее всего нет... последняя версия была 2 года назад...
+<br>
+<br><i>deNULL пишет:
+<br>Затеять-то он затеял, а вот развивать, судя по всему, он это дело не собирается. Разве что возьмется реверсить собственный проект  </i>
+<br>Есть такая мысль... но реверсированием сильно прогу не доработать. Была бы мотивация - я бы ее с нуля написал... только вот ее нет
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31656&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=15" class="addthx" data-post="31656"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]DeMiLiCH[/b]','')">DeMiLiCH</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 22.0 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.96'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2268">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 07:58 <br><script type="text/javascript">QU('DeMiLiCH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DeMiLiCH" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+Ну вот и не надо <img src="img/smilies/s5.gif" alt=""> У тебя же и так работы хватает, зачем же тогда силы понапрасну на муть растрачивать?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31659&amp;user=2268&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=16" class="addthx" data-post="31659"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Ara[/b]','')">Ara</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/24.jpg" alt=""><br><span class=txtSm>Ранг: 1288.1 <b><u>(!!!!)</u></b>, 273thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 1.29<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 11:10 <br><script type="text/javascript">QU('Ara','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ara" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<i>GPcH пишет:
+<br>Была бы мотивация - я бы ее с нуля написал... только вот ее нет </i>
+<br>Дык шароварной сделай =)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31685&amp;user=24&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=17" class="addthx" data-post="31685"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 21:10 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<i>Ara пишет:
+<br>Дык шароварной сделай =) </i>
+<br>Ты эту прогу потом купишь? А зечем тогда делаешь посты не по существу? Оплачивай разработку - сделаю для тебя.
+<br>
+<br>PS: Я не знаю не одного человека который хотябы один из существующих языков программирования купил дороже 60 рублей <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31740&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=18" class="addthx" data-post="31740"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Ara[/b]','')">Ara</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/24.jpg" alt=""><br><span class=txtSm>Ранг: 1288.1 <b><u>(!!!!)</u></b>, 273thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 1.29<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 21:20 <br><script type="text/javascript">QU('Ara','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ara" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<i>GPcH пишет:
+<br>Ты эту прогу потом купишь? </i>
+<br>Ну ты ответ сам знаешь ...<img src="img/smilies/s1.gif" alt=""> Че-та меня сомнения берут, что ты ВижалБейсик прикупил себе =) Насчет разработки-мне просто непонятно, для чего сей язык сделан?? Для облегчения кодинга? Это врядли-изучение твоего языка по времени примерно будет равно изучению любого ЯВУ на ламерском уровне. Отсюда вывод-его изучение-зря потраченное время. А те, кто знает языки, тоже врядли будут его юзать - смысла нет. Имхо препочтительнее был бы компонент к примеру для дельфи, реализующий некоторые нужные функции.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31742&amp;user=24&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=19" class="addthx" data-post="31742"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]ssx[/b]','')">ssx</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 352.4 (мудрец), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33">Участник</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 21:47 <br><script type="text/javascript">QU('ssx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ssx" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+хм. берется книжка по compiler construction (лучше using flex &amp; bison - гораздо проще будет <img src="img/smilies/s1.gif" alt="">  и пишется собственный компилятор хоть с китайского. сам когда-то баловался
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=31745&amp;user=33&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=20" class="addthx" data-post="31745"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2005 22:57 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<i>Ara пишет:
+<br>Че-та меня сомнения берут, что ты ВижалБейсик прикупил себе =)  </i>
+<br><i>GPcH пишет:
+<br>PS: Я не знаю не одного человека который хотябы один из существующих языков программирования купил дороже 60 рублей </i>
+<br>
+<br>Я же уже ответил на этот вопрос - не вижу смысла покупать то, что можно получить бесплатно
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31753&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=21" class="addthx" data-post="31753"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2005 21:38 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Данная разработка представляет скорее академический интерес, нежели практический.
+<br>Я смог придумать всего несколько применений этого языка:
+<br>- написание примеров (алгоритмов) для людей, не знающих иностранный язык. Целевая аудитория (например): школьники до 6-го класса (после 6-го класса даже ученик с плохой успеваемостью в состоянии запомнить несколько ключевых слов в обычном Васике или Паскале), учителя их обучающие (часто преподавтели информатики в школе сами плохо знают иностранный язык)
+<br>- написание примеров  (алгоритмов) для людей, не знакомых ни с каким языком программирования, либо как начальный этап обучения какому-либо другому языку программирования. в данном случае основной результат - убедиться, что алгоритм &quot;работает&quot;.
+<br>- изучение исходного кода интерпретатора языка, т.к. именно исходный код, а не результат работы интерпретатора, представляет интерес для анализа
+<br>- демонстрация автором интерпретатора своих возможностей
+<br>
+<br>что касается примений в реальном проекте, то мне подобная перспектива кажется надуманной, при всём желании автора преподнести своё творение как полнофункциональный продукт.
+<br>я с трудом себе представляю разработчика, который пишет реальное приложение на подобном языке, т.к.
+<br>применение подобного решения влечёт за собой отказ от использовния наработок других разработчиков и перевод всего доступного кода (будь то Си, Asm или Delphi) в код, понятный интерпретатору данного языка.
+<br>В итоге разработчик получит код, который с одной стороны не становится ни более понятным, ни компактым, ни оптимизированным.
+<br>В любом случае получается двойная трансляция, что явно не идёт на пользу разработке.
+<br>
+<br>Подытоживая, я лишь могу обратиться к GPcH c просьбой сделать доступным исходный код его проекта, но в положительном исходе я сильно сомневаюсь, т.к. большинство его разработок коммерческие и раскрывать часть их кода (а какие-то идеи данного интерпретатора наверняка используются и в других разработках GPcH) он скорее всего не намерен.
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31827&amp;user=1379&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=22" class="addthx" data-post="31827"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 августа 2005 09:18 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<i>Bitfry пишет:
+<br>А &quot;язык&quot; - крут, тут сомнений нет. Но я вряд ли смогу себя перебороть, использовать его буду, только если совсем прижмёт . 
+<br>А вот если бы были &quot;play, obj., load, begin, end...&quot;. Может, сделаешь перевод для &quot;немцев&quot;? 
+<br>Я бы с радостью использовал. </i>
+<br>По многочисленным просьбам попробую реверснуть свой язык программирования и перевести опараторы на английский с корректировкой доков... но скоро это сделать не обещаю.
+<br>
+<br><i>Jupiter пишет:
+<br>Я смог придумать всего несколько применений этого языка </i>
+<br>Первоначально язык задумывался как замена InqSoft Sign Of Mistery. Поэтому применение его задумывалось как написание мелких прог (авторанов, патчей, автоинсталлеров, а также мелких прог для решения срочных задач... приимущественно пригождается на работе, так как можно загрузить с дискетки весит мало... не ставить же дельфю ради того чтобы к примеру написать форму для рассчета процентов кредита)
+<br>
+<br><i>Jupiter пишет:
+<br>Подытоживая, я лишь могу обратиться к GPcH c просьбой сделать доступным исходный код его проекта </i>
+<br>А Вы невнимательный товарисч. Исходный код движка я таки раздаю, но при условии, что в той проге, где он будет использоваться в About&#039;е и документации будет явно указано, что она использует движок GPScript&#039;а by GPcH. Это даже не условие, так как нормальный программист всегда указывает в About&#039;е и в доках тех людей кто ему помог или чьи разработки он использует.
+<br>В составе GPScript&#039;а есть файл SourceEditor.exe - он и позволяет просматривать сорцы. Чтобы получить ключ на его запуск не надо ничего ломать - нужно лишь принять условия использования движка и попросить у меня ключ.
+<br>
+<br><i>Jupiter пишет:
+<br>т.к. большинство его разработок коммерческие  </i>
+<br>Большинство? Из всех моих разработок (а их только в инете лежит около двадцати) всего 2 коммерческие - DotFix FakeSigner и VB AntiCrack и то про последнюю я уже забыл так как число продаж за полгода равно нулю. Отсюда вы опять не правы товарисч. Чтобы не быть голословным - вот пара URL&#039;ов: www.dotfix.net (раздел Программы), reversing.dotfix.net . Зайди и посчитай число программ <img src="img/smilies/s1.gif" alt=""> Я уж не буду давать ссылки на сайты, где лежать мои примочки для игры GTA Vice City - и так думаю около 20 наберется
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=31857&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=23" class="addthx" data-post="31857"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2005 15:44 &middot; Поправил: Jupiter <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<b>GPcH</b>
+<br><i>не ставить же дельфю ради того чтобы к примеру написать форму для рассчета процентов кредита </i>
+<br>ну это загнул - если нужен расчёт процента по кредиту, значит Excel - слово знакомое, т.к. для подобных целей (когда не хватает калькулятора) Excel всё же предпочтителнее
+<br>
+<br>по поводу других применений: я перечислил то, что не перечислил ты в статье, какой смысл повторяться?
+<br>
+<br><i>А Вы невнимательный товарисч. Исходный код движка я таки раздаю </i>
+<br>бываю, конечно, иногда невнимательным, но фразу &quot;так как уже нет у меня исходников GPScript’a&quot; я всё-таки заметил в статье, но решил, что где-то они всё же есть? хотя бы частично и в других разработках?
+<br>если фраза о раздаче исходников - правда, то это значит, что они всё-таки нашлись? поздравляю, если это так.
+<br>
+<br>по поводу упоминания в credits об использованных компонентах - это правило хорошего тона, согласен, но вопрос всё же остаётся - каким образом ты &quot;раздаёшь&quot; исходники GPScript? http://sourceforge.net http://sourceforge.net  ?
+<br>
+<br>
+<br><i>Чтобы получить ключ на его запуск не надо ничего ломать - нужно лишь принять условия использования движка и попросить у меня ключ. </i>
+<br>ok, личное использование в целях изучения подпадает под твои условия? если да, то PM
+<br>
+<br>по поводу коммерческих разработок:
+<br>ok, захожу на dotfix.net, в раздел &quot;Программы&quot;, вижу:
+<br>Основные разработки нашей компании
+<br>Программы для защиты программного обеспечения
+<br>Первые в списке:
+<br>DotFix FakeSigner v3.0
+<br>VB AntiCrack v1.0
+<br>обе коммерческие
+<br>
+<br>далее упомянуты разработки, которые... бессмысленно продавать (inliner, unpacker/unprotector, Volume Control, Xakep DB etc)
+<br>
+<br>я брал в расчёт реальные программные продукты, а не &quot;примочки для GTA&quot;
+<br>
+<br>то, что ты продаёшь свои программы - твоё личное дело.
+<br>я нашёл с исходниками -  GHF Protector, ToDo List v1.1 (может быть, плохо искал)
+<br>
+<br>а писать  <i>Отсюда вы опять не правы товарисч</i> не comme il faut
+<br>то, что VB AntiCrack за полгода не была ни разу куплена - не моя проблема
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=32021&amp;user=1379&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=24" class="addthx" data-post="32021"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]Ara[/b]','')">Ara</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/24.jpg" alt=""><br><span class=txtSm>Ранг: 1288.1 <b><u>(!!!!)</u></b>, 273thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 1.29<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2005 18:34 <br><script type="text/javascript">QU('Ara','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ara" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+Господа <b>Jupiter</b> и <b>GPcH</b>. В силу внесения изменений в Правила просьба обсуждать в данном топике ТОЛЬКО сабж, остальные вопросы просьба решать в приватном порядке.
+<br>
+<br><b>GPcH</b>
+<br>Вроде бы как в дотфиксе есть совсем другой скриптовый язык, с нормальными командами... И функции были неплохие реализованы-типа добавления секции к файлу, и т.п. Помнится, у тебя была мыль создать полноценный компилятор, если будут желающие юзать его... Желающие появились? Вот эта задумка была действительно достойная внимания.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=32053&amp;user=24&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=25" class="addthx" data-post="32053"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]GPcH[/b]','')">GPcH</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3.gif" alt=""><br><span class=txtSm>Ранг: 631.1 (<b>!</b>), 62thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.37<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3">Участник</a><br><font color=blue>Автор VB Decompiler</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2005 21:19 <br><script type="text/javascript">QU('GPcH','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=GPcH" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<i>Jupiter пишет:
+<br>если фраза о раздаче исходников - правда, то это значит, что они всё-таки нашлись? </i>
+<br>Я же сказал - сорцы самой IDE утеряны (то есть трассировщика редактора форм и вообще всего что есть в GPScript.exe... есть толлько сорс движка интерпрпретатора, который исполняет передаваемые ему конструкции языка.
+<br>
+<br><i>Jupiter пишет:
+<br>Первые в списке: 
+<br>DotFix FakeSigner v3.0 
+<br>VB AntiCrack v1.0 
+<br>обе коммерческие </i>
+<br>Две из двадцати... Кстати про остальные ты загрул - я потратил год на разработку программы Tester  и год на разработку Xakep CD DataSaver. Причем я считаю Xakep CD DataSaver своим самым лучшим проектом - в нем я реализовал и скины и плагины и базы данных и работу с данными разного рода без сторонних компонентов. Это лучшая моя разработка имхо. А DotFix FakeSigner я начал хоть немного уважать сравнительно недавно, когда он стал протектором, способным защищать код от распаковки. Что касается тестера - то только благодаря ему удалось полностью автоматизировать тестирование студентов технаря, в котором я учился и это тоже в какой то мере одна из моих  хороших разработок
+<br>
+<br><i>Jupiter пишет:
+<br>ok, личное использование в целях изучения подпадает под твои условия? если да, то PM  </i>
+<br>Полазив по руборду и всяческим сайтам посвященным варезу и увидев там и на васме посты радости со ссылкой на кейген дотфикса у меня отпало все желание давать тебе сорцы GPScript&#039;а... не зная о тех постах я был о тебе гораздо лучшего мнения <img src="img/smilies/s9.gif" alt=""> Если чем обидел - извини, но факты говорят сами за себя <img src="img/smilies/s9.gif" alt="">
+<br>forum.ru-board.com/topic.cgi?forum=35&amp;topic=22340&amp;start=20#lt
+ <br>www.wasm.ru/comment.php?toolid=293
+<br>
+<br>
+<br><i>Jupiter пишет:
+<br>каким образом ты &quot;раздаёшь&quot; исходники GPScript? </i>
+<br>Никому не отказывал из тех кто у меня их просил из конференции RU.VISUAL.BASIC и с VBRussian.ru
+<br>
+<br><i>Ara пишет:
+<br>Вроде бы как в дотфиксе есть совсем другой скриптовый язык, с нормальными командами... И функции были неплохие реализованы-типа добавления секции к файлу, и т.п.  </i>
+<br>Движок там GPScript&#039;а - я в нем лишь изменил команды, их названия и функции, но их обработка по прежнему выполняется отлаженным и проверенным движком GPScript&#039;а
+<br>
+<br><i>Ara пишет:
+<br>Помнится, у тебя была мыль создать полноценный компилятор, если будут желающие юзать его... Желающие появились? Вот эта задумка была действительно достойная внимания. </i>
+<br>К стати на днях об этом думал - сделаю как нибудь - как появится время
+<br>
+<br>PS: В правилах есть пункт, что они лояльны для ветеранов форума <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Никогда не делай то, что возможно. Стремись сделать то что невозможно впринципе!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=32064&amp;user=3&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=26" class="addthx" data-post="32064"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Ara[/b]','')">Ara</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/24.jpg" alt=""><br><span class=txtSm>Ранг: 1288.1 <b><u>(!!!!)</u></b>, 273thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 1.29<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2005 21:28 <br><script type="text/javascript">QU('Ara','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ara" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=2609.html&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<i>GPcH пишет:
+<br>В правилах есть пункт, что они лояльны для ветеранов форума </i>
+<br>Угу, только не надо злоупотреблять... К тому же это была только просьба.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=32065&amp;user=24&amp;forum_n=2&amp;topic=2609.html&amp;page=0&amp;anchor=27" class="addthx" data-post="32065"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Подробная статья про GPScript</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#28" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="2">
+<input type="hidden" name="topic" value="2609">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=2609" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

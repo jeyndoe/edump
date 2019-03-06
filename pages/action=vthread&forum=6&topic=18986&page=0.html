@@ -1,0 +1,488 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Алгоритм TEA - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Надо реализовать TEA на сях и Delphi Проблема в том, что нет образца SnD Reverser Tool почему-то при ключе=00 и значении=00 ответ тоже 00 выдаёт, что по алго быть в теории не должно... (значения в HEX)">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=1288'>UniSoft</a>, <a target='_blank' href='?action=userinfo&amp;user=55953'>laslo</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Алгоритм TEA</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 сентября 2011 22:45 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Надо реализовать <noindex><a href="http://ru.wikipedia.org/wiki/TEA" rel="nofollow" target="_blank">TEA</a></noindex> на сях и Delphi<br>Проблема в том, что нет образца<br>SnD Reverser Tool почему-то при ключе=00 и значении=00 ответ тоже 00 выдаёт, что по алго быть в теории не должно... (значения в HEX)
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290999&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=1" class="addthx" data-post="290999"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 сентября 2011 22:52 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+в Сях правильно указан експорт dll функции TeaEncrypt ? тип передаваемых параметров<br>pascal/итд<br><br>там же в wiki<br>http://www.cix.co.uk/~klockstone/teavect.htm<br>тест вектора для проверки алго<br><br><b>Vovan666</b><br>глянь ту да же http://www.cix.co.uk/~klockstone/teavect.htm, помоему xtea там простой<br>если есть сомнения, то возможно то уже разные модификации
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291001&amp;user=15381&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=2" class="addthx" data-post="291001"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=6946" title="06-09-2011 10:31, ранг:574.5" target="_blank">Isaev</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Ultras[/b]','')">Ultras</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 123.0 (ветеран), 10thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.51'>Активность: 0.06<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3438">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 сентября 2011 22:55 &middot; Поправил: Ultras <br><script type="text/javascript">QU('Ultras','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ultras" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Онлайновые: <noindex><a href="http://143.53.36.235:8080/tea_js.htm" rel="nofollow" target="_blank">Раз</a></noindex>  и <noindex><a href="http://143.53.36.235:8080/jstea.htm" rel="nofollow" target="_blank">Два</a></noindex>
+<br><br><font size="1"><i>-----<br>.[ rE! p0w4 ].</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291002&amp;user=3438&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=3" class="addthx" data-post="291002"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 сентября 2011 23:09 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+На днях тоже искал реализацию xTea, вариантов куча и все считают по-своему.<br>Если у кого есть реализация где которая может вот так :<br>34529087t6w4y456g - key<br>3-2-dDt-43 - decryptet<br>B09665D2728979A784A5 - encrypted<br>выложите пожалуйста.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291004&amp;user=5291&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=4" class="addthx" data-post="291004"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 00:54 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<I>reversecode пишет:<br>в Сях правильно указан експорт dll функции TeaEncrypt ? тип передаваемых параметровpascal/итд </I><br>я же не из dll вызываю, просто переименовал<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>void</b></span>&nbsp;TeaEncrypt<span class="hl_char">(</span>uint32_t<span class="hl_char">*</span>&nbsp;v<span class="hl_char">,</span>&nbsp;uint32_t<span class="hl_char">*</span>&nbsp;k<span class="hl_char">)</span>&nbsp;{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;v0<span class="hl_char">=</span>v<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;v1<span class="hl_char">=</span>v<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;sum<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_char">,</span>&nbsp;i<span class="hl_comment">;           /* set up */</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;delta<span class="hl_char">=</span>0x9e3779b9<span class="hl_comment">;                     /* a key schedule constant */</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;k0<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;k1<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;k2<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">2</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;k3<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_comment">;   /* cache key */</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;<span class="hl_char">(</span>i<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_comment">; i &lt; 32; i++) {                       /* basic cycle start */</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;delta<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v1<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span><span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k0<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">+</span>&nbsp;sum<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v1<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k1<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v0<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span><span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k2<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">+</span>&nbsp;sum<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v0<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k3<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">/</span><span class="hl_char">*</span>&nbsp;<span class="hl_function"><b>end</b></span>&nbsp;cycle&nbsp;<span class="hl_char">*</span><span class="hl_char">/</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;v<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">=</span>v0<span class="hl_comment">; v[1]=v1;</span></li><li class="hl_l0">}</li>        </ol>
+    </div>
+</div></div>
+<br><br><I>Ultras пишет:<br>Онлайновые: Раз  и Два </I><br>Раз вообще не понятно что и как считает, а Два выдаёт совсем странные результаты<br><br><b>Vovan666</b> <noindex><a href="http://ru.wikipedia.org/wiki/XTEA" rel="nofollow" target="_blank">XTEA</a></noindex> в вики тоже есть реализация на си<br><br>PS: при переводе на Delphi где косяк? <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291008&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=5" class="addthx" data-post="291008"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:11 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>Isaev пишет:<br>PS: при переводе на Delphi где косяк? </I><br>с первого взгляда вроде нет ошибок, правда я в делфи не очень))<br>как там будет цикл &quot;To 32&quot; включительно или нет<br>может здесь ошибка, и лишний раз прокручивается<br><br>хотя кто мешает сделать дебаг printf в каждой итерации цикла<br>и ты сразу увидешь на какой итерации не правильно считает
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291009&amp;user=15381&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=6" class="addthx" data-post="291009"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:14 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>reversecode</b> да уже поправил, но не лучше<br>с дебагом сложнее...
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291010&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=7" class="addthx" data-post="291010"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:17 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+printf под никсами есть)<br>вставь для распечатки каждых значений которые надо<br>printf(&quot;%d&quot;,v0); или printf(&quot;%x&quot;,v0); если в хексовом ну итд <br>переменные вместо V[0] подставляй<br>#include &lt;stdlib.h&gt; кажись для printf<br>в консоль посыпется вывод, если консольная прога<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>void</b></span>&nbsp;TeaEncrypt<span class="hl_char">(</span>uint32_t<span class="hl_char">*</span>&nbsp;v<span class="hl_char">,</span>&nbsp;uint32_t<span class="hl_char">*</span>&nbsp;k<span class="hl_char">)</span></li><li class="hl_l1">{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;v0<span class="hl_char">=</span>v<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;v1<span class="hl_char">=</span>v<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;sum<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_char">,</span>&nbsp;i<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;delta<span class="hl_char">=</span>0x9e3779b9<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;k0<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;k1<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;k2<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">2</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;k3<span class="hl_char">=</span>k<span class="hl_char">[</span><span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;<span class="hl_char">(</span>i<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_comment">; i &lt; 32; i++)</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;delta<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v1<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span><span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k0<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">+</span>&nbsp;sum<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v1<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k1<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v0<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span><span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k2<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">+</span>&nbsp;sum<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v0<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k3<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf<span class="hl_char">(</span><span class="hl_quote">&quot;v0 %x, v1 %x, i %d\n&quot;</span><span class="hl_char">,</span>&nbsp;v0<span class="hl_char">,</span>&nbsp;v1<span class="hl_char">,</span>&nbsp;i<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;v<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">=</span>v0<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;v<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">=</span>v1<span class="hl_comment">;</span></li><li class="hl_l1">}</li>        </ol>
+    </div>
+</div></div>
+<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;printf<span class="hl_char">(</span><span class="hl_quote">&quot;v0 %04x, v1 %04x, i %d\n&quot;</span><span class="hl_char">,</span>&nbsp;v0<span class="hl_char">,</span>&nbsp;v1<span class="hl_char">,</span>&nbsp;i<span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>04 можно для форматирования добавить и заполнения нулями
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291011&amp;user=15381&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=8" class="addthx" data-post="291011"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:30 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+расхождения в v0 и v1 уже при втором проходе
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291012&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=9" class="addthx" data-post="291012"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:36 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>Isaev</b><br>Жесть, вы не можете две операции отладить? Скорее всего дело в неправильной замене операций сдвигов и логики. Можно для надежности поставить маску через And или перепроверить все дискретные операции, сделав для них временные переменные (типа t := v1&lt;&lt;4; t := t + k0); и т.д.).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291013&amp;user=2449&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=10" class="addthx" data-post="291013"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:39 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+можно поступить по другому<br>соптимизировать на Си код до такого как у тебя на Делфи<br>где сразу к [] массиву обращение<br>проверить как там с дебаг выводом<br>и если все еще расхождения, загрузить в IDA оба варианта и посмотреть как генерится asm код, для обоих реализаций
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291014&amp;user=15381&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=11" class="addthx" data-post="291014"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 01:45 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>int пишет:<br>Жесть, вы не можете две операции отладить? </I><br>сам не ожидал<br><I>reversecode пишет:<br>загрузить в IDA оба варианта и посмотреть как генерится asm код, для обоих реализаций </I><br>несомненно, но геморно... Больше всего не хотелось вникать в чудокод компиляторов<br>потому и запостил, в надежде что чей-то трезвый взгляд сразу укажет на страшный косяк, что съэкономит кучу времени... Ладно, пойдём медленно, но верно
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291015&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=12" class="addthx" data-post="291015"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 02:06 <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+не знаю как ТЕА, а ХТЕА в ВИКИ кривой. Столкнулся с этим когда скопипастил для первого задания в контесте 2010 (от PE Kill&#039;a)<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>void</b></span>&nbsp;xtea_encipher<span class="hl_char">(</span>uint32_t<span class="hl_char">*</span>&nbsp;vi<span class="hl_char">,</span>&nbsp;uint32_t<span class="hl_char">*</span>&nbsp;vo<span class="hl_char">,</span>&nbsp;uint32_t<span class="hl_char">*</span>&nbsp;k<span class="hl_char">)</span>&nbsp;</li><li class="hl_l1">{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;unsigned&nbsp;<span class="hl_function"><b>int</b></span>&nbsp;i<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;v0<span class="hl_char">=</span>vi<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;v1<span class="hl_char">=</span>vi<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;sum<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_char">,</span>&nbsp;delta<span class="hl_char">=</span>0x9E3779B9<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;<span class="hl_char">(</span>i<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_comment">; i &lt; 32; i++) {</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;k<span class="hl_char">[</span><span class="hl_char">(</span>sum&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">)</span><span class="hl_char">]</span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span>sum&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;sum&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;delta<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;v1&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;k<span class="hl_char">[</span><span class="hl_char">(</span>sum&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">11</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">]</span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span>sum&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_char">/</span><span class="hl_char">*</span>&nbsp;<span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;fault&nbsp;implementation&nbsp;on&nbsp;http<span class="hl_char">:</span><span class="hl_char">/</span><span class="hl_char">/</span>ru<span class="hl_char">.</span>wikipedia<span class="hl_char">.</span><span class="hl_function">org</span><span class="hl_char">/</span>wiki<span class="hl_char">/</span>XTEA</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span><span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;v1<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>sum&nbsp;<span class="hl_char">+</span>&nbsp;k<span class="hl_char">[</span>sum&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;delta<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span><span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;v0<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>sum&nbsp;<span class="hl_char">+</span>&nbsp;k<span class="hl_char">[</span><span class="hl_char">(</span>sum<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">11</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_char">*</span><span class="hl_char">/</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;vo<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">=</span>v0<span class="hl_comment">; vo[1]=v1;</span></li><li class="hl_l1">}</li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>void</b></span>&nbsp;xtea_decipher<span class="hl_char">(</span>uint32_t<span class="hl_char">*</span>&nbsp;vi<span class="hl_char">,</span>&nbsp;uint32_t<span class="hl_char">*</span>&nbsp;vo<span class="hl_char">,</span>&nbsp;uint32_t<span class="hl_char">*</span>&nbsp;k<span class="hl_char">)</span>&nbsp;</li><li class="hl_l0">{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;unsigned&nbsp;<span class="hl_function"><b>int</b></span>&nbsp;i<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;uint32_t&nbsp;v0<span class="hl_char">=</span>vi<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;v1<span class="hl_char">=</span>vi<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;delta<span class="hl_char">=</span>0x9E3779B9<span class="hl_char">,</span>&nbsp;sum<span class="hl_char">=</span>delta<span class="hl_char">*</span><span class="hl_number">32</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;<span class="hl_char">(</span>i<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_comment">; i &lt; 32; i++) {</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;v1&nbsp;<span class="hl_char">-</span><span class="hl_char">=</span>&nbsp;k<span class="hl_char">[</span><span class="hl_char">(</span>sum&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">11</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">]</span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span>sum&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;sum&nbsp;<span class="hl_char">-</span><span class="hl_char">=</span>&nbsp;delta<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">-</span><span class="hl_char">=</span>&nbsp;k<span class="hl_char">[</span><span class="hl_char">(</span>sum&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">)</span><span class="hl_char">]</span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span>sum&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">*</span>&nbsp;<span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;fault&nbsp;implementation&nbsp;on&nbsp;http<span class="hl_char">:</span><span class="hl_char">/</span><span class="hl_char">/</span>ru<span class="hl_char">.</span>wikipedia<span class="hl_char">.</span><span class="hl_function">org</span><span class="hl_char">/</span>wiki<span class="hl_char">/</span>XTEA</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v1&nbsp;<span class="hl_char">-</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span><span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v0&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;v0<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>sum&nbsp;<span class="hl_char">+</span>&nbsp;k<span class="hl_char">[</span><span class="hl_char">(</span>sum<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">11</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sum&nbsp;<span class="hl_char">-</span><span class="hl_char">=</span>&nbsp;delta<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">-</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span><span class="hl_char">(</span><span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>v1&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;v1<span class="hl_char">)</span>&nbsp;^&nbsp;<span class="hl_char">(</span>sum&nbsp;<span class="hl_char">+</span>&nbsp;k<span class="hl_char">[</span>sum&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_char">*</span><span class="hl_char">/</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;vo<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">=</span>v0<span class="hl_comment">; vo[1]=v1;</span></li><li class="hl_l0">}</li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291016&amp;user=6801&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=13" class="addthx" data-post="291016"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 02:31 &middot; Поправил: Isaev <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br><div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a<span class="hl_char">=</span><span class="hl_char">(</span>v1<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span><span class="hl_number">4</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k0<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;b<span class="hl_char">=</span>v1&nbsp;<span class="hl_char">+</span>&nbsp;sum<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;c<span class="hl_char">=</span><span class="hl_char">(</span>v1<span class="hl_char">&gt;</span><span class="hl_char">&gt;</span><span class="hl_number">5</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;k1<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v0&nbsp;<span class="hl_char">+</span><span class="hl_char">=</span>&nbsp;a&nbsp;^&nbsp;b&nbsp;^&nbsp;c<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;A<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shl</b></span>&nbsp;<span class="hl_number">4</span><span class="hl_char">)</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;B<span class="hl_char">:</span><span class="hl_char">=</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">+</span>Sum<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shr</b></span>&nbsp;<span class="hl_number">5</span><span class="hl_char">)</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V0<span class="hl_char">:</span><span class="hl_char">=</span>V0<span class="hl_char">+</span>A&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;B&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;C<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>a==A; b==B; c==C;<br>V0!=v0;<br>т.е. ^ это не Xor? <img src="img/smilies/s14.gif" alt=""><br><br>PS: зараза, + приоритетнее xor <img src="img/smilies/s5.gif" alt=""><br>точнее одинакового, но<br><b>&quot;При исчислении логических выражений операции равного приоритета всегда вычисляются слева направо&quot;</b>
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291017&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=14" class="addthx" data-post="291017"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 02:47 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>OKOB пишет:<br>fault implementation </I><br>дык, поправил бы, это же википедия (и не забывайте, кстати, что у нас своя есть)<br><br><I>Isaev пишет:<br>зараза, + приоритетнее xor </I><br>делфи сакс...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291019&amp;user=2449&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=15" class="addthx" data-post="291019"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 02:52 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+А как теперь проверить TEA ли это вообще и не накосячили ли в вики снова?
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291020&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=16" class="addthx" data-post="291020"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]ClockMan[/b]','')">ClockMan</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/17432.jpg" alt=""><br><span class=txtSm>Ранг: 568.2 (<b>!</b>), 465thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.99'>Активность: 0.55<span style='color:green'>&nearr;</span>0.57</span><br>Статус: <a href="action=userinfo&amp;user=17432">Участник</a><br><font color=blue>оптимист</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 05:57 &middot; Поправил: ClockMan <br><script type="text/javascript">QU('ClockMan','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ClockMan" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<b>Isaev</b><br><noindex><a href="http://www.delphisources.ru/pages/faq/base/encode_tea.html" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><font size="1"><i>-----<br>Чтобы правильно задать вопрос, нужно знать большую часть  ответа. Р.Шекли.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291022&amp;user=17432&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=17" class="addthx" data-post="291022"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 06:03 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<b>reversecode</b> же дал ссылку для проверки вектора http://www.cix.co.uk/~klockstone/teavect.htm
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291023&amp;user=3232&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=18" class="addthx" data-post="291023"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 08:41 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<b>ClockMan</b> там XTEA
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291025&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=19" class="addthx" data-post="291025"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Av0id[/b]','')">Av0id</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 516.1 (<b>!</b>), 39thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1378">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 10:59 <br><script type="text/javascript">QU('Av0id','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Av0id" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+это ищите?<br><br><img src="img/attach.gif" alt=""> <a href="./files/2036_05.09.2011_EXELAB.rU.tgz">2036_05.09.2011_EXELAB.rU.tgz</a> - tea.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291032&amp;user=1378&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=20" class="addthx" data-post="291032"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]vptrlx[/b]','')">vptrlx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.1 (постоянный), 9thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.91'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=22056">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 11:25 &middot; Поправил: vptrlx <br><script type="text/javascript">QU('vptrlx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=vptrlx" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>int пишет:<br>Isaev пишет:зараза, + приоритетнее xor<br>делфи сакс... </I><br>эм. так везде вообще-то.<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>int</b></span>&nbsp;a&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_number">1</span><span class="hl_char">,</span>&nbsp;b&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_number">2</span><span class="hl_char">,</span>&nbsp;c&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_number">3</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cout&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_char">(</span>a<span class="hl_char">+</span>b^c<span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>это 0.<br><br>add: не знаю насчёт равного приоритета в дельфях, но в сях + именно приоритетнее.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291035&amp;user=22056&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=21" class="addthx" data-post="291035"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 13:07 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+<b>OKOB</b><br>Как-то брал код оттуда для одного проекта, всё работало аналогично проге, которую исследовал. <br>Видать девелоперы уже понахватали эту реализацию с вики, и теперь её можно брать за стандарт <img src="img/smilies/s1.gif" alt=""><br>И кстати, результат работы кода с вики совпадает с результатом работы SnD Reverser Tool 1.4
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291046&amp;user=2777&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=22" class="addthx" data-post="291046"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 13:45 &middot; Поправил: PE_Kill <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+Не факт, что у меня она была правильной, я просто взял очень старый паблик сорс. А проверять векторы смысла не было т.к. мне не важно было чем шифровать
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291050&amp;user=3232&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=23" class="addthx" data-post="291050"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 сентября 2011 16:59 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<I>OKOB пишет:<br>не знаю как ТЕА, а ХТЕА в ВИКИ кривой. Столкнулся с этим когда скопипастил для первого задания в контесте 2010 (от PE Kill&#039;a) </I><br>Я в книге видел реализацию, как на вики (да и там написано, что она из книги взята), т.ч.<br><I>PE_Kill пишет:<br>Не факт, что у меня она была правильной </I><br>а в крекми приятнее не стандарт использовать <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291058&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=24" class="addthx" data-post="291058"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2011 09:26 <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<b>Isaev</b> кода мне надобыло на делфи тиа я использовал библиотеку dcpcrypt2 под делфи. остался доволен. (там кстати много чего еще есть)
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291094&amp;user=17319&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=25" class="addthx" data-post="291094"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=6946" title="06-09-2011 10:33, ранг:574.5" target="_blank">Isaev</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]ajax[/b]','')">ajax</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/8830.gif" alt=""><br><span class=txtSm>Ранг: 337.6 (мудрец), 224thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.53'>Активность: 0.21<span style='color:red'>&searr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=8830">Участник</a><br><font color=blue>born to be evil</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2011 20:12 &middot; Поправил: ajax <br><script type="text/javascript">QU('ajax','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ajax" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<b>Isaev</b><br><I>SnD Reverser Tool </I><br>В аццкую топку. Сырков, погуглив, завались
+<br><br><font size="1"><i>-----<br>От многой мудрости много скорби, и умножающий знание умножает печаль</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291116&amp;user=8830&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=26" class="addthx" data-post="291116"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Av0id[/b]','')">Av0id</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 516.1 (<b>!</b>), 39thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1378">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 сентября 2011 11:45 <br><script type="text/javascript">QU('Av0id','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Av0id" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+в том числе выложенный мною готовый проект чуть выше, видимо никто не заметил
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=291164&amp;user=1378&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=27" class="addthx" data-post="291164"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 сентября 2011 22:54 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18986.html&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<I>Av0id пишет:<br>выложенный мною готовый проект чуть выше, видимо никто не заметил </I><br>конечно заметили, спс<br>только мы как раз с си переводили на дельфи, а проект на си, и в общем те же функции с вики что для tea, что для xtea... Видимо вы его выложили не вчитываясь в суть проблемы.<br>В общем вопрос решён, надо наверное закрыть, всем спс за участие<br>Может кому пригодится<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Procedure&nbsp;TeaEncrypt<span class="hl_char">(</span>Var&nbsp;V<span class="hl_char">:</span>Array&nbsp;Of&nbsp;Cardinal<span class="hl_comment">;K:Array Of Cardinal);</span></li><li class="hl_l1">Var</li><li class="hl_l0">&nbsp;&nbsp;Sum<span class="hl_char">:</span>Cardinal<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;I<span class="hl_char">:</span><span class="hl_function"><b>Byte</b></span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function">Const</span></li><li class="hl_l1">&nbsp;&nbsp;Delta<span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_number">9E3779B9</span><span class="hl_comment">;</span></li><li class="hl_l0">Begin</li><li class="hl_l1">&nbsp;&nbsp;Sum<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;For&nbsp;I<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;To&nbsp;<span class="hl_number">31</span>&nbsp;Do</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;Begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sum<span class="hl_char">:</span><span class="hl_char">=</span>Sum<span class="hl_char">+</span>Delta<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">:</span><span class="hl_char">=</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shl</b></span>&nbsp;<span class="hl_number">4</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">+</span>Sum<span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shr</b></span>&nbsp;<span class="hl_number">5</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_char">+</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">:</span><span class="hl_char">=</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shl</b></span>&nbsp;<span class="hl_number">4</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">2</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">+</span>Sum<span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shr</b></span>&nbsp;<span class="hl_number">5</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_char">+</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>End</b></span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>End</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">Procedure&nbsp;TeaDecrypt<span class="hl_char">(</span>Var&nbsp;V<span class="hl_char">:</span>Array&nbsp;Of&nbsp;Cardinal<span class="hl_comment">;K:Array Of Cardinal);</span></li><li class="hl_l1">Var</li><li class="hl_l0">&nbsp;&nbsp;Sum<span class="hl_char">:</span>Cardinal<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;I<span class="hl_char">:</span><span class="hl_function"><b>Byte</b></span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function">Const</span></li><li class="hl_l1">&nbsp;&nbsp;Delta<span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_number">9E3779B9</span><span class="hl_comment">;</span></li><li class="hl_l0">Begin</li><li class="hl_l1">&nbsp;&nbsp;Sum<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">$</span>C6EF3720<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;For&nbsp;I<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;To&nbsp;<span class="hl_number">31</span>&nbsp;Do</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;Begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">:</span><span class="hl_char">=</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">-</span><span class="hl_char">(</span><span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shl</b></span>&nbsp;<span class="hl_number">4</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">2</span><span class="hl_char">]</span><span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">+</span>Sum<span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shr</b></span>&nbsp;<span class="hl_number">5</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">3</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">:</span><span class="hl_char">=</span>V<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">-</span><span class="hl_char">(</span><span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shl</b></span>&nbsp;<span class="hl_number">4</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">+</span>Sum<span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>Xor</b></span>&nbsp;<span class="hl_char">(</span>V<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>Shr</b></span>&nbsp;<span class="hl_number">5</span><span class="hl_char">+</span>K<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Sum<span class="hl_char">:</span><span class="hl_char">=</span>Sum<span class="hl_char">-</span>Delta<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>End</b></span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>End</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=291202&amp;user=6946&amp;forum_n=6&amp;topic=18986.html&amp;page=0&amp;anchor=28" class="addthx" data-post="291202"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Алгоритм TEA</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=18986" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

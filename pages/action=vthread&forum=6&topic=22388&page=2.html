@@ -1,0 +1,567 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Перехват прерываний и исключений - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Руководствуясь Хоглундом и Батлером на тему перехват прерываний и исключений , написать и запустить драйвер получается но перехват не выходит, пытался перехватить как 0x04 OF так и 0x13 ошибки доступа к памяти, запускал на VB xp">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=40382'>jinoweb</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a>, <a target='_blank' href='?action=userinfo&amp;user=1533'>rmn</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Перехват прерываний и исключений</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=1.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=1.html">2</a> . <b>3</b> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=3.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2013 15:35 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#1');return false;">#1</a> </span><div align=left><br>
+Руководствуясь Хоглундом и Батлером на тему перехват прерываний и исключений , написать и запустить драйвер получается но перехват не выходит, пытался перехватить как 0x04 OF так и 0x13 ошибки доступа к памяти, запускал на VB xp 32 с одним процессором, но увы, не опытность даёт знать, вот код на Си который вышел:<br><br>init.c:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">#include&nbsp;<span class="hl_char">&lt;</span>ntddk<span class="hl_char">.</span>h<span class="hl_char">&gt;</span></li><li class="hl_l1">#include&nbsp;<span class="hl_quote">&quot;IDT.c&quot;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">#define&nbsp;MAKELONG<span class="hl_char">(</span>&nbsp;a&nbsp;<span class="hl_char">,</span>&nbsp;b&nbsp;<span class="hl_char">)</span><span class="hl_char">(</span>&nbsp;<span class="hl_char">(</span>&nbsp;LONG&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">(</span>&nbsp;<span class="hl_char">(</span>&nbsp;<span class="hl_char">(</span>&nbsp;USHORT&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">(</span>&nbsp;a&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">|</span>&nbsp;<span class="hl_char">(</span>&nbsp;<span class="hl_char">(</span>&nbsp;ULONG&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">(</span>&nbsp;<span class="hl_char">(</span>&nbsp;USHORT&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">(</span>&nbsp;b&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&lt;</span>&nbsp;<span class="hl_number">16</span>&nbsp;<span class="hl_char">)</span>&nbsp;<span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">#define&nbsp;NT_SYSTEM_SERVICE_INT&nbsp;0x13</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">ULONG&nbsp;RealSystemPtr<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>void</b></span>&nbsp;MyInt<span class="hl_char">(</span><span class="hl_char">)</span></li><li class="hl_l0">{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__asm</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">pushad</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">pushfd</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">fs</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr"><b>bx</b></span>&nbsp;<span class="hl_char">,</span>&nbsp;0x30</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr"><b>fs</b></span>&nbsp;<span class="hl_char">,</span>&nbsp;<span class="hl_registr">bx</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ds</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">es</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DbgPrint<span class="hl_char">(</span><span class="hl_quote">&quot;Is MyInt&quot;</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__asm</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">es</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">ds</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">fs</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">popfd</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">popad</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jmp</b></span>&nbsp;RealSystemPtr<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l1">}</li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>void</b></span>&nbsp;Hook<span class="hl_char">(</span><span class="hl_char">)</span></li><li class="hl_l0">{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDTINFO&nbsp;idt_info<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDTENTRY&nbsp;<span class="hl_char">*</span>&nbsp;idt_entries<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDTENTRY&nbsp;<span class="hl_char">*</span>&nbsp;int2_entry<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__asm&nbsp;<span class="hl_function"><b>sidt</b></span>&nbsp;idt_info</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idt_entries&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span>&nbsp;IDTENTRY&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_char">)</span>&nbsp;MAKELONG<span class="hl_char">(</span>&nbsp;idt_info<span class="hl_char">.</span>LowIDTbase&nbsp;<span class="hl_char">,</span>&nbsp;idt_info<span class="hl_char">.</span>HiIDTbase&nbsp;<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RealSystemPtr&nbsp;<span class="hl_char">=</span>&nbsp;MAKELONG<span class="hl_char">(</span>&nbsp;idt_entries<span class="hl_char">[</span>&nbsp;NT_SYSTEM_SERVICE_INT&nbsp;<span class="hl_char">]</span><span class="hl_char">.</span>LowOffset&nbsp;<span class="hl_char">,</span></li><li class="hl_l0"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;idt_entries</span><span class="hl_char">[</span>&nbsp;NT_SYSTEM_SERVICE_INT&nbsp;<span class="hl_char">]</span><span class="hl_char">.</span>HiOffset&nbsp;<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;int2_entry&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_char">&amp;</span>idt_entries<span class="hl_char">[</span>&nbsp;NT_SYSTEM_SERVICE_INT&nbsp;<span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;__asm</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">cli</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>lea</b></span>&nbsp;<span class="hl_registr"><b>eax</b></span>&nbsp;<span class="hl_char">,</span>&nbsp;MyInt</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_registr"><b>ebx</b></span>&nbsp;<span class="hl_char">,</span>&nbsp;int2_entry</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_char">[</span>&nbsp;<span class="hl_registr"><b>ebx</b></span>&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">,</span>&nbsp;<span class="hl_registr"><b>ax</b></span>&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>shr</b></span>&nbsp;<span class="hl_registr"><b>eax</b></span>&nbsp;<span class="hl_char">,</span>&nbsp;<span class="hl_number">16</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;<span class="hl_char">[</span>&nbsp;<span class="hl_registr"><b>ebx</b></span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_number">6</span>&nbsp;<span class="hl_char">]</span>&nbsp;<span class="hl_char">,</span>&nbsp;<span class="hl_registr">ax</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">sti</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l0">}&nbsp;</li><li class="hl_l1">&nbsp;</li><li class="hl_l0"><span class="hl_function"><b>void</b></span>&nbsp;DriverUnload<span class="hl_char">(</span>&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PDRIVER_OBJECT&nbsp;DriverObject&nbsp;<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">NTSTATUS&nbsp;DriverEntry<span class="hl_char">(</span>&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PDRIVER_OBJECT&nbsp;DriverObject&nbsp;<span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PUNICODE_STRING&nbsp;RegPath&nbsp;<span class="hl_char">)</span></li><li class="hl_l1">{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DriverObject&nbsp;<span class="hl_char">-</span><span class="hl_char">&gt;</span>&nbsp;DriverUnload&nbsp;<span class="hl_char">=</span>&nbsp;DriverUnload<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Hook<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return&nbsp;STATUS_SUCCESS<span class="hl_comment">;</span></li><li class="hl_l1">}</li><li class="hl_l0">&nbsp;</li><li class="hl_l1"><span class="hl_function"><b>void</b></span>&nbsp;DriverUnload<span class="hl_char">(</span>&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PDRIVER_OBJECT&nbsp;DriverObject&nbsp;<span class="hl_char">)</span></li><li class="hl_l0">{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;DbgPrint<span class="hl_char">(</span><span class="hl_quote">&quot;Bye!\n&quot;</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">}</li>        </ol>
+    </div>
+</div></div>
+<br><br>IDT.c<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">typedef&nbsp;struct</li><li class="hl_l1">{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USHORT&nbsp;IDTLimit<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USHORT&nbsp;LowIDTbase<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USHORT&nbsp;HiIDTbase<span class="hl_comment">;</span></li><li class="hl_l1">}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;IDTINFO&nbsp;<span class="hl_comment">; </span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">#pragma&nbsp;pack<span class="hl_char">(</span>&nbsp;<span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_char">,</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_char">)</span></li><li class="hl_l0">typedef&nbsp;struct</li><li class="hl_l1">{</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USHORT&nbsp;LowOffset<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USHORT&nbsp;selector<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UCHAR&nbsp;&nbsp;&nbsp;unused_lo<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned&nbsp;<span class="hl_function"><b>char</b></span>&nbsp;unused_hi&nbsp;<span class="hl_char">:</span>&nbsp;<span class="hl_number">5</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned&nbsp;<span class="hl_function"><b>char</b></span>&nbsp;DPL&nbsp;<span class="hl_char">:</span>&nbsp;<span class="hl_number">2</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;unsigned&nbsp;<span class="hl_function"><b>char</b></span>&nbsp;P&nbsp;<span class="hl_char">:</span>&nbsp;<span class="hl_number">1</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USHORT&nbsp;HiOffset<span class="hl_comment">;</span></li><li class="hl_l1">}&nbsp;IDTENTRY&nbsp;<span class="hl_comment">;</span></li><li class="hl_l0">#pragma&nbsp;pack<span class="hl_char">(</span>&nbsp;<span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=334944&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=1" class="addthx" data-post="334944"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 января 2014 21:24 &middot; Поправил: MickeyBlueEyes <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#2');return false;">#2</a> </span><div align=left><br>
+<b>dosprog</b><br>Да именно он.<br><b>int</b><br>А &quot;К.Ирвин - Язык ассемблера для процессоров Intel&quot; ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336218&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=2" class="addthx" data-post="336218"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 января 2014 22:16 &middot; Поправил: <a href="action=stats#mods">Модератор</a> <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#3');return false;">#3</a> </span><div align=left><br>
+<b>MickeyBlueEyes</b><br><br>&gt; Тута пытаюсь int 1 перехватывать, прямо из IDT, делаю такой трюк<br><br>Не будет оно работать, почему я уже расписал.<br><br>&gt; PsGetCurrentProcess(); //БСОД<br><br>Селекторы нужно восстановить соответствующие.<br><br>Я просто поражаюсь как так можно, не думайте что какой то сарказм. Просто человек пилит ISR не имея представления про сегментацию, короче попытка работать в прот моде в р0 не зная что это такое.<br><br><b>int</b><br><br>&gt; К сожалению действительно стоящей документации и примеров нет.<br><br>Как бы не так. Документации тонны, как оригинальной, так и косвенной/оттранслированной етц. Тоже касается и кода.<br><br>&gt; т.е. понять куда указывают сегментные регистры в режиме ядра и какими они должны быть.<br><br>Когда я не понимал механизмов сегментации, у меня сегмент&quot; вызывало очень не приятные ассоциации, это были впечатления связанные с досом. Вероятно у тс тоже самое, так как той же хернёй забивают разум, даже сейчас. Это заблуждение, профессор может и умный, но в данный момент он ... и ему низя верить, так как его знания устарели. Беру в пример БГУИР, беларусский вуз, личный опыт. Мне там говно впихивали, сортировки какие то в досе.. кому оно щас надо.<br><br><b>int</b><br><br>На словах нумерация происходит в десятичной системе. Я могу посчитать сдачу в магазе в бинах, но думаю продавец не осилит <img src="img/smilies/s6.gif" alt=""><br><br><b>Archer</b><br>&gt; а не клеркокостыли, работающие на единственной платформе, а то и единственном билде ОС.<br><br>Может пример приведёте, так прямо и скажем чтобы не быть ... ?<br><br>Обычно мой код робит во всей линейке, вот например LWE. На WOW тоже робит. И в чём именно костыли ?<br><br>На си ты такой код никак не запилишь, только если вручную транслировать, это даже можно и не обсуждать - конпиль не под те задачи запилен. Ну а на си это реализовать маразм полнейший.<br><br>Есть некоторые коды, как например под недавний ман про клифа - так это POC. Мне нужно обьяснять что это такое ?<br><br>У меня вообще нет желания с вами спорить, у вас у всех вместе взятых уровень знаний и понимания далёк от моего. Это не моё желание, нет конечно, это просто обьективные факт. Сейчас наверно вентилятор должен разбросать говна, так как детский разум морально не устойчив..<br><br>Ну а то, что вы называете портабельностью - си в простейшем случае это примитивнейший язык, он и популярен именно за свой минимализм. Можно описать всё 3-хэтажными конструкциями, что есть приведение типов. Это его суть. Я изучил си за пару дней, причём эти дни не помню, так как был пьяный в дрова. Возмите любой мой код и подумайте как реализовать на си. Я уверен что вы ничего не ответите, так как таких попыток на том же аверлабе было много, но не одного вменяемого ответа.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336221&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=3" class="addthx" data-post="336221"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 390thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 января 2014 22:32 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#4');return false;">#4</a> </span><div align=left><br>
+<b>Dr0p</b>,<br><I>...На словах нумерация происходит в десятичной системе. </I><br><br>--плохо. И не факт. Возьмите int21h,int10h,int13h,16h,int19h,25h,int33h,int35h,int52h,...int71h - всюду хекс. <br>В Windows в сообщениях об ошибках тоже хекс.<br>Tак принято. Зачем держать в памяти два набора данных, когда это те же цветы, но в профиль? <br>В программах (нормальных) я тоже не видел, чтобы использовали dec, потому что неудобно, да и ошибками чревато (RADIX).<br>Кстати, это один из издевательских способов обфускации асм-текстов - все числа в десятичной системе.<br><br>--ADD--<br>К сожалению (или нет), для хекс-арифметики давно уже использую калькулятор. <br>В уме не считаю после нескольких идиотских ошибок, стоивших времени.<br><br>P.S. Прошу извинить за оффтоп...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336223&amp;user=35473&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=4" class="addthx" data-post="336223"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 января 2014 22:33 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#5');return false;">#5</a> </span><div align=left><br>
+<b>dosprog</b><br><br>Это не я запутался, зачем меня лечить <img src="img/smilies/s1.gif" alt=""><br><br>Вы кстате как в уме с хекс математикой, дружите ?<br><br>Быть может скажите как перевести 0x4567 в дес ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336224&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=5" class="addthx" data-post="336224"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 00:09 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#6');return false;">#6</a> </span><div align=left><br>
+<b>dosprog</b><br><br>4-ре бита(ниблом называется) не просто так сделали отдельным понятием. Зная это числа очень просто в уме конвертятся <img src="img/smilies/s3.gif" alt=""><br><br>Ну а калькулятор заменяет мозги - это не труъ, хотя я и сам считать не люблю, так как отвлекает <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336229&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=6" class="addthx" data-post="336229"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 00:48 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#7');return false;">#7</a> </span><div align=left><br>
+<b>Dr0p</b><br>Си за пару дней изучить не получится. В смысле изучить синтаксис можно быстро, а вот все парадигмы языка надо курить опытным путем и изучением примеров. По поводу перевести исходники... Пару асм-файлов SIDE я уже перевел на Си, могу скинуть, если интересно. Хотя есть свои недостатки, например битовые маски в асме работают очень быстро, но без комментариев выглядят не наглядно. В сях они выглядят более наглядно, за счет битовых полей. Однако оптимизации нет, ибо нет у меня на сях прямого доступа к тем же SHRD, SHLD. Остается слепо верить, что компиль сделает более менее хороший код. Отладка усложняется, ибо на асме я вижу в отладчике свой код, а если он был написан на сях, мне еще надо пытаться разглядеть плоды компилятора. Холивар на тему языков программирования считаю глупым. Все языки хороши, каждый под свою задачу. Я развел холивар не на тему выбора языка, а на тему не понятной мне каши из разных языков в одном файле.<br><br>Преимущество языка Си я вижу только в том, что код очень лаконичным получается против ассемблера. Приведения типов - это типичный быдлокод. Оно редко надо, на самом деле, если адекватно писать.<br><br>Против десятичной системы счисления я ничего не имею. Просто ты написал 14-ый вектор, а тс написал как 0x14.<br><br><I>dosprog пишет:<br>--плохо. И не факт. </I><br>Почему это? Я мыслю обычно в десятичной системе счисления. Просто надо понимать где ставить h или 0x, а где нет. Ошибки возникают там, где нет понимания. Или от невнимательности.<br><br>Короче обсуждение ЯП и систем счисления бессмысленный холивар и к теме отношения не имеет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336231&amp;user=2449&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=7" class="addthx" data-post="336231"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 13:44 <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#8');return false;">#8</a> </span><div align=left><br>
+<b>int</b><br><br>От сайда только хидеры нужны, он юзается в виде дампа, это же мотор. На си оно в принципе не портируется, точнее после конпиляции получится фигня.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336252&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=8" class="addthx" data-post="336252"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 16:22 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#9');return false;">#9</a> </span><div align=left><br>
+<b>Dr0p</b><br>Фигня с точки зрения работоспособности или с точки зрения оптимизации?<br><br><b>Добавлено спустя 3 часа 59 минут</b><br><I>MickeyBlueEyes пишет:<br>&quot;К.Ирвин - Язык ассемблера для процессоров Intel&quot; </I><br>* Слишком много воды.<br>* Слишком много времени отведено MS-DOS. В наши дни 8086 режим нужен только чтобы запустить защищенный режим и для ntvdm.<br>* Построена как учебник, препод-стайл<br>* Слишком много вниманию макроассемблеру<br>* О страничной адресации не сказано почти ничего, а все потому, что это учебник, +инфа устарела, уже давно используется PAE, в книге упоминается лишь PSE-36 и то с пометкой &quot;мы не будем его тут описывать&quot;<br><br>Читаем авторский пролог:<br>&quot;Материал данной книги подобран в соответствии с ее первоначальным замыслом — <br>научить студентов писать и отлаживать программы на уровне машинных кодов. <u>Она <br>никогда не заменит собой полноценный учебник по архитектуре компьютеров</u>, но  <br>позволит студентам получить из первых рук бесценный опыт в написании программ и <br><b>продемонстрирует, как на самом деле работает компьютер</b>.&quot;<br><br>Старая избитая ложь, копируемая авторами из книги в книгу (собственно так большинство учебников пишется: лектор берет книгу по которой учился сам, меняет текст определений, добавляет немного новых материалов и издает под своим именем; этим страдает даже МГУ). Что-то не фига я не знал, как работает компьютер (и сейчас не знаю, но что-то все-таки уже знаю), пока не полез изучать тонкости защищенного режима.<br><br>По архитектурам ОС есть книги Таненбаума. Но там тоже воды до фига.<br><br>В итоге документацией является то, о чем я сказал. Маны Интела/АМД и исходники винды. Если кто-то знает другие хорошие примеры, было бы интересно обсудить. Вот, например, как заполняются сегментные регистры в коде из WRK:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;pProcessorState<span class="hl_char">-</span><span class="hl_char">&gt;</span>ContextFrame<span class="hl_char">.</span>SegCs&nbsp;<span class="hl_char">=</span>&nbsp;KGDT_R0_CODE<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;pProcessorState<span class="hl_char">-</span><span class="hl_char">&gt;</span>ContextFrame<span class="hl_char">.</span>SegDs&nbsp;<span class="hl_char">=</span>&nbsp;KGDT_R3_DATA<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;pProcessorState<span class="hl_char">-</span><span class="hl_char">&gt;</span>ContextFrame<span class="hl_char">.</span>SegEs&nbsp;<span class="hl_char">=</span>&nbsp;KGDT_R3_DATA<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;pProcessorState<span class="hl_char">-</span><span class="hl_char">&gt;</span>ContextFrame<span class="hl_char">.</span>SegFs&nbsp;<span class="hl_char">=</span>&nbsp;KGDT_R0_PCR<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;pProcessorState<span class="hl_char">-</span><span class="hl_char">&gt;</span>ContextFrame<span class="hl_char">.</span>SegSs&nbsp;<span class="hl_char">=</span>&nbsp;KGDT_R0_DATA<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>Взято <noindex><a href="http://gate.upm.ro/os/LABs/Windows_OS_Internals_Curriculum_Resource_Kit-ACADEMIC/WindowsResearchKernel-WRK/WRK-v1.2/base/ntos/ke/i386/allproc.c" rel="nofollow" target="_blank">отсюда</a></noindex>. Только не надо это на веру принимать как есть. Но вот в fs обязан быть KGDT_R0_PCR, на этой структуре очень много функций завязано. Остальные регистры завязаны на то, куда вы хотите обращаться. ds и es настраиваются на KGDT_R3_DATA. cs (берется из GDT, шлюзы прерываний и исключений) и ss (стэк всегда соответствует CPL) переключаются процессором. gs вроде бы вообще только в 64-битной винде нужен.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336264&amp;user=2449&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=9" class="addthx" data-post="336264"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=33727" title="14-01-2014 17:49, ранг:76.4" target="_blank">Dr0p</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 21:47 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#10');return false;">#10</a> </span><div align=left><br>
+<b>int</b><br><br>&gt; Фигня с точки зрения работоспособности или с точки зрения оптимизации?<br><br>Вроде же када пивас пили я вам растёр этот вопрос подробно. Зачем опять спрашивать. Сайда тело есть микод <img src="img/smilies/s1.gif" alt=""><br><br>&gt; Но вот в fs обязан быть KGDT_R0_PCR<br><br>Это всё фундаментально, но думаю вы зря это пишите, так как для тс это некий непонятный язык/образы.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336286&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=10" class="addthx" data-post="336286"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 21:56 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#11');return false;">#11</a> </span><div align=left><br>
+<I>Dr0p пишет:<br>Сайда тело есть микод </I><br>Я не драйвер ковыряю, библиотеку.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336288&amp;user=2449&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=11" class="addthx" data-post="336288"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 22:11 <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#12');return false;">#12</a> </span><div align=left><br>
+<b>int</b><br><br>Основная часть фильтра(дллка) не портабельна, так как используются конструкции типо загрузки флагов и далее восстановления регистров, при этом учитывается TF etc. Изменение кода приведёт к не работоспособности. В общем часть, которая является непосредственно фильтром не может быть транслирована на си. На нём походу можно хорошо фильтры сервисов описывать. Описание апи - отложенная маршрутизация также будет извратом, так как используются текущие регистры.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336290&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=12" class="addthx" data-post="336290"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 22:21 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#13');return false;">#13</a> </span><div align=left><br>
+<I>Dr0p пишет:<br>используются конструкции типо загрузки флагов и далее восстановления регистров </I><br>Дык к ним прямой доступ есть через интринсики. Еще можно оптимизацию вырубить, если работоспособность ломается. Смысла особого нет вообще в этом, просто мне таким образом проще разобраться.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336292&amp;user=2449&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=13" class="addthx" data-post="336292"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 января 2014 22:26 <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#14');return false;">#14</a> </span><div align=left><br>
+<b>int</b><br><br>Не могу ничего сказать по поводу инлайн макро(интринсики эти самые). Не нравится мне это, хотя это чисто моё мнение, возможно не корректное.<br><br>Думаю это могут реализоать лишь те, кто полностью конпиль разобрал и знает во что будет каждое выражение сконпилено. Я например понятия не имею. Видимо поэтому и не нравится.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336294&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=14" class="addthx" data-post="336294"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 января 2014 06:27 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#15');return false;">#15</a> </span><div align=left><br>
+<I>int пишет:<br> ss (стэк всегда соответствует CPL)  </I><br>Если быть совсем точным, то это CPL всегда соответствует стеку. Иными словами, текущие привилегии процессора всегда соответствуют полю DPL в теневом регистре SS. При этом SS.CPL  и CS.CPL могут (теоретически) быть другими, т.е. вполне допустима ситуация  когда SS.CPL  = CS.CPL = 0, а фактически проц работает в ринг3. Об этом писал еще Коллинз 15 лет назад. Правда стандартными методами добиться рассинхронизации ShadowSS.DPL с SS.CPL и CS.CPL невозможно (или я просто не знаю как). <br>На современных  процах единственный путь - это залезть в SMM и в образах теневых регистров, сохраненных в SMRAM Save State Map, поменять DPL на нужное значение. На древних 286 и 386 для этой цели можно было еще заюзать команду loadall.<br>P.S. Проверял только в native mode, насчет лонгмода, когда в SS запросто может быть нулл-селектор - хз.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336308&amp;user=22831&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=15" class="addthx" data-post="336308"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]dosprog[/b]','')">dosprog</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 431.7 (мудрец), 390thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.95'>Активность: 0.73<span style='color:red'>&searr;</span>0.32</span><br>Статус: <a href="action=userinfo&amp;user=35473">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 января 2014 08:21 &middot; Поправил: dosprog <br><script type="text/javascript">QU('dosprog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dosprog" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#16');return false;">#16</a> </span><div align=left><br>
+<b>spinz</b>,<br><I>...CS.CPL = 0, а фактически проц работает в ринг3</I>.<br>- это проверено?)))<br><br>Проверка SS.CPL==CS.CPL выполняется во время загузки SS, а не CS.<br><br><br>--ADD--<br>К следующему посту:<br><I>...пытался выполнить любую привилегированную команду...</I><br>--какое значение (<b>число</b>) у вас при этом было в регистре CS?<br><br>И в любом случае: <br>1) при <b>загрузке</b> в SS значения с CPL&lt;&gt;CS.CPL будет неприятность.<br>2) при загрузке в SS (и СS) значений 0..3 - то же самое<br>3) при использовании в SS селектора дескриптора сегмента данных - то же самое.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336311&amp;user=35473&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=16" class="addthx" data-post="336311"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 января 2014 08:37 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#17');return false;">#17</a> </span><div align=left><br>
+Проверено.  Я вызывал SMI из ринг 0, через cache poisoning хучил обработчик SMI#,  менял в образе shadow SS DPL на 3 и выполнял RSM. Потом пытался выполнить любую привилегированную команду, в рез-те GP#, т.е фактически проц был в ринг3, хотя SS.CPL=CS.CPL=0. Еще раз повторю, что все делалось в обычном 32битном протмоде.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336312&amp;user=22831&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=17" class="addthx" data-post="336312"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 01:23 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#18');return false;">#18</a> </span><div align=left><br>
+Господа извиняюсь что я перебиваю, но после прочтения некоторых постов, меня всё больше осинило, мне некий  код драйвер в том числе перехват int 1, нужно будет на x64, но как я понимаю там патч гвард, так шо там мне ничего не светит. Я незнаю как там всё точно, но можна же както подключится типо своим отладчиком и отлаживать свои DR через kernel mode легально и без патча IDT? Хотябы подскажите ключевый слова для поиска в гугле ) Мат часть понимаете хромает <img src="img/smilies/s11.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336334&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=18" class="addthx" data-post="336334"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 01:28 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#19');return false;">#19</a> </span><div align=left><br>
+<b>MickeyBlueEyes</b><br><br>&gt;  Хотябы подскажите ключевый слова <br><br>Маршрутизация. И не обращайте внимания на их заумные тексты. В реале под нт на это можно забить, так как они вещают то, чего в реале не потрогали. Я например пытался поюзать тсс и ничо не получилось. Сугубо по матчасте.<br><br>Реальные задачи этого не требуют. Тёрки про теневые части регистров следует на аверлабе обсуждать, просто там люди есть которые знают теорию хорошо(не сходящуюся частично с реальностью).
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336335&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=19" class="addthx" data-post="336335"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 01:31 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#20');return false;">#20</a> </span><div align=left><br>
+Сложно но попробуем.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336336&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=20" class="addthx" data-post="336336"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 01:36 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#21');return false;">#21</a> </span><div align=left><br>
+<b>spinz</b><br><br>&gt; SMI#<br><br>Ну и нахера и как ты етот сигнал сгенерил если не секрет ?<br><br>&gt; На современных процах единственный путь - это залезть в SMM<br><br>Я не понял, к чему путь ?<br><br>ТС нужно фолты обрабатывать, о чём вы говорите. Наркоман чтоле ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336337&amp;user=33727&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=21" class="addthx" data-post="336337"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 06:28 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#22');return false;">#22</a> </span><div align=left><br>
+<I>dosprog пишет:<br>--какое значение (число) у вас при этом было в регистре CS?<br>И в любом случае:<br>1) при загрузке в SS значения с CPL&lt;&gt;CS.CPL будет неприятность.<br>2) при загрузке в SS (и СS) значений 0..3 - то же самое<br>3) при использовании в SS селектора дескриптора сегмента данных - то же самое.  </I><br>Емнип CS=0x500. За следущее замечание - спасибо, привет от КО )) Правда не понял насчет &quot;SS селектора дескриптора сегмента данных&quot; - по твоему там должен быть дескриптор кодового сегемента что ли?<br><I>Dr0p пишет:<br>как ты етот сигнал сгенерил если не секрет  </I><br>Грустно, когда илита илит, которая везде орет про свое доскональное знание матчастей и обязательность изучения интеловских манов всем одептам, так фейлит. В главе про Local APIC все описано.<br><I>Dr0p пишет:<br>Я не понял, к чему путь </I> <br>К рассинхронизации shadow.DPL и CPL. Видимо одинаково &quot;внимательное&quot; чтение чужих постов и мануалов и стало причиной вышеупомянутого фейла
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336340&amp;user=22831&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=22" class="addthx" data-post="336340"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 09:36 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#23');return false;">#23</a> </span><div align=left><br>
+Аппаратная виртуализация поможет перехватить прерывания, не мешая патчгарду.<br>К слову сказать, в виртуализации амд есть отдельно CS, а есть отдельно CPL. Вероятно, их можно рассинхронизивать, но не пробовал. В интеле такого разделения нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336342&amp;user=1556&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=23" class="addthx" data-post="336342"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=36083" title="16-01-2014 11:47, ранг:20.2" target="_blank">MickeyBlueEyes</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 января 2014 15:47 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#24');return false;">#24</a> </span><div align=left><br>
+Мощь, как я не наткнулся на это.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336354&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=24" class="addthx" data-post="336354"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 января 2014 22:03 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#25');return false;">#25</a> </span><div align=left><br>
+Есть способы узнать прямо в обработчике прерываний в каком мы векторе? Ну тоесть чтобы не подставлять при перехвате всем одно и тоже тело заголовка и конца, а сделать один трап для всех, чтобы заполнял все сегменты, потом узнавал в каком мы векторе и из массива хуков использовал вектор в качестве индекса.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336547&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=25" class="addthx" data-post="336547"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2014 10:37 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#26');return false;">#26</a> </span><div align=left><br>
+<b>MickeyBlueEyes</b><br>В чем проблема открыть наконец мануал? Если проблемы с английским, у меня есть перевод 6-ой главы. Не выкладываю, т.к. еще не успел доделать.<br><br>Вы знаете, что такой класс исключений? Можете назвать отличие в обработчиках отказов (faults в оригинале) и ловушек? Вы понимаете, что будет в стеке в каждом конкретном случае? Там бывает код ошибки, который IRET не выталкивает из стека. Догадываетесь, чем дело кончится? А что сохраняется кроме кода ошибки? Без ответа на эти вопросы, ваши вопросы не имеют смысла. Я понимаю, что вы не смогли сегментные регистры настроить на селекторы винды (KPCR в смысле хотя бы). Тема мало где раскрыта, чтобы тут не писали (драйвер Archer&#039;а с хуком IDT рассмотрен в соседней теме, он конечно сейчас может написать лучше, но с фактом некорректности того кода нельзя не согласиться, а ведь это тоже опыт). Но все же ман Интела, изучить придется.<br><br>Вот, что вам надо открыть (официальная книга Intel):<br>64-ia-32-architectures-software-developer-manual-325462.pdf<br>Поверю, что вы открыли эту книгу, только если назовете мне хотя бы одну ошибку в тексте этой PDF. Да, чтение это скучно и нудно, не так весело чем писать код. Однако, смысла в таком коде не будет, и вам все равно надоест.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336563&amp;user=2449&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=26" class="addthx" data-post="336563"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=36083" title="20-01-2014 14:42, ранг:24.1" target="_blank">MickeyBlueEyes</a>, <a href="action=userinfo&user=36613" title="21-01-2014 11:30, ранг:0.0" target="_blank">_0d0a</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2014 12:46 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#27');return false;">#27</a> </span><div align=left><br>
+<I>MickeyBlueEyes пишет:<br>Есть способы узнать прямо в обработчике прерываний в каком мы векторе?  </I><br>Без лишних телодвижений вроде нельзя. А если все (кроме #NP) дескрипторы IDT пометить как Not present, то в обработчике #NP, анализируя код ошибки, можно определить какой эксепшн должен был бы вызваться (будь его дескриптор Present). Только вряд ли это будет стабильно работать, например в случае фактического double fault мы получим в итоге triple fault  (дескриптор даблфолта ведь невалиден)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336574&amp;user=22831&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=27" class="addthx" data-post="336574"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2014 13:00 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#28');return false;">#28</a> </span><div align=left><br>
+<b>spinz</b><br>Ну еще можно придумать массу способов типа проверок Eip и кода ошибки (если есть). Можно определить int 3 и int3. Можно определить into и bound. Но это ненадежно. И главное зачем? Автор просто хочет упростить код, видимо, вам же больше интересна теоретическая часть вопроса.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336575&amp;user=2449&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=28" class="addthx" data-post="336575"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]spinz[/b]','')">spinz</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 50.0 (постоянный), 31thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.72'>Активность: 0.09<span style='color:green'>&nearr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=22831">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2014 13:23 <br><script type="text/javascript">QU('spinz','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=spinz" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#29');return false;">#29</a> </span><div align=left><br>
+Как я понял, идея автора заключалась в том, чтобы сделать единую точку входа для всех прерываний, потом неким образом определять номер вызванного прерывания(эксепшна) и затем вызывать нужный обработчик. Так действительно код был бы немного компактней, только вот определить искомый номер практически невозможно без извращений с дескрипторными таблицами
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336576&amp;user=22831&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=29" class="addthx" data-post="336576"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=36083" title="20-01-2014 14:42, ранг:24.1" target="_blank">MickeyBlueEyes</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2014 18:42 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#30');return false;">#30</a> </span><div align=left><br>
+Да,именно это я и хотел сделать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336610&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=30" class="addthx" data-post="336610"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]MickeyBlueEyes[/b]','')">MickeyBlueEyes</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 51.6 (постоянный), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36083">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 20 января 2014 19:19 <br><script type="text/javascript">QU('MickeyBlueEyes','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MickeyBlueEyes" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=22388&amp;page=2#31');return false;">#31</a> </span><div align=left><br>
+<b>Int</b><br>В чем проблема открыть наконец мануал? Если проблемы с английским, у меня есть перевод 6-ой главы. Не выкладываю, т.к. еще не успел доделать.<br><br>Да нету проблем, ман читаем, хоть и английский не на высоком уровне. Просто не добирался к нему ещё, а так вот 6 главу открыл всётаки щас читаю.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=336613&amp;user=36083&amp;forum_n=6&amp;topic=22388&amp;page=2&amp;anchor=31" class="addthx" data-post="336613"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=1.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=1.html">2</a> . <b>3</b> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=6&amp;topic=22388&amp;page=3.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Перехват прерываний и исключений</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="22388">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=22388" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

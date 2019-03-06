@@ -1,0 +1,517 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Помогите разобрать алгоритм усечённого блочного кодирования (block truncation coding, BTC) - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Доброго всем! Есть игра Harvester, я хочу разобраться с алгоритмом декодирования видео, вынуть видео, наложить русские титры и вставить назад. Ссылка на описание и алгоритм - --&gt; FutureVision_FST &lt;-- Начал разбираться и не">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=8344'>Magister Yoda</a>, <a target='_blank' href='?action=userinfo&amp;user=42623'>site-pro</a>, <a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Помогите разобрать алгоритм усечённого блочного кодирования (block truncation coding, BTC)</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 19:46 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Доброго всем!<br>Есть игра Harvester, я хочу разобраться с алгоритмом декодирования видео, вынуть видео, наложить русские титры и вставить назад.<br>Ссылка на описание и алгоритм - <noindex><a href="http://wiki.multimedia.cx/title=FutureVision_FST" rel="nofollow" target="_blank">--&gt; FutureVision_FST &lt;--</a></noindex><br><br>Начал разбираться и не понял терминологию, которой описан алгоритм декодирования.<br><br>Формат видео.<br> Видео состоит из множества блоков видео+аудио.<br> Все представленные числа находятся в формате маленького индейца (Little Endian).<br> В заголовке FST файла идут 8*4 (32 байта, на картинке красные блоки) следующих данных (u32 - беззнаковое целое число, 32 bit, 4 байта; u16 - беззнаковое целое число, 16 бит, 2 байта):<br> на примере ALARM.FST<br><br>Начало заголовка файла:<br> u32 - Signature - сигнатура файла -- &quot;2TSF&quot;<br> u32 - Width - ширина кадра (число 320 пикс)<br> u32 - Height - высота кадра (число 200 пикс)<br> u32 - Ticks - frame rate in ticks? (под вопросом, частота кадров в тиках, во многих файлах одинаковое число 276480)<br> u32 - Frames - число кадров-блоков видео+аудио. (40)<br> u32 - Rate - частота кадров в секунду (15 к/с)<br> u32 - SoundRate - частота звука (22050 Гц)<br> u32 - SoundBits - разрядность звука (16 бит)<br><br> Следом идут блоки в количестве, указанном в Frames (40 зеленых блоков на картинке, 4+2 байта, 40*6 байт) :<br> u32 VideoSize -- размер блока видео<br> u16 AudioSize -- размер блока аудио<br>Конец заголовка файла.<br><br> Затем идут массивы байт количеством Frames:<br> u8 VideoData[VideoSize] -- блок данных видео, размером VideoSize<br> u8 AudioData[AudioSize] -- блок данных аудио, размером AudioSize<br><br> Каждый блок VideoData имеет следующий формат:<br> u16 - BitmapSize -- size of the following bitmap, in bits (размер следующего растра/изображения, в битах) <br> u8 Bitmap[BitmapSize/8+1] -- flag bits (битовые флаги), массив. Битовый поток? <br> RGB Palette[256] -- optional. 6-bits DAC values. (RGB и 256, то есть идут группы из 3х цветов R G B и групп 256, как раз палитра 768 байт)<br> u8 Data[] -- to the end of frame (до конца кадра 1 байтные данные)<br><br> И затем идет алгоритм декодирования:<br> Initialize bit reader using Bitmap. (Bitmap из заголовка выше, похоже всю цепочку надо представить битовой строкой)<br> Read one byte, fetch bits starting from the highest. (прочитать 1 байт, получить список бит с наивысшего?)<br><br> Get bit. If bit is set - read the palette data (взять бит, если он установлен в 1, то читать данные палитры)<br> For each 4x4 block of the image (left to right, top to bottom) (для каждого блока 4х4 (пикселей) изображения (слева-направо, сверху-вниз, ноль значит в левом-верхнем углу)<br>    Get Bit. If bit is set: (взять бит, если он в 1, то)<br>       Get Bit. If bit is set: (взять бит, если он в 1, то) <br>       Read Color0, Color1 8-bits values from Data (читать Цвет0, Цвет1 8-битные значения из DATA)<br>       Read BTCMap 16-bits value from Data (читать BTCMap 16 битное значение из DATA, битовая матрица 4х4)<br>       For each pixel of 4x4 block (left to right, top to bottom) (для каждого пикселя блока 4х4, каждый пиксель это бит)<br>         pixel = (BTCMap &amp; 0x8000) ? Color1 : Color0 (сделать битовую операцию BTCMap (2байта) &amp; 8000h, 8000h = 10000000 00000000, старший бит 16 бит числа в 1, результат сей битовой операции будет или 0, или 1. В зависимости от этого возвращается Цвет1 или Цвет0, понял. )<br>         BTCMap &lt;&lt;= 1 (делается битовый сдвиг влево BTCMap на 1, то есть BTCMap=BTCMap*2)<br>     Else<br>         Draw block using next 4x4 bytes of Data (рисовать блок, используя следующие 4х4 байта данных, видимо используя палитру. На выходе получается RAW картинка наверное)<br><br><noindex><a href="http://3.bp.blogspot.com/-KEF2qWtnHhA/Ufo0x3liaoI/AAAAAAAABxg/Q1wtNop6Hnw/s1600/alarm_fst.png" rel="nofollow" target="_blank">--&gt; Иллюстрация &lt;--</a></noindex><br><br>ЗЫ1:<br> Метод усечённого блочного кодирования (block truncation coding, BTC), первоначально разработанный для кодирования двухуровневых чёрно-белых изображений, может быть с успехом применён и для сжатия полутоновых изображений (как чёрно-белых полутоновых, так и цветных).<br> Классический метод BTC чрезвычайно прост: изображение разбивается на непересекающиеся прямоугольные блоки, для каждого блока вычисляются среднее значение яркостей пикселов и дисперсия, затем пикселы блока делятся на две группы – надпороговые, яркость которых превышает вычисленное среднее, и подпороговые. Для того, чтобы можно было установить, к какой группе принадлежит кодируемый пиксел, передаётся (кодируется) бинарная матрица, кроме того, передаются вычисленные среднее и дисперсия, используемые для восстановления блока при декодировании.<br><br> ЗЫ2: <br> Судя по вики (<noindex><a href="http://en.wikipedia.org/wiki/Block_Truncation_Coding" rel="nofollow" target="_blank">--&gt; Block_Truncation_Coding &lt;--</a></noindex>), битовые 0 и 1 - это как раз Цвет0 и Цвет1.<br> BTCMap - битовая карта 4х4, 16 бит закодированы в 2х байтах, представляют собой в итоге 4х4 байта матрицу.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328636&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=1" class="addthx" data-post="328636"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 20:28 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+ну так вы все прекрасно рассписали, теперь берите и делайте<br>а еще лучше гугл в руки или гитхаб и ищите уже готовые реализации
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328638&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=2" class="addthx" data-post="328638"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 20:44 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>reversecode</b><br>Мне абсолютно непонятны следующие строки<br>1. Initialize bit reader using Bitmap. ( что за бит ридер, используя Битмап?)<br>2. For each 4x4 block of the image (left to right, top to bottom) (Что за цикл такой 4х4 блок изображения, для бит, для пикселей?)<br>3. Get Bit (Какой бит? Из Битмап 2 старших бита?)<br>4. For each pixel of 4x4 block (left to right, top to bottom) (То же самое что в п.2, опять какой-то блок, толи битовый, толи байтовый)<br>5. Draw block using next 4x4 bytes of Data (А тут уже 4х4 байта из Дата, причем нарисовать, то есть получается из 320х200 если разбить на блоки 4х4 получается 80х50 блоков, в которых 4х4 блоки, ох)<br><br>У меня в голове схема из-за этого странного псевдоязыка не строится. Как формируется цикл декодирования?<br>Куча вопросов, которые не складываются в единую картину мира (((((
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328642&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=3" class="addthx" data-post="328642"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 20:48 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+так я не получил ответа на свой &quot;наводящий&quot; вопрос - вас в гугле забанили ??<br><noindex><a href="http://www.old-games.ru/forum/showthread.php?p=1014154" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328643&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=4" class="addthx" data-post="328643"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=33253" title="03-08-2013 07:09, ранг:15.8" target="_blank">Abraham</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 20:55 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>reversecode</b><br>Там мне пока что никто не помог, поэтому я пришел сюда. В гугле тоже за 2 дня ничего толкового не нашел.<br>Я не пойму как формируется цикл на их чУдном псевдоязыке.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328645&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=5" class="addthx" data-post="328645"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 20:57 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+а вы программист что ли? ну так берете декомпилер для этой игры и изучаете<br><br>а там все чудно рассписали, биты карты итд<br>видимо вы не программер
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328646&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=6" class="addthx" data-post="328646"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 21:02 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>reversecode</b><br>Я оочень далек от классического программирования как по образованию, так и по работе, для меня это god damned hobby, но тут я закопался и завис ( IDA с поиском константы 8000 пока ни к чему не привела.<br>Недельное изучение в dosbox debugger ни к чему пока не привели. <br><br>Предложите пожалуйста продолжение или иной вариант:<br>1. Ловлю чтение файла, int 21h, ah=3fh<br>2. Нахожу байт-поиском в IDA куда же я попал<br>3. Курю годы до просветления..<br><br>ЗЫ: походу сюда я старую версию запулил текста, ща гляну ( не, последняя правка, застрял на циклах.<br>Пролистал книгу Методы сжатия данных. - М: Диалог-МИФИ, - 2003, 384 с., про BTC там нет ничего (
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328647&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=7" class="addthx" data-post="328647"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 21:15 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+вы не то ловите, <br>графика выводтся через vesa vbe а не через dos<br>программа собрана на watcom, стаб там впереди кажется прицеплен,<br>и зза этого прога как мне кажется вообще неправильно в ида грузится<br>так что отцепляйте цепляйте .. играйтесь что бы правильно загрузилась<br>вконце exe, вроде даже какая то мнини дебаг инфа, которую может даже поймет ИДА,<br>но я знаю как минимум один отладчик что ее понимает, это wd(watcom debugger)<br><br>в комплекте ваткома кажется была утилита которая отцепляет стаб<br><br>отрезать надо до<br>0000041533: 4D 5A<br>очень похоже на реальное начало файла<br>а до этого это расширитель памяти итд<br>он не нужен, и изза этого ида не так дизассемблирует, а вы ищите не те данные, точнее не в том месте
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328648&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=8" class="addthx" data-post="328648"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 21:40 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>reversecode</b> <br>стаб я отцепил, мне помогли<br>(sb.exe /U somegame.exe<br>Теперь файл somegame.le можно открывать в IDA,<br>утилита dos extender 32 забыл как точнее они зовутся, замена dos4gw)<br><br>, открыл 32 битный код идой, в коде байт-поиском находил места, куда я попадал в досбокс дебагере. Смотрел байты текущих инструкций в дебагере, вбивал поиск в Иде и находил блоки. <br>Оказалось несложно.<br>Отладчик всё никак не решусь начать копать через softice dos под vmware, мне айс нравился, но последний раз я его трогал 10 лет назад и я ничего не помню (<br><br>То есть плясать от чтения файла видео - плохой вариант?<br>Тогда подскажи как выводилась графика в vesa режиме? Там вроде плавающее окно в 64кб было и нужно было поток данных для вывода графики писать по какому-то адресу, а палитру совать в порт, афаир, 3f8h. <br><br>Или у меня уже каша в голове от дос-ада.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328651&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=9" class="addthx" data-post="328651"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 21:45 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+ооо ну так я ж не знал что вы догадались отцепить)) думал по стабу лазите...<br><br>дайте отцепленый файл глянуть, а то лень резать в винхексе <img src="img/smilies/s5.gif" alt=""><br><br>дебаггер только ваткомовский, он умеет прыгать через стаб, и проваливатся прямо в само приложение,<br>а обычным дебагером вы туда не долезете
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328652&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=10" class="addthx" data-post="328652"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 21:49 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+http://rghost.ru/47853829<br><br>вот его я колупаю в иде в 32 битном режиме. В нем пытался искать константу 8000 из алгоритма, с которой делается битовая операция.<br><br>Я использую dosbox svn daum, там есть откомпилированная версия с дебагером.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328653&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=11" class="addthx" data-post="328653"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 21:57 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+я не дождался <img src="img/smilies/s3.gif" alt=""> отцепил в winhex<br>http://rghost.ru/47854037<br>ида сразу все распознала и показала<br>вот к примеру функция чтения ваших FST<br><br>FST_sub_72160((int)&quot;graphic\fst\kinggrow.fst&quot;, 0, 2, v8, a1);<br><br>ps вы то отцепили, а прицеплять обычный стаб кто будет?)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328655&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=12" class="addthx" data-post="328655"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 22:05 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>reversecode</b><br>Черт побери, в вашем варианте всё намного лучше ИДА признала файл как LE, просто магия, ушел изучать. <br>Куча функций автоматом ида разобрала.<br>Спасибо огромное.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328656&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=13" class="addthx" data-post="328656"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 22:06 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+потому что нужно было обрезать фул стаб и оставить prestub который и формирует нормальный заголовок перед LE<br>и да, этот exe является рабочим, только dos4gw.exe надо рядом положить ))
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328657&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=14" class="addthx" data-post="328657"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2013 22:10 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>reversecode</b><br>Я про стабы то узнал месяц назад, а мне тут фулл стаб, престаб. Проще было на китайском написать))<br>Короче не хватило предметных знаний.<br><br>В игре есть 2 плохих момента:<br>1. В текстовых файлах есть субтитры для видео, но в видео титров нет.<br>2. Некоторые видеоролики начинают проигрываться, показывает пару кадров и пропуск. Причем если уменьшить количество циклов досбокс до 5000-8000, то ролики проигрываются нормально, но игра становится медленной до неиграбельности. Вот ломаем голову что же делать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328658&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=15" class="addthx" data-post="328658"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2013 00:25 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+этот файл игры с необрезаными дебаг символами<br>но ида их не видет, иначе бы все функции имели название,<br>их должен увидеть только ваткомоский дебагер, ну либо сами разберите формат этих отладочных симполов и прикрутите в ида,<br>тогда вообще станет все понятно по названиям функций<br><br>как вариант можете попробовать поганять ваткомоским дизасмом может он дебаг инфу увидет и ее можно будет выдрать
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328665&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=16" class="addthx" data-post="328665"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]reverser[/b]','')">reverser</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 58.0 (постоянный), 13thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.82'>Активность: 0.02<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=2615">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2013 03:51 <br><script type="text/javascript">QU('reverser','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reverser" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Вывод ваткомовского wdump: http://pastebin.com/XAg19MLQ
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328667&amp;user=2615&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=17" class="addthx" data-post="328667"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2013 04:31 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+wdump не знал... но парсер на пять строк написал... сгодится на будущее <img src="img/smilies/s5.gif" alt=""><br><br>harvest.idc <noindex><a href="http://rghost.ru/47860674" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>в иде применить и всего то <img src="img/smilies/s5.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328668&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=18" class="addthx" data-post="328668"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2013 09:28 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<b>reversecode</b> проставил соответствие адресам функции имена из ватком лога? класс.<br>Применил, стало еще красивее.<br><br>Есть какие-нибудь идеи, почему воспроизведение видео зависит от циклов-тактов в досбокс и почему при больших значениях некоторые видео показывают всего пару кадров?<br>В режиме LOG пошагово всё видео воспроизводит нормально, а в режиме авто с циклами ~40000 начинает чудить. Если циклы уменьшить до 5000, то видео показывает нормально, но играть становится невозможно. На vogons&#039;е гениально посоветовали постоянно переключать циклы.<br><br>Буду в отладчике смотреть функцию decompress_fst, на нее все ссылаются.<br>Сперва идет play_fvi с указанием файла fst, а внутри<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>if</b></span>&nbsp;<span class="hl_char">(</span>&nbsp;v6&nbsp;<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;viewport<span class="hl_char">:</span><span class="hl_char">:</span>resize<span class="hl_char">(</span><span class="hl_char">(</span><span class="hl_function">int</span><span class="hl_char">)</span><span class="hl_char">&amp;</span>the_viewport<span class="hl_char">,</span>&nbsp;<span class="hl_number">320</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">200</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">8</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">1</span><span class="hl_char">)</span><span class="hl_comment">;  // переключили видеорежим в 320х200 для видео</span></li><li class="hl_l0">&nbsp;decompress_fst<span class="hl_char">(</span>v5<span class="hl_char">,</span>&nbsp;a5<span class="hl_char">,</span>&nbsp;<span class="hl_number">480</span><span class="hl_char">)</span><span class="hl_comment">;  // разжали fst, видимо и показали где-то тут же внутри функции</span></li><li class="hl_l1">&nbsp;v8&nbsp;<span class="hl_char">=</span>&nbsp;viewport<span class="hl_char">:</span><span class="hl_char">:</span>resize<span class="hl_char">(</span><span class="hl_char">(</span><span class="hl_function">int</span><span class="hl_char">)</span><span class="hl_char">&amp;</span>the_viewport<span class="hl_char">,</span>&nbsp;<span class="hl_number">640</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">480</span><span class="hl_char">,</span>&nbsp;v11<span class="hl_char">,</span>&nbsp;<span class="hl_number">1</span><span class="hl_char">)</span><span class="hl_comment">; // Переключили назад в 640х480</span></li><li class="hl_l0">&nbsp;v9&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_char">(</span>unsigned&nbsp;__int8<span class="hl_char">)</span>setvgapalette<span class="hl_char">(</span>v8<span class="hl_char">,</span>&nbsp;<span class="hl_number">256</span><span class="hl_char">)</span><span class="hl_comment">; // установили палитру</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Я тут подумал. Вот можно разобрать видео, но когда собирать его назад придется, то произойдет снова понижение качества, в оригинале итак грустно, а будет еще грустнее. (
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328669&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=19" class="addthx" data-post="328669"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2013 04:31 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<I>robot666 пишет:<br>то произойдет снова понижение качества </I><br>на то оно и сжатие с потерей качества... и если нигде коэффициент сжатия не задаётся в функции компрессии, то <I>robot666 пишет:<br>будет еще грустнее. </I>
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=328751&amp;user=6946&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=20" class="addthx" data-post="328751"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2013 09:47 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+Три дня смотрел функцию Decompress_fst, не вижу места почему некоторые видео пропускает игра.<br><br>Пытаюсь найти информацию, как происходит синхронизация того что выполняется и что показывается. <br>В функции разжатия нет ни таймеров, ни часов.<br>В начале блока декодирования есть 2 ожидания хода луча VSYNC.<br><br>Есть одно непонятное мне место:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">cseg01<span class="hl_char">:</span><span class="hl_number">00013039</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>movsx</b></span>&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;W<span class="hl_char">?</span>raw_key<span class="hl_char">$</span>nys&nbsp;<span class="hl_comment">; short volatile raw_key</span></li><li class="hl_l1">cseg01<span class="hl_char">:</span><span class="hl_number">00013040</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_number">1</span></li><li class="hl_l0">cseg01<span class="hl_char">:</span><span class="hl_number">00013043</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIDEO_EXIT</li><li class="hl_l1">cseg01<span class="hl_char">:</span><span class="hl_number">00013049</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W<span class="hl_char">?</span>left_button<span class="hl_char">$</span>nyuc<span class="hl_char">,</span>&nbsp;<span class="hl_number">0</span>&nbsp;<span class="hl_comment">; char volatile left_button</span></li><li class="hl_l0">cseg01<span class="hl_char">:</span><span class="hl_number">00013050</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jnz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIDEO_EXIT</li><li class="hl_l1">cseg01<span class="hl_char">:</span><span class="hl_number">00013056</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W<span class="hl_char">?</span>right_button<span class="hl_char">$</span>nyuc<span class="hl_char">,</span>&nbsp;<span class="hl_number">0</span>&nbsp;<span class="hl_comment">; char volatile right_button</span></li><li class="hl_l0">cseg01<span class="hl_char">:</span><span class="hl_number">0001305D</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jnz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;VIDEO_EXIT</li>        </ol>
+    </div>
+</div></div>
+<br>По идее тут сравнивается нажата ли левая/правая кнопка мыши или клавиша и переход на VIDEO_EXIT.<br>НО, в IDA навожу на movsx   eax, W?raw_key&#036;nys, смотрю в HEX, последовательность 0F BF 05 60 59 0D 00, иду в WinHex на это же место и вижу уже 0F BF 05 60 59 02 00.<br><br>Вопрос, почему предпоследний байт кода отличается? <br>02 и 0D. <br>wtf?<br>Убирал переходы, игра вообще валится с ошибками, возможно это и не то, что я думаю?<br><br>Интересное наблюдение:<br>Взял на тестирование момент повторного разговора с Хэнком, показывает 1 или пара кадров видео ковбоя, стреляющего в индейца и пропуск. Это видео RANGSHOT.FST, подменил его другим видео, то же самое, пара кадров из другого видео. Никак не пойму, почему игра одни видео играет, а другие нет. Например, начальные 3 видео проигрываются всегда нормально.<br>Подменил RANGSHOT.FST на VIRGLOGO.FST, играющий в начале, воспроизвелось нормально.<br>Если VIRGLOGO.FST подменить на RANGSHOT.FST, то при старте игры видео показывает нормально.<br>Загадка.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328754&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=21" class="addthx" data-post="328754"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2013 10:07 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+буфер сканкодов живой<br><br>потому что формат видео скорее всего разный
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328756&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=22" class="addthx" data-post="328756"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2013 10:18 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<b>reversecode</b><br>У меня было такое предположение, что когда кликаешь мышкой и начинается видео, то да, в буфере что-то как-то остается. Но непонятно куда копать.<br><br>А как бы буфер сбросить? В порт 61h подать коротко сигнал. Это для клавиатуры, ищу для мышки, так как клаву в момент начала видео я не трогаю.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328757&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=23" class="addthx" data-post="328757"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2013 10:37 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+считаю вашу затею с локализациями русификациями игры вообще напрасной,<br>игра писана под дос, если и имеет смысл, то доставать исходники и переписывать ее под виндовс<br><br>манияки которые захотят в нее поиграть, поставят дос или поставят какойто вирутал ПК,<br>и поиграют<br><br>зачем ломать логику задуманую автором и чего то там перекодировать ...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328758&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=24" class="addthx" data-post="328758"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 августа 2013 10:48 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+Игра прекрасно играется под dosbox, весь текст уже переведен и вставлен. <br>Под vmware и virtualpc2007 не работает.<br><br>Единственный момент который всё портит - это пропуски видео.<br><br>У меня чето руки кривые чтоли, HEX VIEW-A в IDA и Winhex не могу состыковать, не то вижу. Делаю NOP на условных переходах, а IDA мне пишет, что там int3 и retf, игра естественно валится.<br><br>Всё, победил, спасибо товарищу <b>reversecode</b> за наводку. Видимо игра не успевала сбросить/опросить буфер мышки и клик мышкой пролезал в воспроизведение видео, прерывая его. Оставил из условных переходов реакцию на клавиатуру, а два условных перехода от мышки занопил, и видео стало показывать нормально и пропустить можно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328760&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=25" class="addthx" data-post="328760"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]robot666[/b]','')">robot666</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.87'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26266">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 августа 2013 21:38 &middot; Поправил: robot666 <br><script type="text/javascript">QU('robot666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=robot666" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<b>reverser</b> будь добр, напиши, пожалуйста, где взять wdump и как им пользоваться. Я так же хочу получить красивый LE исполняемый файл игры &quot;противостояние - военная хроника&quot;.<br><br>Это из состава OpenWatcom C++ ?<br>Ага из состава.<br>http://www.openwatcom.org/index.php/Downloads<br><br><b>wdump.exe -Dx h.exe</b> выдает красоту.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328796&amp;user=26266&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=26" class="addthx" data-post="328796"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 августа 2013 21:44 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=22031.html&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+в комплекте ваткома<br>а вы уверены что вообще там осталась дебаг инфа?<br>и такой красивый как я вам дал? wdump не генерит<br>могу сгенерить, давайте файл
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=328797&amp;user=15381&amp;forum_n=2&amp;topic=22031.html&amp;page=0&amp;anchor=27" class="addthx" data-post="328797"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Помогите разобрать алгоритм усечённого блочного кодирования (block truncation coding, BTC)</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#28" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="2">
+<input type="hidden" name="topic" value="22031">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=22031" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

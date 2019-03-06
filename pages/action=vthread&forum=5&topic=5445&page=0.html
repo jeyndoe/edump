@@ -1,0 +1,718 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Как правильно снять дамп с DLL - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Пытаюсь распаковать DLL запакованную PECompact v1.x (какая точно не знаю). Вобoм нашел я в OllyDbg оригинальную DllEntryPoint и вот как ни пытался снять нормальны дамп - ничего не выходит, все время получается не валидный PE файл">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=40607'>vsv1</a>, <a target='_blank' href='?action=userinfo&amp;user=41701'>_MBK_</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Как правильно снять дамп с DLL</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=5&amp;topic=5445&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=5&amp;topic=5445&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]jfx[/b]','')">jfx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.4 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.38'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3875">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2006 13:08 <br><script type="text/javascript">QU('jfx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=jfx" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Пытаюсь распаковать DLL запакованную PECompact v1.x (какая точно не знаю). Вобoм нашел я в OllyDbg оригинальную DllEntryPoint и вот как ни пытался снять нормальны дамп - ничего не выходит, все время получается не валидный PE файл <img src="img/smilies/s9.gif" alt=""> По форуму искал, ничего похожего не нашел (обычно все вопросы сосредаточены на поиске EP и востановлении импорта, а такой простой вещи ни где нет). Помогите разобраться...
+<br>На всяк случай эта самая Dll<br><br><img src="img/attach.gif" alt=""> <a href="./files/4e9e_27.06.2006_CRACKLAB.rU.tgz">4e9e_27.06.2006_CRACKLAB.rU.tgz</a> - UiSupport.zip
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=79950&amp;user=3875&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=1" class="addthx" data-post="79950"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2006 16:09 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+На выбор - результат в аттаче или в олли делаешь  hr  ESP-24  ( а  не  -4  как везде советуют)
+<br> и 2-й останов на команде   popfd  и тут же недалеко RET  4   на  точку   входа.
+<br>   Переход на точку входа нашел после безуспешных трассировок, путем визуального просмотра кода.
+<br> Посмотрел что в ESP - вот вам и алгоритм. Спасибо за интересную задачку. Сегодня я поднялся на 1 ступеньку вверх про лестнице крака <img src="img/smilies/s1.gif" alt="">
+<br>-----------------------------------------------------------
+<br>  DLL   написана   на   Дельфи 6.0, DeDe плохо ее берет, но TDCP_rijndael  TDCP_hash  TDCP_blockcipher и 
+<br>TDCP_sha1  видит.  Это подтверждает  kanal   из   PEID2006.
+<br>-----------------------------------------------------------
+<br>  Кстати  подумалось, что  алгоритм  типа    :
+<br><b> доходим до  PUSHAD , выполняем  ее  и   ставим   HR   ESP  </b>
+<br>  более  универсален, т.к.   HR   ESP-4     в данном случае  брякается  безостановочно   где попало ?!
+<br>----------------------------------------------------------
+<br>P.S.  unpecompact 1.32   c  DLL   не  работает, а unpecompact2  работает со 2-ми  версиями
+<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/08fb_27.06.2006_CRACKLAB.rU.tgz">08fb_27.06.2006_CRACKLAB.rU.tgz</a> - UiSupport_.zip
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80004&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=2" class="addthx" data-post="80004"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Asterix[/b]','')">Asterix</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 450.1 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=58">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2006 18:38 <br><script type="text/javascript">QU('Asterix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Asterix" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Dll дампится точно также как exe, только дампу нужно прописать потом ImageBase при котором
+<br>dll была загружена в память во время дампа, а также обратить внимание на тот факт что у DLL должны быть
+<br>релоки, иначе ее можно будет загрузить только по той же базе по которой она была загружена в момент
+<br>дампа
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80030&amp;user=58&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=3" class="addthx" data-post="80030"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2006 19:51 &middot; Поправил: Bitfry <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>tundra37</b>
+<br>Релоки не создал (будем подниматься ещё выше ;) ).
+<br>Получается:
+<br><I>Asterix пишет:
+<br>ее можно будет загрузить только по той же базе по которой она была загружена в момент дампа </I>
+<br>
+<br>А для dll, это совсем нехорошо!
+<br>
+<br>Нужно воспользоваться утилитой типа ReloX.
+<br>Придётся:
+<br>- принудительно замапить dll на 2 разные базы.
+<br>- распаковать их обе
+<br>- ReloX, сравнивая их, создаст новую директорию релоков.
+<br>
+<br>Немного теории.
+<br>PE-формат предполагает загрузку образа не только по значению из ImageBase. Exe-файлы обычно не используют такую возможность, а вот dll вынуждены, так как заранее определить свободное виртуальное пространство для размещения образа библиотеки не всегда возможно. Кроме того, система кеширует dll и я столкнулся с тем, что при повторной загрузке некоторых программ, dll мапится, игнорируя ImageBase, на первые свободные VA (отведённые для dll). Я уже писал, что предполагаю здесь замысел дефрагментации виртуального адресного пространства (хотя суть мне не ясна).
+<br>
+<br>Пояснения для новичков. 
+<br>Весь код dll должен быть отвязан от базы размещения кода.
+<br>Пример команды (разумеется, не все =):
+<br>jmp [offset] (опкод FF25)
+<br>call [offset] (FF15)
+<br>или просто таблицы, сгенерированные для операторов switch
+<br>dd offset
+<br>dd offset
+<br>...
+<br>
+<br>Здесь offset - абсолютный эффективный адрес. То есть когда указывается не относительное смещение от текущей команды до места назначения, а, допустим, dd 00720010.
+<br>Если базовый адрес изменяется, то такие offset&#039;ы нуждаются в коррекции. Это и называется &quot;релокация образа&quot;.
+<br>В PE-файлах предусмотрена директория релоков (она же Fixup Table).
+<br>В случае если был STATUS_CONFLICTING_ADDRESSES, загрузчик выясняет, есть ли директория релоков и есть ли у неё размер. Если всё правильно, он выполняет коррекцию смещений, указанных в этой таблице. Если нет, dll не будет загружена.
+<br>
+<br>Так вот запакованные dll, могут иметь всего лишь один релок (как в этом случае). Протектор сам корректирует образ, если это нужно. Он просто вычитает из эталонного значения текущее значение этого единственного пофиксенного offset&#039;a, получая таким образом дельту для всех необходимых исправлений.
+<br>
+<br>Подробно об устройстве таблицы релоков можно прочесть в: 
+<br>статье &quot;об упаковщиках в последний раз&quot;, 
+<br>у CyberManiac&#039;а в &quot;Теоретические основы крэкинга&quot;.
+<br>И не вздумайте брать инфу из доки M&#036;, так как там описаны релоки obj-файлов, они устроены по-другому.
+<br>
+<br>ЗЫ Пишу редактор релоков, поэтому тема для меня насущная. =)
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80043&amp;user=410&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=4" class="addthx" data-post="80043"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]jfx[/b]','')">jfx</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 56.4 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.38'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3875">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 июня 2006 20:03 <br><script type="text/javascript">QU('jfx','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=jfx" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Спасибо.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80045&amp;user=3875&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=5" class="addthx" data-post="80045"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 09:28 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Там релоки в чистом виде, пересчитываем размер и всё. Зачем новые создавать?
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80084&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=6" class="addthx" data-post="80084"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]ppetroff[/b]','')">ppetroff</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 1.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.68'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=2945">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 14:04 <br><script type="text/javascript">QU('ppetroff','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ppetroff" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>tundra37</b>
+<br>Где взять unpecompact2 ?
+<br>Заранее спасибо!
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80132&amp;user=2945&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=7" class="addthx" data-post="80132"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Asterix[/b]','')">Asterix</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 450.1 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=58">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 14:34 <br><script type="text/javascript">QU('Asterix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Asterix" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>Bitfry пишет:
+<br>И не вздумайте брать инфу из доки M&#036;, так как там описаны релоки obj-файлов </I>
+<br>
+<br>гон какой-то
+<br>
+<br>Инфу нужно брать из заголовков MS VC/VS или SDK
+<br>а также статей про формат PE типа:
+<br>Inside Windows 
+<br><b>An In-Depth Look into the Win32 Portable Executable File Format</b>
+<br>Matt Pietrek
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80139&amp;user=58&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=8" class="addthx" data-post="80139"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 15:21 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>ppetroff пишет:
+<br>Где взять unpecompact2 ?  </I>
+<br><br><br><img src="img/attach.gif" alt=""> <a href="./files/ed12_28.06.2006_CRACKLAB.rU.tgz">ed12_28.06.2006_CRACKLAB.rU.tgz</a> - unpec2.tgz
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80154&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=9" class="addthx" data-post="80154"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 15:45 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Блин, а PESniffer 3.2b  из  PETools говорит, что упаковано Exe Shield v1.7
+<br>Правда сигнатуры 2003 года. Придется все выверять.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80157&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=10" class="addthx" data-post="80157"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ppetroff[/b]','')">ppetroff</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 1.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.68'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=2945">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 16:35 <br><script type="text/javascript">QU('ppetroff','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ppetroff" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Раз пошла такая пьянка (кстати спасибо tundra37 за файл) - у меня вопрос: как загрузить DLL в OllyDbg на другой ImageBAse (руками этой dll PE заголовок временно изменить?) с целью кормить потом дампами reloX? Неужели нет стандартных средств?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80166&amp;user=2945&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=11" class="addthx" data-post="80166"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Asterix[/b]','')">Asterix</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 450.1 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=58">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 16:48 <br><script type="text/javascript">QU('Asterix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Asterix" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+загрузить на тот адрес на который в первый раз грузилась длл фейковую ДЛЛ, при компиляции
+<br>ее указать нужный ImageBase и пострипать релоки указав специальный ключ
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80167&amp;user=58&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=12" class="addthx" data-post="80167"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]ppetroff[/b]','')">ppetroff</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 1.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.68'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=2945">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 17:28 &middot; Поправил: ppetroff <br><script type="text/javascript">QU('ppetroff','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ppetroff" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+Накропал по-быстрому в Delphi мини-dll указав нужный imagebase {&#036;IMAGEBASE &#036;00780000}, загружаю ее - она нормально грузится по указанному адресу (смотрю Lord PE), засада в том что исследуемая dll в OllyDBG все равно ТОЖЕ грузится по тому же адресу! Как пофиксить? Почитав хелп по опциям компилятора Delphi ничего про &quot;пострипать релоки&quot; не нашел <img src="img/smilies/s4.gif" alt=""> Ткните носом.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80171&amp;user=2945&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=13" class="addthx" data-post="80171"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 17:46 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I>ppetroff пишет:
+<br>Неужели нет стандартных средств? </I>
+<br> Плаг  в  PETools  однако. Таблицу сделал - кто хочет, может проверить ...
+<br> Прямо из уже распакованной.<br><br><img src="img/attach.gif" alt=""> <a href="./files/f083_28.06.2006_CRACKLAB.rU.tgz">f083_28.06.2006_CRACKLAB.rU.tgz</a> - UiSupport_rel.zip
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80174&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=14" class="addthx" data-post="80174"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 18:26 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>Asterix пишет:
+<br>гон какой-то </I>
+<br>=)
+<br>Хорошо поясню. 
+<br>Написал так, потому что уже не один человек логично поступил, как я в первый раз.
+<br>Не имея под рукой MSDN, лезем на wasm, там сразу находим архивчик с подборкой инфы о PE:
+<br>===
+<br>Документация по PE-файлам by Microsoft Corp/Bernd Luevelsmeyer/Hard Wisdom 
+<br>В этом файле будут лежать все документы по формату PE-файлов, достойные внимания. Лежит документ от Bernd Luevelsmeyer версия 1.7 - одно из самых лучших описаний формата + великолепный пример по сборке PE-файла РУКАМИ. Также приложена официальная документация от MS по PE/COFF/CLR-форматам...
+<br>===
+<br>Так вот в этом архиве есть файл PECOFF.pdf, там описаны релоки объектных файлов.
+<br>
+<br>Это потом я взялся читать Петрика и LUEVELSMEYER&#039;a =). Кстати, всем рекомендую.
+<br>
+<br><I>PE_Kill пишет:
+<br>Там релоки в чистом виде, пересчитываем размер и всё. Зачем новые создавать? </I>
+<br>Ты о чём, что-то я совсем не пойму?
+<br>
+<br><b>ppetroff</b>
+<br>Прочитай инструкцию к ReloX&#039;у.
+<br>
+<br><I>tundra37 пишет:
+<br>Таблицу сделал - кто хочет, может проверить ...  </I>
+<br>Мой редактор (на днях первый рабочий exe получился =), говорить, что всё на 5+ =).
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80184&amp;user=410&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=15" class="addthx" data-post="80184"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 18:29 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+Ага! Нашел в QUnpack сигнатуры 2006 года для PESniffer   2006  года.   EXE Shield однако показывает.
+<br> Кстати  сниффер в QUnpack-e  нормально  PECompact  показывает, только ОЕР  не  находит.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80185&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=16" class="addthx" data-post="80185"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Asterix[/b]','')">Asterix</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 450.1 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.96'>Активность: 0.26<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=58">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 июня 2006 19:00 <br><script type="text/javascript">QU('Asterix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Asterix" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<I>ppetroff пишет:
+<br>засада в том что исследуемая dll в OllyDBG все равно ТОЖЕ грузится по тому же адресу! </I>
+<br>
+<br>такого не может быть
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80190&amp;user=58&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=17" class="addthx" data-post="80190"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 09:56 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I>Bitfry пишет:
+<br>Ты о чём, что-то я совсем не пойму? </I>
+<br>Я о том, что релоки там как были так и есть, просто их надо найти и посчитать размер.
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80305&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=18" class="addthx" data-post="80305"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 10:23 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<I>PE_Kill пишет:
+<br>Я о том, что релоки там как были так и есть </I>
+<br>Подскажи смещение?
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80313&amp;user=410&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=19" class="addthx" data-post="80313"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 11:14 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<I>ppetroff пишет:
+<br>засада в том что исследуемая dll в OllyDBG все равно ТОЖЕ грузится по тому же адресу! Как пофиксить?  </I>
+<br> Так надо грузить в рамках одного процесса. Напиши аналог loaddll.exe и запускай ее в олли.
+<br> Можно поменять размер последней секции(VSize) и длину образа ( SizeofImage). Только аккуратнее - lordpe правит длину без учета выравнивания и в 2000-м получается нерабочий экзе.
+<br>  Да, если не знаешь, вызываешь   loaddll.exe  &lt;имя dll&gt;.
+<br>  Кстати, у loadddl  релоки пострипаны и плаг восстанавливает очень мало <img src="img/smilies/s15.gif" alt=""> Это просто к слову - я хотел сначала исправить ImageBase в лоаддлл, но получил облом.<br><br><img src="img/attach.gif" alt=""> <a href="./files/86fd_29.06.2006_CRACKLAB.rU.tgz">86fd_29.06.2006_CRACKLAB.rU.tgz</a> - loaddll1.exe
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80324&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=20" class="addthx" data-post="80324"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]ppetroff[/b]','')">ppetroff</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 1.7 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.68'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=2945">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 11:26 &middot; Поправил: ppetroff <br><script type="text/javascript">QU('ppetroff','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ppetroff" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<b>tundra37</b>
+<br>Спасибо за наводку, именно этим плагином восстановил релоки на ура в моей dll !!! (Спасибо авторам)
+<br>
+<br>В связи с чем чисто ради спортивного интереса буду пытаться восстановить их через Relox,
+<br>еще раз спасибо!
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80328&amp;user=2945&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=21" class="addthx" data-post="80328"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 11:43 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+<b>Bitfry</b> Релоки лежат по смещению 2C000. Вот алго как посчитать размер:
+<br><code>
+<br>procedure TForm1.Button1Click(Sender: TObject);
+<br>var dwBase:DWORD;
+<br>    pPointer:PDWORD;
+<br>    i:Integer;
+<br>    dwSize:Integer;
+<br>begin
+<br>  dwBase:=LoadLibraryEx(&#039;c:&#92;PE_Kill&#92;Dumped_p.dll&#039;,0,DONT_RESOLVE_DLL_REF ERENCES);
+<br>  // &#036;002C000 - Оффсет на релоки
+<br>  pPointer:=Pointer(dwBase+&#036;002C000+4);
+<br>  dwSize:=0;
+<br>  repeat
+<br>    dwSize:=dwSize+pPointer^;
+<br>    pPointer:=Pointer(DWORD(pPointer)+pPointer^);
+<br>  until pPointer^=0;
+<br>  ShowMessage(IntToHex(dwSize,8));  
+<br>  FreeLibrary(dwBase);
+<br>end;
+<br></code>
+<br>Всё, пишем их в Base reloc RVA, Size. У меня ДЛЛ грузилась по адресу 3B0000, поэтому я поменял Image Base на 3B0000 и всё работает.
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80333&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=22" class="addthx" data-post="80333"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 11:47 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+PS Хотя я поторопился, какието релоки странные, надо посмотреть...
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80335&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=23" class="addthx" data-post="80335"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 14:43 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<I>PE_Kill пишет:
+<br>надо посмотреть... </I>
+<br>А чего там смотреть. Это не релоки. 
+<br>У релоков в блоках массив word, каждый из которых начинается на 3 (если конечно тип HIGHLOW) в hex-редакторе сразу видно.
+<br>Я в редакторе сканер простенький сделал (то есть делаю =).
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80389&amp;user=410&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=24" class="addthx" data-post="80389"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 15:10 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>Bitfry пишет:
+<br>А чего там смотреть. Это не релоки. </I>
+<br>А вот тут ты сильно заблуждаешься. Это как раз релоки, только пакер их формат изменил. Сейчас пишу алго (выдрал из пакера) которое их восстановит.
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80401&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=25" class="addthx" data-post="80401"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 15:38 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+Всё, восстановил. Вот алго.
+<br>
+<br>procedure TForm1.Button1Click(Sender: TObject);
+<br>var dwBase:DWORD;
+<br>    pPointer:PDWORD;
+<br>    i:Integer;
+<br>    dwSize:Integer;
+<br>    dwBlockSize:DWORD;
+<br>    wLastRel:WORD;
+<br>    wCurRel:WORD;
+<br>begin
+<br>  dwBase:=LoadLibraryEx(&#039;c:&#92;Dumped_p.dll&#039;,0,DONT_RESOLVE_DLL_REFERENCES) ;
+<br>  // &#036;002C000 - &#238;&#244;&#241;&#229;&#242; &#237;&#224; &#240;&#229;&#235;&#238;&#234;&#232;
+<br>  pPointer:=Pointer(dwBase+&#036;002C000+4);
+<br>  dwSize:=0;
+<br>  repeat
+<br>    dwBlockSize:=(pPointer^-8) div 2;
+<br>    dwSize:=dwSize+pPointer^;
+<br>    pPointer:=Pointer(DWORD(pPointer)+2);
+<br>    wLastRel:=0;
+<br>    for i:=1 to dwBlockSize do
+<br>    begin
+<br>      pPointer:=Pointer(DWORD(pPointer)+2);
+<br>      wCurRel:=WORD(pPointer^);
+<br>      wCurRel:=wCurRel+wLastRel;
+<br>      wLastRel:=wCurRel;
+<br>      MoveMemory(pPointer,@wCurRel,2);
+<br>    end;  
+<br>    pPointer:=Pointer(DWORD(pPointer)+2+4);
+<br>  until pPointer^=0;
+<br>  ShowMessage(IntToHex(dwSize,8));  
+<br>  FreeLibrary(dwBase);
+<br>end;
+<br>Правда сохранение не сделал, в ольке дебажил, от туда прямо из буфера результат и выдрал и WinHex-ом вставил. Теперь всё работает 100%.
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80407&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=26" class="addthx" data-post="80407"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Bitfry[/b]','')">Bitfry</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 495.3 (мудрец)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.8'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=410">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 16:14 <br><script type="text/javascript">QU('Bitfry','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Bitfry" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<I>PE_Kill пишет:
+<br>А вот тут ты сильно заблуждаешься. Это как раз релоки, только пакер их формат изменил. Сейчас пишу алго (выдрал из пакера) которое их восстановит. </I>
+<br>Ладно, ладно, не буду спорить - ты крут =).
+<br>Возникает один вопрос, зачем оно нужно? Если только для тренировки мозгов... 
+<br>Но лучше тренироваться, на чём-нибудь полезном типа - сложный прот расковырять. ;)
+<br>
+<br>ЗЫ А вообще для сканера полезная инфа. Есть смысл искать не сами куски релоков, а массив структур IMAGE_BASE_RELOCATION и уже потом в них разбираться.
+<br><br><font size="1"><i>-----<br>Всем привет, я вернулся</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80412&amp;user=410&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=27" class="addthx" data-post="80412"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 июня 2006 17:43 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+Ну а мне стало интересно, как плагин с этой задачей справился. Откуда он инфу взял ?! Буду ковырять.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=80427&amp;user=4072&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=28" class="addthx" data-post="80427"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 июня 2006 06:42 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<I>Bitfry пишет:
+<br>Но лучше тренироваться, на чём-нибудь полезном типа - сложный прот расковырять. ;) </I>
+<br>Ну дык ковыряю, но не могу пройти мимо, когда пытаются импреком импорт восстановить в pecompact или aspack, или когда в простеньком пакере релоки восстанавливают релоксами, сравнениями дампов и т.д.
+<br>
+<br>&gt; Возникает один вопрос, зачем оно нужно?
+<br>А это для тренировки как раз. Я ничем не пользовался, чисто на глаз определил что это релоки, хотя не особо и похожи, да и ты смутился. Просто я время от времени занимаюсь релоками разных пакеров/протекторов так сказать руку набиваю. Даже писал тулзу для этого, потом ее вшил в свой анпакер ASPack&#039;а (который full reconstruct), а исходники похерил. А рипать код из анпакера (исходный) как то лень.
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=80552&amp;user=3232&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=29" class="addthx" data-post="80552"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]Mavlyudov[/b]','')">Mavlyudov</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/3355.jpg" alt=""><br><span class=txtSm>Ранг: 156.2 (ветеран), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.53'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3355">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 августа 2007 23:04 <br><script type="text/javascript">QU('Mavlyudov','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Mavlyudov" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=5445&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+<b>tundra37</b><br>в каких случая применять hr esp-24, а в каких hr esp-4? и как понять что конкретно выбрать.<br>В статье битхака это не написано
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=154588&amp;user=3355&amp;forum_n=5&amp;topic=5445&amp;page=0&amp;anchor=30" class="addthx" data-post="154588"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=5&amp;topic=5445&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=5&amp;topic=5445&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Как правильно снять дамп с DLL</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#31" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="5">
+<input type="hidden" name="topic" value="5445">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=5445" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

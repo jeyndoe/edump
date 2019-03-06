@@ -1,0 +1,85 @@
+Dr.Golova
+uINC
+
+ Дата: Июл 21, 2003 13:04:46 · Поправил: Dr.Golova
+
+
+А по поводу аспака вот что я могу сказать для того рефокса что лежит на официальном сайте: 
+
+.compro:0069316F                 mov     edi, [esi]      ; section rva
+.compro:00693171                 add     edi, [ebp+422h] ; image_base
+.compro:00693177                 mov     esi, [ebp+152h] ; temp buffer
+.compro:0069317D                 sar     ecx, 2
+.compro:00693180                 rep movsd
+.compro:00693182                 mov     ecx, eax
+.compro:00693184                 and     ecx, 3
+.compro:00693187                 rep movsb
+.compro:00693189                 pop     esi
+.compro:0069318A                 push    8000h
+.compro:0069318F                 push    0
+.compro:00693191                 push    dword ptr [ebp+152h] ; temp buffer
+.compro:00693197                 call    dword ptr [ebp+551h] ; VirtualFree
+.compro:0069319D                 add     esi, 8
+.compro:006931A0                 cmp     dword ptr [esi], 0 ; next section rva
+.compro:006931A3                 jnz     unpack_loop
+.compro:006931A9                 push    8000h
+.compro:006931AE                 push    0
+.compro:006931B0                 push    dword ptr [ebp+156h] ; huffman table
+.compro:006931B6                 call    dword ptr [ebp+551h] ; VirtualFree
+
+
+
+Соответсно сделав bpm 6931A9 x и сняв дампик тут мы получим распакованными все секции. Идем дельше. 
+
+.compro:006931CE                 mov     edx, [ebp+422h] ; image base
+.compro:006931D4                 mov     eax, [ebp+52Dh] ; original base
+.compro:006931DA                 sub     edx, eax
+.compro:006931DC                 jz      short reloc_done
+.compro:006931DE                 mov     eax, edx
+.compro:006931E0                 shr     eax, 10h
+.compro:006931E3                 xor     ebx, ebx
+.compro:006931E5                 mov     esi, [ebp+539h] ; reloc table rva
+.compro:006931EB                 add     esi, [ebp+422h] ; image base
+.compro:006931F1 
+.compro:006931F1 loc_6931F1:
+.compro:006931F1                 cmp     dword ptr [esi], 0 ; page rva
+.compro:006931F4                 jz      short reloc_done
+
+
+
+Тут соответсно при необходимости получаем адрес таблицы релоков. 
+
+.compro:00693278                 mov     esi, 1B0000h    ; import table rva
+.compro:0069327D                 mov     edx, [ebp+422h] ; image base
+.compro:00693283                 add     esi, edx
+.compro:00693285 
+.compro:00693285 loc_693285: 
+.compro:00693285                 mov     eax, [esi+0Ch]  ; dll name rva
+.compro:00693288                 test    eax, eax
+.compro:0069328A                 jz      loc_69339A
+.compro:00693290                 add     eax, edx
+.compro:00693292                 mov     ebx, eax
+.compro:00693294                 push    eax
+.compro:00693295                 call    dword ptr [ebp+0F4Dh] ; GetModuleHandleA
+
+
+
+Отсюда имеем rva таблицы импорта (а в уже снятом дампе она целенькая, так штаа про imprec можно забыть :) 
+
+.compro:0069339A                 mov     eax, 1000h      ; oep rva
+.compro:0069339F                 push    eax
+.compro:006933A0                 add     eax, [ebp+422h] ; image base
+.compro:006933A6                 pop     ecx
+.compro:006933A7                 or      ecx, ecx
+.compro:006933A9                 mov     [ebp+3A8h], eax ; patch push at 6933BAh
+.compro:006933AF                 popa
+.compro:006933B0                 jnz     short loc_6933BA
+.compro:006933B2                 mov     eax, 1
+.compro:006933B7                 retn    0Ch
+loc_6933BA:
+.compro:006933BA                 push    0
+.compro:006933BF                 retn
+
+
+
+Вот собсно и все что нужно для регулярной половой жизни, все это я естесно посмотрел только в дизассемблере и проверять не стал - лениво =) 

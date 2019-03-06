@@ -1,0 +1,232 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Вопрос по отладке с помощью регистров DR0-DR3 - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Пишу отладчик. Присвоил DR0 нужное мне значение. Вопрос: где и как отловить отладочное исключение с номером 1? Желательно из ring-3, ведь работают же аппаратные точки останова в OllyDbg. Может ли отлаживаемая программа обработать">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=41701'>_MBK_</a>, <a target='_blank' href='?action=userinfo&amp;user=41144'>Adler</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Вопрос по отладке с помощью регистров DR0-DR3</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Promix_17[/b]','')">Promix_17</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 37.1 (посетитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.61'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=27050">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 12:34 &middot; Поправил: Promix_17 <br><script type="text/javascript">QU('Promix_17','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Promix_17" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Пишу отладчик. Присвоил DR0 нужное мне значение. Вопрос: где и как отловить отладочное исключение с номером 1? Желательно из ring-3, ведь работают же аппаратные точки останова в OllyDbg. Может ли  отлаживаемая программа обработать это исключение с помощью SEH?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288947&amp;user=27050&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=1" class="addthx" data-post="288947"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 12:40 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+1. dr0 не достаточно, dr7 ещё нужно<br>2. там же, где и все остальные исключения, код будет 80000004, если не ошибаюсь<br>3. может<br>Сходил бы ты в гугл, что ли.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288948&amp;user=1556&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=2" class="addthx" data-post="288948"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Promix_17[/b]','')">Promix_17</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 37.1 (посетитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.61'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=27050">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 13:22 &middot; Поправил: Promix_17 <br><script type="text/javascript">QU('Promix_17','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Promix_17" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<I>Archer пишет:<br>там же, где и все остальные исключения </I> - извиняюсь, но это где? В обработчике SEH отлаживаемого процесса?<br><br>Как можно установить свой собственный обработчик этого исключения из ring-3?<br><br>Я пака на самом начальном уровне написания отладчика.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288949&amp;user=27050&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=3" class="addthx" data-post="288949"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 13:29 &middot; Поправил: <a href="action=stats#mods">Модератор</a> <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Тебе виднее, ты отладчик пишешь. Или ты пишешь отладчик, который вообще не ловит исключения? Он телепатией отлаживает, что ли?<br>В обычных отладчиках это сделано на DebugAPI. При чём тут сех, вообще непонятно. Ещё раз говорю, сходи в гугл и погляди, хотя бы как отладчики вообще работают.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288950&amp;user=1556&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=4" class="addthx" data-post="288950"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 13:39 <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>Promix_17</b> http://www.wasm.ru/article.php?article=debugreg
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288951&amp;user=17319&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=5" class="addthx" data-post="288951"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=27050" title="02-08-2011 09:21, ранг:13.6" target="_blank">Promix_17</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 13:48 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>Promix_17</b><br>Отладчик (debugger) через LPC-порт отладки ожидает событий отладки от отлаживаемого приложения (debuggee). Для Win32 API это реализуется через WaitForDebugEvent. В общем, отладка - это один большой бесконечный цикл на WaitForDebugEvent. Конечно, интересные события - это не только исключения, но, например, запуск и завершение процесса, подгрузка и выгрузка динамических библиотек и т.д. Но можно выделить два наиболее интересных исключения: EXCEPTION_BREAKPOINT и EXCEPTION_SINGLE_STEP. Перед тем, как исключение будет передано программе, вначале будет обращение через EPROCESS к полю отладочного порта, и если оно не нулевое, то это значение передаётся отладчику, причём дважды. Если отладчик вернул EXCEPTION_NOT_HANDLED, иксепшн развернётся внутри debuggee. Для начала советую почитать Дж.Роббинса &quot;Отладка приложений&quot;. Далее глянуть третью часть &quot;Об упаковщиках в последний раз&quot;. Потом погуглить по форуму - вопрос про отладочные регистры уже поднимался.<br><br><b>bowrouco</b>, опять ты, нуб?<br>Открывай &quot;Внутреннее устройство Windows&quot; на стр. 120 и читай, стоя, вслух, сто раз:<br><i class=x>Точки прерывания в отлаживаемой программе являются распространенной причиной исключений. Поэтому диспетчер исключений первым делом проверяет, подключен ли к процессу, вызвавшему исключение, отладчик. Если подключен и системой является Windows 2000, диспетчер исключений посылает отладчику через LPC первое предупреждение. (Это уведомление на самом деле сначала поступает диспетчеру сеансов, а тот пересылает его соответствующему отладчику.) В Windows ХР и Windows Server 2003 диспетчер исключений посылает сообщение объекта отладчика (debugger object message) объекту отладки (debug object), сопоставленному с процессом (который внутри системы рассматривается как порт).</i><br><br>И нехрен пи*деть, не разобравшись, олень.<br><noindex><a href="http://imglink.ru/show-image.php?id=02bf604e64cbd370722257c0613206bb" rel="nofollow" target="_blank"> <img src="http://imglink.ru/thumbnails/02-08-11/cd8ca1ba47c4547cc56336d7a550655b.jpg" border="0" align="" alt=""></a></noindex>
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=288952&amp;user=6336&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=6" class="addthx" data-post="288952"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Promix_17[/b]','')">Promix_17</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 37.1 (посетитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.61'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=27050">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 13:52 <br><script type="text/javascript">QU('Promix_17','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Promix_17" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Вопрос закрыт. Спасибо за информацию.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288953&amp;user=27050&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=7" class="addthx" data-post="288953"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]bowrouco[/b]','')">bowrouco</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 47.7 (посетитель), 17thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.01'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=29629">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 13:59 &middot; Поправил: bowrouco <br><script type="text/javascript">QU('bowrouco','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bowrouco" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<b>ARCHANGEL</b><br>Отладочный порт это условное название. Это не LPC-порт, а евент, через который синхронно доставляются сообщения. Отладчик работает с этим обьктом(DebugObject), если его нет, то сообщения шлются на порт исключений в подсистему. Смотрите реализацию DbgkForwardException().<br><br>&gt; Открывай &quot;Внутреннее устройство Windows&quot; на стр. 120 и читай, стоя, вслух, сто раз:<br>Нахер, сурсы есть!<br><br>И посты твои глупые и высокомерные. Да и про матчасть малчал бы лучше, у тебя разрыв шаблона, изза излишка терминов(KiTrap etc), которые между собой не стыкуются, в силу не знания этой самой матчасти. Когда придёт полное логичное осознание, тогда будешь отсылать других её учить. Оминь.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288954&amp;user=29629&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=8" class="addthx" data-post="288954"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]bowrouco[/b]','')">bowrouco</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 47.7 (посетитель), 17thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.01'>Активность: 0.09<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=29629">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 14:03 &middot; Поправил: bowrouco <br><script type="text/javascript">QU('bowrouco','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=bowrouco" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>Promix_17</b><br>Не обязательно использовать отладочные апи для работы с HWB. При срабатывании генерится фолт(трап). Просто если подключен отладчик он получает сообщение. Можно и локально захэндлить(seh etc), но это уже не надстройка получится.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288955&amp;user=29629&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=9" class="addthx" data-post="288955"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2011 14:13 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=18860.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Раз вопрос закрыт, закрою и топик.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=288956&amp;user=1556&amp;forum_n=5&amp;topic=18860.html&amp;page=0&amp;anchor=10" class="addthx" data-post="288956"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Вопрос по отладке с помощью регистров DR0-DR3</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=18860" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,526 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Защита программ от модификаций с помощью CRC32 - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="/*  Проверка программы по алгоритму CRC32 от модификаций вирусов (или защита от &quot;дурака&quot;)  Вставляется непосредственно в код самой программы  Число CRC записывается в скомпилированный файл с помощью внешней программы ">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=3756'>==DJ==[ZLO]</a>, <a target='_blank' href='?action=userinfo&amp;user=8344'>Magister Yoda</a>, <a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Защита программ от модификаций с помощью CRC32</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Tim[/b]','')">Tim</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 253.9 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.91'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=161">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 06:43 <br><script type="text/javascript">QU('Tim','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Tim" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+/*
+<br>  Проверка программы по алгоритму CRC32 от модификаций вирусов (или защита от &quot;дурака&quot;)
+<br>  Вставляется непосредственно в код самой программы
+<br>  Число CRC записывается в скомпилированный файл с помощью внешней программы
+<br>  Ее вы можете найти на oldskool.altnet.ru/UpdateCRC32.exe или сделать сами
+<br>  на основе этих исходников ;)
+<br>  Тестовая программа лежит здесь: oldskool.altnet.ru/CRC32Test.exe
+<br>
+<br>  Идея была навеяна защитой программы SourceFormatX 2.56
+<br>
+<br>  Функцию Crc32Prim можно достать из библиотеки SysTools от TurboPower Software
+<br>  или еще вытащить из zlib (тогда придется кое-что подправить)
+<br>  Главное, чтобы само число CRC было 32-битным, т.е. занимало в памяти 4 байта
+<br>
+<br>  (c) Tim (Dmitry Titkov), 2005
+<br>  e-mail: cat87@fromru.com
+<br>*/
+<br>
+<br>
+<br>// -----------------
+<br>#include &lt;stdio.h&gt;
+<br>#include &lt;stcrc.hpp&gt; // Из библиотеки SysTools от TurboPower Software
+<br>// -----------------
+<br>
+<br>// ---------------------------------------------------------------------
+ <br>USEUNIT(&quot;C:&#92;Program Files&#92;Borland&#92;CBuilder5&#92;Source&#92;SysTools&#92;stcrc.pas&quot;);
+<br>// ---------------------------------------------------------------------
+ <br>
+<br>long filesize(FILE *stream)
+<br>{
+<br>  long curpos;
+<br>  long length;
+<br>  curpos = ftell(stream);
+<br>  fseek(stream, 0L, SEEK_END);
+<br>  length = ftell(stream);
+<br>  fseek(stream, curpos, SEEK_SET);
+<br>  return length;
+<br>}
+<br>
+<br>int size_of_header(FILE *exe)
+<br>{
+<br>  long curpos;
+<br>  DWORD size;
+<br>  curpos = ftell(exe);
+<br>  fseek(exe, 0x254, SEEK_SET); // Size of header, смотрите в Hiew, если интересно ;)
+<br>  fread(&amp;size, sizeof(size), 1, exe);
+<br>  fseek(exe, curpos, SEEK_SET);
+<br>  return size;
+<br>}
+<br>
+<br>int read_crc32(FILE *exe)
+<br>{
+<br>  long curpos;
+<br>  int crc;
+<br>  curpos = ftell(exe);
+<br>  fseek(exe, 0x80, SEEK_SET); // число CRC лежит на оффсете 0x80 от начала файла
+<br>  fread(&amp;crc, sizeof(crc), 1, exe);
+<br>  fseek(exe, curpos, SEEK_SET);
+<br>  return crc;
+<br>}
+<br>
+<br>bool check_crc32(char *exe_name)
+<br>{
+<br>  int crc;
+<br>  int read_crc;
+<br>  BYTE *buf;
+<br>  FILE *exe      = fopen(exe_name, &quot;rb&quot;);
+<br>  DWORD size     = size_of_header(exe);
+<br>  long  exe_size = filesize(exe);
+<br>  fseek(exe, size, SEEK_SET);
+<br>  buf = new BYTE[exe_size-size+1];
+<br>  fread(buf, exe_size-size, 1, exe);
+<br>  crc = Crc32Prim(buf, exe_size-size, 0xFFFFFFFF);
+<br>  read_crc = read_crc32(exe);
+<br>  fclose(exe);
+<br>  if(crc == read_crc)
+<br>    return 1;
+<br>  else
+<br>    return 0;
+<br>}
+<br>
+<br>  // Эта проверка вставляется в самое начало процедуры WinMain
+<br>  // Если компилируете не в Borland C++, то поменяйте ParamStr() на другую
+<br>  // функцию, которая вернет вам имя вашего exe-файла
+<br>  // ---------------------------------------------------------------------- ----
+<br>  if(!check_crc32(ParamStr(0).c_str()))
+<br>  {
+<br>    Application-&gt;MessageBoxA(&quot;This file has been modified. Reason might be a possible virus infection!&#92;nPlease scan your system with Anti-Virus software and reinstall the program.&quot;, &quot;Protection Error&quot;, MB_OK | MB_ICONERROR);
+<br>    exit(1);
+<br>  }
+<br>  // ---------------------------------------------------------------------- ----
+<br><br><font size="1"><i>-----<br>MicroSoft? Is it some kind of a toilet paper?</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=15005&amp;user=161&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=1" class="addthx" data-post="15005"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]sne[/b]','')">sne</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 2.2 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.51'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1099">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 08:14 <br><script type="text/javascript">QU('sne','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sne" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Все равно это исправить пять секунд, хотя вот за алгоритм - спасибо <img src="img/smilies/s1.gif" alt="">)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=15022&amp;user=1099&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=2" class="addthx" data-post="15022"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Tim[/b]','')">Tim</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 253.9 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.91'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=161">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 09:07 <br><script type="text/javascript">QU('Tim','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Tim" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>sne</b>
+<br>Так ведь смысл-то в том, чтобы узнать, а не нагадил ли кто в файле?
+<br>Тем более мною приветствуется ваши предложения по поводу усложнения кода.
+<br><br><font size="1"><i>-----<br>MicroSoft? Is it some kind of a toilet paper?</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=15036&amp;user=161&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=3" class="addthx" data-post="15036"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]geRC[/b]','')">geRC</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.9 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.66'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=718">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 09:29 <br><script type="text/javascript">QU('geRC','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=geRC" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>Tim</b>
+<br>Использовать CRC, да к тому же 32 - это уже как-то не актуально. Потому что можно изменённому файлу сделать такую CRC32 как и исходному.
+<br>
+<br>Хотя можно использовать в комбинации с каким-нибудь другим алго.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=15045&amp;user=718&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=4" class="addthx" data-post="15045"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Tim[/b]','')">Tim</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 253.9 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.91'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=161">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 09:44 <br><script type="text/javascript">QU('Tim','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Tim" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>geRC</b>
+<br>Например, покрыть этот CRC32 каким-нибудь MD5 со статическим паролем. И так до бесконечности... <img src="img/smilies/s5.gif" alt="">
+<br><br><font size="1"><i>-----<br>MicroSoft? Is it some kind of a toilet paper?</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=15056&amp;user=161&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=5" class="addthx" data-post="15056"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Man1ac[/b]','')">Man1ac</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.82'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=345">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 09:45 <br><script type="text/javascript">QU('Man1ac','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Man1ac" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Угу, использовать как все Цифровую Подпись.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=15057&amp;user=345&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=6" class="addthx" data-post="15057"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]Tim[/b]','')">Tim</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 253.9 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.91'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=161">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 января 2005 12:28 &middot; Поправил: Tim <br><script type="text/javascript">QU('Tim','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Tim" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=1360.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Вот немного исправленный код. Нет нужды использовать внешние библиотеки.
+
+<pre>
+// ---------------
+#include &lt;stdio.h&gt;
+// ---------------
+
+unsigned long CRC32Table[512] =
+{
+  0x00000000, 0x77073096, 0xEE0E612C, 0x990951BA,
+  0x076DC419, 0x706AF48F, 0xE963A535, 0x9E6495A3,
+  0x0EDB8832, 0x79DCB8A4, 0xE0D5E91E, 0x97D2D988,
+  0x09B64C2B, 0x7EB17CBD, 0xE7B82D07, 0x90BF1D91,
+  0x1DB71064, 0x6AB020F2, 0xF3B97148, 0x84BE41DE,
+  0x1ADAD47D, 0x6DDDE4EB, 0xF4D4B551, 0x83D385C7,
+  0x136C9856, 0x646BA8C0, 0xFD62F97A, 0x8A65C9EC,
+  0x14015C4F, 0x63066CD9, 0xFA0F3D63, 0x8D080DF5,
+  0x3B6E20C8, 0x4C69105E, 0xD56041E4, 0xA2677172,
+  0x3C03E4D1, 0x4B04D447, 0xD20D85FD, 0xA50AB56B,
+  0x35B5A8FA, 0x42B2986C, 0xDBBBC9D6, 0xACBCF940,
+  0x32D86CE3, 0x45DF5C75, 0xDCD60DCF, 0xABD13D59,
+  0x26D930AC, 0x51DE003A, 0xC8D75180, 0xBFD06116,
+  0x21B4F4B5, 0x56B3C423, 0xCFBA9599, 0xB8BDA50F,
+  0x2802B89E, 0x5F058808, 0xC60CD9B2, 0xB10BE924,
+  0x2F6F7C87, 0x58684C11, 0xC1611DAB, 0xB6662D3D,
+  0x76DC4190, 0x01DB7106, 0x98D220BC, 0xEFD5102A,
+  0x71B18589, 0x06B6B51F, 0x9FBFE4A5, 0xE8B8D433,
+  0x7807C9A2, 0x0F00F934, 0x9609A88E, 0xE10E9818,
+  0x7F6A0DBB, 0x086D3D2D, 0x91646C97, 0xE6635C01,
+  0x6B6B51F4, 0x1C6C6162, 0x856530D8, 0xF262004E,
+  0x6C0695ED, 0x1B01A57B, 0x8208F4C1, 0xF50FC457,
+  0x65B0D9C6, 0x12B7E950, 0x8BBEB8EA, 0xFCB9887C,
+  0x62DD1DDF, 0x15DA2D49, 0x8CD37CF3, 0xFBD44C65,
+  0x4DB26158, 0x3AB551CE, 0xA3BC0074, 0xD4BB30E2,
+  0x4ADFA541, 0x3DD895D7, 0xA4D1C46D, 0xD3D6F4FB,
+  0x4369E96A, 0x346ED9FC, 0xAD678846, 0xDA60B8D0,
+  0x44042D73, 0x33031DE5, 0xAA0A4C5F, 0xDD0D7CC9,
+  0x5005713C, 0x270241AA, 0xBE0B1010, 0xC90C2086,
+  0x5768B525, 0x206F85B3, 0xB966D409, 0xCE61E49F,
+  0x5EDEF90E, 0x29D9C998, 0xB0D09822, 0xC7D7A8B4,
+  0x59B33D17, 0x2EB40D81, 0xB7BD5C3B, 0xC0BA6CAD,
+  0xEDB88320, 0x9ABFB3B6, 0x03B6E20C, 0x74B1D29A,
+  0xEAD54739, 0x9DD277AF, 0x04DB2615, 0x73DC1683,
+  0xE3630B12, 0x94643B84, 0x0D6D6A3E, 0x7A6A5AA8,
+  0xE40ECF0B, 0x9309FF9D, 0x0A00AE27, 0x7D079EB1,
+  0xF00F9344, 0x8708A3D2, 0x1E01F268, 0x6906C2FE,
+  0xF762575D, 0x806567CB, 0x196C3671, 0x6E6B06E7,
+  0xFED41B76, 0x89D32BE0, 0x10DA7A5A, 0x67DD4ACC,
+  0xF9B9DF6F, 0x8EBEEFF9, 0x17B7BE43, 0x60B08ED5,
+  0xD6D6A3E8, 0xA1D1937E, 0x38D8C2C4, 0x4FDFF252,
+  0xD1BB67F1, 0xA6BC5767, 0x3FB506DD, 0x48B2364B,
+  0xD80D2BDA, 0xAF0A1B4C, 0x36034AF6, 0x41047A60,
+  0xDF60EFC3, 0xA867DF55, 0x316E8EEF, 0x4669BE79,
+  0xCB61B38C, 0xBC66831A, 0x256FD2A0, 0x5268E236,
+  0xCC0C7795, 0xBB0B4703, 0x220216B9, 0x5505262F,
+  0xC5BA3BBE, 0xB2BD0B28, 0x2BB45A92, 0x5CB36A04,
+  0xC2D7FFA7, 0xB5D0CF31, 0x2CD99E8B, 0x5BDEAE1D,
+  0x9B64C2B0, 0xEC63F226, 0x756AA39C, 0x026D930A,
+  0x9C0906A9, 0xEB0E363F, 0x72076785, 0x05005713,
+  0x95BF4A82, 0xE2B87A14, 0x7BB12BAE, 0x0CB61B38,
+  0x92D28E9B, 0xE5D5BE0D, 0x7CDCEFB7, 0x0BDBDF21,
+  0x86D3D2D4, 0xF1D4E242, 0x68DDB3F8, 0x1FDA836E,
+  0x81BE16CD, 0xF6B9265B, 0x6FB077E1, 0x18B74777,
+  0x88085AE6, 0xFF0F6A70, 0x66063BCA, 0x11010B5C,
+  0x8F659EFF, 0xF862AE69, 0x616BFFD3, 0x166CCF45,
+  0xA00AE278, 0xD70DD2EE, 0x4E048354, 0x3903B3C2,
+  0xA7672661, 0xD06016F7, 0x4969474D, 0x3E6E77DB,
+  0xAED16A4A, 0xD9D65ADC, 0x40DF0B66, 0x37D83BF0,
+  0xA9BCAE53, 0xDEBB9EC5, 0x47B2CF7F, 0x30B5FFE9,
+  0xBDBDF21C, 0xCABAC28A, 0x53B39330, 0x24B4A3A6,
+  0xBAD03605, 0xCDD70693, 0x54DE5729, 0x23D967BF,
+  0xB3667A2E, 0xC4614AB8, 0x5D681B02, 0x2A6F2B94,
+  0xB40BBE37, 0xC30C8EA1, 0x5A05DF1B, 0x2D02EF8D
+};
+
+unsigned long CalcCRC32(BYTE *buf, long length)
+{
+  unsigned long CRC32 = 0xFFFFFFFF, tt;
+  for (int i = 0; i &lt; length; i++)
+  {
+    tt = buf[i];
+    CRC32 = (CRC32 &gt;&gt; 8) ^ CRC32Table[tt ^ (CRC32 &amp;0x000000FF)];
+  }
+  return CRC32;
+}
+
+long filesize(FILE *stream)
+{
+  long curpos;
+  long length;
+  curpos = ftell(stream);
+  fseek(stream, 0L, SEEK_END);
+  length = ftell(stream);
+  fseek(stream, curpos, SEEK_SET);
+  return length;
+}
+
+int size_of_header(FILE *exe)
+{
+  long curpos;
+  DWORD size;
+  curpos = ftell(exe);
+  fseek(exe, 0x254, SEEK_SET);
+  fread(&amp;size, sizeof(size), 1, exe);
+  fseek(exe, curpos, SEEK_SET);
+  return size;
+}
+
+int read_crc32(FILE *exe)
+{
+  long curpos;
+  int crc;
+  curpos = ftell(exe);
+  fseek(exe, 0x80, SEEK_SET);
+  fread(&amp;crc, sizeof(crc), 1, exe);
+  fseek(exe, curpos, SEEK_SET);
+  return crc;
+}
+
+bool check_crc32(char *exe_name)
+{
+  int crc;
+  int read_crc;
+  BYTE *buf;
+  FILE *exe      = fopen(exe_name, &quot;rb&quot;);
+  DWORD size     = size_of_header(exe);
+  long  exe_size = filesize(exe);
+  fseek(exe, size, SEEK_SET);
+  buf = new BYTE[exe_size-size+1];
+  fread(buf, exe_size-size, 1, exe);
+  crc = CalcCRC32(buf, exe_size-size);
+  read_crc = read_crc32(exe);
+  fclose(exe);
+  if(crc == read_crc)
+    return 1;
+  else
+    return 0;
+}
+
+  // Эта проверка вставляется в самое начало процедуры WinMain 
+  // Если компилируете не в Borland C++, то поменяйте ParamStr() на другую 
+  // функцию, которая вернет вам имя вашего exe-файла 
+  // ---------------------------------------------------------------------- ----
+  if(!check_crc32(ParamStr(0).c_str()))
+  {
+    Application-&gt;MessageBoxA(&quot;This file has been modified. Reason might be a possible virus infection!&#92;nPlease scan your system with Anti-Virus software and reinstall the program.&quot;, &quot;Protection Error&quot;, MB_OK | MB_ICONERROR);
+    exit(1);
+  }
+  // --------------------------------------------------------------------------
+</pre>
+<br><br><font size="1"><i>-----<br>MicroSoft? Is it some kind of a toilet paper?</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=15092&amp;user=161&amp;forum_n=1&amp;topic=1360.html&amp;page=0&amp;anchor=7" class="addthx" data-post="15092"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Защита программ от модификаций с помощью CRC32</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#8" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="1360">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=1360" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

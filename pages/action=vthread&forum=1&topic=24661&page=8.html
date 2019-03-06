@@ -1,0 +1,601 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Использование IDA Pro (part 2) - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Обмен опытом использования и настройки интерактивного дизассемблера и отладчика IDA Pro. Прошлый топик Использование IDA Pro">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+9 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование IDA Pro (part 2)</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=7.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=7.html">8</a> . <b>9</b> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=9.html">10</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=20.html">21</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=21.html">22</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=9.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 марта 2017 11:54 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#1');return false;">#1</a> </span><div align=left><br>
+Обмен опытом использования и настройки интерактивного дизассемблера и отладчика IDA Pro.<br>Прошлый топик <noindex><a href="https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=12507&amp;page=-1.html" rel="nofollow" target="_blank">Использование IDA Pro</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=373856&amp;user=1556&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=1" class="addthx" data-post="373856"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=46816" title="22-11-2018 09:30, ранг:0.0" target="_blank">oxfemale</a>, <a href="action=userinfo&user=50040" title="03-08-2019 05:19, ранг:0.0" target="_blank">gent0o0</a></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 сентября 2018 06:32 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#2');return false;">#2</a> </span><div align=left><br>
+Это конечно прямо не относится к тематике данной темы, но поскольку, насколько мне известо, у нас темы про LLVM пока нет, то размещу здесь, да простят меня блюстители чистоты тем!<br><noindex><a href="https://github.com/obfuscator-llvm/obfuscator/wiki" rel="nofollow" target="_blank"> Obfuscator-LLVM </a></noindex>uses pattern-based obfuscation and control flow flattening. Also, Obfuscator-LLVM does not generate opaque predicates, nor the allocarelated obfuscation. <br>Может об этом уже все давно знают, но, по-моему, интересный инструмент, тем более, что источники открыты.<br><br>на странице имеется ссылка:<br><b>A commercial version of Obfuscator-LLVM implementing much more advanced capabilities is available through strong.codes.<br></b><br>Но добраться до strong.codes я лично не смог... Если кто-то имеет опыт использования этого инструмента - поделитесь впечатлениями, можно через личные сообщения, что не загромождать данную тему.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388100&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=2" class="addthx" data-post="388100"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]Katana[/b]','')">Katana</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок), 5thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.22'>Активность: 0.01=0.01</span><br>Статус: <a href="action=userinfo&amp;user=20807">Участник</a><br><font color=blue>iOS expert</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 сентября 2018 15:56 &middot; Поправил: Katana <br><script type="text/javascript">QU('Katana','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Katana" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#3');return false;">#3</a> </span><div align=left><br>
+<I>plutos пишет:<br>по-моему, интересный инструмент, </I><br>Куплен снапчатом, и используется только на нем. Один из авторов - https://twitter.com/cryptopathe. А причем здесь ида простите?<br><br><I>plutos пишет:<br>поделитесь впечатлениями </I><br>Хрень, универсальными скриптами (ага, <b>idapython</b>) под все LLVM обфускаторы все можно разобрать. CFF разруливается патчами бранчей. Предикаты убиваются эмулятором.<br><br>Вот <noindex><a href="https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=25328" rel="nofollow" target="_blank">здесь</a></noindex> на этом софте применяли опенсорсную версию.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388103&amp;user=20807&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=3" class="addthx" data-post="388103"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=11966" title="27-09-2018 15:51, ранг:548.4" target="_blank">r_e</a>, <a href="action=userinfo&user=4773" title="27-09-2018 23:56, ранг:359.9" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 28 сентября 2018 02:55 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#4');return false;">#4</a> </span><div align=left><br>
+<I>Katana пишет:<br>А причем здесь ида простите? </I><br><I>plutos пишет:<br>Это конечно прямо не относится к тематике данной темы, но поскольку, насколько мне известо, у нас темы про LLVM пока нет, то размещу здесь, да простят меня блюстители чистоты тем! </I><br><br>Да ни причем, конечно, как я уже и писал выше.<br> Просто этот tool упоминает  Rolf Rolles в своей статье про  IDA plugin. <br>Мне стало интересно, что это за tool такой, вот и поместил вопрос. <br>А плодить новую тему ради одного вопроса как-то вроде неудобно. <br>За инфомацию спасибо! Если кого огорчил - простите!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388115&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=4" class="addthx" data-post="388115"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=20807" title="28-09-2018 09:20, ранг:8.4" target="_blank">Katana</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]RevCred[/b]','')">RevCred</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 19.9 (новичок), 16thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.08'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=42682">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 сентября 2018 19:34 &middot; Поправил: RevCred <br><script type="text/javascript">QU('RevCred','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RevCred" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#5');return false;">#5</a> </span><div align=left><br>
+у кого есть доступ к https://twitter.com/IgorSkochinsky/status/1046430902002339840<br><br>IDA 7.2 beta info: https://forum.hex-rays.com/viewtopic.php?f=7&amp;t=4377<br><br>что там новенького и интересного?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388138&amp;user=42682&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=5" class="addthx" data-post="388138"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 сентября 2018 20:49 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#6');return false;">#6</a> </span><div align=left><br>
+пока ничего особенного, только сбор желающих на тестирование недели через две<br><br>люмина сервер какой то и новый айфон дебаг сервер, кучу всяких улучшений всего и вся но без особых подробностей, виртуал колл С++ рейс как то научился декомпилить<br><br>более подробно уже когда будет сама бета
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388140&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=6" class="addthx" data-post="388140"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=7090" title="30-09-2018 20:49, ранг:14.9" target="_blank">Vintersorg</a>, <a href="action=userinfo&user=4773" title="30-09-2018 21:49, ранг:360.3" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 октября 2018 05:52 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#7');return false;">#7</a> </span><div align=left><br>
+у меня вопрос к людям, которые реверсили иду: реально ли выложить ввиде псевдокода тот участок кода, который отвечает за microcode generation? хотя бы в самых общих чертах?<br>В своей статье &quot;Decompilers and beyond&quot; Ilfak Guilfanov все хорошо обьясняет, с примерами, но в подробности, понятное дело, не особенно вдается. А хотелось бы разобраться глубже.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388175&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=7" class="addthx" data-post="388175"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 октября 2018 08:04 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#8');return false;">#8</a> </span><div align=left><br>
+Пытаюсь настроить ida68 SDK, читаю install_make.txt file, (folder idasdk68):<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">How&nbsp;to&nbsp;install&nbsp;the&nbsp;SDK&nbsp;for&nbsp;command<span class="hl_char">-</span>line&nbsp;build</li><li class="hl_l1"><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">-</span></li><li class="hl_l0"><span class="hl_number">1</span><span class="hl_char">.</span>&nbsp;Edit&nbsp;file&nbsp;&nbsp;defaults<span class="hl_char">.</span>mk&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;modify&nbsp;paths&nbsp;to&nbsp;your&nbsp;compilers&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;sdk</li>        </ol>
+    </div>
+</div></div>
+<br>Открываю defaults.mk  и вижу:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">MSSDK<span class="hl_char">?</span><span class="hl_char">=</span>C<span class="hl_char">:</span><span class="hl_char">/</span>PROGRA~1<span class="hl_char">/</span>MICROS~3<span class="hl_char">/</span>WINDOWS<span class="hl_char">/</span>v7<span class="hl_char">.</span><span class="hl_number">0A</span><span class="hl_char">/</span></li><li class="hl_l1">VSPATH<span class="hl_char">?</span><span class="hl_char">=</span>C<span class="hl_char">:</span><span class="hl_char">/</span>PROGRA~2<span class="hl_char">/</span>MICROS~2<span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">/</span></li><li class="hl_l0">VSPATH8<span class="hl_char">?</span><span class="hl_char">=</span>C<span class="hl_char">:</span><span class="hl_char">/</span>PROGRA~2<span class="hl_char">/</span>MICROS~1<span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">/</span></li><li class="hl_l1">&nbsp;и&nbsp;ниже<span class="hl_char">:</span></li><li class="hl_l0">#&nbsp;keep&nbsp;all&nbsp;paths&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;dos&nbsp;<span class="hl_function">format</span><span class="hl_char">,</span>&nbsp;with&nbsp;<span class="hl_function"><b>double</b></span>&nbsp;backslashes</li><li class="hl_l1">MSSDK&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_char">(</span><span class="hl_function"><b>call</b></span>&nbsp;unixpath<span class="hl_char">,</span><span class="hl_char">$</span><span class="hl_char">(</span>MSSDK<span class="hl_char">)</span><span class="hl_char">)</span></li><li class="hl_l0">VS11PATH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_char">(</span><span class="hl_function"><b>call</b></span>&nbsp;unixpath<span class="hl_char">,</span><span class="hl_char">$</span><span class="hl_char">(</span>VS11PATH<span class="hl_char">)</span><span class="hl_char">)</span></li><li class="hl_l1">VSPATH8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_char">(</span><span class="hl_function"><b>call</b></span>&nbsp;unixpath<span class="hl_char">,</span><span class="hl_char">$</span><span class="hl_char">(</span>VSPATH8<span class="hl_char">)</span><span class="hl_char">)</span></li><li class="hl_l0">VSPATH&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_char">(</span><span class="hl_function"><b>call</b></span>&nbsp;unixpath<span class="hl_char">,</span><span class="hl_char">$</span><span class="hl_char">(</span>VSPATH<span class="hl_char">)</span><span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div>
+<br>Теперь собственно вопросы:<br>если у меня windows sdk is located at C:\program files (x86)\Microsoft SDKs\Windows\V7.0A<br>а path to compiler CL.exe is located at C:\program files (x86)\Microsoft Visual Studio 14.0\VC\bin\cl.exe<br><br>то как мне эти paths уместить в dos format? Как должны они выглядеть?<br><br>какая разница между    VS11PATH  VSPATH8  и VSPATH?   <br><br>VS11PATH =&gt; Visual Studio 2012 = version 11?<br>VSPATH8   =&gt; Visual Studio 2005 = version 8?<br>VSPATH     =&gt; Visual Studio 2015 = version 14? <br><br>мне нужно все три обозначить, или одной VSPATH  достаточно?   <br><br>и еще, в allmake.mak есть такие define<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;ifdef&nbsp;USE_VC11</li><li class="hl_l1">&nbsp;&nbsp;MSVCDIR<span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_char">(</span>VS11PATH<span class="hl_char">)</span>VC<span class="hl_char">/</span></li><li class="hl_l0"><span class="hl_function">else</span></li><li class="hl_l1">&nbsp;&nbsp;MSVCDIR<span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_char">(</span>VSPATH<span class="hl_char">)</span>VC<span class="hl_char">/</span></li><li class="hl_l0"><span class="hl_function">endif</span></li>        </ol>
+    </div>
+</div></div>
+<br>я не могу найти где именно задается <b>USE_VC11<br></b><br>и последний вопрос: обязательно ли использоватать именно те версии compiler, что указаны, или версия 14 backward compatible?<br>Если обьяснил путано, то любую нужную информацию предоставлю!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388359&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=8" class="addthx" data-post="388359"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 октября 2018 09:26 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#9');return false;">#9</a> </span><div align=left><br>
+Пути: попробуй указать в кавычках.<br>Если кавычки не помогают, то получить короткие DOS имена файлов и папок можно командой:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">dir&nbsp;<span class="hl_char">/</span>x</li>        </ol>
+    </div>
+</div></div>
+<br><br>USE_VC11 ты можешь задать в настройках студии (дополнительные define) или в твоём сорсе.
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388360&amp;user=1379&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=9" class="addthx" data-post="388360"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="12-10-2018 07:12, ранг:364.2" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 13 октября 2018 07:51 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#10');return false;">#10</a> </span><div align=left><br>
+<I>Jupiter пишет:<br>получить короткие DOS имена файлов и папок можно командой  dir /X</I><br><br>или еще можно крошечный bat file:<br>@ECHO OFF<br>echo %~s1<br><br>в качестве аргумента - directory path куда надо.<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">C<span class="hl_char">:</span><span class="hl_char">\</span>program&nbsp;files&nbsp;<span class="hl_char">(</span>x86<span class="hl_char">)</span><span class="hl_char">\</span>microsoft&nbsp;visual&nbsp;studio&nbsp;<span class="hl_number">14</span><span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">\</span>vc<span class="hl_char">\</span>bin</li><li class="hl_l1">&nbsp;C<span class="hl_char">:</span><span class="hl_char">\</span>PROGRA~2<span class="hl_char">\</span>MI0E91~1<span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">\</span>VC<span class="hl_char">\</span>bin<span class="hl_char">\</span><span class="hl_registr">cl</span><span class="hl_char">.</span>exe</li>        </ol>
+    </div>
+</div></div>
+<br><br>Может кому пригодится.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388365&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=10" class="addthx" data-post="388365"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 октября 2018 08:58 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#11');return false;">#11</a> </span><div align=left><br>
+This <noindex><a href="https://sark.readthedocs.io/en/latest/debugging.html" rel="nofollow" target="_blank">--&gt;tutorial&lt;--</a></noindex> will get you started on debugging IDAPython scripts and plugins using Python Tools for Visual Studio.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388426&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=11" class="addthx" data-post="388426"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 октября 2018 20:33 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#12');return false;">#12</a> </span><div align=left><br>
+новый арм8 и для декомпилятора что то там с арм8<br>для еппла какие то улучшения в декомпиляции обжС<br>pdb доступна теперь и из под линукса а не только из винды<br>поддержка  процов ПИК24 от микрочипа<br>поддержка сдвинутых указателей в структуре в декомпиляторе<br>автоматически распознаются виртуальные функции в декомпиляторе и штампуется под них виртальная таблица в структурах<br>в декомпиляторе еще много улучшений все они будут в релизе на сайте с примерами<br>так же декомпилятор лучше оптимизирует код и выбрасывает не нужные куски, вообщем типа оптимизатора ИР<br>ну и куча всяких улучшений по фор циклам итд<br><br>флирт распределенная база которая доступна под новым названием как люмина сервер<br>двафр соурс левел отладка для андроида<br><br>ну и куча всяких мелочей
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388476&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=12" class="addthx" data-post="388476"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=42682" title="19-10-2018 17:40, ранг:17.3" target="_blank">RevCred</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]RevCred[/b]','')">RevCred</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 19.9 (новичок), 16thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.08'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=42682">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 октября 2018 20:39 <br><script type="text/javascript">QU('RevCred','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RevCred" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#13');return false;">#13</a> </span><div align=left><br>
+<I>reversecode пишет:<br>вообщем типа оптимизатора ИР</I><br>наверное что-то как тут - http://www.hexblog.com/?p=1248
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388477&amp;user=42682&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=13" class="addthx" data-post="388477"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 октября 2018 20:42 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#14');return false;">#14</a> </span><div align=left><br>
+не знаю, но пример выглядит по проще в бете<br>типа остатки кода после компилятора который выбрасывает декомпилятор<br>а в блоге оптимизация обфускации<br><br><b>Добавлено спустя 9 минут</b><br>ага это оптимизация называется value-range наверное для всяких циклов статических улучшает а не обфускацию снимает
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388478&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=14" class="addthx" data-post="388478"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]RevCred[/b]','')">RevCred</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 19.9 (новичок), 16thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.08'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=42682">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 октября 2018 20:53 &middot; Поправил: RevCred <br><script type="text/javascript">QU('RevCred','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RevCred" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#15');return false;">#15</a> </span><div align=left><br>
+понятно, а я думал что на основе этих паттернов появилась симплификация IR вместо симплификации ctree, тоесть те же яйца - только в профиль, но на более низком уровне.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388479&amp;user=42682&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=15" class="addthx" data-post="388479"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 19 октября 2018 20:53 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#16');return false;">#16</a> </span><div align=left><br>
+микрокод апи тоже поменялся, не совместим с 7.1 но теперь обещают что больше менять не будут<br><br><b>Добавлено спустя 18 часов 34 минуты</b><br>вообщем из всего нового, классная штука только сдвинутый указатель<br>https://www.hex-rays.com/products/ida/support/idadoc/1695.shtml<br>можно хоть в отрицательное значение его сдвигать хоть в положительное<br>за то нормально теперь можно подстроить что бы поля структур резольвились<br><br>остальное улучшенные циклы, улучшенное деление итд на глаз не видно
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388480&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=16" class="addthx" data-post="388480"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Katana[/b]','')">Katana</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.5 (новичок), 5thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.22'>Активность: 0.01=0.01</span><br>Статус: <a href="action=userinfo&amp;user=20807">Участник</a><br><font color=blue>iOS expert</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 октября 2018 14:06 &middot; Поправил: Katana <br><script type="text/javascript">QU('Katana','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Katana" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#17');return false;">#17</a> </span><div align=left><br>
+<I>reversecode пишет:<br>вообщем из всего нового, классная штука только сдвинутый указатель </I><br>Пока ты не ковыряешь железо и на PIC тебе пофиг, да.<br><br><img src="http://i68.tinypic.com/2gvk1o0.png" border="0" align="" alt=""><br><br>Вот PIC24HJ64GP506, например. Еще в начале года под PIC24 и PIC16 была необходимость писать процессорные модули.<br><noindex><a href="http://i65.tinypic.com/2lbe2de.png" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br><I>reversecode пишет:<br>а где хоть стоят эти пики ? </I><br>Embedded/IoT устройства же, а еще медицинское железо, станки<br><br><I>reversecode пишет:<br>я маленькое железо не колупаю </I><br>лазерный станок это маленькое железо?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388488&amp;user=20807&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=17" class="addthx" data-post="388488"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 октября 2018 15:08 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#18');return false;">#18</a> </span><div align=left><br>
+я маленькое железо не колупаю<br>а где хоть стоят эти пики ?<br>не в материнских ли платах ? тогда бум пентестеров понятен и кто забил ильфаку весь туду лист тоже
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388489&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=18" class="addthx" data-post="388489"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 октября 2018 21:45 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#19');return false;">#19</a> </span><div align=left><br>
+Пожалуйста, помогите разобраться: как debug ida plugins?<br><br>в sdk readme обьясняется :<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">Debugging<span class="hl_char">:</span></li><li class="hl_l1">&nbsp;You&nbsp;can&nbsp;use&nbsp;the&nbsp;following&nbsp;debug&nbsp;print&nbsp;functions<span class="hl_char">:</span></li><li class="hl_l0">&nbsp;deb<span class="hl_char">(</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">-</span>&nbsp;display&nbsp;a&nbsp;line&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;the&nbsp;messages&nbsp;window&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;<span class="hl_char">-</span>z&nbsp;command</li><li class="hl_l1">&nbsp;line&nbsp;switch&nbsp;is&nbsp;specified<span class="hl_char">.</span>&nbsp;You&nbsp;may&nbsp;use&nbsp;debug&nbsp;one&nbsp;of<span class="hl_char">:</span></li><li class="hl_l0">&nbsp;IDA_DEBUG_IDP<span class="hl_char">,</span>&nbsp;IDA_DEBUG_LDR<span class="hl_char">,</span>&nbsp;IDA_DEBUG_PLUGIN</li><li class="hl_l1">&nbsp;msg<span class="hl_char">(</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">-</span>&nbsp;display&nbsp;a&nbsp;line&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;the&nbsp;messages&nbsp;window</li><li class="hl_l0">&nbsp;warning<span class="hl_char">(</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">-</span>&nbsp;display&nbsp;a&nbsp;<span class="hl_function"><b>dialog</b></span>&nbsp;box&nbsp;with&nbsp;the&nbsp;message</li>        </ol>
+    </div>
+</div></div>
+<br>Это понятно, а вот как пройтись пошагово по исходному коду? <br>Что я пробовал:<br>Start IDA and load an IDB своего plugin&#039;a.<br>Загружаю исходный код своего plugin&#039;a в Visual Studio and set breakpoints<br><br>В Visual Studio (with the plugin file open), use DEBUG-&gt;Attach to process<br>В списке активных процессов выбираю idaq.exe and click Attach<br>Жду когда breakpoint сработает.... Но он не срабатывает... Что-то явно от меня ускользает.<br><br>Все выше описаное я делал, <b>НЕ ИСПОЛЬЗУЯ Python Tools for Visual Studio</b>, т.е. метод, описаный в статье, ссылку на которою я дал выше. (пост #11)
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388505&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=19" class="addthx" data-post="388505"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]awlost[/b]','')">awlost</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 33.8 (посетитель), 11thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.01'>Активность: 0.02<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=25876">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 23 октября 2018 06:12 <br><script type="text/javascript">QU('awlost','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=awlost" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#20');return false;">#20</a> </span><div align=left><br>
+<I>plutos пишет:<br>В Visual Studio (with the plugin file open), use DEBUG-&gt;Attach to process<br>В списке активных процессов выбираю idaq.exe and click Attach </I><br>Все верно, но есть ньюанс:<br>плагин должен быть собран как DEBUG (Release тоже будет работать, но из-за оптимизаций компилятора значительная часть бряков, вотчей и т.п. - нет)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388507&amp;user=25876&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=20" class="addthx" data-post="388507"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="23-10-2018 21:43, ранг:368.9" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]Xlab0s[/b]','')">Xlab0s</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 39.7 (посетитель), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.41'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=31393">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2018 17:48 &middot; Поправил: Xlab0s <br><script type="text/javascript">QU('Xlab0s','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Xlab0s" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#21');return false;">#21</a> </span><div align=left><br>
+как правильно поставить остальное все от IDA Pro 7.0<br>x64_idapronm_hexarm64m_hexarmm_hexx64m_hexx86m_170914_e723c5648dc3f2f588ab8339ccf62ec0+<br>там папка Contents <br><br>idasdk70 файлы <br>   flair70.zip<br>   idasdk70.zip<br>   idasdk70-doc.zip<br>   idsutils70.zip<br>   ios_deploy.zip<br>   loadint70.zip<br>   tilib70.zip<br><br>ida_plugin&amp;patch.7z <br>куча файлов <br><br>до этого ставил всё насколько корректно неизвестно, может есть информация как всё поставить чтоб было всё на своих местах?<br><br>на скоряк хотел поставил щас чтоб для server.dmp  скачать .pdb файлы но что то он и жрать не стал дамп.<br>на др компе давно ставил норм сьел дамп этой же 7ой версией <br><br><noindex><a href="https://xakep.ru/2018/09/17/ctfzone2018-private-problem/" rel="nofollow" target="_blank">--&gt; статья &lt;--</a></noindex><br><noindex><a href="https://github.com/yeggor/write-ups/blob/master/private_problem/private_problem.7z" rel="nofollow" target="_blank">--&gt; дамп &lt;--</a></noindex><br>тема - CTFZONE 2018 - The solution of the &quot;private_problem&quot; task
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388533&amp;user=31393&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=21" class="addthx" data-post="388533"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.4 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 24 октября 2018 18:53 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#22');return false;">#22</a> </span><div align=left><br>
+<b>Xlab0s</b><br>Судя по имени и папке Contents это под мак пакет. Должен ставиться просто кликом.
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388538&amp;user=11966&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=22" class="addthx" data-post="388538"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 октября 2018 03:57 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#23');return false;">#23</a> </span><div align=left><br>
+В idasdk (install_visual.txt) подробно описывается конфигурация visual studio project&#039;a для компилляции ida plugins.<br>Eсть готовый  <noindex><a href="https://www.unknowncheats.me/forum/downloads.php?do=file&amp;id=16726" rel="nofollow" target="_blank">--&gt; IDA Pro plugin template for Visual Studio &lt;--</a></noindex> чтобы не париться каждый раз, выставляя все oпции.<br>Единственная засада: там нужна регистрация, но я, в силу каких-то таинственных причин, никак не могу логануться даже после нескольких регистраций. <br>Так вот,  может быть кому-нибудь этот template пригодится и он, будучи человеком добрым, выложит его куда-нибудь для всеобщего пользования.
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388543&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=23" class="addthx" data-post="388543"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]subword[/b]','')">subword</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.4 (гость), 3thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.69'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=41556">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 октября 2018 09:24 <br><script type="text/javascript">QU('subword','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=subword" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#24');return false;">#24</a> </span><div align=left><br>
+<b>plutos</b><br><br><br><img src="img/attach.gif" alt=""> <a href="./files/be55_25.10.2018_EXELAB.rU.tgz">be55_25.10.2018_EXELAB.rU.tgz</a> - IDAPro_Plugin_Template_for_Visual_Studio_[unknowncheats.me]_.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388544&amp;user=41556&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=24" class="addthx" data-post="388544"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4773" title="25-10-2018 06:45, ранг:370.0" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]BfoX[/b]','')">BfoX</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 397.0 (мудрец), 179thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.13'>Активность: 0.17<span style='color:red'>&searr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=1865">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 октября 2018 18:58 <br><script type="text/javascript">QU('BfoX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BfoX" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#25');return false;">#25</a> </span><div align=left><br>
+<b>plutos</b><br>с первого раза...
+<br><br><font size="1"><i>-----<br>...или ты работаешь хорошо, или ты работаешь много...</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388549&amp;user=1865&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=25" class="addthx" data-post="388549"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 октября 2018 01:58 <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#26');return false;">#26</a> </span><div align=left><br>
+<I>BfoX пишет:<br>с первого раза... </I><br><br>все правильно: ты  работаешь хорошо, <img src="img/smilies/s2.gif" alt=""> а я работаю много...<img src="img/smilies/s16.gif" alt="">
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388553&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=26" class="addthx" data-post="388553"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]Xlab0s[/b]','')">Xlab0s</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 39.7 (посетитель), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.41'>Активность: 0.04<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=31393">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 октября 2018 14:51 &middot; Поправил: Xlab0s <br><script type="text/javascript">QU('Xlab0s','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Xlab0s" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#27');return false;">#27</a> </span><div align=left><br>
+Переставил всё по несколько раз<br>ScyllaHide_2018-10-11_11-41 под ida7 не идёт<br>да и дамп так и несмогла ida взять в работу<br><br>копию принёс где всё работает но тоже не пошло каких то компонентов походу в системе не хватает
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388555&amp;user=31393&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=27" class="addthx" data-post="388555"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]plutos[/b]','')">plutos</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/4773.png" alt=""><br><span class=txtSm>Ранг: 622.6 (<b>!</b>), 521thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.16'>Активность: 0.33<span style='color:green'>&nearr;</span>0.89</span><br>Статус: <a href="action=userinfo&amp;user=4773">Участник</a><br><font color=blue>_Вечный_Студент_</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 октября 2018 23:52 &middot; Поправил: plutos <br><script type="text/javascript">QU('plutos','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=plutos" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#28');return false;">#28</a> </span><div align=left><br>
+пытаюсь собрать <noindex><a href="https://github.com/avast-tl/retdec-idaplugin" rel="nofollow" target="_blank">--&gt;IDA plugin for RetDec &lt;--</a></noindex> под Windows. ).<br>Все вроде просто, но вылетает с ошибкой <br><br>Error	MSB6006	&quot;cmd.exe&quot; exited with code 1.	retdec-project	C:\Program Files (x86)\MSBuild\Microsoft.Cpp\v4.0\V140\Microsoft.CppCommon.targets	171	<br><br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;<span class="hl_char">-</span><span class="hl_char">-</span>&nbsp;retdec<span class="hl_char">-</span>project&nbsp;download&nbsp;command&nbsp;succeeded<span class="hl_char">.</span>&nbsp;&nbsp;See&nbsp;also&nbsp;D<span class="hl_char">:</span><span class="hl_char">/</span>retDEC_v3<span class="hl_char">.</span><span class="hl_number">2</span><span class="hl_char">/</span>Plugin<span class="hl_char">/</span>Source<span class="hl_char">/</span>retdec<span class="hl_char">-</span>idaplugin<span class="hl_char">/</span>build<span class="hl_char">/</span>deps<span class="hl_char">/</span>retdec<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>prefix<span class="hl_char">/</span>src<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>stamp<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>download<span class="hl_char">-</span><span class="hl_char">*</span><span class="hl_char">.</span>log&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;update&nbsp;step&nbsp;for&nbsp;</span><span class="hl_quote">'retdec-project'</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;No&nbsp;patch&nbsp;step&nbsp;for&nbsp;</span><span class="hl_quote">'retdec-project'</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Performing&nbsp;configure&nbsp;step&nbsp;for&nbsp;</span><span class="hl_quote">'retdec-project'</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CMake&nbsp;Error&nbsp;at&nbsp;D</span><span class="hl_char">:</span><span class="hl_char">/</span>retDEC_v3<span class="hl_char">.</span><span class="hl_number">2</span><span class="hl_char">/</span>Plugin<span class="hl_char">/</span>Source<span class="hl_char">/</span>retdec<span class="hl_char">-</span>idaplugin<span class="hl_char">/</span>build<span class="hl_char">/</span>deps<span class="hl_char">/</span>retdec<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>prefix<span class="hl_char">/</span>src<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>stamp<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>configure<span class="hl_char">-</span>Debug<span class="hl_char">.</span>cmake<span class="hl_char">:</span><span class="hl_number">16</span>&nbsp;<span class="hl_char">(</span>message<span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command&nbsp;failed</span><span class="hl_char">:</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_quote">'D:/Program Files/CMake/bin/cmake.exe'</span>&nbsp;<span class="hl_quote">'-GVisual Studio 14 2015 Win64'</span>&nbsp;<span class="hl_quote">'D:/retDEC_v3.2/Plugin/Source/retdec-idaplugin/build/deps/retdec/retdec-project-prefix/src/retdec-project'</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;See&nbsp;also&nbsp;</span><span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;D</span><span class="hl_char">:</span><span class="hl_char">/</span>retDEC_v3<span class="hl_char">.</span><span class="hl_number">2</span><span class="hl_char">/</span>Plugin<span class="hl_char">/</span>Source<span class="hl_char">/</span>retdec<span class="hl_char">-</span>idaplugin<span class="hl_char">/</span>build<span class="hl_char">/</span>deps<span class="hl_char">/</span>retdec<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>prefix<span class="hl_char">/</span>src<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>stamp<span class="hl_char">/</span>retdec<span class="hl_char">-</span>project<span class="hl_char">-</span>configure<span class="hl_char">-</span><span class="hl_char">*</span><span class="hl_char">.</span>log&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span class="hl_number">14</span><span class="hl_char">:</span><span class="hl_number">02</span><span class="hl_char">:</span><span class="hl_number">15</span><span class="hl_char">.</span><span class="hl_number">354</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">1</span><span class="hl_char">&gt;</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span>C<span class="hl_char">:</span><span class="hl_char">\</span>Program&nbsp;Files&nbsp;<span class="hl_char">(</span>x86<span class="hl_char">)</span><span class="hl_char">\</span>MSBuild<span class="hl_char">\</span>Microsoft<span class="hl_char">.</span>Cpp<span class="hl_char">\</span>v4<span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">\</span>V140<span class="hl_char">\</span>Microsoft<span class="hl_char">.</span>CppCommon<span class="hl_char">.</span>targets<span class="hl_char">(</span><span class="hl_number">171</span><span class="hl_char">,</span><span class="hl_number">5</span><span class="hl_char">)</span><span class="hl_char">:</span>&nbsp;error&nbsp;MSB6006<span class="hl_char">:</span>&nbsp;<span class="hl_quote">&quot;cmd.exe&quot;</span>&nbsp;exited&nbsp;with&nbsp;<span class="hl_function"><b>code</b></span>&nbsp;<span class="hl_number">1</span><span class="hl_char">.</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Done&nbsp;executing&nbsp;task&nbsp;</span><span class="hl_quote">&quot;CustomBuild&quot;</span>&nbsp;<span class="hl_char">-</span><span class="hl_char">-</span>&nbsp;FAILED<span class="hl_char">.</span>&nbsp;<span class="hl_char">(</span>TaskId<span class="hl_char">:</span><span class="hl_number">19</span><span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_number">3</span><span class="hl_char">&gt;</span><span class="hl_number">14</span><span class="hl_char">:</span><span class="hl_number">02</span><span class="hl_char">:</span><span class="hl_number">15</span><span class="hl_char">.</span><span class="hl_number">354</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">1</span><span class="hl_char">&gt;</span></li><li class="hl_l0"><span class="hl_number">3</span><span class="hl_char">&gt;</span>Done&nbsp;building&nbsp;target&nbsp;<span class="hl_quote">&quot;CustomBuild&quot;</span>&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;project&nbsp;<span class="hl_quote">&quot;retdec-project.vcxproj&quot;</span>&nbsp;<span class="hl_char">-</span><span class="hl_char">-</span>&nbsp;FAILED<span class="hl_char">.</span><span class="hl_char">:</span>&nbsp;<span class="hl_char">(</span>TargetId<span class="hl_char">:</span><span class="hl_number">32</span><span class="hl_char">)</span></li><li class="hl_l1">&nbsp;</li>        </ol>
+    </div>
+</div></div>
+<br>понимаю, что это связано с CustomBuild rules и с тем, что это external project, но не могу никак дотумкать, в чем именно проблема. все выглядит нормально, но не работает. В интернете множество сходных проблем обсуждалось, но все как-то частные случаи. Пожалуйста, попробуйте собрать и посмотреть свежим взглядом, не должно занять много времени. Заранее спасибо!
+<br><br><font size="1"><i>-----<br>Give me a HANDLE and I will move the Earth.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388600&amp;user=4773&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=28" class="addthx" data-post="388600"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 20:10 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#29');return false;">#29</a> </span><div align=left><br>
+7.2 release<noindex><a href="https://www.hex-rays.com/products/ida/7.2/index.shtml" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br>кто там ченж лог хотел
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388799&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=29" class="addthx" data-post="388799"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=42682" title="05-11-2018 17:42, ранг:17.3" target="_blank">RevCred</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 20:48 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#30');return false;">#30</a> </span><div align=left><br>
+Lumina сервер кто-то уже видел в действии?<br><br><noindex><a href="https://www.hex-rays.com/products/ida/lumina/index.shtml" rel="nofollow" target="_blank">--&gt; IDA: Lumina server &lt;--</a></noindex><br><br>Сказано, что бесплатно для активных пользователей:<br><br><i class=x>We provide it for free to our active users</i>
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=388800&amp;user=1379&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=30" class="addthx" data-post="388800"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 ноября 2018 20:50 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=24661&amp;page=8#31');return false;">#31</a> </span><div align=left><br>
+видели и действовали с люминатами<br>а что
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=388801&amp;user=15381&amp;forum_n=1&amp;topic=24661&amp;page=8&amp;anchor=31" class="addthx" data-post="388801"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=7.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=0.html">1</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=7.html">8</a> . <b>9</b> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=9.html">10</a> ... <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=20.html">21</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=21.html">22</a> . <a href="action=vthread&amp;forum=1&amp;topic=24661&amp;page=9.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Использование IDA Pro (part 2)</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="24661">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24661" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

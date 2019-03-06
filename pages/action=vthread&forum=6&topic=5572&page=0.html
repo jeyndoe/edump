@@ -1,0 +1,656 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>SYSENTER - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Вот из справочника (инструкции mmx): SYSENTER ------------- 0F 34 SYSENTER Fast call to privilege level 0 system procedures SYSEXIT ------------- 0F 35 SYSEXIT Fast return to privilege level 3 user code. Че правда можно выйти в">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=39467'>hgdagon</a>, <a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> SYSENTER</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=6&amp;topic=5572&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=6&amp;topic=5572&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]RaiN[/b]','')">RaiN</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 25.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3211">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 11:35 <br><script type="text/javascript">QU('RaiN','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RaiN" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Вот из справочника (инструкции mmx):
+<br>
+<br>SYSENTER 
+<br>-------------
+<br>0F 34 SYSENTER Fast call to privilege level 0 system procedures
+<br>
+<br>SYSEXIT
+<br>-------------
+<br>0F 35 SYSEXIT Fast return to privilege level 3 user code.
+<br>
+<br>Че правда можно выйти в ring0 с помощью одной этой команды ???
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=81997&amp;user=3211&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=1" class="addthx" data-post="81997"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 11:52 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Нужно вроде для вызова ф-й ядра, короче свой код просто этим вызовом в ринг 0 ты не пропихнёшь.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82000&amp;user=1556&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=2" class="addthx" data-post="82000"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]AlexZ[/b]','')">AlexZ</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 203.3 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.9'>Активность: 0.22<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=175">Участник</a><br><font color=blue>UPX Killer -d</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 13:48 <br><script type="text/javascript">QU('AlexZ','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AlexZ" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>RaiN</b>, ещё на разных сервиспаках эффект может быть различный.
+<br>Кратко: SYSENTER предназначена для передачи управления ОС, модифицирует регистры ESP, CS и SS при помощи MSR и т.п. и т.д. и заниматься этим любой проге ОС не даст.
+<br><br><font size="1"><i>-----<br>Я медленно снимаю с неё UPX... *FF_User*</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=82017&amp;user=175&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=3" class="addthx" data-post="82017"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]MoonShiner[/b]','')">MoonShiner</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 186.8 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.97'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 17:28 <br><script type="text/javascript">QU('MoonShiner','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MoonShiner" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>RaiN</b>, sysenter осуществляет переключение в ring0 и вход в обработчик этого сисэнтера. А адрес обработчика ты из юзера сменить не сможешь, так что вот. Нуна дров песать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82035&amp;user=2&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=4" class="addthx" data-post="82035"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Error_Log[/b]','')">Error_Log</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 228.7 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.05'>Активность: 0.12<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2060">Участник</a><br><font color=blue>malware research</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 19:14 <br><script type="text/javascript">QU('Error_Log','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Error_Log" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+В более старых версиях вместо SYSENTER использовалось int 2Eh. В общем есть регистр такой у процессора MSR SYSENTER, и есть команда SYSENTER. При выполнении команды управление передается коду, адрес которого расположен в этом регистре. Этот же адрес записан в Interrupt Descriptor Table в прерывании int 2Eh. Т.е. по сути одно и тоже - что выполнить команду SYSENTER, что INT 2Eh. После этого действительно будет выполняться код в ринг-0, но это код системный, и ты не можешь его изменять.
+<br><br><font size="1"><i>-----<br>Research is my purpose</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=82055&amp;user=2060&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=5" class="addthx" data-post="82055"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 20:11 <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+Зато можно юзать разные функции без использования API-интерфейсов и соответственно обходить все перехватчики уровня пользователя. Например в WXP завершить свой процесс можно так.
+<br>
+<br>push 0               // exit code
+<br>push &#036;FFFFFFFF // process handle
+<br>push 0               // return 2
+<br>push 0               // return 1
+<br>mov eax,&#036;101   // service id,  для WinXP (2600) NtTerminateProcess = 0101h
+<br>                          //                  для Win2K (2195) NtTerminateProcess = 00E0h
+<br>mov edx,esp      // pointer to params
+<br>dw &#036;340F          // sysenter    для Win2K нужно вместо sysenter - int 2Eh
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82063&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=6" class="addthx" data-post="82063"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]AlexZ[/b]','')">AlexZ</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 203.3 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.9'>Активность: 0.22<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=175">Участник</a><br><font color=blue>UPX Killer -d</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 20:58 <br><script type="text/javascript">QU('AlexZ','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=AlexZ" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>BaGiE</b>, неплохо. Я так понял что это же в XP можно рипать код api и использовать sysenter? Метод, коенчно - Г во всех смыслах, да и не для многих функций.
+<br><br><font size="1"><i>-----<br>Я медленно снимаю с неё UPX... *FF_User*</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=82073&amp;user=175&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=7" class="addthx" data-post="82073"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 июля 2006 21:21 &middot; Поправил: BaGiE <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+если правильно продумать, то так можно юзать многие API и совсем на разных виндах. например вот этот код прячет программу от отладчиков режима пользователя с помощью ZwSetInformationThread. Я думаю не надо пояснять что делает ZwSetInformationThread с параметром HideFromDebugger(17). работает на всех 2000 и XP и конечно на 9x не работает (там надо писать что-то свое), но однако и никакой ошибки не вызывает. И перехват ZwSetInformationThread на уровне Ring3 в данном случае не поможет. <img src="img/smilies/s1.gif" alt="">
+<br>
+<br>;---------- Ring3 antidebug ----------;
+<br>     mov eax,[fs:&#036;30]
+<br>     mov ecx,[eax+&#036;0C]
+<br>     jecxz @_dbg_w9x
+<br>     add eax,&#036;AC
+<br>     cmp word [eax],2195 ; Windows 2000
+<br>     jne @_dbg_xp
+<br>     xor eax,eax
+<br>     push eax
+<br>     push eax
+<br>     push 17
+<br>     push -2
+<br>     call @f
+<br>@@:  add dword [esp],@f-@b
+<br>     mov al,&#036;C7
+<br>     lea edx,[esp+4]
+<br>     int &#036;2E ; вызов ZwSetInformationThread
+<br>@@:  add esp,&#036;14
+<br>     jmp @_dbg_quit
+<br>@_dbg_xp:
+<br>     cmp word [eax],2600 ; Windows XP
+<br>     jne @_dbg_quit
+<br>     xor eax,eax
+<br>     push eax
+<br>     push eax
+<br>     push 17
+<br>     push -2
+<br>     push eax
+<br>     call @f
+<br>@@:  add dword [esp],@f-@b
+<br>     mov al,&#036;E5
+<br>     mov edx,esp
+<br>     sysenter ; вызов ZwSetInformationThread
+<br>@@:  add esp,&#036;14
+<br>     jmp @_dbg_quit
+<br>@_dbg_w9x:
+<br>; w9x antidebug
+<br>     ; здесь надо писать антиотладку которая будет работать под 9x или выводить сообщение что программа не будет работать под 9x
+<br>@_dbg_quit:
+<br>;-------------------------------------;
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82077&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=8" class="addthx" data-post="82077"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]S_T_A_S_[/b]','')">S_T_A_S_</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 163.7 (ветеран)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.87'>Активность: 0.07<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=251">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июля 2006 04:46 <br><script type="text/javascript">QU('S_T_A_S_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=S_T_A_S_" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Для единообразия и компактности кода, в XP можно так же int 2e использовать, хотя разные номера сервисов конечно нужно учитывать.
+<br>
+<br><I>BaGiE пишет:
+<br>sysenter ; syscall ZwSetInformationThread </I>
+<br>
+<br>syscall - это совершенно другая команда (AMD опкод 0f 05)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82137&amp;user=251&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=9" class="addthx" data-post="82137"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июля 2006 07:53 &middot; Поправил: BaGiE <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>S_T_A_S_ пишет:
+<br>syscall - это совершенно другая команда (AMD опкод 0f 05) </I>
+<br>я вообщето знал это, а написал syscall, чтобы было понятно что здесь происходит вызов системного сервиса, но видать немного некорректно выразился
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82140&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=10" class="addthx" data-post="82140"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июля 2006 07:56 <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>S_T_A_S_ пишет:
+<br>можно так же int 2e использовать </I>
+<br>я пробовал, но у меня выскакивает какое-то исключение
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82141&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=11" class="addthx" data-post="82141"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 июля 2006 16:45 <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+кажись теперь допер как пользоваться int2E в xp <img src="img/smilies/s1.gif" alt=""> - а точнее это точно также как и в 2k.
+<br>для sysenter надо класть в стек параметры функции и два адреса возврата, а также в eax-номер сервиса, а edx-указатель на параметры вместе с этими двумя dword&#039;ами (с 2мя адресами возврата)
+<br>;----------------- тока для XP и наверно для 2003
+<br>push PARAMn ;,где n-кол-во параметров
+<br>....
+<br>push PARAM1
+<br>push @RETURN2 ; хер знает для чего, можно &quot;push 0&quot;
+<br>push @RETURN1 ; адрес возврата
+<br>mov eax,0 ; номер сервиса
+<br>mov edx,esp
+<br>sysenter
+<br>@RETURN1:
+<br>add esp,4*(n+1)
+<br>;----------------- для 2K,XP и наверно для 2003.
+<br>а для int2E надо немного по другому:
+<br>push PARAMn
+<br>....
+<br>push PARAM1
+<br>push @RETURN ; (надо тока 1 dword для возврата в ring3)
+<br>mov eax,0 ; номер сервиса
+<br>lea edx,[esp+4] ; а тут указатель на параметры, но без этого dword
+<br>int 2Eh
+<br>@RETURN:
+<br>add esp,4*(n+1)
+<br>;----------------
+<br>итого - с int2E действительно удобнее получается, тока номера сервисов подстваляй разные и пользуйся <img src="img/smilies/s1.gif" alt="">.
+<br>
+<br>P.S. Есть ли у кого нибудь ntdll.dll от NT4, желательно от разных сервпаков. Очень интересно посмотреть как там сделано?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82202&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=12" class="addthx" data-post="82202"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]RaiN[/b]','')">RaiN</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 25.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3211">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июля 2006 13:12 <br><script type="text/javascript">QU('RaiN','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RaiN" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+от winMe есть<br><br><img src="img/attach.gif" alt=""> <a href="./files/3e27_09.07.2006_CRACKLAB.rU.tgz">3e27_09.07.2006_CRACKLAB.rU.tgz</a> - NTDLL.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82297&amp;user=3211&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=13" class="addthx" data-post="82297"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 июля 2006 18:28 <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I>RaiN пишет:
+<br>от winMe есть </I>
+<br>спасибо конечно, но я че то не понял. в 9x тоже ntdll существует??? впервые это слышу. (хотя я сам у себя никогда ME не ставил)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82336&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=14" class="addthx" data-post="82336"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]RaiN[/b]','')">RaiN</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 25.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3211">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июля 2006 10:18 <br><script type="text/javascript">QU('RaiN','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RaiN" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>BaGiE пишет:
+<br>в 9x тоже ntdll существует??? впервые это слышу. (хотя я сам у себя никогда ME не ставил) </I>
+<br>У меня миленниум (xp не прет - комп слабый) и ntdll.dll есть <img src="img/smilies/s2.gif" alt="">
+<br>Подумал, мож какая прога с собой притащила, а нет - в version info стоит Windows Millenium Operat.. <img src="img/smilies/s5.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82382&amp;user=3211&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=15" class="addthx" data-post="82382"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июля 2006 10:21 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<b>RaiN</b> Интересно а что за машина? Я на celeron 366 RAM 64 video 8 ставил хрюшу и летала...
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=82384&amp;user=3232&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=16" class="addthx" data-post="82384"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]RaiN[/b]','')">RaiN</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 25.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3211">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 июля 2006 10:26 <br><script type="text/javascript">QU('RaiN','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=RaiN" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<I>PE_Kill пишет:
+<br>Я на celeron 366 RAM 64 video 8 ставил хрюшу и летала </I>
+<br>Да? у меня у друга разогнанный celeron 800 xp хотя работает, но трещит и все ресурсы пожирает <img src="img/smilies/s1.gif" alt="">
+<br>А так я хотел тоже поставить, но у нас в Ульяновске хер найдешь магазин с дисками, приходится на другую сторону ехать.. <img src="img/smilies/s4.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=82386&amp;user=3211&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=17" class="addthx" data-post="82386"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]HoBleen[/b]','')">HoBleen</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/5110.jpg" alt=""><br><span class=txtSm>Ранг: 240.5 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.09'>Активность: 0.19<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5110">Участник</a><br><font color=blue>Author of ACKiller </font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2006 21:11 <br><script type="text/javascript">QU('HoBleen','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HoBleen" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Ну только сама ф-я sysenter (как и int 2E) не совсем документирована в винде - официальных доков нету, параметры могут измениться хоть в следующих SP, так что эт не есть хорошо((
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86740&amp;user=5110&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=18" class="addthx" data-post="86740"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]BaGiE[/b]','')">BaGiE</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/1006.gif" alt=""><br><span class=txtSm>Ранг: 61.7 (постоянный)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.54'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1006">Участник</a><br><font color=blue>я</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 августа 2006 21:17 <br><script type="text/javascript">QU('BaGiE','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BaGiE" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<I>HoBleen пишет:
+<br>параметры могут измениться хоть в следующих SP </I>
+<br>могут, но маловероятно - я че-то не заметил чтобы во всех предыдущих SP хоть к 2000, хоть к XP номера системных сервисов меняли. А билды можно жестко прописать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86742&amp;user=1006&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=19" class="addthx" data-post="86742"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]HOMEZ[/b]','')">HOMEZ</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3353">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2006 04:47 &middot; Поправил: HOMEZ <br><script type="text/javascript">QU('HOMEZ','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HOMEZ" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+а может подскажите как через этот sysenter в ХР SP2 сымитировать нажатие левой кнопки мышки
+<br>PS: уже неделю блуждаю в user32 но так и не понял
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86794&amp;user=3353&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=20" class="addthx" data-post="86794"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]f0ma[/b]','')">f0ma</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 17.8 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.66'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3003">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2006 04:56 <br><script type="text/javascript">QU('f0ma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f0ma" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>BaGiE пишет:
+<br> в 9x тоже ntdll существует?</I>
+<br>И в win95 сущетсвует, ибо CreateProcess()/TerminateProcess() именно оттуда импортируются насколько я помню, это единственная либа которая грузится всегда, вне зависимости от импорта, а иначе как бы программа могла на всех виндах сразу работать через api, на то он и PE, что перенасимый исполняемый (другое дело что реализация их внутри NT сильно отличается от 95/98/ME).
+<br><I>HoBleen пишет:
+<br>Ну только сама ф-я sysenter (как и int 2E) не совсем документирована в винде </I>
+<br>Я бы даже сказал совсем не документированная, оффициально M&#036; считает что только базовые dll от самой M&#036; имеют право стучаться в ядро.
+<br><I>BaGiE пишет:
+<br>чтобы во всех предыдущих SP хоть к 2000, хоть к XP номера системных сервисов меняли </I>
+<br>ну положем не каждый день перекомпилиццо, а других оснаваний для смены номеров вобще-то нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86795&amp;user=3003&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=21" class="addthx" data-post="86795"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]f0ma[/b]','')">f0ma</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 17.8 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.66'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3003">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2006 05:02 <br><script type="text/javascript">QU('f0ma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f0ma" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+<I>HOMEZ пишет:
+<br>а может подскажите как через этот sysenter в ХР SP2 сымитировать нажатие левой кнопки мышки </I>
+<br>А что SendMessage уже не катит? 
+<br>А при чем здесь sysenter? вообще-то данные от мыши через мышиный драйвер идут и в юзерленд выползают только через оконный менаджер, который распихивает соответствующие сообщения по очередям окон.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86797&amp;user=3003&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=22" class="addthx" data-post="86797"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]HoBleen[/b]','')">HoBleen</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/5110.jpg" alt=""><br><span class=txtSm>Ранг: 240.5 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.09'>Активность: 0.19<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5110">Участник</a><br><font color=blue>Author of ACKiller </font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2006 09:53 &middot; Поправил: HoBleen <br><script type="text/javascript">QU('HoBleen','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HoBleen" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<I>HOMEZ пишет:
+<br>а может подскажите как через этот sysenter в ХР SP2 сымитировать нажатие левой кнопки мышки  </I>
+<br>
+<br>Так ты хочешь использовать sysenter или обойти перехват сообщений?
+<br>
+<br>Это ж перехват совсем другого уровня..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86819&amp;user=5110&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=23" class="addthx" data-post="86819"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]HoBleen[/b]','')">HoBleen</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/5110.jpg" alt=""><br><span class=txtSm>Ранг: 240.5 (наставник)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.09'>Активность: 0.19<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5110">Участник</a><br><font color=blue>Author of ACKiller </font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2006 19:26 <br><script type="text/javascript">QU('HoBleen','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HoBleen" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<I>HOMEZ пишет:
+<br>а может подскажите как через этот sysenter в ХР SP2 сымитировать нажатие левой кнопки мышки  </I>
+<br>
+<br>Попробуй:
+<br>hWnd = FindWindow(&quot;WindowName&quot;);
+<br>SendMessage(hWnd, WM_CLICK, 0, 0);
+<br>
+<br>Если тебе нужно конкретное окно. Название класса окна (здесь WindowName) ищи через Process Explorer, либо через любой другой шпион.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86929&amp;user=5110&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=24" class="addthx" data-post="86929"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]HOMEZ[/b]','')">HOMEZ</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3353">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 августа 2006 19:27 &middot; Поправил: HOMEZ <br><script type="text/javascript">QU('HOMEZ','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HOMEZ" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<I>f0ma пишет:
+<br>А что SendMessage уже не катит? </I>
+<br>блокируют его, так же как и PostMessage
+<br>
+<br><I>HoBleen пишет:
+<br>Так ты хочешь использовать sysenter или обойти перехват сообщений? </I>
+<br>хочу используя sysenter обойти перехваченные функции.
+<br>
+<br>я хочу обойти gameguard(nprotect) он много что блокирует, была <a href="http://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=5558" target="_blank">тема</a>
+<br>
+<br>блокировку SetCursorPos я обошел
+<br><code>m_SetCursorPos_XPSP2 proc
+<br>	mov	edi, edi
+<br>	push	ebp
+<br>	mov	ebp, esp
+<br>	push	6Fh
+<br>	push	[ebp+0Ch]
+<br>	push	[ebp+08h]
+<br>	call	m_NtUserCallTwoParam_XPSP2
+<br>	pop	ebp
+<br>	retn	8
+<br>m_SetCursorPos_XPSP2 endp
+<br>
+<br>m_NtUserCallTwoParam_XPSP2 proc
+<br>	mov	eax, 1144h
+<br>	mov	edx, 7FFE0300h
+<br>	call	dword ptr [edx]
+<br>	retn	0Ch
+<br>m_NtUserCallTwoParam_XPSP2 endp</code>
+<br>
+<br>а вот с кликом левой кнопкой ничего не получается <img src="img/smilies/s9.gif" alt="">,
+<br>пробовал через mouse_event но походу чтото не срастается 
+<br><code>m_mouse_event_XPSP2 proc
+<br>	mov	edi, edi
+<br>	push	ebp
+<br>	mov	ebp, esp
+<br>	sub	esp, 1Ch
+<br>	mov	eax, [ebp+08h]
+<br>	and	dword ptr [ebp-1Ch], 0
+<br>	and	dword ptr [ebp-08h], 0
+<br>	mov	[ebp-0Ch], eax
+<br>	mov	eax, [ebp+0Ch]
+<br>	mov	[ebp-18h], eax
+<br>	mov	eax, [ebp+10h]
+<br>	mov	[ebp-14h], eax
+<br>	mov	eax, [ebp+14h]
+<br>	mov	[ebp-10h], eax
+<br>	mov	eax, [ebp+18h]
+<br>	mov	[ebp-04h], eax
+<br>	push	1Ch
+<br>	lea	eax, [ebp-1Ch]
+<br>	push	eax
+<br>	push	1
+<br>	call	m_NtUserSendInput_XPSP2
+<br>	leave
+<br>	retn	14h
+<br>m_mouse_event_XPSP2 endp
+<br>
+<br>m_NtUserSendInput_XPSP2 proc
+<br>	mov	eax, 11F6h
+<br>	mov	edx, 7FFE0300h
+<br>	call	dword ptr [edx]
+<br>	retn	0Ch
+<br>m_NtUserSendInput_XPSP2 endp
+<br></code>
+<br>
+<br>а вот через sysenter отправить сообщение о клике так и не вышло
+<br>
+<br><I>HoBleen пишет:
+<br>Попробуй:
+<br>hWnd = FindWindow(&quot;WindowName&quot;);
+<br><b>SendMessage(hWnd, WM_CLICK, 0, 0);</b>  </I>
+<br>
+<br>как этоже сделать через sysenter ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=86930&amp;user=3353&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=25" class="addthx" data-post="86930"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]f0ma[/b]','')">f0ma</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 17.8 (новичок)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.66'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3003">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 04 августа 2006 03:21 <br><script type="text/javascript">QU('f0ma','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=f0ma" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+Посмотри коды какой нить gnuтой тулзы для удаленного управления например TightVNC - www.tightvnc.com/download.html
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=87016&amp;user=3003&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=26" class="addthx" data-post="87016"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]HOMEZ[/b]','')">HOMEZ</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3353">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2006 08:30 &middot; Поправил: HOMEZ <br><script type="text/javascript">QU('HOMEZ','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HOMEZ" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+каким образом можно перехватывать вызовы, типа этого?<br><code>mov eax, 11F6h<br>mov edx, 7FFE0300h<br>call dword ptr [edx]<br>retn 0Ch</code><br><br>или хотябы подскажите куда смотреть, чтобы узнать куда переходит выполнение после  команды sysenter<br>то что в ring0 это и так понятно<br><br>просто хочу попробовать посмотреть что там может nprotect перехватывать и как, он это делает.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=91611&amp;user=3353&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=27" class="addthx" data-post="91611"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Error_Log[/b]','')">Error_Log</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 228.7 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.05'>Активность: 0.12<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2060">Участник</a><br><font color=blue>malware research</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2006 09:16 &middot; Поправил: Error_Log <br><script type="text/javascript">QU('Error_Log','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Error_Log" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<I>HOMEZ пишет:<br>каким образом можно перехватывать вызовы, типа этого </I><br>например сплайсингом, вписав джамп по адресу 7FFE0300h<br><I>HOMEZ пишет:<br>хочу попробовать посмотреть что там может nprotect перехватывать и как, он это делает </I><br>Вариант 1 - потрейсить в SoftIce, если перехвачен системный сервис через SDT, то трейсить за SYSENTER до примерно такого кода:<br>MOV EBX, [EAX*4+EDI]    ; в eax номер системного сервиса<br>CALL EBX<br>и смотреть куда указывает EBX.<br>Вариант 2 - скачать утилиту Джоанны Рутковской, она покажет где что похуканно (для nprotect ее должно хватить) скачать можно  --&gt;тут&lt;-- http://www.invisiblethings.org/tools/svv/svv-2.3-bin.zip .<br>ЗЫ: это в общих чертах, nprotect я в глаза не видел
+<br><br><font size="1"><i>-----<br>Research is my purpose</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=91625&amp;user=2060&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=28" class="addthx" data-post="91625"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]HOMEZ[/b]','')">HOMEZ</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 29.0 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.54'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3353">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2006 11:29 <br><script type="text/javascript">QU('HOMEZ','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HOMEZ" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<I>Error_Log пишет:<br>Вариант 1 </I><br>я конешно понимаю что SoftIce очень хороший инструмент, но у меня его нет.<br>Какиенибудь другие варианты туда добраться и посмотреть есть?<br><br><I>Error_Log пишет:<br>Вариант 2 </I><br>Запустил, оно выдало:<br><code>C:&#92;svv-2.3-bin&gt;svv.exe check<br>ntoskrnl.exe         (804d7000 - 806fd000)... suspected! (verdict = 5).<br>ntdll.dll            (7c900000 - 7c9b1000)... innocent hooking (verdict = 2).<br>kernel32.dll         (7c800000 - 7c8f6000)... innocent hooking (verdict = 2).<br>ADVAPI32.dll         (77dc0000 - 77e6c000)... innocent hooking (verdict = 2).<br>USER32.dll           (77d30000 - 77dc0000)... innocent hooking (verdict = 2).<br><br>SYSTEM INFECTION LEVEL: 5<br>    0 - BLUE<br>    1 - GREEN<br>    2 - YELLOW<br>    3 - ORANGE<br>    4 - RED<br>--&gt; 5 - DEEPRED<br>SUSPECTED modifications detected. System is probably infected!<br></code><br>что это значит? <img src="img/smilies/s4.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=91652&amp;user=3353&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=29" class="addthx" data-post="91652"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]Error_Log[/b]','')">Error_Log</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 228.7 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.05'>Активность: 0.12<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2060">Участник</a><br><font color=blue>malware research</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 29 августа 2006 13:32 <br><script type="text/javascript">QU('Error_Log','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Error_Log" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=5572&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+<I>HOMEZ пишет:<br>C:&#92;svv-2.3-bin&gt;svv.exe check </I><br>Сделай так:<br>svv.exe check /m<br>Утилита выведет более подробную инфу о модификациях в системе
+<br><br><font size="1"><i>-----<br>Research is my purpose</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=91678&amp;user=2060&amp;forum_n=6&amp;topic=5572&amp;page=0&amp;anchor=30" class="addthx" data-post="91678"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=6&amp;topic=5572&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=6&amp;topic=5572&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> SYSENTER</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=5572" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

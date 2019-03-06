@@ -1,0 +1,370 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Отладка программ, взводящих флаг tf - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Исследую программу (в ollydbg). Там через push ... popfd взводится флаг tf. При переходе на следующую инструкцию выбрасывает куда-то внутрь ntdll. Хотя по хорошему должно выбрасывать на seh-обработчик. Поставил хардварный бряк на">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=1533'>rmn</a>, <a target='_blank' href='?action=userinfo&amp;user=55940'>exp50848</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Отладка программ, взводящих флаг tf</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 15:14 <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Исследую программу (в ollydbg). Там через push ...  popfd взводится флаг tf.<br>При переходе на следующую инструкцию выбрасывает куда-то внутрь ntdll. Хотя по хорошему должно выбрасывать на seh-обработчик.<br>Поставил хардварный бряк на все сех обработчики(там 2 штуки их) но он почему то не срабатывает. В чём может быть дело? Вроде бы сама олька для отладки не юзает же tf - он в ней всё время 0.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333252&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=1" class="addthx" data-post="333252"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]sendersu[/b]','')">sendersu</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 512.7 (<b>!</b>), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.56'>Активность: 0.27<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=14629">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 15:39 <br><script type="text/javascript">QU('sendersu','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sendersu" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+какая Ольга, где кодес<br>похоже на прием антитрассировки
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333253&amp;user=14629&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=2" class="addthx" data-post="333253"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 15:41 <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Ольга 1.10. Кодец - VMBE инди клерка.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333254&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=3" class="addthx" data-post="333254"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Hellspawn[/b]','')">Hellspawn</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/72.gif" alt=""><br><span class=txtSm>Ранг: 990.2 <font color=red>(<b>! ! !</b>)</font>, 380thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.95'>Активность: 0.68<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=72">Модератор</a><br><font color=blue>Author of DiE</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 15:46 <br><script type="text/javascript">QU('Hellspawn','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hellspawn" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<b>dova</b> как это в ольке не юзается, а как же она трейсит то? как отлаживать, следить за стеком и убирать TF_FLAG = 0x100
+<br><br><font size="1"><i>-----<br>[nice coder and reverser]</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=333255&amp;user=72&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=4" class="addthx" data-post="333255"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 15:57 <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Так если вручную сбрасывать этот флаг, тогда ведь и подавно не вызовется никаких seh обработчиков. Неужто вручную вызывать?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333256&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=5" class="addthx" data-post="333256"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Hellspawn[/b]','')">Hellspawn</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/72.gif" alt=""><br><span class=txtSm>Ранг: 990.2 <font color=red>(<b>! ! !</b>)</font>, 380thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.95'>Активность: 0.68<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=72">Модератор</a><br><font color=blue>Author of DiE</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 16:20 <br><script type="text/javascript">QU('Hellspawn','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Hellspawn" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>dova</b> сбрасывать это если детектит трассировку, а если само себя трассирует, тогда самому эмулировать вызов сепшена и не давать ольге ханлить фолт.
+<br><br><font size="1"><i>-----<br>[nice coder and reverser]</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=333257&amp;user=72&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=6" class="addthx" data-post="333257"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 16:21 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>dova пишет:<br>Вроде бы сама олька для отладки не юзает же tf </I><br>В большинстве случаев олька(все версии) сбрасывает tf, но если извне(другой программой) посмотреть контекст отлаживаемого процесса, то всё может оказаться не так, как вы представляли себе <img src="img/smilies/s1.gif" alt=""> Но это только как вступление!<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>push</b></span>&nbsp;<span class="hl_registr">ss</span></li><li class="hl_l1"><span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">ss</span></li><li class="hl_l0"><span class="hl_function">pushfd</span></li><li class="hl_l1"><span class="hl_function"><b>pop</b></span>&nbsp;<span class="hl_registr">eax</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>В 2.00 beta и в 1.10 по F8 ход останавливается на pop eax, дальнейшее выполнение которой выдаёт TF. Следовательно, TF юзается.<br>На новой 2.01 этот код не показывает флаг TF в eax по F8. При этом зависает hwbp на pushfd и ход продолжается до первого бряка. Вместо TF временные hwbp<br><br>Но странно, ни в той, ни в той ольке не кидает в хэндлер, на всех поставил бряки<br><br><b>dova</b>, а покажи конкретный код, немного ранее push и до popfd включительно, там несколько различных приёмов.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=333258&amp;user=24257&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=7" class="addthx" data-post="333258"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 16:53 <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br><div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">CPU&nbsp;Disasm</li><li class="hl_l1"><span style="word-break: break-all">Address&nbsp;&nbsp;&nbsp;Hex&nbsp;dump&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Command&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Comments</span></li><li class="hl_l0"><span class="hl_number">0040157B</span>&nbsp;&nbsp;<span class="hl_char">/</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_char">\</span><span class="hl_number">55</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EBP</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; /Arg4 = 18FF68</span></li><li class="hl_l1"><span class="hl_number">0040157C</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">8BEC</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_registr">EBP</span><span class="hl_char">,</span><span class="hl_registr"><b>ESP</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |</span></li><li class="hl_l0"><span class="hl_number">0040157E</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">33C0</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>XOR</b></span>&nbsp;<span class="hl_registr">EAX</span><span class="hl_char">,</span><span class="hl_registr"><b>EAX</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |</span></li><li class="hl_l1"><span class="hl_number">00401580</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">8B4D</span>&nbsp;<span class="hl_number">10</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_registr">ECX</span><span class="hl_char">,</span><span class="hl_function"><b>DWORD</b></span>&nbsp;<span class="hl_function"><b>PTR</b></span>&nbsp;<span class="hl_registr">SS</span><span class="hl_char">:</span><span class="hl_char">[</span>ARG<span class="hl_char">.</span><span class="hl_number">3</span><span class="hl_char">]</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; |</span></li><li class="hl_l0"><span class="hl_number">00401583</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">50</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EAX</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |Arg3 =&gt; 0</span></li><li class="hl_l1"><span class="hl_number">00401584</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">50</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EAX</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |/Arg3 =&gt; 0</span></li><li class="hl_l0"><span class="hl_number">00401585</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">50</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EAX</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; ||Arg2 =&gt; 0</span></li><li class="hl_l1"><span class="hl_number">00401586</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">50</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EAX</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; ||Arg1 =&gt; 0</span></li><li class="hl_l0"><span class="hl_number">00401587</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;E8&nbsp;<span class="hl_number">2B000000</span>&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CALL</b></span>&nbsp;<span class="hl_number">004015B7</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |\current.004015B7</span></li><li class="hl_l1"><span class="hl_number">0040158C</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">55</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EBP</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |Arg2 =&gt; OFFSET LOCAL.0</span></li><li class="hl_l0"><span class="hl_number">0040158D</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">50</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr"><b>EAX</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; |Arg1</span></li><li class="hl_l1"><span class="hl_number">0040158E</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;E8&nbsp;DFFEFFFF&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CALL</b></span>&nbsp;<span class="hl_number">00401472</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; \current.00401472</span></li><li class="hl_l0"><span class="hl_number">00401593</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">50</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr">EAX</span></li><li class="hl_l1"><span class="hl_number">00401594</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">64</span><span class="hl_char">:</span>FF35&nbsp;<span class="hl_number">00000</span>&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_function"><b>DWORD</b></span>&nbsp;<span class="hl_function"><b>PTR</b></span>&nbsp;<span class="hl_registr">FS</span><span class="hl_char">:</span><span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span></li><li class="hl_l0"><span class="hl_number">0040159B</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">8B45</span>&nbsp;<span class="hl_number">0C</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_registr">EAX</span><span class="hl_char">,</span><span class="hl_function"><b>DWORD</b></span>&nbsp;<span class="hl_function"><b>PTR</b></span>&nbsp;<span class="hl_registr">SS</span><span class="hl_char">:</span><span class="hl_char">[</span>ARG<span class="hl_char">.</span><span class="hl_number">2</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_number">0040159E</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">64</span><span class="hl_char">:</span><span class="hl_number">8925</span>&nbsp;<span class="hl_number">00000</span>&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_function"><b>DWORD</b></span>&nbsp;<span class="hl_function"><b>PTR</b></span>&nbsp;<span class="hl_registr">FS</span><span class="hl_char">:</span><span class="hl_char">[</span><span class="hl_number">0</span><span class="hl_char">]</span><span class="hl_char">,</span><span class="hl_registr"><b>ESP</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; Installs SE handler</span></li><li class="hl_l0"><span class="hl_number">004015A5</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">&gt;</span>&nbsp;&nbsp;FF7488&nbsp;FC&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">/</span><span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_function"><b>DWORD</b></span>&nbsp;<span class="hl_function"><b>PTR</b></span>&nbsp;<span class="hl_registr">DS</span><span class="hl_char">:</span><span class="hl_char">[</span><span class="hl_registr">ECX</span><span class="hl_char">*</span><span class="hl_number">4</span><span class="hl_char">+</span><span class="hl_registr">EAX</span><span class="hl_char">-</span><span class="hl_number">4</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_number">004015A9</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;<span class="hl_number">49</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_function"><b>DEC</b></span>&nbsp;<span class="hl_registr">ECX</span></li><li class="hl_l0"><span class="hl_number">004015AA</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>^&nbsp;<span class="hl_number">75</span>&nbsp;F9&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">\</span><span class="hl_function"><b>JNZ</b></span>&nbsp;<span class="hl_function"><b>SHORT</b></span>&nbsp;<span class="hl_number">004015A5</span></li><li class="hl_l1"><span class="hl_number">004015AC</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">68</span>&nbsp;<span class="hl_number">02010000</span>&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_number">102</span></li><li class="hl_l0"><span class="hl_number">004015B1</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">9D</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">POPFD</span></li><li class="hl_l1"><span class="hl_number">004015B2</span>&nbsp;&nbsp;<span class="hl_char">|</span><span class="hl_char">.</span>&nbsp;&nbsp;FF55&nbsp;<span class="hl_number">08</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>CALL</b></span>&nbsp;<span class="hl_function"><b>DWORD</b></span>&nbsp;<span class="hl_function"><b>PTR</b></span>&nbsp;<span class="hl_registr">SS</span><span class="hl_char">:</span><span class="hl_char">[</span>ARG<span class="hl_char">.</span><span class="hl_number">1</span><span class="hl_char">]</span></li><li class="hl_l0">&nbsp;</li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=333262&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=8" class="addthx" data-post="333262"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 17:06 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+на 2.00 beta кинуло в сех, на 1.10 и 2.01 - нет
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=333263&amp;user=24257&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=9" class="addthx" data-post="333263"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 02 ноября 2013 17:15 &middot; Поправил: dova <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Хм. Меня не кидает. Ставлю бряк на самый первый обработчик (тот что по адресу FS:[0]+4). Ставил и Hardware breakpoint и обычный брякпоинт через F2(проверял на ollydbg 2.00 beta)<br><br>Вот файл, там чуть протрейсить и будет то место.<br><br><img src="img/attach.gif" alt=""> <a href="./files/0f06_02.11.2013_EXELAB.rU.tgz">0f06_02.11.2013_EXELAB.rU.tgz</a> - current.exe
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333264&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=10" class="addthx" data-post="333264"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 ноября 2013 00:19 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Ну и что вы там нарыть хотите, мотор опенсурсный же <img src="img/smilies/s11.gif" alt=""><br><br>Версии было две, первая юзала TF(трейс), что не годно, чторая ваще фолты не юзает.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333270&amp;user=33727&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=11" class="addthx" data-post="333270"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 ноября 2013 00:32 <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Ссылку на второй мотор не подскажете, не могу его найти чего-то (на сайте вашем там не даёт качнуть)? <br>В первой видимо действительно ничего интересного нет - как я понял там просто взводится флаг TF , при переходе на следующую инструкцию вызывается обработчик, счётчик инструкций увеличивается на 1, снова взводится флаг tf, исполняется следующая инструкция функции и тд...  Не очень годно хотя бы потому, что обычные проги флаг tf не взводят.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333271&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=12" class="addthx" data-post="333271"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Dr0p[/b]','')">Dr0p</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/33727.png" alt=""><br><span class=txtSm>Ранг: 72.3 (постоянный), 133thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.5'>Активность: 0.38<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=33727">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 ноября 2013 00:36 &middot; Поправил: Dr0p <br><script type="text/javascript">QU('Dr0p','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Dr0p" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>dova</b><br><br>http://www.woodmann.com/forum/showthread.php?14923-AV-VM-BYPASS-ENGINE<br><br>Первая версия древняя, я уже и не помню что именно она делает. Вторая труъ.<br><br>&gt; Не очень годно хотя бы потому, что обычные проги флаг tf не взводят.<br><br>Это не годно из за safeseh. Да и вообще зачем фолты нужны.<br><br>&gt; на сайте вашем там не даёт качнуть<br><br>Не даёт даже если зарегаться.)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333272&amp;user=33727&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=13" class="addthx" data-post="333272"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=36075" title="02-11-2013 21:50, ранг:6.0" target="_blank">dova</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]dova[/b]','')">dova</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость), 1thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 6.7'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=36075">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 03 ноября 2013 00:39 &middot; Поправил: dova <br><script type="text/javascript">QU('dova','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dova" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=22303.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Да, я там зареган. Только там же ещё надо чтобы кто-нибудь +1 выставил. <br>Ок спс. за ссыль.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=333273&amp;user=36075&amp;forum_n=1&amp;topic=22303.html&amp;page=0&amp;anchor=14" class="addthx" data-post="333273"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Отладка программ, взводящих флаг tf</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#15" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="22303">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=22303" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

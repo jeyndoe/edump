@@ -1,0 +1,565 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Статья. Простая защита или ломаем TurboLaunch 5.1.3 тремя способами - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Привет. Хочу представить свою первую полноценную статью по исследованию защиты программ. Речь пойдет о программе TurboLaunch 5.1.3. Статья разбита на 3 подраздела, в каждом из них описывается разный способ взлома (патч, сниффер,">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=8605'>Rio</a>, <a target='_blank' href='?action=userinfo&amp;user=19256'>johnniewalker</a>, <a target='_blank' href='?action=userinfo&amp;user=40607'>vsv1</a>, <a target='_blank' href='?action=userinfo&amp;user=8344'>Magister Yoda</a>, <a target='_blank' href='?action=userinfo&amp;user=55914'>Kybyx</a> (+4 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Статья. Простая защита или ломаем TurboLaunch 5.1.3 тремя способами</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 10:05 &middot; Поправил: DimitarSerg <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Привет. Хочу представить свою первую полноценную статью по исследованию защиты программ.<br>Речь пойдет о программе TurboLaunch 5.1.3.<br>Статья разбита на 3 подраздела, в каждом из них описывается разный способ взлома (патч, сниффер, кейген).<br><br>Хочу услышать отзывы, пожелания и т.д. и т.п.<br><br><img src="img/attach.gif" alt=""> <a href="./files/fb16_14.06.2011_EXELAB.rU.tgz">fb16_14.06.2011_EXELAB.rU.tgz</a> - TL.rar
+<br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285794&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=1" class="addthx" data-post="285794"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 10:58 &middot; Поправил: BoRoV <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+А почему через асм-вставку, почему не перевел в паскаль?<br><br>Запомни это ф-ию и эту константу:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr">EBX</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>XOR</b></span>&nbsp;<span class="hl_registr">EBX</span><span class="hl_char">,</span><span class="hl_registr">EBX</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IMUL</b></span>&nbsp;<span class="hl_registr">EDX</span><span class="hl_char">,</span>sn_tmp<span class="hl_char">,</span><span class="hl_number">08088405h</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>INC</b></span>&nbsp;<span class="hl_registr">EDX</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;sn_tmp<span class="hl_char">,</span><span class="hl_registr">EDX</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MUL</b></span>&nbsp;<span class="hl_registr">EDX</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_registr">EAX</span><span class="hl_char">,</span><span class="hl_registr">EDX</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>POP</b></span>&nbsp;<span class="hl_registr">EBX</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Это ф-ия <b>Random</b>. <img src="img/smilies/s1.gif" alt=""><br><br>sn_tmp - это RandSeed.<br><br>Текст не читал.
+<br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285798&amp;user=15500&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=2" class="addthx" data-post="285798"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24946" title="14-06-2011 07:03, ранг:1.4" target="_blank">DimitarSerg</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 11:07 <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<b>BoRoV</b><br>Спасибо, буду знать. Не перевел в Паскаль, потому что знаний не хватило...<br>Если бы кто помог перевести на чистый Паскаль - был бы очень благодарен.
+<br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285799&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=3" class="addthx" data-post="285799"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 11:17 &middot; Поправил: BoRoV <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Ну у тебя же половина листинга прокомментирована на понятный тебе образ вот и и отталкивайся от этого. Вот и потренируешься.<br><br>Могу дать пару подсказок по тому что ты не знал.<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>mov</b></span>&nbsp;sn_tmp<span class="hl_char">,</span><span class="hl_registr"><b>EAX</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;Сохраняем&nbsp;результат&nbsp;вычислений</li>        </ol>
+    </div>
+</div></div>
+<br>Это будет:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">RandSeed&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;_EAX&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;<span class="hl_char">$</span>FFFF<span class="hl_comment">; // _EAX это у тебя будет какая-то переменная, я не знаю как она будет у тебя называться</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_registr">EAX</span><span class="hl_char">,</span><span class="hl_number">021h</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;<span class="hl_registr">EAX</span><span class="hl_char">=</span><span class="hl_number">33</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">/</span><span class="hl_char">/</span>&nbsp;<span class="hl_char">-</span><span class="hl_char">-</span><span class="hl_char">&gt;</span><span class="hl_function"><b>CALL</b></span>&nbsp;@TurboLau_004034E8&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">;&lt;= Jump/Call Address Not Resolved</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>PUSH</b></span>&nbsp;<span class="hl_registr">EBX</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>XOR</b></span>&nbsp;<span class="hl_registr">EBX</span><span class="hl_char">,</span><span class="hl_registr">EBX</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IMUL</b></span>&nbsp;<span class="hl_registr">EDX</span><span class="hl_char">,</span>sn_tmp<span class="hl_char">,</span><span class="hl_number">08088405h</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>INC</b></span>&nbsp;<span class="hl_registr">EDX</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;sn_tmp<span class="hl_char">,</span><span class="hl_registr">EDX</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MUL</b></span>&nbsp;<span class="hl_registr">EDX</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>MOV</b></span>&nbsp;<span class="hl_registr">EAX</span><span class="hl_char">,</span><span class="hl_registr">EDX</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>POP</b></span>&nbsp;<span class="hl_registr">EBX</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Это тебе вызвать рандом с параметром 33:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">SomeVal&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;Random<span class="hl_char">(</span><span class="hl_number">33</span><span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285801&amp;user=15500&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=4" class="addthx" data-post="285801"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]gazlan[/b]','')">gazlan</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/1744.png" alt=""><br><span class=txtSm>Ранг: 170.1 (ветеран), 96thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.19'>Активность: 0.09<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=1744">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 11:57 <br><script type="text/javascript">QU('gazlan','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=gazlan" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br><div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">00000003</span>&nbsp;&nbsp;<span class="hl_number">01</span>&nbsp;&nbsp;<span class="hl_char">[</span><span class="hl_function"><b>CODE</b></span>&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">]</span>&nbsp;&nbsp;<span class="hl_number">000028F1</span>&nbsp;&nbsp;<span class="hl_char">.</span><span class="hl_number">004034F1</span>&nbsp;&nbsp;<span class="hl_number">05840808</span>&nbsp;&nbsp;<span class="hl_char">.</span>„<span class="hl_char">.</span><span class="hl_char">.</span>&nbsp;&nbsp;&nbsp;PKZip&nbsp;<span class="hl_char">&amp;</span>&nbsp;Borland&nbsp;PRNG</li>        </ol>
+    </div>
+</div></div>
+<br><br><img src="img/attach.gif" alt=""> <a href="./files/67ab_14.06.2011_EXELAB.rU.tgz">67ab_14.06.2011_EXELAB.rU.tgz</a> - TurboLaunch.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=285802&amp;user=1744&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=5" class="addthx" data-post="285802"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 14:34 <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>BoRoV</b>, правильней <b>MOV EDX,021h</b>, там ж трёхоперандный мул с edx <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285817&amp;user=24257&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=6" class="addthx" data-post="285817"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 14:43 <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>BoRoV, правильней MOV EDX,021h, там ж трёхоперандный мул с edx </I><br>1. Это не мой код.<br>2. Там всё верно.
+<br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285820&amp;user=15500&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=7" class="addthx" data-post="285820"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 15:07 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>BoRoV пишет:<br>2. Там всё верно. </I><br>Ни одна из инструкций в коде ни берёт, ни меняет eax! Другими словами - ни eax не влияет на код, ни код не влияет на eax!<br><br><I>BoRoV пишет:<br>1. Это не мой код. </I> Эт точно, решил взглянуть даже <img src="img/smilies/s1.gif" alt=""> Интересно, что метки вида @TurboLau_005406C1 -  код генерации выдран из TL или откуда-то? (TurboLau не указывает на 100%, что TL - например, я, чтобы быстро набросать какой-нить гене-алго для программы, часто там же и асмю, а потом, если заинтересован сохранить, копирую и вставляю txt)
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285823&amp;user=24257&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=8" class="addthx" data-post="285823"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 15:10 <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>Ни одна из инструкций в коде ни берёт, ни меняет eax!  </I><br>Дык смотрите внимательно, или поднимайте справочники.<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>mul</b></span>&nbsp;<span class="hl_registr">edx</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285824&amp;user=15500&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=9" class="addthx" data-post="285824"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 14 июня 2011 15:13 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Блин, точно. Не заметил <img src="img/smilies/s1.gif" alt=""> Пардон<br><br>P. S. Это происки тёмных сил <img src="img/smilies/s5.gif" alt="">
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=285827&amp;user=24257&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=10" class="addthx" data-post="285827"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 15:10 <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Люблю доводить дело до конца, поэтому вчера вечерком вспомнил об этой программульке,  перевел алго для Дельфы. Просьба к опытным кейгенерам бегло глянуть код, может где-то можно красивее и правильнее написать:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">procedure&nbsp;generate<span class="hl_comment">;</span></li><li class="hl_l1">Var</li><li class="hl_l0">NameBuffer<span class="hl_char">,</span>SerNum<span class="hl_char">,</span>tmp<span class="hl_char">:</span>String<span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_registr">EDX</span><span class="hl_char">,</span><span class="hl_registr">EAX</span><span class="hl_char">,</span>len<span class="hl_char">,</span>i<span class="hl_char">,</span>RSeed<span class="hl_char">,</span>v6<span class="hl_char">,</span>v7<span class="hl_char">,</span>tmp1<span class="hl_char">:</span>integer<span class="hl_comment">;</span></li><li class="hl_l0">Textname<span class="hl_char">:</span>&nbsp;PChar<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">begin</li><li class="hl_l1">&nbsp;&nbsp;len&nbsp;&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;GetWindowTextLengthA<span class="hl_char">(</span>TxtNameHwnd<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;len&nbsp;<span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">1</span>&nbsp;then</li><li class="hl_l1">&nbsp;&nbsp;begin</li><li class="hl_l0">&nbsp;&nbsp;GetMem<span class="hl_char">(</span>Textname<span class="hl_char">,</span>&nbsp;len&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_number">1</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;GetWindowTextA<span class="hl_char">(</span>TxtNameHwnd<span class="hl_char">,</span>PAnsiChar<span class="hl_char">(</span>Textname<span class="hl_char">)</span><span class="hl_char">,</span>len&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_number">1</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;KeyStr<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_quote">'GF2DSA38HJKL7M4NZXCV5BY9UPT6R1EWQ40I1CP'</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;NameBuffer<span class="hl_char">:</span><span class="hl_char">=</span>String<span class="hl_char">(</span>Textname<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;SerNum<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_quote">''</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;</li><li class="hl_l0">Randomize<span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_registr">EDX</span><span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;i<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">1</span>&nbsp;to&nbsp;len&nbsp;do</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">(</span>ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i<span class="hl_char">]</span><span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">8</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>EAX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">8</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>while</b></span>&nbsp;<span class="hl_registr"><b>EAX</b></span>&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">0</span>&nbsp;do</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;tmp<span class="hl_char">:</span><span class="hl_char">=</span>copy<span class="hl_char">(</span>IntToHex<span class="hl_char">(</span><span class="hl_registr">EDX</span><span class="hl_char">,</span><span class="hl_number">2</span><span class="hl_char">)</span><span class="hl_char">,</span>Length<span class="hl_char">(</span>IntToHex<span class="hl_char">(</span><span class="hl_registr">EDX</span><span class="hl_char">,</span><span class="hl_number">2</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">-</span><span class="hl_number">3</span><span class="hl_char">,</span><span class="hl_number">2</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;StrToInt<span class="hl_char">(</span><span class="hl_quote">'$'</span><span class="hl_char">+</span>tmp<span class="hl_char">)</span>&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">80</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</li><li class="hl_l0"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">2</span>&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">1021</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">else</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">2</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">dec</span><span class="hl_char">(</span><span class="hl_registr">EAX</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">RandSeed&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">0FFFF</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">i<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">1</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>while</b></span>&nbsp;i&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">13</span>&nbsp;do</li><li class="hl_l1">begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v6&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_number">0</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v7&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">13</span>&nbsp;<span class="hl_char">-</span>&nbsp;i<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">13</span>&nbsp;<span class="hl_char">-</span>&nbsp;i&nbsp;<span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">0</span>&nbsp;then</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>while</b></span>&nbsp;v7&nbsp;<span class="hl_char">&gt;</span>&nbsp;<span class="hl_number">0</span>&nbsp;do</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v6<span class="hl_char">:</span><span class="hl_char">=</span>Random<span class="hl_char">(</span><span class="hl_number">33</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">inc</span><span class="hl_char">(</span>v6<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;i&nbsp;<span class="hl_char">&gt;</span>&nbsp;len&nbsp;then&nbsp;tmp1<span class="hl_char">:</span><span class="hl_char">=</span>ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i&nbsp;mod&nbsp;len<span class="hl_char">]</span><span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>else</b></span>&nbsp;tmp1<span class="hl_char">:</span><span class="hl_char">=</span>ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i<span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;tmp1<span class="hl_char">:</span><span class="hl_char">=</span>tmp1&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">0FF</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">0FF</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v6&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;v6&nbsp;<span class="hl_char">+</span>&nbsp;tmp1<span class="hl_comment">;</span></li><li class="hl_l1"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_function">dec</span><span class="hl_char">(</span>v7<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>while</b></span>&nbsp;v6&nbsp;<span class="hl_char">&gt;</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">21</span>&nbsp;do</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l1"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;v6&nbsp;</span><span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;v6&nbsp;<span class="hl_char">-</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">21</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SerNum&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;SerNum&nbsp;<span class="hl_char">+</span>&nbsp;KeyStr<span class="hl_char">[</span>v6<span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">inc</span><span class="hl_char">(</span>i<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">Insert<span class="hl_char">(</span><span class="hl_quote">'-'</span><span class="hl_char">,</span>SerNum<span class="hl_char">,</span><span class="hl_number">7</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">Insert<span class="hl_char">(</span><span class="hl_quote">'-'</span><span class="hl_char">,</span>SerNum<span class="hl_char">,</span><span class="hl_number">14</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">For&nbsp;i<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;to&nbsp;<span class="hl_number">43</span>&nbsp;do</li><li class="hl_l0">&nbsp;&nbsp;begin</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;NameBuffer&nbsp;<span class="hl_char">=</span>&nbsp;BlackList<span class="hl_char">[</span>i<span class="hl_char">]</span>&nbsp;then</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SerNum<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_quote">'BLACKLISTED NAME'</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>Break</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">end</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>else</b></span>&nbsp;<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;{&nbsp;Display&nbsp;The&nbsp;Results&nbsp;}</li><li class="hl_l0">&nbsp;&nbsp;SetWindowTextA<span class="hl_char">(</span>TxtSerialHwnd<span class="hl_char">,</span>PChar<span class="hl_char">(</span>SerNum<span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;FreeMem&nbsp;<span class="hl_char">(</span>Textname<span class="hl_char">,</span>&nbsp;len&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_number">1</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_function">end</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function">Else</span></li><li class="hl_l0">&nbsp;&nbsp;{&nbsp;Display&nbsp;Error&nbsp;}</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SetWindowText<span class="hl_char">(</span>TxtSerialHwnd<span class="hl_char">,</span><span class="hl_quote">'Not Enough Characters..'</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290098&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=11" class="addthx" data-post="290098"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 16:10 <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br><div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">tmp<span class="hl_char">:</span><span class="hl_char">=</span>copy<span class="hl_char">(</span>IntToHex<span class="hl_char">(</span><span class="hl_registr">EDX</span><span class="hl_char">,</span><span class="hl_number">2</span><span class="hl_char">)</span><span class="hl_char">,</span>Length<span class="hl_char">(</span>IntToHex<span class="hl_char">(</span><span class="hl_registr">EDX</span><span class="hl_char">,</span><span class="hl_number">2</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_char">-</span><span class="hl_number">3</span><span class="hl_char">,</span><span class="hl_number">2</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;StrToInt<span class="hl_char">(</span><span class="hl_quote">'$'</span><span class="hl_char">+</span>tmp<span class="hl_char">)</span>&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">80</span></li>        </ol>
+    </div>
+</div></div>
+<br>Это че за изврощение то такое, сначала пеерводить в строку ,а потом обратно в число. Работай сразу с ним как с числом, без этих лишних телодвижений.
+<br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290105&amp;user=15500&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=12" class="addthx" data-post="290105"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 16:24 <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>BoRoV пишет:<br>Это че за изврощение то такое, сначала пеерводить в строку ,а потом обратно в число. Работай сразу с ним как с числом, без этих лишних телодвижений.  </I><br>Сейчас так сразу и не вспомню, так как первую часть я перевел еще с месяц назад, но это вроде я так пытался использовать DH ))
+<br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290106&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=13" class="addthx" data-post="290106"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]mysterio[/b]','')">mysterio</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/1803.gif" alt=""><br><span class=txtSm>Ранг: 307.9 (мудрец), 196thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.17'>Активность: 0.18<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1803">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 16:53 &middot; Поправил: mysterio <br><script type="text/javascript">QU('mysterio','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mysterio" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+этот кусок<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>if</b></span>&nbsp;StrToInt<span class="hl_char">(</span><span class="hl_quote">'$'</span><span class="hl_char">+</span>tmp<span class="hl_char">)</span>&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">80</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;then</li><li class="hl_l0"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">2</span>&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">1021</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">else</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">2</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>в любом случае выполняем EDX := EDX * &#036;2 и ксорим только когда условие выполняется:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">*</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">2</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;StrToInt<span class="hl_char">(</span><span class="hl_quote">'$'</span><span class="hl_char">+</span>tmp<span class="hl_char">)</span>&nbsp;<span class="hl_char">&gt;</span><span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">80</span>&nbsp;then&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_registr"><b>EDX</b></span>&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">1021</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Почему именно &#036;2 (почему не shl 1 =) ? Двойка в хексе точно такая же как и в десятичной системе =)
+<br><br><font size="1"><i>-----<br>Don_t hate the cracker - hate the code.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290107&amp;user=1803&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=14" class="addthx" data-post="290107"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 17:08 <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+Спасибо...<br>1 - не заметил<br>2 - <I>Двойка в хексе точно такая же как и в десятичной системе =)  </I> ))) Это я знаю, как-то прогавил, а вот то, что можно заменить на shl 1 - не знал<br><br>Еще вопрос к знатокам: test DH,1 - как перевести на паскаль ?, так как я трейсил и сам высматривал что это за условие, чтобы срослось.
+<br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290109&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=15" class="addthx" data-post="290109"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 17:27 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+test=and, если что. Отсюда вполне перевести можно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=290112&amp;user=1556&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=16" class="addthx" data-post="290112"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24946" title="22-08-2011 13:30, ранг:5.1" target="_blank">DimitarSerg</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 22 августа 2011 18:25 &middot; Поправил: PE_Kill <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Тогда уж<br>if PByteArray(@EDX)^[2] &gt;= &#036;80<br><br>или<br>if (Byte(EDX shr 8) &gt;= &#036;80)<br><br>или<br>if Word(EDX and &#036;FFFF0000) &gt;= &#036;8000
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290119&amp;user=3232&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=17" class="addthx" data-post="290119"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24946" title="23-08-2011 05:28, ранг:5.1" target="_blank">DimitarSerg</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 августа 2011 16:29 &middot; Поправил: DimitarSerg <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<b>PE_Kill</b><br>Я конечно очень извиняюсь, но почему-то не работает (может из-за кривизны моих рук <img src="img/smilies/s1.gif" alt=""> или нечистой силы в доме либо еще по непонятным мне причинам..)<br><br>TEST DH,080h                 //сравниваем DH с 080h<br>JE @MYPROG_0053F44B // прыгаем, если равно<br><br>Я сделал так (хотя когда писал - и сам знал, что это изврат)<br>tmp:=copy(IntToHex(EDX,2),Length(In tToHex(EDX,2))-3,2);<br>if StrToInt(&#039;&#036;&#039;+tmp) &gt;= &#036;80<br><br>потому что если не ошибаюсь<br><img src="http://img690.imageshack.us/img690/2849/unledhjy.png" border="0" align="" alt=""><br><br>Подскажите, где туплю ?!
+<br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290279&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=18" class="addthx" data-post="290279"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Av0id[/b]','')">Av0id</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 516.1 (<b>!</b>), 39thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.28<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1378">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 августа 2011 16:42 <br><script type="text/javascript">QU('Av0id','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Av0id" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+так прокатит?<br><br>tmp:= (EDX &gt;&gt; 8) &amp; 0x0FF<br>tmp &gt;= &#036;80
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=290280&amp;user=1378&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=19" class="addthx" data-post="290280"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24946" title="25-08-2011 12:36, ранг:5.4" target="_blank">DimitarSerg</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]DimitarSerg[/b]','')">DimitarSerg</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><img style="padding-top:3px;" src="av/24946.png" alt=""><br><span class=txtSm>Ранг: 253.5 (наставник), 684thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.26'>Активность: 0.26<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=24946">Участник</a><br><font color=blue>radical</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 25 августа 2011 17:04 <br><script type="text/javascript">QU('DimitarSerg','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DimitarSerg" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<b>Av0id</b><br>Вот теперь точно оно )). Так работает. Спасибо
+<br><br><font size="1"><i>-----<br>ds</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290283&amp;user=24946&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=20" class="addthx" data-post="290283"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]PE_Kill[/b]','')">PE_Kill</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3232.gif" alt=""><br><span class=txtSm>Ранг: 793.4 <font color=magenta>(<b>! !</b>)</font>, 568thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.59'>Активность: 0.74<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=3232">Участник</a><br><font color=blue>Шаман</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 августа 2011 10:52 <br><script type="text/javascript">QU('PE_Kill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=PE_Kill" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>DimitarSerg пишет:<br>TEST DH,080h //сравниваем DH с 080h<br>JE @MYPROG_0053F44B // прыгаем, если равно </I><br><br>Тогда это надо реализовывать вот так<br><br>if (EDX and &#036;8000 = &#036;8000) then
+<br><br><font size="1"><i>-----<br>Yann Tiersen best and do not fuck</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=290336&amp;user=3232&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=21" class="addthx" data-post="290336"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]4kusNick[/b]','')">4kusNick</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1931.jpg" alt=""><br><span class=txtSm>Ранг: 748.2 <font color=magenta>(<b>! !</b>)</font>, 390thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.1'>Активность: 0.37<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=1931">Участник</a><br><font color=blue>bytecode!</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 ноября 2011 01:07 &middot; Поправил: 4kusNick <br><script type="text/javascript">QU('4kusNick','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=4kusNick" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Добралась статья и до <noindex><a href="http://habrahabr.ru/blogs/infosecurity/132843/" rel="nofollow" target="_blank">хабры</a></noindex>
+<br><br><font size="1"><i>-----<br>Флэш, ява, дотнет - на завтрак, обед и ужин. Unity3D на закуску.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=296081&amp;user=1931&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=22" class="addthx" data-post="296081"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24946" title="21-11-2011 06:35, ранг:13.2" target="_blank">DimitarSerg</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Veliant[/b]','')">Veliant</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 301.4 (мудрец), 194thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.62'>Активность: 0.17<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=3136">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 21 ноября 2011 08:52 &middot; Поправил: Veliant <br><script type="text/javascript">QU('Veliant','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Veliant" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=2&amp;topic=18353.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+Уже давно не открывал Delphi, но думаю вот такой вариант все же ближе к программисткому, нежели рипнутый код<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">for&nbsp;i<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">0</span>&nbsp;to&nbsp;len&nbsp;do</li><li class="hl_l1">begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;key&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">(</span>Name<span class="hl_char">[</span>i<span class="hl_char">]</span>&nbsp;<span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_number">8</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;j<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">8</span>&nbsp;downto&nbsp;<span class="hl_number">0</span>&nbsp;do</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;key&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;key&nbsp;<span class="hl_function"><b>shl</b></span>&nbsp;<span class="hl_number">1</span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;<span class="hl_char">(</span>hi<span class="hl_char">(</span>key<span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">80</span>&nbsp;<span class="hl_char">=</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">80</span><span class="hl_char">)</span>&nbsp;then&nbsp;key&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;key&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;<span class="hl_char">$</span><span class="hl_number">1021</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">RandSeed&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;key&nbsp;<span class="hl_char">&amp;</span>&nbsp;<span class="hl_char">$</span>FFFF<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">for&nbsp;i<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_number">1</span>&nbsp;to&nbsp;<span class="hl_char">$</span><span class="hl_number">13</span>&nbsp;do</li><li class="hl_l0">begin</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;<span class="hl_number">0</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;i&nbsp;<span class="hl_char">&lt;</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">13</span>&nbsp;then</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;for&nbsp;j<span class="hl_char">:</span><span class="hl_char">=</span><span class="hl_char">$</span><span class="hl_number">13</span><span class="hl_char">-</span>i&nbsp;downto&nbsp;<span class="hl_number">0</span>&nbsp;do</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;begin</li><li class="hl_l0"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;a&nbsp;</span><span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;Random<span class="hl_char">(</span><span class="hl_number">33</span><span class="hl_char">)</span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_char">+</span>&nbsp;<span class="hl_char">(</span><span class="hl_function"><b>not</b></span>&nbsp;ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i&nbsp;mod&nbsp;len<span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SerNum&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;SerNum&nbsp;<span class="hl_char">+</span>&nbsp;KeyStr<span class="hl_char">[</span>a&nbsp;mod&nbsp;<span class="hl_number">33</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l0"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>И вообще сдается мне сравнение с &#036;80 это проверка на отрицательное значение<br><br>P.S.<br>Больше всего доставил код<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>while</b></span>&nbsp;a&nbsp;<span class="hl_char">&gt;</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">21</span>&nbsp;do</li><li class="hl_l1">begin</li><li class="hl_l0">a&nbsp;<span class="hl_char">:</span><span class="hl_char">=</span>&nbsp;a&nbsp;<span class="hl_char">-</span>&nbsp;<span class="hl_char">$</span><span class="hl_number">21</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_function"><b>end</b></span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>Это программисты так извратились или компилятор операцию mod так развернул<br><br>Да и<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_function"><b>if</b></span>&nbsp;i&nbsp;<span class="hl_char">&gt;</span>&nbsp;len&nbsp;then</li><li class="hl_l1">tmp1<span class="hl_char">:</span><span class="hl_char">=</span>ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i&nbsp;mod&nbsp;len<span class="hl_char">]</span><span class="hl_char">)</span></li><li class="hl_l0"><span class="hl_function">else</span></li><li class="hl_l1">tmp1<span class="hl_char">:</span><span class="hl_char">=</span>ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i<span class="hl_char">]</span><span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br>Сворачивается до<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">tmp1<span class="hl_char">:</span><span class="hl_char">=</span>ord<span class="hl_char">(</span>NameBuffer<span class="hl_char">[</span>i&nbsp;mod&nbsp;len<span class="hl_char">]</span><span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div><br><br><span class="txtGoods"><a href="action=addthx&amp;post=296090&amp;user=3136&amp;forum_n=2&amp;topic=18353.html&amp;page=0&amp;anchor=23" class="addthx" data-post="296090"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/red.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=2&sortBy=0&page=0.html"><b>Крэки, обсуждения</b></a> <b class=bulletHead>&#8212;&#8250;</b> Статья. Простая защита или ломаем TurboLaunch 5.1.3 тремя способами</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#24" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="2">
+<input type="hidden" name="topic" value="18353">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=18353" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,523 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Реализация брутфорса AES - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Имеется зашифрованный файл который зашифрован следующим алго - AES128(&#036;data, SHA1(&#036;pass)) Ключом для AES служит SHA1 хеш от пароля. Некоторые моменты опустил, но они не значительны в рамках этого рассуждения.">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=40382'>jinoweb</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Реализация брутфорса AES</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2016 18:21 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Имеется зашифрованный файл который зашифрован следующим алго - AES128(&#036;data, SHA1(&#036;pass))<br>Ключом для AES служит SHA1 хеш от пароля. Некоторые моменты опустил, но они не значительны в рамках этого рассуждения.<br>Современные процессоры Intel имеют набор команд для аппаратной реализации AES шифрования. Кто имел опыт в реализации оного? На сколько реально это может увеличить скорость брута. Предполагаемая длина пароля - 12 символов. Реально сбрутить 8 символов на 8 потоках. Core i7 6700K <br>Может у кого-то есть доступ к быстрым серверам которые можно загрузить задачей?
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367302&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=1" class="addthx" data-post="367302"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2016 18:32 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+что то мне подсказывает что аесом и ша1 можно нивелировать при оценке<br>если это не словарь, то тебе нужно сбрутить все 12 букв до пароля... чет мне кажется тяжеловато будет<br><br><b>Добавлено спустя 1 минуту</b><br>для оценки можно поискать как долго брутятся даже на cuda, ша хеши в 12 символов от пароля
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367303&amp;user=15381&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=2" class="addthx" data-post="367303"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2016 18:36 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<I>reversecode пишет:<br>чет мне кажется тяжеловато будет  </I><br>При текущих раскладах это вообще не реально. Пока что даже девятый символ буду ооооочень долго брутить<br>У меня тут две первоочередные задачи висят - RSA 1024 и эта. Попал в тупик
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367304&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=3" class="addthx" data-post="367304"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2016 18:39 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+ну если не горит, то лет через 5 будут первые квантовые.. тогда и сбрутишь
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367305&amp;user=15381&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=4" class="addthx" data-post="367305"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=32231" title="07-09-2016 09:57, ранг:0.5" target="_blank">Tony_Stark</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]HandMill[/b]','')">HandMill</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 222.2 (наставник), 115thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.21'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4554">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2016 20:06 <br><script type="text/javascript">QU('HandMill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HandMill" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>daFix</b> cлишком много времени будет съедать вызов sha1, а затем как проверять результат? Проверка результата тоже занимает какое-то время. Если в задаче поставлен декрипт блока &gt;500Kb данных и пусть даже известен результат декрипта(имеется открытый первый блок) - вернуть ключ AES всё равно будет практически нереально.<br>Ссылки по теме: https://sourceforge.net/projects/bruteforcer<br>https://github.com/dlitz/pycrypto/blob/master/src/AESNI.c<br>https://github.com/floodyberry/supercop/blob/master/crypto_aead/aes128poetv1aes128/ni/aes-ni.c<br>https://diskcryptor.net/storage/dcrypt/1.1.846.118/dcrypt_1.1.846.118_src.zip
+<br><br><font size="1"><i>-----<br>все багрепорты - в личные сообщения</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367306&amp;user=4554&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=5" class="addthx" data-post="367306"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=2777" title="06-09-2016 21:53, ранг:486.4" target="_blank">daFix</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 сентября 2016 22:34 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<b>HandMill</b><br>Проверка очень простая в моём случае. Распаковываю блок в 16 байт и проверяю 2 DWORD&#039;а<br>Брутер сделал на основе этого проекта - <noindex><a href="http://www.turbocrypt.com/eng/content/Backround-Info/AES-and-PMC-code-breaker-tool.html" rel="nofollow" target="_blank">aes and gbpmc code breaker</a></noindex>
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367312&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=6" class="addthx" data-post="367312"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]MasterSoft[/b]','')">MasterSoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 281.8 (наставник), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.16'>Активность: 0.25<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=16624">Участник</a><br><font color=blue>Destroyer of protectors</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 сентября 2016 09:32 &middot; Поправил: MasterSoft <br><script type="text/javascript">QU('MasterSoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=MasterSoft" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>daFix</b><br>мейби куду заюзать вместе с радужкой? не знаю как 12, но таблички по 10 символов есть для sha1.<br>а про RSA-1024 вообще забудь. там и награда за факторизацию 100к зелени.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367318&amp;user=16624&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=7" class="addthx" data-post="367318"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]ELF_7719116[/b]','')">ELF_7719116</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 419.0 (мудрец), 647thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.73'>Активность: 0.46<span style='color:green'>&nearr;</span>0.51</span><br>Статус: <a href="action=userinfo&amp;user=26651">Участник</a><br><font color=blue>&quotТибериумный реверсинг&quot</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 сентября 2016 17:28 <br><script type="text/javascript">QU('ELF_7719116','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ELF_7719116" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<u><i class=x>https://www.amd.com/en-us/products/graphics/server/s9300-x2#</i></u><br><i class=x><u>https://github.com/adrianbelgun/AES-OpenCL</u></i><br>видеобоарды в плане брута, через OpenCL куда привлекатейльней. Правда, единственный минус - стоит это удовольствие очень дорого
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367326&amp;user=26651&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=8" class="addthx" data-post="367326"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]HandMill[/b]','')">HandMill</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 222.2 (наставник), 115thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.21'>Активность: 0.14<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=4554">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 сентября 2016 18:11 <br><script type="text/javascript">QU('HandMill','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HandMill" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Всё уже давным давно расписано: http://www.eetimes.com/document.asp?doc_id=1279619<br>ну допустим при помощи супер-пупер-чипа и таинственных марсианских технологий сократите время брута с 1 миллиарда миллиарда лет до 1 миллиарда лет, легче станет?
+<br><br><font size="1"><i>-----<br>все багрепорты - в личные сообщения</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367328&amp;user=4554&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=9" class="addthx" data-post="367328"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]ELF_7719116[/b]','')">ELF_7719116</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 419.0 (мудрец), 647thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.73'>Активность: 0.46<span style='color:green'>&nearr;</span>0.51</span><br>Статус: <a href="action=userinfo&amp;user=26651">Участник</a><br><font color=blue>&quotТибериумный реверсинг&quot</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 сентября 2016 18:44 <br><script type="text/javascript">QU('ELF_7719116','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ELF_7719116" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<b>HandMill</b><br>По крайней мере это будет немного быстрее, чем  Core i7 6700K <img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367330&amp;user=26651&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=10" class="addthx" data-post="367330"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=4554" title="07-09-2016 15:48, ранг:214.6" target="_blank">HandMill</a>, <a href="action=userinfo&user=2777" title="07-09-2016 20:53, ранг:486.4" target="_blank">daFix</a>, <a href="action=userinfo&user=40983" title="08-09-2016 09:07, ранг:0.0" target="_blank">Mast3r</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]VT-x[/b]','')">VT-x</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.3 (новичок), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.38'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=40334">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 сентября 2016 10:25 <br><script type="text/javascript">QU('VT-x','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VT-x" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Есть у меня на работе платформа из 32 ксеонов, интересно: если написать оптимизированный софт, реально на таком взломать AES в приемлемые сроки?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367642&amp;user=40334&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=11" class="addthx" data-post="367642"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]r_e[/b]','')">r_e</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 590.6 (<b>!</b>), 408thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.08'>Активность: 0.36<span style='color:red'>&searr;</span>0.18</span><br>Статус: <a href="action=userinfo&amp;user=11966">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 сентября 2016 10:39 <br><script type="text/javascript">QU('r_e','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r_e" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+Нет, не реально. Либо пасс брутить, либо ждать пока уязвимость найдут.
+<br><br><font size="1"><i>-----<br>старый пень</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367643&amp;user=11966&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=12" class="addthx" data-post="367643"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 сентября 2016 00:09 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<b>VT-x</b><br>А какая там операционка стоит?
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367658&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=13" class="addthx" data-post="367658"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]VT-x[/b]','')">VT-x</a></b><br></div>
+<img src="img/s2.gif" alt=""><br><span class=txtSm>Ранг: 16.3 (новичок), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 4.38'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=40334">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 сентября 2016 22:16 <br><script type="text/javascript">QU('VT-x','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VT-x" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<b>daFix</b><br>линух
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367678&amp;user=40334&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=14" class="addthx" data-post="367678"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 01:45 &middot; Поправил: VodoleY <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+а давайте сразу определимся.. что алгоритма АЕС не существует))) а?<br>АЕС.. это Эдвансед Энкрипшен Стандарт.. там 5 алго.. которые прошли конкурс.. что бы брутим? какой из 5ти?<br><br><b>Добавлено спустя 1 минуту</b><br>АЕС это стандарт крипто стойкости.. а никак не алго.. если я не ошибаюсь то там по дефолту Crypt_Rijndael().. поэтому вопрос поставлен не коректно<br><br><b>Добавлено спустя 4 минуты</b><br>тоже самое касается вопросов про паддинг.. и соли
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367680&amp;user=17319&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=15" class="addthx" data-post="367680"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 11:54 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<b>VodoleY</b><br><b>Advanced Encryption Standard (AES), также известный как Rijndael</b><br>Хватит смуту наводить <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367691&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=16" class="addthx" data-post="367691"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 14:34 <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+наконец то ты до вики добрался
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367698&amp;user=17319&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=17" class="addthx" data-post="367698"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]kampaster[/b]','')">kampaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 42.3 (посетитель), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.68'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 16:08 <br><script type="text/javascript">QU('kampaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=kampaster" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Вы гоните что ли? На CPU AES брутить..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367704&amp;user=26846&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=18" class="addthx" data-post="367704"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 19:19 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<b>kampaster</b><br>Вчитайся ещё раз в первое сообщение. Бритутся пароль, состоящий из латиницы в верхнем и нижнем регистре
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367711&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=19" class="addthx" data-post="367711"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]kampaster[/b]','')">kampaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 42.3 (посетитель), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.68'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 20:27 &middot; Поправил: kampaster <br><script type="text/javascript">QU('kampaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=kampaster" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<b>daFix</b><br><I><br>Предполагаемая длина пароля - 12 символов</I><br>52^12=390877006486250192896<br>При 1 триллионе хеширований / сек - тебе понадобится как минимум 12 лет. <br>__<br>Спустись с небес <img src="img/smilies/s6.gif" alt=""><br><b>Повторюсь: </b><br>Вы гоните что ли? На CPU AES брутить.. <img src="img/smilies/s14.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367715&amp;user=26846&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=20" class="addthx" data-post="367715"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=2777" title="17-09-2016 17:56, ранг:489.4" target="_blank">daFix</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 сентября 2016 21:00 <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<b>kampaster</b><br>Мы тут с Водолеем покумекали и решили что нужна или ферма или ботнет поприличнее. <br>Чуть позже буду ботоводов искать пожирнее
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367718&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=21" class="addthx" data-post="367718"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 сентября 2016 10:03 <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+<b>kampaster</b> все решается.. не надо паники.. если есть задача и деньги.. все решается.. ток надо правильно поставить ТЗ
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367722&amp;user=17319&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=22" class="addthx" data-post="367722"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]SaNX[/b]','')">SaNX</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 456.3 (мудрец), 340thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.03'>Активность: 0.28<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=2108">Участник</a><br><font color=blue>Android Reverser</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 сентября 2016 10:13 <br><script type="text/javascript">QU('SaNX','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SaNX" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<I>VodoleY пишет:<br>все решается.. не надо паники.. если есть задача и деньги.. </I><br>ога, ога. сбрутишь рса 4096 имея неограниченные ресурсы?
+<br><br><font size="1"><i>-----<br>SaNX</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=367723&amp;user=2108&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=23" class="addthx" data-post="367723"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]kampaster[/b]','')">kampaster</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 42.3 (посетитель), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.68'>Активность: 0.04<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=26846">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 сентября 2016 20:33 <br><script type="text/javascript">QU('kampaster','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=kampaster" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<b>VodoleY</b> без проблем! 3 ляма баксов и будут Вам ASIC-и<img src="img/smilies/s6.gif" alt=""><br><b>daFix</b> PM
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=367743&amp;user=26846&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=24" class="addthx" data-post="367743"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]sendersu[/b]','')">sendersu</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 512.7 (<b>!</b>), 360thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.56'>Активность: 0.27<span style='color:red'>&searr;</span>0.03</span><br>Статус: <a href="action=userinfo&amp;user=14629">Модератор</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 сентября 2016 23:35 <br><script type="text/javascript">QU('sendersu','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sendersu" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+<b>daFix</b><br><br>интересное чтиво по теме<br><br>http://forum.exetools.com/showthread.php?t=17941<br><br>чел глаголе как за 80К его кантора подобрала пас к рару ))<br>а также интересное файло BFTCalc.xls
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=368082&amp;user=14629&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=25" class="addthx" data-post="368082"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 сентября 2016 23:38 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+ветка закрыта для гостей, вообще ехотулз идет в пике<br>зы<br>может и на лабе пора делать закрытыми целые разделы а не только темы ?<br><br><b>Добавлено спустя 1 минуту</b><br>протекторы, креки, софт, закрыть от гостей
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=368083&amp;user=15381&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=26" class="addthx" data-post="368083"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]daFix[/b]','')">daFix</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/2777.gif" alt=""><br><span class=txtSm>Ранг: 529.0 (<b>!</b>), 110thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.75'>Активность: 0.29<span style='color:red'>&searr;</span>0.04</span><br>Статус: <a href="action=userinfo&amp;user=2777">Участник</a><br><font color=blue>5KRT</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 сентября 2016 00:49 &middot; Поправил: daFix <br><script type="text/javascript">QU('daFix','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=daFix" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<b>sendersu</b><br><strike>Можешь в двух словах о том что там? У меня там нету реги</strike><br><br>Добрый дядька Водолей уже показал мне что там по ссылочкам <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>Research For Food</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=368084&amp;user=2777&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=27" class="addthx" data-post="368084"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]VodoleY[/b]','')">VodoleY</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 488.1 (мудрец), 272thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.01'>Активность: 0.35<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=17319">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 27 сентября 2016 07:15 <br><script type="text/javascript">QU('VodoleY','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=VodoleY" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<b>daFix</b> использование облачных мощностей для брута, ну тем таже.. что на халяву.. тебе нормальных мощностей не дадут
+<br><br><font size="1"><i>-----<br>Наша работа во тьме, Мы делаем, что умеем. Мы отдаем, что имеем, Наша работа во тьме....</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=368090&amp;user=17319&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=28" class="addthx" data-post="368090"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]whoami[/b]','')">whoami</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 2.2 (гость), 4thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 3.4'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=42092">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 15 февраля 2017 23:59 <br><script type="text/javascript">QU('whoami','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=whoami" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=24304.html&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+Тема про блочное шифрование и никто даже не спросил какой <noindex><a href="https://en.wikipedia.org/wiki/Block_cipher_modes_of_operation" rel="nofollow" target="_blank">режим шифрования</a></noindex> используется? И какие есть данные в наличии? Есть ли оракул (когда можно отправить любой открытый текст и получить зашифрованный, или отправить ключ и получить расшифрованные данные или ошибку)? Может там простенький ECB c оракулом тогда все намного легче чем брут-форс.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=372074&amp;user=42092&amp;forum_n=6&amp;topic=24304.html&amp;page=0&amp;anchor=29" class="addthx" data-post="372074"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=41750" title="17-02-2017 10:03, ранг:2.8" target="_blank">LoDS</a></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Реализация брутфорса AES</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#30" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="24304">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=24304" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

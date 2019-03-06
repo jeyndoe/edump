@@ -1,0 +1,545 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>CmpDisasm - Утилита для сравнения PE файлов в дизассемблированном виде - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="В HEX виде много разных утилей для сравнения файлов. В дизассемблированном не встречал. Наваял свою. Баг-репорты приветствуются ****************************************** Выравнивания на длину инструкции НЕ БУДЕТ">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=33192'>morgot</a>, <a target='_blank' href='?action=userinfo&amp;user=54646'>sashalogout</a>, <a target='_blank' href='?action=userinfo&amp;user=28512'>-Sanchez-</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/default.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=3&sortBy=0&page=0.html"><b>Софт, инструменты</b></a> <b class=bulletHead>&#8212;&#8250;</b> CmpDisasm - Утилита для сравнения PE файлов в дизассемблированном виде</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=0.html">1</a> . <b>2</b> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=8.html">9</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=9.html">10</a> ... <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=12.html">13</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=2.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 30 января 2009 16:33 &middot; Поправил: crc1 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#1');return false;">#1</a> </span><div align=left><br>
+В HEX виде много разных утилей для сравнения файлов. В дизассемблированном не встречал. Наваял свою.<br>Баг-репорты приветствуются<br>******************************************<br>Выравнивания на длину инструкции НЕ БУДЕТ<br>******************************************<br>History:<br>* 30 января 2009 г. v 0.1<br>* Собственно первый глючный вариант <img src="img/smilies/s15.gif" alt=""><br><br>* 29 марта 2009 г.  v 0.35<br>* Добавлен пункт меню &quot;Copy address to clipboard&quot; в контекстном меню<br>* Добавлена примочка &quot;stay on top&quot;, запоминается в реестре. <br>* Окно проги разворачивается на весь экран<br>* Добавлена цветовая схема, цвет запоминается в реестре<br>* Открывает занятые файлы + возможность работать с этими файлами в других приложениях<br>* Добавлено отображение адреса VA, либо Offset. Менять можно через меню, либо щелкнув по шапке столбца адреса <br>* Добавлена информация о секциях, различия выделяются цветом<br><br>* 16 октября 2009 г. v 0.5<br>* Добавлены HEX дампы файлов<br>* Добавлена возможность сравнивать диапазоны файлов<br> <br>* 20 января 2010 г. v 0.6<br>* Поставил ScintillaGadget для вывода HEX дампов<br>* Исправил некоторые баги <br>* Добавил выбор двух последних файлов<br><br>* 3 февраля 2010 г.  v 0.65<br>* Добавил выбор двух последних файлов, после драг-дропа<br>* Убирал дублирующиеся записи в логе<br><br>* 5 марта 2011 г.  v. 0.7<br>* Заменил двиг на beaengine x86-64 Можно сравнивать 64 битные файлы<br>* Исправил крешь при запуске на win7<br><br>* 6 апреля 2011 г.   v. 0.71 <br>* Изменил фейс главного окна<br>* Сделал выделение цветом различий в File Info в главном окне<br>* Добавил пункт меню Исключить PE Header из анализа<br>* Добавил пункт меню &quot;Save differences as&quot;<br><br>* 16 октября 2011    v. 0.75<br>* Добавил просмотр заголовков файлов<br>* Автоматическое переключение disasm\hex вкладок, в зависимости от код\данные<br>* Исправил обнаруженные баги<br><br>*30 августа 2012    v. 0.76<br>* Пофиксил баги<br><br>*17 декабря 2012 v. 0.77<br>* Пофиксил баги<br>* Проверил на win xp sp3, win 7 x32/x64 win 8 x64<br><br>*4 апреля 2013     v  0.79<br>*Изменил интерфейс (кнопки переместил в тулбар)<br>*По дефолту, заголовок выключен из сканирования<br>*Исправил баги которые были отправлены в ПМ и которые нашел сам<br>*Исправил грамматическую ашыпку<img src="img/smilies/s6.gif" alt=""><br><noindex><a href="http://rghost.ru/45056833" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>* 13 апреля 2013    v  0.81<br>* Исправил ошибку при перетаскивании нескольких файлов драг-дропом и некоторые другие <br>* Добавил сравнение файлов вперед и назад<br><noindex><a href="http://rghost.ru/45255648" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>* 8 декабря 2013   v  0.83<br>* Убрал ошибки<br>* Добавил импорт\экспорт  <br><noindex><a href="http://rghost.ru/50948001" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex><br><br>* 25 января 2014 v. 0.84<br>* Добавил командную строку ; использовать: CmpDisasm.exe file1 file2<br><br><img src="img/attach.gif" alt=""> <a href="./files/48de_25.01.2014_EXELAB.rU.tgz">48de_25.01.2014_EXELAB.rU.tgz</a> - CmpDisasm.rar
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=219666&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=1" class="addthx" data-post="219666"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 17:10 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#2');return false;">#2</a> </span><div align=left><br>
+<I>Isaev пишет:<br>Если правится 2 байта, то и справа 2 байта должно быть (аналогично при выделении) </I><br><br>С раскраской пока не все ясно, дело в том, что при изменении кода, длина команд в некоторых случаях  становиться разной, адресация сбивается и не понятно, какие команды выделять. Вернее визуально понятно, но как реализовать пока еще не вкурил.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=220393&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=2" class="addthx" data-post="220393"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 17:23 &middot; Поправил: theCollision <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#3');return false;">#3</a> </span><div align=left><br>
+<b>crc1</b><br>1. Добавить выбор не только exe, dll но и scr, sys, [*.*] All Files<br>2. Добавить горячие клавиши, к примеру Alt+F1 это открытие файла для левого окна, а Alt+F2 для правого<br>3. Если это PE-файлы, то имеет смысл добавить сравнение хидеров в одной вкладке, а сравнение кода в другой - имхо конечно<br>4. Если выбираешь одну строку в одном окне, то надо показывать также выбор и в другой, если оно различно, то показывать где оно в другом окне<br>5. если файлы сильно различны, то смысл ваще грузить, может сразу сказать об этом ?<br>6. Карту образов надо бы добавить, т.е. меж двумя панелями две картиночки с ползунками одна за левый другая за правый образ и пусть показывает ползунок где смотрим и цветами на них в местах различий
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=220394&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=3" class="addthx" data-post="220394"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 17:31 <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#4');return false;">#4</a> </span><div align=left><br>
+&gt;&gt;но как реализовать пока еще не вкурил. <br>мне думается так:<br>1. берешь код левого, если различается то ищешь похожую команду в правом образе<br>2. при нахождении сразу же сравниваешь и след. команду левого со след. командой после найденого<br>3. Все что меж ними найдеными командами в правом условно считать &quot;что не обходимо для того чтобы левый стал правым&quot;<br>4. найденные это одинаковость и следовательно надо зеленым т.е. одинаковое а то что надо добавить к примеру светлофиалетовым<br><br>На заметку:<br>Иногда при анализе важно знать не только различие в структуре кода, но и изменении некоторых вычислений! К примеру есть команда в двух образах mov eax,[ebp+0x12312] , но если в них будет вычеслено разное значение дельта-смещения, то будут указывать на разные области !<br>Думаю это также следует показать ;)
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=220396&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=4" class="addthx" data-post="220396"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 17:33 &middot; Поправил: theCollision <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#5');return false;">#5</a> </span><div align=left><br>
+Баги:<br>1. если дергаешь ползунок левого образа, то правый тоже перемещается. А если дергаешь правого, то левый...  ;)))<br>ИМХО: Ползунки вообще думается не имеют смысла если есть ролик мыши или стрелки на клаве , а если и делать, то один
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=220399&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=5" class="addthx" data-post="220399"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 17:59 &middot; Поправил: crc1 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#6');return false;">#6</a> </span><div align=left><br>
+Спасибо за отзывы<br><I>theCollision пишет:<br>Добавить выбор не только exe, dll но и scr, sys, [*.*] All Files  </I><br>Это можно, кроме All Files, т.к. в  txt или ico кода нету<br><I>theCollision пишет:<br>Добавить горячие клавиши </I><br>Попробуем<br><I>theCollision пишет:<br>Если это PE-файлы, то имеет смысл добавить сравнение хидеров  </I><br>А зачем хидеры сравнивать на отдельной вкладке, я их программно сравниваю, и если они отличаются,<br>то сравнения не будет<br><I>theCollision пишет:<br>то смысл ваще грузить, может сразу сказать об этом ?  </I><br>Попробуй закинь разные файлы<img src="img/smilies/s1.gif" alt=""><br>Над остальным буду думать, но как бля не хватает времени<img src="img/smilies/s14.gif" alt=""><br>Про баг с прокруткой знаю, писал выше, что реализовано криво. Поэтому и просил исходники
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=220405&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=6" class="addthx" data-post="220405"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 18:02 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#7');return false;">#7</a> </span><div align=left><br>
+<I>theCollision пишет:<br>Иногда при анализе важно знать не только различие в структуре кода, но и изменении некоторых вычислений! К примеру есть команда в двух образах mov eax,[ebp+0x12312] , но если в них будет вычеслено разное значение дельта-смещения, то будут указывать на разные области !  </I><br>Это уже больше похоже на отладчик. Таких целей себе не ставил<img src="img/smilies/s5.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=220406&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=7" class="addthx" data-post="220406"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 18:11 <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#8');return false;">#8</a> </span><div align=left><br>
+<b>crc1</b><br>1. Завязываться на расширение файла не совсем корректно<br>2. файлы можно запаковать одним и тем же пакером, но ! разных размеров, значит и PE-хидеры будут различны.
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=220407&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=8" class="addthx" data-post="220407"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Isaev[/b]','')">Isaev</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6946.jpg" alt=""><br><span class=txtSm>Ранг: 756.3 <font color=magenta>(<b>! !</b>)</font>, 113thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.76'>Активность: 0.61<span style='color:red'>&searr;</span>0.05</span><br>Статус: <a href="action=userinfo&amp;user=6946">Участник</a><br><font color=blue>Student</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 05 февраля 2009 18:29 <br><script type="text/javascript">QU('Isaev','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Isaev" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#9');return false;">#9</a> </span><div align=left><br>
+<I>crc1 пишет:<br>С раскраской пока не все ясно, дело в том, что при изменении кода, длина команд в некоторых случаях становиться разной, адресация сбивается и не понятно, какие команды выделять. Вернее визуально понятно, но как реализовать пока еще не вкурил. </I><br>А всё просто до безобразия... Считаешь сколько байт команда слева, берёшь из другого файла столько же байт начиная с того же адреса и дизассемблируешь... всё
+<br><br><font size="1"><i>-----<br>z+Dw7uLu5+jqLCDq7vLu8PvpIPHs7uMh</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=220411&amp;user=6946&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=9" class="addthx" data-post="220411"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 февраля 2009 10:31 &middot; Поправил: crc1 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#10');return false;">#10</a> </span><div align=left><br>
+<I>theCollision пишет:<br>Завязываться на расширение файла не совсем корректно </I><br>Блин, суть то в том что, сравниваются фалы в <b>дизассемблированном</b> виде, и какой смысл если мы сравним два txt(или другого не PE формата файла)  в <b>дизассемблированном</b> виде. Поэтому и ограничение в выборе файлов. Согласен, нужно  добавить .com, .scr,  .ocx, .sys, .drv А остальные нах не нужны. Мое ИМХО.<br><I>Isaev пишет:<br>А всё просто до безобразия </I><br>Все просто, да не так просто. Просто нету времени. Помнишь, как у Розенбаума &quot;Нету времени, пообщаться с друзьями евреями&quot;<img src="img/smilies/s5.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=220468&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=10" class="addthx" data-post="220468"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 февраля 2009 10:56 &middot; Поправил: theCollision <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#11');return false;">#11</a> </span><div align=left><br>
+<b>crc1</b><br>А вот у меня туева хуча файлов, которые имеют и *.bin и *.dmp и пресловатый *.txt и еще туеву хучу других расширений и при этом файл подчиняются PE-формату !!!
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=220470&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=11" class="addthx" data-post="220470"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 06 февраля 2009 11:28 &middot; Поправил: crc1 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#12');return false;">#12</a> </span><div align=left><br>
+<b>theCollision</b><br>так пох, можно все форматы открыть, только если в начале файла нет сигнатуры &quot;MZ&quot;  такой файл не поддерживается.   <br>Хорошо, сделаю All Files. По просьбам трудящихся<img src="img/smilies/s6.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=220479&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=12" class="addthx" data-post="220479"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Ray[/b]','')">Ray</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 28.7 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.2'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=16451">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 18 марта 2009 10:51 <br><script type="text/javascript">QU('Ray','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ray" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#13');return false;">#13</a> </span><div align=left><br>
+<b>crc1</b><br>All Files, по просьбам трудящихся планируешь делать?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=225567&amp;user=16451&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=13" class="addthx" data-post="225567"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 11:27 &middot; Поправил: crc1 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#14');return false;">#14</a> </span><div align=left><br>
+Вот, выкроил время, кое-чего поправил<br><b>CmpDisasm 0.3</b><br>Add <br>Сделал раскраску всех отличающихся байт  <br>Добавил All Files при выборе файлов (хотя и раньше это можно было обойти драг дропом)<br>Добавил горячие клавиши<br>В текстовый файл записываются все различия<br>Пофиксил несколько жучков<br>З.Ы. Прошу  высказаться на счет раскраски
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226613&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=14" class="addthx" data-post="226613"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]Ray[/b]','')">Ray</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 28.7 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.2'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=16451">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 11:44 &middot; Поправил: Ray <br><script type="text/javascript">QU('Ray','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ray" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#15');return false;">#15</a> </span><div align=left><br>
+<b>crc1</b><br>Вижу отличия черным по зеленому.<br>Т.е. всех отличающихся байт? Разные раскраски? Если да, то у меня все черным по зеленому.<br><i class=x>Add</i><br>Сделай еще,пожалуйста, возможность изменения размеров окна.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226615&amp;user=16451&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=15" class="addthx" data-post="226615"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 11:49 &middot; Поправил: BoRoV <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#16');return false;">#16</a> </span><div align=left><br>
+вобщем неплохо, но вот есть один баг<br>внимание на экран:<br><img src="http://pic.ipicture.ru/uploads/090326/6ve4DU58m7.jpg" border="0" align="" alt=""><br><br>и так во всех подобных случаях
+<br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226617&amp;user=15500&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=16" class="addthx" data-post="226617"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Ray[/b]','')">Ray</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 28.7 (посетитель)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.2'>Активность: 0.02<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=16451">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 11:51 <br><script type="text/javascript">QU('Ray','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ray" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#17');return false;">#17</a> </span><div align=left><br>
+<I>BoRoV пишет:<br>внимание на экран: <br>и так во всех подобных случаях </I><br>Должна была появиться картинка? Не приаттачилась.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226618&amp;user=16451&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=17" class="addthx" data-post="226618"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 11:54 <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#18');return false;">#18</a> </span><div align=left><br>
+да все нормально было, пока я не увидел лишние на скрине <img src="img/smilies/s3.gif" alt="">
+<br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226619&amp;user=15500&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=18" class="addthx" data-post="226619"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 12:07 &middot; Поправил: theCollision <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#19');return false;">#19</a> </span><div align=left><br>
+нашел время потестить )<br>пожал RLpack 1.20.1f два exe-файла , один LZMA другой APlib и решил сравнить, прога упала )))<br><br>Замечания:<br>1. Информацию принято выводить не вверху в топе, а как это не парадоксально, внизу<br>2. Завести схемы раскраски, задать стандартную. Ну а юзер сам себе настроит так как ему надо<br>3. Буквы под курсором тоже можно менять цветом, ну и в выделенных областях. А то сейчас сплошной черный, имхо не есть гуд. <br>4. Если мы стоим на конкретом куске, имеет смысл сделать его немного с более жирным цветом, чем другие команды<br>5. На весь экран и возможность изменения размеров<br>6. Возможность &quot;поверх всех окон&quot; также будет удобна<br>7. сделать выбор сравниваемых файлов не по отдельности, а в одном диалоге. Если вдруг один остается а второй заменяется, то на этой панели сделать правой кноккой мыши меню &quot;открыть&quot; или &quot;заменить&quot; файл и заново сравнить<br><br>Новой фичи:<br>1. Предлагаю сравнивать область памяти с содержимым указанного файла на диске
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226623&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=19" class="addthx" data-post="226623"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 12:44 <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#20');return false;">#20</a> </span><div align=left><br>
+ИМХО явно не достает функционала. В таком виде подходит только для поиска пропатченых мест или с натяжкой для работы со сдампленными образами. Необходимо добавить возможность сравнивать файлы с разным смещением (возможность задавать RVA или FO). Да и длина сравнения или конечный адрес не помешают. Т.к. в файл сбрасывает долго и много безполезной информации. Кому нужно то для того сделать галку &quot;Все&quot; с блокировкой поля для задания длины. Аналогично и сполями смещения. Реализуется это легко, а пользы прибавится.
+<br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226632&amp;user=6801&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=20" class="addthx" data-post="226632"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]SVLab[/b]','')">SVLab</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 133.4 (ветеран), 57thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.34'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4026">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 13:43 <br><script type="text/javascript">QU('SVLab','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SVLab" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#21');return false;">#21</a> </span><div align=left><br>
+<I>BoRoV пишет:<br>вобщем неплохо, но вот есть один баг </I><br>Не понял, а в чём баг?<br><b>crc1</b><br>Слелать возможность открывать файл, уже занятый другой программой или просто запущенный.<br>Сделать сравнение и других секций, но не дизассемблировать, а выводить в виде hex и symbol дампа (в идеале иметь возможность выбора - в каком виде отображать).<br>Возможность брать образ процесса из памяти.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226644&amp;user=4026&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=21" class="addthx" data-post="226644"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]BoRoV[/b]','')">BoRoV</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/15500.jpg" alt=""><br><span class=txtSm>Ранг: 533.6 (<b>!</b>), 232thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.41'>Активность: 0.45<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=15500">Uploader</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 14:22 <br><script type="text/javascript">QU('BoRoV','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=BoRoV" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#22');return false;">#22</a> </span><div align=left><br>
+<I>SVLab пишет:<br>Не понял, а в чём баг? </I><br>а пустые строки - это разве нормально?
+<br><br><font size="1"><i>-----<br>Лучше быть одиноким, но свободным © $me</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226663&amp;user=15500&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=22" class="addthx" data-post="226663"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 14:53 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#23');return false;">#23</a> </span><div align=left><br>
+<I>Ray пишет:<br>Разные раскраски? </I><br>Про разные я не говорил, имел ввиду будут выделены все разлиающиеся байты.<br><I>BoRoV пишет:<br>но вот есть один баг </I><br>Если ты имеешь в виду про &quot;дырки&quot; в коде, то это сделано чтобы адреса не разезжались. Если их не делать адреса сместятся и будет непонятно...  Скорее это фича, а не баг<img src="img/smilies/s1.gif" alt=""><br><I>theCollision пишет:  решил сравнить, прога упала ))) </I><br>Закинь куда-нибудь эти файлы<br><I>theCollision пишет:<br>Информацию принято выводить не вверху в топе, а как это не парадоксально, внизу </I><br>Ну это спорный вопрос и не принципиальный.<br>По пункту 3 и 4 - я использую контрол, который не поддерживает работу отдельно с символами и словами. Только со всей строкой или столбцом.<br>Пункт 5 и 6 - это можно<br> <I>theCollision пишет:<br>7. сделать выбор сравниваемых файлов не по отдельности, а в одном диалоге. </I><br>Как ты себе это представляешь? Я использую стандартный win диалог выбора файла. Что, свой диалог писать? А если файлы находятся в разных каталогах?<br><b>OKOB</b><br>Эта утиль ни коим образом не претендует на супер-пупер прогу. Писалась для себя, просто надоело в своих же патчах искать отличия в оле, когда прога обновляется часто. Если хочется много функционала, на первой странице SniperOK давал сцылку на крутую прогу подобного плана. <br>Начало и конец блока для сравнения прикрутить можно (может даже и нужно, чтобы секции с данными, ресурсами и пр. не сравнивать)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226668&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=23" class="addthx" data-post="226668"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]theCollision[/b]','')">theCollision</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 271.5 (наставник), 12thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.24'>Активность: 0.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4439">Участник</a><br><font color=blue>Packer Reseacher</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 15:02 <br><script type="text/javascript">QU('theCollision','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=theCollision" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#24');return false;">#24</a> </span><div align=left><br>
+&gt;&gt;theCollision пишет: <br>&gt;&gt;7. сделать выбор сравниваемых файлов не по отдельности, а в одном диалоге. <br>&gt;&gt;Как ты себе это представляешь? Я использую стандартный win диалог выбора файла. Что, свой диалог &gt;&gt;писать? А если файлы находятся в разных каталогах? <br>Уже не однократно говорил, поставь себе WinMerge. Там когда жмешь на &quot;Открыть&quot; появляется отдельный диалог и там &quot;Левый&quot;, &quot;Правый&quot;, &quot;Фильтр&quot;.<br><br>Не изобретай велосипед, если хошь сделать удобную тулзу, то следуй по принципу &quot;Наименьшего удивления&quot;, если народ привык видеть некоторые вещи на конкретных местах в подобного рода тулзах, то он  и будет искать их там, хоть пристрели ;)<br><br>&gt;&gt;Ну это спорный вопрос и не принципиальный. <br>Закон юзабилити однако! ;) Почитай книгу, очень даже интересная наука ;)
+<br><br><font size="1"><i>-----<br>My love is very cool girl.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226671&amp;user=4439&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=24" class="addthx" data-post="226671"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 15:51 &middot; Поправил: OKOB <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#25');return false;">#25</a> </span><div align=left><br>
+<I>crc1 пишет:<br>на первой странице SniperOK давал сцылку на крутую прогу подобного плана </I><br>Да BinDiff&#039;ом я пользовался и до появления топа. Отличие в том, что то плагин к ИДЕ и не всегда для того чтобы глянуть одну функу рационально ИДИть два файла. Каждой тулсе своя область применения и если ты свою позиционируешь таким образом, то и назови PatchRemember. Не прими за сарказм. Как уже написал реализуется легко, а проку много.
+<br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226689&amp;user=6801&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=25" class="addthx" data-post="226689"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]ManHunter[/b]','')">ManHunter</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/7823.gif" alt=""><br><span class=txtSm>Ранг: 104.9 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.66'>Активность: 0.04<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=7823">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 16:05 <br><script type="text/javascript">QU('ManHunter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ManHunter" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#26');return false;">#26</a> </span><div align=left><br>
+Может &quot;Compare in File&quot; переименовать? А то это ближе к непонятному &quot;Сравнить в файле&quot;, чем к &quot;Записать различия в файл&quot;.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226693&amp;user=7823&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=26" class="addthx" data-post="226693"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]crc1[/b]','')">crc1</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 138.7 (ветеран), 135thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.79'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=423">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 17:15 <br><script type="text/javascript">QU('crc1','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=crc1" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#27');return false;">#27</a> </span><div align=left><br>
+&gt;&gt;Уже не однократно говорил, поставь себе WinMerge. Там когда жмешь на &quot;Открыть&quot; появляется отдельный диалог и там &quot;Левый&quot;, &quot;Правый&quot;, &quot;Фильтр&quot;.<br>Вон ты про что. WinMerge давно стоит. Просто я тебя не понял. Думал из одного стандартного диалогового (тьфу блин, хрен выговоришь) окна файлы выбирать.  Ну а в чем разница? Там две кнопки, тут две. Сделать это легко. Отдельную форму прикрутить. Только надо ли?  Подумаю.<br><b>OKOB</b>  я написал выше, Начало и конец блока для сравнения сделаю.  А про &quot;возможность сравнивать файлы с разным смещением&quot;  тут я тебя не понял, поясни. <br><I>ManHunter пишет:<br>Может &quot;Compare in File&quot; переименовать? </I><br>Типа &quot;Save differences in file&quot;  -больно длинно<br><I>SVLab пишет:<br>Слелать возможность открывать файл, уже занятый другой программой или просто запущенный. </I><br>Геморно все это, подскажи простой вариант<img src="img/smilies/s5.gif" alt="">  Если только через копирование<br><I>SVLab пишет:<br> выводить в виде hex и symbol дампа  </I><br>Я думал над этим, выводить в другой вкладке HEX дамп...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226700&amp;user=423&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=27" class="addthx" data-post="226700"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]ManHunter[/b]','')">ManHunter</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><img style="padding-top:3px;" src="av/7823.gif" alt=""><br><span class=txtSm>Ранг: 104.9 (ветеран), 46thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.66'>Активность: 0.04<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=7823">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 17:24 <br><script type="text/javascript">QU('ManHunter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ManHunter" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#28');return false;">#28</a> </span><div align=left><br>
+<I>crc1 пишет:<br>Типа &quot;Save differences in file&quot; -больно длинно  </I><br><br>типа &quot;Save <b>to</b> File&quot;
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226704&amp;user=7823&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=28" class="addthx" data-post="226704"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]SVLab[/b]','')">SVLab</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 133.4 (ветеран), 57thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.34'>Активность: 0.11<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4026">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 17:34 <br><script type="text/javascript">QU('SVLab','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=SVLab" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#29');return false;">#29</a> </span><div align=left><br>
+<I>BoRoV пишет:<br>а пустые строки - это разве нормально? </I><br>Ну а каким ещё образом синхронизировать последующие строки если команд получается разное количество?<br><I>crc1 пишет:<br>Геморно все это, подскажи простой вариант </I><br>Не рублю в программировании <img src="img/smilies/s4.gif" alt=""> , но ведь для других прог это не проблема. Можно открыть файл в Оле и одновременно запустить его самостоятельно, посмотреть в Peid, die, PE Explorer и пр.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=226705&amp;user=4026&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=29" class="addthx" data-post="226705"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 17:40 &middot; Поправил: OKOB <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#30');return false;">#30</a> </span><div align=left><br>
+<I>crc1 пишет:<br>А про &quot;возможность сравнивать файлы с разным смещением&quot; тут я тебя не понял, поясни. </I><br>Это и имелось в виду начало рассматриваемого блока, но возможность задавать разное для окон и с переключателем: в виде File Offset или RVA, т.к. ты адрес выводишь уже с учетом базы загрузки и размещения секций в памяти. <br>Или для окна отображения сделать переключатель File Offset или RVA (как в hiew).
+<br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226708&amp;user=6801&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=30" class="addthx" data-post="226708"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="31" onfocus="this.blur()" href="JavaScript:di('[b]Jupiter[/b]','')">Jupiter</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/1379.png" alt=""><br><span class=txtSm>Ранг: 605.2 (<b>!</b>), 341thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.38'>Активность: 0.47<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1379">Модератор</a><br><font color=blue>Research &amp; Development</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 26 марта 2009 19:26 <br><script type="text/javascript">QU('Jupiter','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Jupiter" target="_blank">Личное сообщение</a> &middot;  <a href="#31" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=13687&amp;page=1#31');return false;">#31</a> </span><div align=left><br>
+&gt; <i class=x>Геморно все это, подскажи простой вариант Если только через копирование </i><br><br>для CreateFile: GENERIC_READ, FILE_SHARE_READ<br>для CreateFileMapping: PAGE_WRITECOPY<br>для MapViewOfFile: FILE_MAP_COPY (или FILE_MAP_READ)
+<br><br><font size="1"><i>-----<br>EnJoy!</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=226737&amp;user=1379&amp;forum_n=3&amp;topic=13687&amp;page=1&amp;anchor=31" class="addthx" data-post="226737"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=0.html">&lt;&lt;</a> .  <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=0.html">1</a> . <b>2</b> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=2.html">3</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=3.html">4</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=4.html">5</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=5.html">6</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=6.html">7</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=7.html">8</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=8.html">9</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=9.html">10</a> ... <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=11.html">12</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=12.html">13</a> . <a href="action=vthread&amp;forum=3&amp;topic=13687&amp;page=2.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/default.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=3&sortBy=0&page=0.html"><b>Софт, инструменты</b></a> <b class=bulletHead>&#8212;&#8250;</b> CmpDisasm - Утилита для сравнения PE файлов в дизассемблированном виде</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#32" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="3">
+<input type="hidden" name="topic" value="13687">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=13687" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Трассировка громоздкого CALL - как найти последнюю команду перед RET? - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="В дебаггере есть полезный регистр EIP - показывает следующую команду,но мне понадобилось наоборот узнать предыдущую. Имеется ооочень большая процедура в виде CALL хххххххх, которая по команде F8 проходится за секунду. Но вот">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=28016'>asfa</a>, <a target='_blank' href='?action=userinfo&amp;user=26261'>bartolomeo</a> (+6 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Трассировка громоздкого CALL - как найти последнюю команду перед RET?</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 17:53 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+В дебаггере есть полезный регистр EIP - показывает следующую команду,но мне понадобилось наоборот узнать предыдущую. Имеется ооочень большая процедура в виде CALL хххххххх, которая по команде F8 проходится за секунду. Но вот оттрассировать её как выяснилось хз как. Внутри код упаковщика,прыгающий туда-сюда между 5-6 разными блоками памяти. По F8 гнал минут 5,запутался. CTRL+F8 гнало минут 5,тоже самое - не видно ни конца ни края. Журнал трассировки переполняется на 65535 команде.<br>Т.е. я точно знаю что у нее есть выход,но не могу на него выйти.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308860&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=1" class="addthx" data-post="308860"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 18:03 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+поставь бряк после этого CALL, а на CALL нажми ctrl+F11(trace intro), это аналог CTRL+F8 только в скрытый.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308861&amp;user=5291&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=2" class="addthx" data-post="308861"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 18:11 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Так в олли же есть кнопочка, выполнить код до ближайшего RET из CALL Зачем трассировать если можно сразу пройтись до конца процедуры
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308862&amp;user=31053&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=3" class="addthx" data-post="308862"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]Ra1n0[/b]','')">Ra1n0</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 7.7 (гость), 51thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.35'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10368">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 18:13 <br><script type="text/javascript">QU('Ra1n0','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Ra1n0" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+войти в call и Ctrl+F9 не ?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308864&amp;user=10368&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=4" class="addthx" data-post="308864"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 18:18 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<img src="img/smilies/s1.gif" alt="">Он этого не знал
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308865&amp;user=31053&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=5" class="addthx" data-post="308865"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 18:31 &middot; Поправил: Lumpy <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>yashechka пишет:<br>Он этого не знал  </I><br>Не знал <img src="img/smilies/s15.gif" alt=""> но мне ещё надо чтобы путь от начала процедуры до конца зафиксировать.<br>Я буду сравнивать как она работает с упаковщиком и без него (проблема именно в ней)<br>Если более точно,мне вот что надо: <br>без упаковщика до конца процедуры отладчик не доходит,а виснет где-то глубоко внутри неё.<br>с упаковщиком доходит,соответственно я пытаюсь вычислить то место где происходит сбой
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308866&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=6" class="addthx" data-post="308866"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]NikolayD[/b]','')">NikolayD</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 189.9 (ветеран), 334thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.36'>Активность: 0.3<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=24529">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 18:48 <br><script type="text/javascript">QU('NikolayD','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=NikolayD" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Какой дебаггер то + что за упаковщик? Вторая Олька лучше трейсит вроде как.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308868&amp;user=24529&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=7" class="addthx" data-post="308868"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 19:07 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+PEId пишет что запаковано UPolyX 0.5<br>Вторая Олли не годится потому что нужен плагин Hide Debugger
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308872&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=8" class="addthx" data-post="308872"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Vnv[/b]','')">Vnv</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 88.6 (постоянный), 50thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.54'>Активность: 0.04<span style='color:red'>&searr;</span>0.02</span><br>Статус: <a href="action=userinfo&amp;user=14758">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 19:44 &middot; Поправил: Vnv <br><script type="text/javascript">QU('Vnv','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vnv" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>Вторая Олли не годится потому что нужен плагин Hide Debugger</I><br><noindex><a href="http://exelab.ru/f/action=vthread&amp;forum=3&amp;topic=18885" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308874&amp;user=14758&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=9" class="addthx" data-post="308874"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 22:25 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+Если в стэке после выполнения CALL ничего не меняется,а только состояние регистров - то по идее можно его занопить и вручную прописать значения всех EAX,ECX и т.д. И будет работать?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308879&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=10" class="addthx" data-post="308879"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 22:34 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>Если в стэке после выполнения CALL ничего не меняется,а только состояние регистров - то по идее можно его занопить и вручную прописать значения всех EAX,ECX и т.д. И будет работать?<br> </I><br>Гы-гы! если это strlen, то можно. А если это какая нибудь процедура для расшифровки?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308880&amp;user=5291&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=11" class="addthx" data-post="308880"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 22:49 &middot; Поправил: Lumpy <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>Vovan666 пишет:<br>А если это какая нибудь процедура для расшифровки?  </I><br>Так и есть,похоже даже на виртуализированный код. Проблема в том,как найти на каком адресе проблема - CALL не выполняется до конца,а после F8 висит бесконечный &quot;Running&quot;. А для полной трассировки не хватает 65535 строк в журнале отладчика. Вот такие плюшки<br>Иными словами:<br>в оригинале CALL 12345678  - выполнился и погнали дальше<br>в крякнутом тот же CALL - Running и всё,дальше не идет
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308882&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=12" class="addthx" data-post="308882"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]Johnny   Mnemonic[/b]','')">Johnny   Mnemonic</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 6.0 (гость), 8thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 9.52'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=27402">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 22:59 <br><script type="text/javascript">QU('Johnny   Mnemonic','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Johnny   Mnemonic" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+Calypso выложи экзэ чтоле
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308884&amp;user=27402&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=13" class="addthx" data-post="308884"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 23:00 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Что-то как-то написано много и ни о чём. А всё ведь очень просто - нужно человеку не только последние 65535 строк увидеть. Так это - пожалуйста. Перед началом трассировки в Олли заходим в Show Run Trace (мышью давим на кнопочку с тремя точками ..., которая между Show reference и Show sources), далее пкм -&gt; Log to file и указываем расположение и имя файла. Далее трейсим - ставим бряк на выходе, и давим Ctrl+F11. Потом открываем файл, и там весь лог трассировки.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=308886&amp;user=6336&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=14" class="addthx" data-post="308886"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]r99[/b]','')">r99</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/314.gif" alt=""><br><span class=txtSm>Ранг: 328.7 (мудрец), 73thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.84'>Активность: 0.17<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=314">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 23:05 <br><script type="text/javascript">QU('r99','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=r99" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>виснет где-то глубоко внутри неё </I><br>однако к лекарю надо
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308887&amp;user=314&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=15" class="addthx" data-post="308887"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Vovan666[/b]','')">Vovan666</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><span class=txtSm>Ранг: 617.3 (<b>!</b>), 677thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.06'>Активность: 0.54<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=5291">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 23:07 <br><script type="text/javascript">QU('Vovan666','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vovan666" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+Да и трасса-то ему особо не нужна. Раз там бесконечный цикл, то не проще войти в call запустить прогу на выполнение, а через 5 секунд нажать на паузу и найти по ф8 цикл вручную?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308888&amp;user=5291&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=16" class="addthx" data-post="308888"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 16 июля 2012 23:59 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Трасса нужна,без нее там запутаешься совсем.Он же прыгает туда сюда,примерно так:<br>00461000 внутренние CALL, модификации регистров<br>...... JMP 007C0000<br>007C0000 внутренние CALL, модификации регистров<br>.... JMP 01BCD0000<br>01BCD0000 внутренние CALL, модификации регистров<br>.... JMP 0056A000<br>и так далее
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308890&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=17" class="addthx" data-post="308890"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]yashechka[/b]','')">yashechka</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><img style="padding-top:3px;" src="av/31053.jpg" alt=""><br><span class=txtSm>Ранг: 59.5 (постоянный), 326thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.52'>Активность: 0.17<span style='color:green'>&nearr;</span>0.76</span><br>Статус: <a href="action=userinfo&amp;user=31053">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 00:03 <br><script type="text/javascript">QU('yashechka','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yashechka" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>Если в стэке после выполнения CALL ничего не меняется,а только состояние регистров - то по идее можно его занопить и вручную прописать значения всех EAX,ECX и т.д. И будет работать? </I><br>НУ как.Регистры это же не все ещё. Есть же ещё память. она наверняка изменяется.<br>Кинь Пе файл свой. Посмотрим вместе<img src="img/smilies/s1.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308891&amp;user=31053&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=18" class="addthx" data-post="308891"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 00:14 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+Файл выложить не могу к сожалению,потому что прога это секретная разработка одного из оборонных НИИП. И если будет утечка,то могут быть очень крупные неприятности как у меня,так и у вашего сайта <img src="img/smilies/s16.gif" alt="">
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308894&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=19" class="addthx" data-post="308894"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]hlmadip[/b]','')">hlmadip</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 58.1 (постоянный), 42thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.01'>Активность: 0.06<span style='color:red'>&searr;</span>0.01</span><br>Статус: <a href="action=userinfo&amp;user=21572">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 00:53 <br><script type="text/javascript">QU('hlmadip','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=hlmadip" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<I>Lumpy пишет:<br>прога это секретная разработка одного из оборонных НИИП </I><br>Так в личку высылай, нафиг она кому нужна
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308895&amp;user=21572&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=20" class="addthx" data-post="308895"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 10:20 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<b>Lumpy</b>  Не можете прогу выложить, хотя бы разъясните про крякнутый и не крякнутый вариант. Что-то непонятно. Кто крякал,как, зачем и почему оно не работает. Да и цель конечная какая.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308908&amp;user=4072&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=21" class="addthx" data-post="308908"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 13:35 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Прикол в том,что файл запустился. И хотя трассировка мне ничего не дала,как и поиск сбойного места.<br>Я просто выставил в свойствах Совместимость с Windows 2000 - и заработало.<br>Из-за чего такое может быть? ОС - Windows XP SP3 ,процессор Core2Duo 2 ядра. Прога написана на MS VS 7.1 <br>Или упаковщик каким-то образом принудительно тоже выставляет эту совместимость,просто для пользователя это происходит прозрачно?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308914&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=22" class="addthx" data-post="308914"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]schokk_m4ks1k[/b]','')">schokk_m4ks1k</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 31.0 (посетитель), 70thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.43'>Активность: 0.14<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=31322">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 13:46 &middot; Поправил: schokk_m4ks1k <br><script type="text/javascript">QU('schokk_m4ks1k','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=schokk_m4ks1k" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<b>Lumpy</b><br>ты б лучше прочитал серию статей от Нарвахи, а потом уже что не понятно задавал бы вопросы)<br><b>dimka_new</b><br>Во первых совет давал не тебе) ты что адвокат что влазишь за других? че за привычка? за себя отвечай, сам бы лучше Нарваху почитал, советчик, себя обсуждай огрызок) а то что я пишу тебя не должно еб*ть, тебе по моему ничего не писал, вот и сиди и не вякай!
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308915&amp;user=31322&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=23" class="addthx" data-post="308915"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 13:56 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+Что тебе не понятно,всё очень даже понятно. Если прога,она защищена упаковщиком + окно что &quot;У вас нет доступа&quot;. Упаковщик я снял дампом,восстановил IAT,убрал окно - полученный файл запускается,но не до конца. Процесс есть,а на экране шиш с маслом. Беру ставлю совместимость с Вин2000 - всё ОК.<br>Но упакованный файл так работает. Почему? В  PETools все галочки перепробовал - бесполезно.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308916&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=24" class="addthx" data-post="308916"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]dimka_new[/b]','')">dimka_new</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 33.8 (посетитель), 38thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.79'>Активность: 0.06<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=30303">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 14:06 &middot; Поправил: dimka_new <br><script type="text/javascript">QU('dimka_new','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=dimka_new" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+Немного оффтоп<br><br><b>schokk_m4ks1k</b> хотелось задать Вам вопрос - сами то Нарваху читали ?<br>В курить не могу нафига сообщения - выложи файл, упакована ???, и прочий мусор ?<br>Для поднятия рейтинга ? Ну гляжу рейтинг уже поднялся - может пора остановится, сделать глубокий вдох и начать писать сочинения, что в школе на лето задали ?<br><br>Извиняюсь за кал в теме<br><br><strike>Во первых совет давал не тебе) ты что адвокат что влазишь за других? че за привычка? за себя отвечай, сам бы лучше Нарваху почитал, советчик, себя обсуждай огрызок) а то что я пишу тебя не должно еб*ть, тебе по моему ничего не писал, вот и сиди и не вякай!</strike><br><br>Не хотелось бы отвечать - ну лады отвечу, Нарваху читал - может не полностью, имеется грех, но для решения моих задач достаточно - это раз.<br>Во-вторых - твои посты я советами не считаю.<br>В третьих на этот форум хожу почитать статьи и мысли умных, профессиональных людей.<br>Ты не являешься не первым, не вторым и даже не третьим - и видеть тебя здесь совсем не охото.<br>О чем я собственно и написал.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308918&amp;user=30303&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=25" class="addthx" data-post="308918"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=23472" title="17-07-2012 10:19, ранг:3.7" target="_blank">esa_r</a>, <a href="action=userinfo&user=5291" title="17-07-2012 10:31, ранг:427.3" target="_blank">Vovan666</a>, <a href="action=userinfo&user=21572" title="17-07-2012 10:38, ранг:48.0" target="_blank">hlmadip</a>, <a href="action=userinfo&user=18316" title="17-07-2012 11:07, ранг:104.6" target="_blank">SReg</a>, <a href="action=userinfo&user=4773" title="18-07-2012 04:47, ранг:43.4" target="_blank">plutos</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]sivorog[/b]','')">sivorog</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 49.7 (посетитель), 19thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 8.49'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=31142">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 14:21 &middot; Поправил: sivorog <br><script type="text/javascript">QU('sivorog','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=sivorog" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+<b>Lumpy</b><br><br>я в таких случаях делаю как <b>ARCHANGEL</b> описал, 2 раза - с оригинальным файлом и с распакованным.<br>ты тогда реально увидишь, что где изменяется и где прога висит/глючит/падает.<br> может, это нестандартный упаковщик, ну не знаю старый УПХ что ли, либо дело может быть в атрибутах секций анпакнутого файла (чтение/запись/исполнение, что можно процессору делать в секции .data, .rdata, .adata <img src="img/smilies/s1.gif" alt=""> , а что нельзя)<br><br>почитай статьи <b>MozgC</b> о распаковке и статью &quot;Распаковка - это легко!!!&quot;, здесь на сайте, если читал уже - загляни снова, вдруг че пропустил <img src="img/smilies/s1.gif" alt=""><br><br>и проанализируй свой packed.exe (будем его так называть) другими анализаторами, хотя бы DiE, ExeInfoPE и Protection ID. скажи нам, что они показали, скрины можешь не приводить.<br><i class=x>потому что PEiD говорит про UPolyX каждый пятый раз </i> - и на MPRESS, и на Themida (ну эт вряд ли твой случай), и на др. упаковщики/протекторы.<br><br>add<br><br>приведи названия, размеры и атрибуты секций оригинального и распакованного файлов - это не всегда помогает, но все же...
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308919&amp;user=31142&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=26" class="addthx" data-post="308919"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]tundra37[/b]','')">tundra37</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 310.8 (мудрец), 29thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.32'>Активность: 0.43<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=4072">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 17:11 <br><script type="text/javascript">QU('tundra37','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=tundra37" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<b>Lumpy</b><br><i class=x>Беру ставлю совместимость с Вин2000 - всё ОК.</i><br>  Сложно сказать. Насколько помню какую-то функцию, важную при защите, как раз переименовали(или правильно назвали) именно в ХП. Может в ней дело. Возможно, что не совсем корректно распаковали и IAT восстановили. Без инфы трудно сказать. Я в сомнительных случаях еще юзаю RDG Packer Detector в макс. режиме.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308932&amp;user=4072&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=27" class="addthx" data-post="308932"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 18:23 <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+<I>dimka_new пишет:<br>Извиняюсь за кал в теме </I><br>Наоборот,очень хороший кал.Я сам ему хотел написать,но решил что не стоит даже тратить мембраны в клавиатуре на это <img src="img/smilies/s6.gif" alt=""><br><I>tundra37 пишет:<br>Возможно, что не совсем корректно распаковали и IAT восстановили </I><br>IAT сто раз перепроверил - там всё ОК. Можно снять 2 трассы - одну в режиме обычном, вторую - когда стоит совместимость с Вин2к. Только наверно OllyDbg не умеет запускать в режиме совместимости
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308944&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=28" class="addthx" data-post="308944"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]Lumpy[/b]','')">Lumpy</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 0.8 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 7.99'>Активность: 0.01<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=32510">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 18:30 &middot; Поправил: Lumpy <br><script type="text/javascript">QU('Lumpy','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Lumpy" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<I>sivorog пишет:<br>приведи названия, размеры и атрибуты секций оригинального и распакованного файлов - это не всегда помогает, но все же...<br> </I><br>Ну ладно,довольно ломать комедию.Просили файл,вот он:<br>http://depositfiles.com/files/kkyjouica<br>А вот ещё одна секретная разработка силовой звезды для исследования космоса: <img src="img/smilies/s6.gif" alt=""><br><noindex><a href="http://depositfiles.com/files/7rghk9smm" rel="nofollow" target="_blank">http://depositfiles.com/files/7rghk9smm</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308947&amp;user=32510&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=29" class="addthx" data-post="308947"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]yagello[/b]','')">yagello</a></b><br></div>
+<img src="img/s4.gif" alt=""><br><span class=txtSm>Ранг: 72.1 (постоянный), 30thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.56'>Активность: 0.05<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=23568">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 17 июля 2012 20:47 <br><script type="text/javascript">QU('yagello','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yagello" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=5&amp;topic=20155&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+Возможно, просто криво распаковали/восстановили неправильно импорт. И всё.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=308952&amp;user=23568&amp;forum_n=5&amp;topic=20155&amp;page=0&amp;anchor=30" class="addthx" data-post="308952"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=5&amp;topic=20155&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/nub.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=5&sortBy=0&page=0.html"><b>Вопросы новичков</b></a> <b class=bulletHead>&#8212;&#8250;</b> Трассировка громоздкого CALL - как найти последнюю команду перед RET?</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=20155" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

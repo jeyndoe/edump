@@ -1,0 +1,452 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Kernel mode GetUserNameEx - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Приветствую вас, коллеги! подскажите пож-ста, как я могу из кернел-моде получить имя текущего пользователя, а также имя исполняемого образа, в контексте которого мы находимся, т.е. полный путь exe- (sys-, если возможно) файла. и">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a>, <a target='_blank' href='?action=userinfo&amp;user=31361'>zds</a> (+3 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+ 
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Kernel mode GetUserNameEx</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=6&amp;topic=15435&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=6&amp;topic=15435&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]_Immortal_[/b]','')">_Immortal_</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.65'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23207">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 декабря 2009 07:48 <br><script type="text/javascript">QU('_Immortal_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_Immortal_" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Приветствую вас, коллеги!<br>подскажите пож-ста, как я могу<br>из кернел-моде получить имя текущего пользователя,<br>а также имя исполняемого образа, в контексте которого<br>мы находимся, т.е. полный путь exe- (sys-, если возможно) файла.<br>и вот еще: если интерактивного юзера еще не было, т.е.<br>если мы при загрузке работаем как систем (я переделал) ntoskrnl.exe,<br>то на какой стадии загрузки мы можем начать юзать iocreatefile?<br>И будет ли система каллить эту функцию, если i/o manager еще не инициализировался?<br>заранее благодарен за ответ =)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246099&amp;user=23207&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=1" class="addthx" data-post="246099"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Kerne[/b]','')">Kerne</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.5 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.6'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23466">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 декабря 2009 13:36 <br><script type="text/javascript">QU('Kerne','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kerne" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+<i class=x>Kernel mode GetUserNameEx</i><br>1. Долгий метод  KeUserModeCallback()<br>2. GUI-приложение передает IOCTL в ring0
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246107&amp;user=23466&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=2" class="addthx" data-post="246107"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 декабря 2009 20:12 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+Я сам использовал такой метод.<br>Имея ProcessId, вызываем PsLookupProcessByProcessId, получаем PEPROCESS, далее через ObOpenObjectByPointer получаем хэндл процесса, теперь через ZwQueryInformationProcess получаем PPEB, а далее оттуда извлекаем адрес первого загруженного модуля, и узнаем &quot;ехе процесса&quot;.<br><br>Но это для любого процесса, а если для того, в контексте которого мы находимся, то код ещё упрощается.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246155&amp;user=6336&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=3" class="addthx" data-post="246155"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 декабря 2009 21:14 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Но это для любого процесса </I><br>Для native процессов не будет работать, т.к. у них нет PEB. И полученной информации нельзя доверять, т.к. процесс может легко изменить свой PEB. Более надежно получать путь из SECTION_OBJECT в EPROCESS, но страшный гимор сделать это кроссплатформенно.<br>На Vista sp1 и выше можно сделать почти без плясок с бубном через PsSetCreateProcessNotifyRoutineEx
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246159&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=4" class="addthx" data-post="246159"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 00:33 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+<b>ntldr пишет: </b><br><i class=x>И полученной информации нельзя доверять, т.к. процесс может легко изменить свой PEB</i><br>Если использовать PsSetCreateProcessNotifyRoutine, то получим уведомление до того, как процесс дотянется до своего PEB. <br><br><i class=x>Более надежно получать путь из SECTION_OBJECT в EPROCESS, но страшный гимор сделать это кроссплатформенно.</i><br>Детект через PEB тоже ещё предстоит делать кроссплатформенным, хоть, по-моему, это и менее гиморная задача.<br><br><b>Kerne</b><br>Мы можем и сами читать верхние посты.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246175&amp;user=6336&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=5" class="addthx" data-post="246175"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 01:32 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>Если использовать PsSetCreateProcessNotifyRoutine, то получим уведомление до того, как процесс дотянется до своего PEB </I><br>Если использовать PsSetCreateProcessNotifyRoutine, то в момент вызова каллбека ещё нет никакого PEB.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246179&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=6" class="addthx" data-post="246179"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]_Immortal_[/b]','')">_Immortal_</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.65'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23207">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 06:41 <br><script type="text/javascript">QU('_Immortal_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_Immortal_" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+Всем огромное спасибо за ответы,<br>сам я пока не так силен в ядре. Но вопрос<br>пока не полностью исчерпан. Как получить имя юзера?<br>вроде GetUserNameEx уходит куда-то в дебри<br>secur32.dll,  а оттуда делает что-то с каналами, созданными, как<br>я понял, sam, lsa или srm компонентами. Но где взять<br>точную инфу про это? и если интерактивного юзера еще<br>не было, то эти каналы будут работать? Я переписал ядро,<br>т.е. ntoskrnl.exe, перехватил код некоторых функций,<br>и хочу определить, кто обращается к ним. про exe-файл вроде<br>понятно, но не совсем. Откуда мне взять текущий ProcessID?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246184&amp;user=23207&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=7" class="addthx" data-post="246184"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 06:55 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+MSDN мне говорит, что надо копать в сторону PsReferencePrimaryToken / SeQueryInformationToken и потом как-то переводить полученный SID в юзернейм. Похоже что в ядре это делается только поиском поиском соответствующего ключа в SAM.<br><br><I>_Immortal_ пишет:<br>Откуда мне взять текущий ProcessID? </I><br>PsGetCurrentProcessId<br>Если возникают такие вопросы, то может быть рано замахиваться на что-то более сложное?
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246185&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=8" class="addthx" data-post="246185"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]Kerne[/b]','')">Kerne</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.5 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.6'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23466">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 12:51 &middot; Поправил: Kerne <br><script type="text/javascript">QU('Kerne','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kerne" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<i class=x>Как получить имя юзера?<br>вроде GetUserNameEx уходит куда-то в дебри<br>secur32.dll, а оттуда делает что-то с каналами, созданными, как<br>я понял, sam, lsa или srm компонентами. Но где взять<br>точную инфу про это? и если интерактивного юзера еще<br>не было, то эти каналы будут работать?</i><br><br><br>Передавать управление user-mode коду т.е. использовать KeUserModeCallback()
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246196&amp;user=23466&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=9" class="addthx" data-post="246196"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]_Immortal_[/b]','')">_Immortal_</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.65'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23207">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 13:34 <br><script type="text/javascript">QU('_Immortal_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_Immortal_" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+ntldr пишет:<br>Если возникают такие вопросы, то может быть рано замахиваться на что-то более сложное?<br>в большинстве случаев, можно сказать что рано.<br>но если поставить перед собой сложную задачу,<br>методы решения которой на начальной стадии неясны,<br>то её решение делает нас сильнее=)<br>я так всё стараюсь изучать =)<br>Ну вроде теперь ясно стало, всем big-big 10x =)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246199&amp;user=23207&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=10" class="addthx" data-post="246199"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 15:14 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<b>ntldr</b><br>С помощью определённым танцев с бубном можно вставить код, который передаст драйверу IOCTL, когда PEB уже будет. Но метод - так себе. Было бы интересно узнать, может, у кого-то получалось попроще.<br><br>Да, про нативные процессы и отсутствие у них PEB не знал, спасибо за инфу. А можно узнать, какие именно это процессы?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246202&amp;user=6336&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=11" class="addthx" data-post="246202"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 15:22 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>С помощью определённым танцев с бубном </I><br>Проще будет потанцевать в направлении SECTION_OBJECT.<br><br><I>ARCHANGEL пишет:<br>А можно узнать, какие именно это процессы? </I><br>smss.exe, autochk.exe и прочие процессы работающие в native subsystem. PEB у таких процессов может присутствовать, а может и нет, я сталкивался с обоими случаями.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246203&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=12" class="addthx" data-post="246203"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 16:58 &middot; Поправил: HiEndsoft <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>ntldr пишет:<br>smss.exe, autochk.exe и прочие процессы работающие в native subsystem. PEB у таких процессов может присутствовать, а может и нет, я сталкивался с обоими случаями. </I><br>Чтот - то с трудом верится (не видел, возможно козни антивирей). Зачем родным нативам менять свой PEB? Может у них по-вашему и TEB нету?
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246208&amp;user=13651&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=13" class="addthx" data-post="246208"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 18:50 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+Проверил на XP и 2003 - PEB есть, но точно помню, что когда-то давно сталкивался с его отсутствием, т.к. не удавалось прочитать список модулей в таком процессе. Насчет TEB не знаю, не проверял.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246218&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=14" class="addthx" data-post="246218"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 20:40 <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<I>ntldr пишет:<br>не удавалось прочитать список модулей в таком процессе </I><br>Список модулей можно получить не пребегая к двусвязанным спискам PEB (см. Рихтера).
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246220&amp;user=13651&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=15" class="addthx" data-post="246220"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 декабря 2009 21:56 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>HiEndsoft пишет:<br> (см. Рихтера). </I><br>Я не знаю более простого метода, кроме разве что нотификаций, которые не всегда применимы.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246230&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=16" class="addthx" data-post="246230"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]Kerne[/b]','')">Kerne</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.5 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.6'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23466">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2009 00:24 &middot; Поправил: Kerne <br><script type="text/javascript">QU('Kerne','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kerne" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+Получение пути к драйверу используя SECTION_OBJECT (объект секцию)<br><br><noindex><a href="http://forum.shelek.ru/index.php/topic,1875.0.html" rel="nofollow" target="_blank"> [url] Тыц-тыц </a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246234&amp;user=23466&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=17" class="addthx" data-post="246234"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2009 20:55 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+<b>Kerne</b><br>И к чему ты меня цитируешь? <br><br><b>Kerne пишет:</b><br><i class=x>Получение пути к драйверу используя SECTION_OBJECT (объект секцию)</i><br>Видна только идея, да описание структуры (даже непонятно, для какой Винды конкретно), а рабочего примера нету, а раз нету, то писать всякие сказки каждый может, особенно если это касается недокументированных структур.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246286&amp;user=6336&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=18" class="addthx" data-post="246286"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2009 21:23 <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+<I>ntldr пишет:<br>Я не знаю более простого метода, кроме разве что нотификаций, которые не всегда применимы. </I><br>RtlQueryProcessDebugInformation,<br>VMQuery (см. Рихтера) и т.д.
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246288&amp;user=13651&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=19" class="addthx" data-post="246288"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2009 22:05 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<I>HiEndsoft пишет:<br>RtlQueryProcessDebugInformation,VMQuery (см. Рихтера) и т.д. </I><br>Отсутствует в экспорте ntoskrnl.exe<br>Сдается мне, что вы отвечаете не читая, потому что иначе знали бы, что речь идет исключительно о драйверах. Юзермодные API здесь знают не хуже вас, но речь не о том.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246291&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=20" class="addthx" data-post="246291"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]HiEndsoft[/b]','')">HiEndsoft</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 237.0 (наставник), 20thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.74'>Активность: 0.13<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=13651">Участник</a><br><font color=blue>sysenter</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2009 23:12 &middot; Поправил: HiEndsoft <br><script type="text/javascript">QU('HiEndsoft','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=HiEndsoft" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+<I>ntldr пишет:<br>Проверил на XP и 2003 - PEB есть, но точно помню, что когда-то давно сталкивался с его отсутствием, т.к. не удавалось прочитать <b>список модулей в таком процессе</b>. Насчет TEB не знаю, не проверял. </I><br>Это Вы сами затеяли. Вот и все.
+<br><br><font size="1"><i>-----<br>продавец резиновых утёнков</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246294&amp;user=13651&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=21" class="addthx" data-post="246294"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 декабря 2009 23:32 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Уважаемый <b>HiEndsoft</b>, до вас плохо доходит, но я всё-же попробую объяснить: разговор зашел о PEB потому, что речь шла о получении пути к модулю из драйвера. Драйвер может читать PEB, но не может вызывать юзермодные API, о которых здесь никто не спрашивал. Ваши посты насчет Рихтера являются оффтопиком.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246295&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=22" class="addthx" data-post="246295"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="23" onfocus="this.blur()" href="JavaScript:di('[b]Error_Log[/b]','')">Error_Log</a></b><br></div>
+<img src="img/s6.gif" alt=""><br><span class=txtSm>Ранг: 228.7 (наставник), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.05'>Активность: 0.12<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2060">Участник</a><br><font color=blue>malware research</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 00:18 <br><script type="text/javascript">QU('Error_Log','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Error_Log" target="_blank">Личное сообщение</a> &middot;  <a href="#23" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#23');return false;">#23</a> </span><div align=left><br>
+<b>_Immortal_</b><br>Решение твоей задачи зависит от многих факторов:<br>1) OS, на которых это должно работать.<br>2) требуется ли обеспечить независимость от будущих обновлений/сервиспаков.<br>3) возможно драйвер использует, или может использовать, такие возможности, как нотификаторы. Начиная с Vista SP1 можно получить указатель на объект FileObject модуля процесса в нотификаторе, которому можно послать IRP_MJ_QUERY_INFORMATION для опреления пути (поскольку поле FileObject-&gt;FileName гарантировано валидно только во время запроса IRP_MJ_CREATE, MSDN). В более ранних ОС, возможно, имеет смысл использовать смещения undoc структур для получения FILE_OBJECT: Eprocess-&gt;SectionObject-&gt;Segment-&gt;ControlArea-&gt;FileObject. <br>4) Если в драйвере есть возможность послать Lpc сообщение в user-mode и получить ответ, можно получить путь и имя процесса используя user-mode API (GetModuleFileNameEx, GetProcessImageFileName (подходит для x86 приложений в среде WOW в x64 OS)) и user-mode модуль. Возможны варианты с другими способами коммуникации.<br>5) имеются другие возможности, опять таки, зависящие от конкретных требований и условий.
+<br><br><font size="1"><i>-----<br>Research is my purpose</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246298&amp;user=2060&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=23" class="addthx" data-post="246298"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="24" onfocus="this.blur()" href="JavaScript:di('[b]Kerne[/b]','')">Kerne</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 3.5 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.6'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23466">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 02:49 <br><script type="text/javascript">QU('Kerne','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Kerne" target="_blank">Личное сообщение</a> &middot;  <a href="#24" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#24');return false;">#24</a> </span><div align=left><br>
+<b>ARCHANGEL</b><br><i class=x>И к чему ты меня цитируешь? </i><br><br>Хорошо, не буду больше цитировать.<br><br><br><b>_Immortal_</b><br><br>К дополнению вариантов предлагавшихся выше<br>а) DriverEntry(IN PUNICODE_STRING RegPath) RegPath - полный путь к драйверу<br>б) Читать из KUSER_SHARED_DATA что довольно таки не надежный метод (смещения меняются от версии к версии)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246312&amp;user=23466&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=24" class="addthx" data-post="246312"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="25" onfocus="this.blur()" href="JavaScript:di('[b]mak[/b]','')">mak</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/3520.jpg" alt=""><br><span class=txtSm>Ранг: 673.3 <font color=magenta>(<b>! !</b>)</font>, 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 14.48'>Активность: 0.4<span style='color:red'>&searr;</span>0.31</span><br>Статус: <a href="action=userinfo&amp;user=3520">Участник</a><br><font color=blue>CyberMonk</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 15:26 <br><script type="text/javascript">QU('mak','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=mak" target="_blank">Личное сообщение</a> &middot;  <a href="#25" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#25');return false;">#25</a> </span><div align=left><br>
+Из сервиса может быть взять ... <br><br>WTSGetActiveConsoleSessionId<br>WTSQueryUserToken<br>DuplicateToken<br>ImpersonateLoggedOnUser<br>// GetUserName <br><br>Там вроде нужно еще нумеровать терминые логины , чтобы код уж идеальный был и вытаскивать активного пользователя
+<br><br><font size="1"><i>-----<br>RE In Progress [!] Coding Hazard [!] Stay Clear of this Cube</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246360&amp;user=3520&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=25" class="addthx" data-post="246360"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="26" onfocus="this.blur()" href="JavaScript:di('[b]_Immortal_[/b]','')">_Immortal_</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.65'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23207">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 16:44 <br><script type="text/javascript">QU('_Immortal_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_Immortal_" target="_blank">Личное сообщение</a> &middot;  <a href="#26" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#26');return false;">#26</a> </span><div align=left><br>
+Error_Log пишет:<br>1) OS, на которых это должно работать.<br>2) требуется ли обеспечить независимость от будущих обновлений/сервиспаков.<br><br>Действительно, я не до конца поснил суть вопроса.<br>1). мультисистемность (!) обеспечивать не надо, т.к. мой код исполняется<br>не в драйвере, а в ядре системы, т.к. я переписал ntoskrnl.exe<br><br>получение пути к текущему exe-модулю я уже реализовал методом<br>undoc-функций, т.е. используя SECTION_OBJECT (спасибо Four-F за отличные туториалы).<br><br>кстати,  из Driver_Entry этот метод не работает (тот, что описан Four-F). в других контекстах<br>(т.е. не System) работает на 5+ =) (ещё раз спасибо Four-F)<br><br>Далее. Чтобы получить юзер нэйм, можно сделать так:<br>1). RtlGetCurrentProcessID<br>2). PsReferencePrimaryToken - получение токена защиты процесса по ID<br>3). SeQueryInformationToken с классом информации TokenUser - получим SID юзера,<br>     запустившего процесс.<br>4). Сканируем таблицу Well-Known SID&#039;ов, это есть на support.microsoft.com/kb/243330.<br>     Если Sid не найден, то запрашиваем об этом LSA (сам не пробовал, но так делает GetUserName в   <br>     Secur32.dll, посмотрите его в IDA).<br>5). Ответ не по сути, но все же вариант:<br>     Принимайте в вашей программе решение не на основании имени юзера, а по его Sid. Я сам так сделал.<br>     Sid высокослучаен, поэтому можно допустить, что он уникален =)<br>Вот так, сам спросил, сам и ответил =)<br>Еще раз всем спасибо за ответы. Не ожидал такой активности. Вместе мы сила =)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246365&amp;user=23207&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=26" class="addthx" data-post="246365"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="27" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 20:35 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#27" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#27');return false;">#27</a> </span><div align=left><br>
+<I>_Immortal_ пишет:<br>1). мультисистемность (!) обеспечивать не надо, т.к. мой код исполняетсяне в драйвере, а в ядре системы, т.к. я переписал ntoskrnl.exe </I><br>Не совсем понял.<br><br><I>_Immortal_ пишет:<br>получение пути к текущему exe-модулю я уже реализовал методомundoc-функций, т.е. используя SECTION_OBJECT (спасибо Four-F за отличные туториалы). </I><br>С мультисистемностью будут проблемы из-за разных смещений указателя на SECTION_OBJECT в EPROCESS (они могут отличаться даже в сервиспаках). Также понадобятся отдельные прототипы структур для x64. И имеется 100% гарантия, что на следующей винде работать не будет.<br>Оптимальным компромиссом является применение этого способа на всех ОС до Vista SP1, а на Vista SP1 и выше следует использовать PsSetCreateProcessNotifyRoutineEx.<br><br><I>_Immortal_ пишет:<br>Если Sid не найден, то запрашиваем об этом LSA (сам не пробовал, но так делает GetUserName в        Secur32.dll, посмотрите его в IDA). </I><br>Это слабое место метода. Получим непредсказуемый результат на тех системах, где код не тестировался.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246382&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=27" class="addthx" data-post="246382"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="28" onfocus="this.blur()" href="JavaScript:di('[b]_Immortal_[/b]','')">_Immortal_</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.65'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23207">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 21:53 <br><script type="text/javascript">QU('_Immortal_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_Immortal_" target="_blank">Личное сообщение</a> &middot;  <a href="#28" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#28');return false;">#28</a> </span><div align=left><br>
+Ntldr:<br>Я понимаю это, но сознательно привязываюсь к системе.<br>Я пишу антивирус. Ядер Windows не так много.<br>Значет, если кто-то хочет юзать результаты моего труда,<br>то пусть качает прошитый ntoskrnl.exe и прописывает его в boot.ini =)<br>Нормальный по-моему метод? да и потом портирование<br>само по себе не сложно, просто меняются RVA и заглушки<br>на перехватываемые функции (да и то не далеко всегда).<br>То есть для всех ядер можно сделать по отдельности,<br>и не нагромождать килобайты детектирующего кода. =)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246389&amp;user=23207&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=28" class="addthx" data-post="246389"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="29" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 22:50 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#29" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#29');return false;">#29</a> </span><div align=left><br>
+<I>_Immortal_ пишет:<br>Нормальный по-моему метод? </I><br>Пожалуй промолчу о нормальности, ибо всей мощи русского языка не хватит чтобы выразить моё мнение. Остановлюсь лишь на том, что такой метод незаконен, читай EULA.<br><br><I>_Immortal_ пишет:<br>Я пишу антивирус. </I><br>Упаси меня бог от такого антивируса <img src="img/smilies/s1.gif" alt=""> Мне заранее жаль ваших пользователей.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=246396&amp;user=12867&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=29" class="addthx" data-post="246396"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="30" onfocus="this.blur()" href="JavaScript:di('[b]_Immortal_[/b]','')">_Immortal_</a></b><br></div>
+<img src="img/s1.gif" alt=""><br><span class=txtSm>Ранг: 8.0 (гость)<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.65'>Активность: 0=0</span><br>Статус: <a href="action=userinfo&amp;user=23207">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 10 декабря 2009 23:59 <br><script type="text/javascript">QU('_Immortal_','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=_Immortal_" target="_blank">Личное сообщение</a> &middot;  <a href="#30" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=15435&amp;page=0#30');return false;">#30</a> </span><div align=left><br>
+Кстати, напишу этот антивирь, статью к нему,<br>и предложу властьимущим выложить её на сайт.<br>Возможно, в этом случае Маэстро (ntldr) посмотрит<br>не это дело несколько иначе. =)<br><br>P.S. Да, это незаконно. Но я могу залить пачти к ядрам,<br>       а не сами ядра.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=246400&amp;user=23207&amp;forum_n=6&amp;topic=15435&amp;page=0&amp;anchor=30" class="addthx" data-post="246400"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b> .  <b>1</b> . <a href="action=vthread&amp;forum=6&amp;topic=15435&amp;page=1.html">2</a> . <a href="action=vthread&amp;forum=6&amp;topic=15435&amp;page=1.html">&gt;&gt;</a></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Kernel mode GetUserNameEx</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<div align=center>
+<table class=forums>
+<tr>
+<td class=caption4 width="100%"><span class=header>Эта тема закрыта. Ответы больше не принимаются.</span></td>
+</tr>
+</table>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=15435" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

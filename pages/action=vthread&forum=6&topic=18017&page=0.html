@@ -1,0 +1,454 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Ring0 Трассировщик - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Привет, товарищи. Назрел вопрос такого характера. Допустим, я пишу динамический распаковщик, отладочное ядро которого не использует Debug API, а используется перехват исключений в ядре. С IDT и с тем, как её перехватить - всё">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=55995'>tyns777</a> (+5 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Ring0 Трассировщик</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:30 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Привет, товарищи. Назрел вопрос такого характера. Допустим, я пишу динамический распаковщик, отладочное ядро которого не использует Debug API, а используется перехват исключений в ядре. С IDT и с тем, как её перехватить - всё понятно. Как создать список бряков, где его хранить - тоже нет проблем. Но смотрите, предположим, что я влепил опкод СС в отлаживаемом приложении. Приложение выполнялось-выполнялось, и долшло до этого опкода. Генерируется иксепшн, вызывается мой обработчик. Внутри обработчика оказывается, что сработал бряк, который остановил программу на ОЕР, и сейчас нужно снять дамп. Дамп я хочу снять простым ReadProcessMemory. Как мне снять дамп из моего распаковщика, одновременно с этим стоя на ОЕР? Ведь если мой обработчик KiTrap03 вернёт управление, то продолжится исполнение программы, а мне этого никак нельзя допустить, пока код ещё не сдампился. Объясните, хотя б в теории, как быть. Примеры реализации не обязательны, т.к. где ж и х взять. Достаточно теоретических выкладок. Жду ответов.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281339&amp;user=6336&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=1" class="addthx" data-post="281339"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:45 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+Зависит от реализации обработчика. Если там костыль с разрешением прерываний, возьми да в спячку поток отправь.<br>Всё это в стриппере от сида реализовано уже лет 5 назад было.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281340&amp;user=1556&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=2" class="addthx" data-post="281340"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:49 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>С IDT и с тем, как её перехватить - всё понятно </I><br>Еще бы понять что делать с PatchGuard чтобы работало стабильно и везде...<br><br><br><I>ARCHANGEL пишет:<br>Объясните, хотя б в теории, как быть. </I><br>Сначала нам надо получить нормальный кернелмодный контекст чтобы вызывать апи. Как это сделать - смотри сорс KiTrap03. А лучше сразу хукай KiDispatchException, получишь всё в готовом виде. Как прочитать память - сделай memcpy внутри блока try/except находясь на IRQL = PASSIVE_LEVEL
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281342&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=3" class="addthx" data-post="281342"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:50 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Т.е., грубо говоря, трассировщик должен постоянно опрашивать какую-то переменную ядра, как только она стала равной 1, значит бряк сработал. Далее вызываю SuspendThread для потока, в контексте которого сработал бряк, обработчик исключений возвращает управление, а мой распаковщик спокойно делает ReadProcessMemory, после чего переменная состояния в ядре обнуляется. Где-то так? А без циклических опросов никак нельзя?<br><br><b>ntldr</b><br>По боку патчгард, пока не до него.<br><br>У вас получается, что дампить надо из ядра, даже из самого обработчика, но не факт, что IRQL == PASSIVE_LEVEL внутри него. А читать довольно большие объёмы инфы в NonPagedPool не хочется.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281343&amp;user=6336&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=4" class="addthx" data-post="281343"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]Archer[/b]','')">Archer</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/1556.jpg" alt=""><br><span class=txtSm>Ранг: 2014.5 <b><u>(!!!!)</u></b>, 1278thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 15.27'>Активность: 1.34<span style='color:red'>&searr;</span>0.25</span><br>Статус: <a href="action=userinfo&amp;user=1556">Модератор</a><br><font color=blue>retired</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:52 <br><script type="text/javascript">QU('Archer','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Archer" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Ну сделай другие механизмы синхронизации, коих полно, хыть эвенты. Вот только никто не обещает, что после костыля с разрешением прерываний они будут кошерно работать. Поэтому чем меньше ты там нагородишь, тем проще будет отлаживать.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281345&amp;user=1556&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=5" class="addthx" data-post="281345"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:53 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>А без циклических опросов никак нельзя? </I><br>Я же сказал что можно. Хукаем KiDispatchException или повторяем код идущий перед ней вручную, и мы получим нормальный кернелмодный контекст в котором можно вызывать апи. А там можно будет сделать синхронизацию евентами, передавать сообщения в р3 через APC, и.т.д.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281346&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=6" class="addthx" data-post="281346"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:56 &middot; Поправил: ARCHANGEL <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<b>Archer пишет:</b><br><i class=x>Вот только никто не обещает, что после костыля с разрешением прерываний они будут кошерно работать.</i><br><br>Вот в этом-то вся и проблема, я не уверен, будут ли ивенты работать, т.к. их внутри обработчика юзать нельзя, наверное. Плюс SMP - можно ли с помощью аффинити масок заставить отлаживаемое приложение выполняться только на каком-то одном процессоре?<br><br><b>ntldr</b><br>Ок, посмотрю, попробую.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281348&amp;user=6336&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=7" class="addthx" data-post="281348"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 10:56 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+<I>ARCHANGEL пишет:<br>У вас получается, что дампить надо из ядра, даже из самого обработчика </I><br>Не обязательно. Можно сделать синхронизацию и читать как угодно.<br><br><I>ARCHANGEL пишет:<br>но не факт, что IRQL == PASSIVE_LEVEL внутри него </I><br>Внутри обработчика вообще прерывания запрещены. Сначала надо настроить fs, IRQL, PreviousMode и все остальное что делает KiTrap03. После этого делай что хочешь любыми апи.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281349&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=8" class="addthx" data-post="281349"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 11:01 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+<b>ARCHANGEL</b><br>Самое простое для тебя решение - похукать KiDispatchException библиотекой http://code.google.com/p/libsplice/
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281351&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=9" class="addthx" data-post="281351"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 15:26 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+<I>ntldr пишет:<br>похукать KiDispatchException библиотекой http://code.google.com/p/libsplice/  </I><br>Зачем же так? Пусть сразу к нам в команду идет)
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281372&amp;user=2449&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=10" class="addthx" data-post="281372"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]Vol4ok[/b]','')">Vol4ok</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 47.1 (посетитель), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.61'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=18950">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 15:55 <br><script type="text/javascript">QU('Vol4ok','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vol4ok" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+<I>ntldr пишет:<br>Самое простое для тебя решение - похукать KiDispatchException библиотекой http://code.google.com/p/libsplice/  </I><br>С libsplice будут проблемы с х64, причем именно при хуке KiDispatchException, есть большая вероятность получить BSOD, почему он происходит для меня пока загадка, возможно потому что стабильно срабатывает какое-либо исключение при хуке. Вобщем то на этом и я сам застопорился когда писал opendbg. <br>А в х86 там проблем нет.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281376&amp;user=18950&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=11" class="addthx" data-post="281376"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]ajax[/b]','')">ajax</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/8830.gif" alt=""><br><span class=txtSm>Ранг: 337.6 (мудрец), 224thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.53'>Активность: 0.21<span style='color:red'>&searr;</span>0.1</span><br>Статус: <a href="action=userinfo&amp;user=8830">Участник</a><br><font color=blue>born to be evil</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 16:24 <br><script type="text/javascript">QU('ajax','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ajax" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<b>Vol4ok</b><br>анхук не предусмотрен, или я не те сырки глядел <img src="img/smilies/s1.gif" alt=""><br>и, вопрос - почему не юзать HDE 32/64 как дизасм длин?
+<br><br><font size="1"><i>-----<br>От многой мудрости много скорби, и умножающий знание умножает печаль</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281381&amp;user=8830&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=12" class="addthx" data-post="281381"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 07 апреля 2011 16:54 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+<I>ajax пишет:<br>анхук не предусмотрен </I><br>Нет, не предусмотрен. Я ему предлагал алгоритм почти безопасного анхука, он не стал реализовывать.<br><br><I>ajax пишет:<br>почему не юзать HDE 32/64 как дизасм длин?  </I><br>лол, потому что он дерьмо
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281383&amp;user=2449&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=13" class="addthx" data-post="281383"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="14" onfocus="this.blur()" href="JavaScript:di('[b]Vol4ok[/b]','')">Vol4ok</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 47.1 (посетитель), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.61'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=18950">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 апреля 2011 02:15 &middot; Поправил: Vol4ok <br><script type="text/javascript">QU('Vol4ok','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vol4ok" target="_blank">Личное сообщение</a> &middot;  <a href="#14" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#14');return false;">#14</a> </span><div align=left><br>
+<I>ajax пишет:<br>анхук не предусмотрен, или я не те сырки глядел </I><br>Анхук не предусмотрен, хотя я хотел изначально я его предусматривал, но пришел к выводу что это практически невозможно сделать безопастно в ядре, т е ВСЕГДА есть вероятность получить БСОД, причем вероятность больше чем при установке. Нет никаких гарантий что в какой либо системный тред не окажется на коде обработчика хука во время анхука (особенно для таких функций как KiDispatchException), и на практике это проверить крайне сложно, и даже если проверить то еще сложнее устранить. Цель не оправдывает средства, зачем же тогда писать кучу заведомо кривого кода. <br><br><I>ajax пишет:<br>и, вопрос - почему не юзать HDE 32/64 как дизасм длин?  </I><br>Хороший вопрос. Я изучал имеющиеся движки дизасмов прежде чем сел писать свой, в том числе HDE, на который вобщем то сам изначально полагался, но увы, выявил в х64 версии ряд фатальных косяков, которые касались определения инструкций с относительной адресацией, да и не только это, сча уже не могу вспомнить всего. Я связывался с автором на предмет фикса, но автор сказал что не имеет возможности серьезно заниматься поддержкой своего проекта и поэтому фиксить в ближайшее время не планирует. Хотя HDE 32 работает норм.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281409&amp;user=18950&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=14" class="addthx" data-post="281409"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="15" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 апреля 2011 11:34 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#15" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#15');return false;">#15</a> </span><div align=left><br>
+<b>Vol4ok</b><br>Я же предлагал тебе расставлять &quot;кардоны&quot;. Вот давай я твой код поправлю и дам тебе на тестирование? Гарантирую, что это примерно также опасно, как и ставить хук.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281430&amp;user=2449&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=15" class="addthx" data-post="281430"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="16" onfocus="this.blur()" href="JavaScript:di('[b]Vol4ok[/b]','')">Vol4ok</a></b><br></div>
+<img src="img/s3.gif" alt=""><br><span class=txtSm>Ранг: 47.1 (посетитель), 2thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 11.61'>Активность: 0.03<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=18950">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 апреля 2011 12:14 <br><script type="text/javascript">QU('Vol4ok','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=Vol4ok" target="_blank">Личное сообщение</a> &middot;  <a href="#16" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#16');return false;">#16</a> </span><div align=left><br>
+<I>int пишет:<br>Я же предлагал тебе расставлять &quot;кардоны&quot;. Вот давай я твой код поправлю и дам тебе на тестирование? Гарантирую, что это примерно также опасно, как и ставить хук.  </I><br>Я точно не вспомню уже твой метод, но походу что-то в нем тоже было не так. Смотри сам, стоит ли тебе тратить на это время, так как на мой взгляд вполне можно обойтись и без анхуков, а в опендбг по они вообще не нужны.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281434&amp;user=18950&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=16" class="addthx" data-post="281434"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="17" onfocus="this.blur()" href="JavaScript:di('[b]int[/b]','')">int</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 101.0 (ветеран), 344thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.1'>Активность: 1.15<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=2449">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 апреля 2011 13:51 <br><script type="text/javascript">QU('int','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=int" target="_blank">Личное сообщение</a> &middot;  <a href="#17" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#17');return false;">#17</a> </span><div align=left><br>
+<b>Vol4ok</b><br>Там один байт изменяется во время анхука))) Риск только в том, что время ожидания завершения функции будет больше чем задумано. Т.е. пока модули вертятся в бесконечном цикле, наш дров снимает хук патчем байта в jmp. Т.е. возможна ситуация при анхуке определенных API, что возникнет синяк, когда один из модулей не сможет отработать эту API. Также возможно зависание, когда наш анхукер никогда не получит управление, пока хуки не будут сняты, а их снять будет некому.
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=281439&amp;user=2449&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=17" class="addthx" data-post="281439"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="18" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 апреля 2011 09:56 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#18" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#18');return false;">#18</a> </span><div align=left><br>
+Смотрел, думал - возник вопрос такого характера. Для того, чтоб иметь возможность вызывать ядерные API после возникновения иксепшена мне нужно воспроизвести только лишь макрос ENTER_TRAP, или ещё обязательно лезть в CommonDispatchException? Вопрос возник, т.к. выше советуют хукать KiDispatchException, но мне нужно, чтоб при срабатывании моего брейкпоинта исключение не разворачивалось в юзермоде. Т.е. зачем мне выполнение юзермодного кода в отлаживаемом приложении с KiUserExceptionDispatcher? В случае, если мой обработчик обнаруживает, что возникло исключение в моей точке останова, я должен адекватно отреагировать (сдампить, поставить другой брейкпоинт, трейсить...), после чего iret возвратит управление из KiTrap. Но если я перехвачу CommonDispatchException и далее, то управление никогда не вернётся назад в случае, если CommonDispatchException начнёт выполнятся. Или я чего-то не понял?
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281745&amp;user=6336&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=18" class="addthx" data-post="281745"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="19" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 апреля 2011 10:01 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#19" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#19');return false;">#19</a> </span><div align=left><br>
+KiDispatchException это достаточно низкоуровневый обработчик исключений не вносящий заметного оверхеда по сравнению с перехватом интов. Из него можно вернуть управление приложению.<br>В качестве документации рекомендую смотреть сорсы винды.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281747&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=19" class="addthx" data-post="281747"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="20" onfocus="this.blur()" href="JavaScript:di('[b]ARCHANGEL[/b]','')">ARCHANGEL</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6336.png" alt=""><br><span class=txtSm>Ранг: 681.5 <font color=magenta>(<b>! !</b>)</font>, 405thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.85'>Активность: 0.42<span style='color:red'>&searr;</span>0.21</span><br>Статус: <a href="action=userinfo&amp;user=6336">Участник</a><br><font color=blue>ALIEN Hack Team</font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 апреля 2011 10:10 <br><script type="text/javascript">QU('ARCHANGEL','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ARCHANGEL" target="_blank">Личное сообщение</a> &middot;  <a href="#20" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#20');return false;">#20</a> </span><div align=left><br>
+<b>ntldr</b><br>Смотрел WRK, но то ли я чего-то не нашёл, но сам код KiDispatchException там отсутствует. Хотя его вызовы имеются. Осуществлял поиск по проекту через студию, так что она должна была всё найти, что там есть.
+<br><br><font size="1"><i>-----<br>Stuck to the plan, always think that we would stand up, never ran.</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281749&amp;user=6336&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=20" class="addthx" data-post="281749"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="21" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 апреля 2011 10:15 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#21" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#21');return false;">#21</a> </span><div align=left><br>
+http://thepiratebay.org/torrent/3497574/Windows_2000_source_code<br>Тут всё есть.<br><br>З.Ы. в WRK тоже есть, поиск студии говно.
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281751&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=21" class="addthx" data-post="281751"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="22" onfocus="this.blur()" href="JavaScript:di('[b]ntldr[/b]','')">ntldr</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><span class=txtSm>Ранг: 369.8 (мудрец), 400thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.89'>Активность: 0.39<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=12867">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 12 апреля 2011 10:20 <br><script type="text/javascript">QU('ntldr','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=ntldr" target="_blank">Личное сообщение</a> &middot;  <a href="#22" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=6&amp;topic=18017.html&amp;page=0#22');return false;">#22</a> </span><div align=left><br>
+Обработчик должен быть примерно такой:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">static&nbsp;<span class="hl_function">void</span></li><li class="hl_l1">&nbsp;&nbsp;NewKiDispatchException<span class="hl_char">(</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;PEXCEPTION_RECORD&nbsp;ExceptionRecord<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;PKEXCEPTION_FRAME&nbsp;ExceptionFrame<span class="hl_char">,</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;PKTRAP_FRAME&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;TrapFrame<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;KPROCESSOR_MODE&nbsp;&nbsp;&nbsp;PreviousMode<span class="hl_char">,</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;BOOLEAN&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;FirstChance</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">)</span></li><li class="hl_l0">{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;<span class="hl_char">(</span>PreviousMode&nbsp;<span class="hl_char">=</span><span class="hl_char">=</span>&nbsp;UserMode<span class="hl_char">)</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;{</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;<span class="hl_char">(</span>dbg_process_exception<span class="hl_char">(</span>ExceptionRecord<span class="hl_char">,</span>&nbsp;FirstChance<span class="hl_char">)</span>&nbsp;<span class="hl_char">!</span><span class="hl_char">=</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;{</li><li class="hl_l0"><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;return</span><span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;}</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;OldKiDispatchException<span class="hl_char">(</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ExceptionRecord<span class="hl_char">,</span>&nbsp;ExceptionFrame<span class="hl_char">,</span>&nbsp;TrapFrame<span class="hl_char">,</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PreviousMode<span class="hl_char">,</span>&nbsp;FirstChance</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l0">}</li>        </ol>
+    </div>
+</div></div>
+<br><br>Т.е. простой return из обработчика возвращает управление приложению. Чтобы поправить контекст надо менять содержимое TrapFrame.<br><noindex><a href="http://code.google.com/p/opendbg/source/browse/" rel="nofollow" target="_blank">--&gt; http://code.google.com/p/opendbg/source/browse/ &lt;--</a></noindex>
+<br><br><font size="1"><i>-----<br>PGP key <noindex><a href="https://diskcryptor.net/storage/new_key.asc" rel="nofollow" target="_blank">&lt0x1B6A24550F33E44A&gt</a></noindex></i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=281752&amp;user=12867&amp;forum_n=6&amp;topic=18017.html&amp;page=0&amp;anchor=22" class="addthx" data-post="281752"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=6336" title="13-04-2011 08:12, ранг:306.5" target="_blank">ARCHANGEL</a></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/p.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=6&sortBy=0&page=0.html"><b>Программирование</b></a> <b class=bulletHead>&#8212;&#8250;</b> Ring0 Трассировщик</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#23" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="6">
+<input type="hidden" name="topic" value="18017">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=18017" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>

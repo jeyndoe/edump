@@ -1,0 +1,93 @@
+// Примечание: У меня код проги начинается в секции  019A0000 (size 5000). Из нее и идут
+// вызовы в ВМ типа Call 02180000
+// не нужное я закоментировал
+// пока не оформил блок изменения функции Call 0218000  на jmp "адрес возврата"
+// все результаты выводятся в лог-файл
+// И еще. Скрипт запускать с ОЕР, а не с EP (401000). Мне просто так было удобно.
+// Где стоят знаки !!! - там должны быть свои значения.
+//#log
+var n
+var adr_function
+var Ret_function
+var esp_
+var tmp
+var startscan
+var endscan
+var calladdr
+var aftercalladdr
+mov endscan,019A5000          //!!! конец секции поиска
+mov n,0
+var First_VM
+mov First_VM,019A02FB         //!!! 1-ой функция вызова VM. Берется из IntelModular Calls 
+
+mov startscan,First_VM
+sub startscan,2             //чтобы захвататила в поиске первую функцию
+
+// предварительная процедура поиска
+
+@finder:
+inc startscan
+find startscan,#E8#      // CALL 
+cmp $RESULT,0
+jne @continue
+jmp @Exit
+
+// блок определения сигнатуры функции вызова ВМ. Практически полностью взят из другого скрипта
+
+@continue:                //какую-то функцию нашли, смотрим какую?
+mov startscan, $RESULT	//Сохранили адрес найденного байта
+inc $RESULT		//Если это call aspr_code, по адреу call aspr_code+1 лежит dword - смещение отнасительно следующей инструкции 
+mov calladdr, [$RESULT]	//Получаем кол-во байт для смещения от следующей команды
+add $RESULT, 4		//Адрес, от которого отчитается смещение (первый байт инструкции после call aspr_code).
+mov aftercalladdr, $RESULT	//Сохранили адрес следующей инструкции
+add aftercalladdr, calladdr	//Получили адрес aspr_code (адрес, на который переходит call)
+mov calladdr, aftercalladdr
+mov tmp, aftercalladdr
+
+// дополнительные проверки сигнатуры найденной функции
+                   
+and calladdr, 000000FF     //FF000000 - меняем на  000000FF т.к. в 1-ом случае проверяется 1-й байт
+cmp calladdr, 0            // проверяем 4-й последний байт, он должен быть 00
+jne @finder
+
+and tmp, 0000FF00     //в адресе функции д.б. 00 в 2-ом случае проверяется 2-й байт
+cmp tmp, 0            // проверяем 3-й байт, он то же должен быть равен 00
+jne @finder           // если не равен, значит это другая функция, ищем дальше
+
+
+cmp startscan, endscan	
+ja @endscript	        	//Проверяем границы кода для сканирования (не выходит ли адрес анализируемого call`а за границы)
+
+
+   // Подходящую функцию нашли!
+inc n
+log n
+log startscan
+log aftercalladdr
+
+mov eip, startscan
+mov esp_,[esp]              //значение вершины стека в переменную. На выходе 
+                            
+go 02190000                //для ускорения. все время проходим через этот адрес
+@M0:
+sti
+findop eip,#FF6424FC#       //это команда JMP NEAR [DWORD SS:ESP-4]
+cmp $RESULT,0
+jne @M1
+jmp @M0
+@M1:
+go $RESULT               // идем туда
+cmp esp_,[esp]           // проверяем, то и значение находится в вершине стека
+jne @M0
+//log esp_
+sti                      //на выход из функции
+mov Ret_function,eip
+mov adr_function,startscan
+log Ret_function                  
+log " "
+//pause
+jmp @finder
+
+@Exit:
+ret
+

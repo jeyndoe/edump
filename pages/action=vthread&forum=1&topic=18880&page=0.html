@@ -1,0 +1,483 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="content-type" content="text/html;charset=utf-8">
+<title>Transmission Control Block(TCB) формат - eXeL@B</title>
+<meta NAME="DESCRIPTION" CONTENT="Не первый раз исследую крэш-дамп, вызванный в tcpip.sys. Но на этот раз основательно (т.к. баги с консолями пока заснули ). Оказывается, многим обладателям различных версий WinXP SP3 x86 известен такой баг как tcpip!ReadNextTCB +">
+<meta NAME="KEYWORDS" CONTENT="x64_dbg windbg ollydbg ida скачать взлом отладчик ассемблер дизассемблер крэкер cracker реверсер keygen кейген кодер патч патчер крэкми лоадер брутфорсер протектор распаковщик пароль ключ ключфайл шпион oep key защита программа winapi faq hiew windasm softice winhex">
+<META NAME="Document-state" CONTENT="Dynamic">
+<META HTTP-EQUIV="Pragma" CONTENT="no-cache"> 
+<link rel="SHORTCUT ICON" href="/favicon.ico">
+<meta name="viewport" content="width=device-width">
+<link href="./skin/s0.css" type="text/css" rel="STYLESHEET">
+<link href="./skin/code.css" type="text/css" rel="STYLESHEET">
+<script type="text/javascript" src="./js/jq.js"></script>
+<link rel="alternate" type="application/rss+xml" title="eXeL@B" href="./rss.php">
+<style type="text/css">.username div .dops{display:none;}</style>
+<link href="../menu.css" type="text/css" rel="stylesheet">
+</head>
+
+<body>
+<a id="to_top"></a>
+<div id="wrapper">
+ 
+<div class="mob-hamburger"><span></span></div>
+ 
+</center></div><script type='text/javascript'>
+function lst(){var i=0;var htm='';var a='';var timer=setInterval(function(){if(i<10){i=i+10;}else{clearInterval(timer);i=0;}document.getElementById('kurs_container').style.marginLeft='-'+i+'px';},100);}
+document.addEventListener('DOMContentLoaded',function(event){setTimeout(lst,1500);setInterval(lst,10000);});
+</script></div></div>
+<script type="text/javascript">
+jQuery(document).ready(function(){
+    jQuery(".mob-hamburger").on("click", function() {
+        jQuery(".mob-hamburger").toggleClass("active");
+        jQuery("#site-navigation").slideToggle();
+		if (jQuery('.mob-hamburger').hasClass('active')) {
+			var i = jQuery('#site-navigation').offset().top;
+		} else { 
+			var i = 0;
+		}
+			
+		jQuery("html, body").animate({ scrollTop: i }, 600);
+    });
+	var btn = jQuery('#to_top');
+	jQuery(window).scroll(function() {
+		if (jQuery(window).scrollTop() > 300) {
+			btn.addClass('show');
+		} else {
+			btn.removeClass('show');
+		}
+	});
+	btn.on('click', function(e) {
+		e.preventDefault();
+		jQuery('html, body').animate({scrollTop:0}, '300');
+	});
+});
+</script>
+ 
+<div id="content">
+<div align=center style="margin-top:15px">
+
+<table class=tbTransparent>
+<tr><td class=tbTransparent>
+<span class=txtSm>Сейчас на форуме: <b><a target='_blank' href='?action=userinfo&amp;user=1533'>rmn</a>, <a target='_blank' href='?action=userinfo&amp;user=55940'>exp50848</a> (+7 невидимых)</b></span>
+</td>
+</tr>
+</table>
+
+<table class=forums>
+ 
+</tr></table>
+
+</div><br>
+<script language="javascript" type="text/javascript" charset="windows-1251" src="templates/base.js"></script>
+
+<div align=center><table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Transmission Control Block(TCB) формат</span></td>
+</tr></table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width="15%" class=caption4><span class=txtSm><b>Посл.ответ</b></span></td>
+<td width="85%" class=caption4><span class=txtSm><b>Сообщение</b></span></td></tr>
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="1" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 15:20 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#1" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#1');return false;">#1</a> </span><div align=left><br>
+Не первый раз исследую крэш-дамп, вызванный в tcpip.sys. Но на этот раз основательно (т.к. баги с консолями пока заснули <img src="img/smilies/s1.gif" alt="">). Оказывается, многим обладателям различных версий WinXP SP3 x86 известен такой баг как tcpip!ReadNextTCB + 0xd2, гугл выдаёт сотни форумов с такими дампами. Исходя из названия функции очевидно, что ф-ция читает некие блоки TCB, имеющие определённую структуру. Но самого описания структуры под таким названием я нигде не нашёл.<br><br>До чего удалось самому догадаться<br>1)<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">00</span>&nbsp;A8&nbsp;длина&nbsp;блока</li><li class="hl_l1"><span class="hl_number">04</span>&nbsp;<span class="hl_number">05</span>&nbsp;<span class="hl_char">?</span><span class="hl_char">?</span><span class="hl_char">?</span></li><li class="hl_l0"><span class="hl_number">08</span>&nbsp;<span class="hl_number">0100007F</span>&nbsp;IpAddr1&nbsp;<span class="hl_number">127</span><span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">.</span><span class="hl_number">1</span></li><li class="hl_l1"><span class="hl_number">0C</span>&nbsp;<span class="hl_number">0000bb3A</span>&nbsp;IpPort1&nbsp;<span class="hl_number">15035</span></li><li class="hl_l0"><span class="hl_number">10</span>&nbsp;<span class="hl_number">0100007F</span>&nbsp;IpAddr2&nbsp;<span class="hl_number">127</span><span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">.</span><span class="hl_number">0</span><span class="hl_char">.</span><span class="hl_number">1</span></li><li class="hl_l1"><span class="hl_number">14</span>&nbsp;<span class="hl_number">00008E77</span>&nbsp;IpPort2&nbsp;<span class="hl_number">30606</span>&nbsp;<span class="hl_char">-</span>&nbsp;порт&nbsp;http<span class="hl_char">-</span>фильтра&nbsp;NOD32</li><li class="hl_l0"><span class="hl_number">18</span>&nbsp;<span class="hl_number">000008a8</span>&nbsp;ProcessId</li><li class="hl_l1"><span class="hl_number">1C</span>&nbsp;<span class="hl_number">0334540f</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0">похоже&nbsp;на&nbsp;данные<span class="hl_char">,</span>&nbsp;только&nbsp;в&nbsp;странном&nbsp;формате</li><li class="hl_l1"><span class="hl_number">28</span>&nbsp;<span class="hl_number">71a36a32</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">30</span>&nbsp;<span class="hl_number">71a3542d</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l1"><span class="hl_number">38</span>&nbsp;<span class="hl_number">71a94a5a</span>&nbsp;<span class="hl_number">00000000</span></li><li class="hl_l0"><span class="hl_number">40</span>&nbsp;<span class="hl_number">67319fd7</span>&nbsp;<span class="hl_number">00000000</span>&nbsp;</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Начало чем-то похоже на TDI_PNP_CONTEXT:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">struct&nbsp;_TDI_PNP_CONTEXT&nbsp;{</li><li class="hl_l1">&nbsp;&nbsp;USHORT&nbsp;&nbsp;ContextSize<span class="hl_comment">;</span></li><li class="hl_l0">&nbsp;&nbsp;USHORT&nbsp;&nbsp;ContextType<span class="hl_comment">;</span></li><li class="hl_l1">&nbsp;&nbsp;UCHAR&nbsp;&nbsp;ContextData<span class="hl_char">[</span><span class="hl_number">1</span><span class="hl_char">]</span><span class="hl_comment">;</span></li><li class="hl_l0">}&nbsp;TDI_PNP_CONTEXT<span class="hl_char">,</span>&nbsp;<span class="hl_char">*</span>PTDI_PNP_CONTEXT<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Но второе слово, равное 5 выходит за рамки enum TDI_PNP. Значит либо не описанный тип контекста, либо структура другая<br><br>2) После ReadNextTCB идёт вызов CopyFlatToNdis-&gt;TdiCopyBufferToMdl<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">NTSTATUS&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;TdiCopyBufferToMdl<span class="hl_char">(</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PVOID&nbsp;&nbsp;SourceBuffer<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;ULONG&nbsp;&nbsp;SourceOffset<span class="hl_char">,</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;ULONG&nbsp;&nbsp;SourceBytesToCopy<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PMDL&nbsp;&nbsp;DestinationMdlChain<span class="hl_char">,</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;ULONG&nbsp;&nbsp;DestinationOffset<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>IN</b></span>&nbsp;PULONG&nbsp;&nbsp;BytesCopied</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">)</span><span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>SourceBuffer как раз указывает на TCB. Информация по функции есть в WDK, но опять ничего про TCB.<br><br>На xakep.ru гугл нашёл всего одну страницу по возможному описанию TCB, но отображать её не хочет.
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289296&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=1" class="addthx" data-post="289296"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr><td class=caption4 colspan=2></td></tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="2" onfocus="this.blur()" href="JavaScript:di('[b]yanus0[/b]','')">yanus0</a></b><br></div>
+<img src="img/s5.gif" alt=""><br><span class=txtSm>Ранг: 137.9 (ветеран), 45thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.35'>Активность: 0.08<span style='color:red'>&searr;</span>0</span><br>Статус: <a href="action=userinfo&amp;user=10382">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 15:31 <br><script type="text/javascript">QU('yanus0','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=yanus0" target="_blank">Личное сообщение</a> &middot;  <a href="#2" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#2');return false;">#2</a> </span><div align=left><br>
+То что на хакере лежит <noindex><a href="http://www.ietf.org/rfc/rfc793.txt" rel="nofollow" target="_blank">--&gt; Link &lt;--</a></noindex>
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=289298&amp;user=10382&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=2" class="addthx" data-post="289298"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="3" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 16:37 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#3" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#3');return false;">#3</a> </span><div align=left><br><div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">LISTEN&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = LISTEN&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;SYN<span class="hl_char">-</span>SENT&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = SYN-SENT&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;SYN<span class="hl_char">-</span>RECEIVED&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = SYN-RECEIVED&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;ESTABLISHED&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = ESTABLISHED&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;FIN<span class="hl_char">-</span>WAIT<span class="hl_char">-</span><span class="hl_number">1</span>&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = FIN-WAIT-1&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;FIN<span class="hl_char">-</span>WAIT<span class="hl_char">-</span><span class="hl_number">2</span>&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = FIN-WAIT-2&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;CLOSE<span class="hl_char">-</span>WAIT&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = CLOSE-WAIT&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;CLOSING&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = CLOSING&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;LAST<span class="hl_char">-</span>ACK&nbsp;STATE</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Return&nbsp;<span class="hl_quote">&quot;state = LAST-ACK&quot;</span><span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;TCB&nbsp;pointer<span class="hl_char">.</span></li>        </ol>
+    </div>
+</div></div>
+<br><br><I>RFC793:<br>A transmission control block (TCB) is created and partially<br>        filled in with data from the OPEN command parameters.</I><br><br><b>yanus0</b>, спасибо! Но, блин, саму структуру нигде не хотят описывать <img src="img/smilies/s1.gif" alt=""> И даже ида не знает... Может имеет какое-то другое название?<br><br>RFC2140 уже более конкретно что-то даёт:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">The&nbsp;TCB&nbsp;can&nbsp;be</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;summarized&nbsp;as&nbsp;containing&nbsp;<span class="hl_char">[</span><span class="hl_number">9</span><span class="hl_char">]</span><span class="hl_char">:</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>Local</b></span>&nbsp;process&nbsp;state</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointers&nbsp;to&nbsp;send&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;receive&nbsp;buffers</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointers&nbsp;to&nbsp;retransmission&nbsp;queue&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;current&nbsp;<span class="hl_function">segment</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;pointers&nbsp;to&nbsp;Internet&nbsp;Protocol&nbsp;<span class="hl_char">(</span>IP<span class="hl_char">)</span>&nbsp;PCB</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Per<span class="hl_char">-</span>connection&nbsp;shared&nbsp;state</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function">macro</span><span class="hl_char">-</span>state</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;connection&nbsp;state</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;timers</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;flags</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>local</b></span>&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;remote&nbsp;host&nbsp;numbers&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;ports</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;micro<span class="hl_char">-</span>state</li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;send&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;receive&nbsp;window&nbsp;state&nbsp;<span class="hl_char">(</span>size<span class="hl_char">*</span><span class="hl_char">,</span>&nbsp;current&nbsp;number<span class="hl_char">)</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round<span class="hl_char">-</span>trip&nbsp;time&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;variance</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cong<span class="hl_char">.</span>&nbsp;window&nbsp;size<span class="hl_char">*</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;cong<span class="hl_char">.</span>&nbsp;window&nbsp;size&nbsp;threshold<span class="hl_char">*</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max&nbsp;windows&nbsp;seen<span class="hl_char">*</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;MSS#</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;round<span class="hl_char">-</span>trip&nbsp;time&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;variance#</li>        </ol>
+    </div>
+</div></div>
+<br><br><I>rfc675:</I><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_large">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">The&nbsp;TCB&nbsp;contains&nbsp;the&nbsp;following&nbsp;information&nbsp;<span class="hl_char">(</span>field&nbsp;sizes</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;are&nbsp;notional&nbsp;only&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;may&nbsp;vary&nbsp;from&nbsp;one&nbsp;implementation&nbsp;to&nbsp;another<span class="hl_char">)</span><span class="hl_char">:</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>Local</b></span>&nbsp;connection&nbsp;name</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">48</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;<span class="hl_function"><b>Local</b></span>&nbsp;socket</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">48</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Foreign&nbsp;socket</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Receive&nbsp;window&nbsp;size&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;octets</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">32</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Receive&nbsp;left&nbsp;window&nbsp;edge&nbsp;<span class="hl_char">(</span>next&nbsp;sequence&nbsp;number&nbsp;expected<span class="hl_char">)</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Receive&nbsp;packet&nbsp;buffer&nbsp;size&nbsp;of&nbsp;TCB&nbsp;<span class="hl_char">(</span>may&nbsp;be&nbsp;less&nbsp;than&nbsp;window<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Send&nbsp;window&nbsp;size&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;octets</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">32</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Send&nbsp;left&nbsp;window&nbsp;edge&nbsp;<span class="hl_char">(</span>earliest&nbsp;unacknowledged&nbsp;octet<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">32</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Next&nbsp;packet&nbsp;sequence&nbsp;number</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Send&nbsp;packet&nbsp;buffer&nbsp;size&nbsp;of&nbsp;TCB&nbsp;<span class="hl_char">(</span>may&nbsp;be&nbsp;less&nbsp;than&nbsp;window<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_number">8</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Connection&nbsp;state</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;E<span class="hl_char">/</span>C&nbsp;<span class="hl_char">-</span>&nbsp;<span class="hl_number">1</span>&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;TCP&nbsp;has&nbsp;been&nbsp;synchronized&nbsp;at&nbsp;least&nbsp;once&nbsp;<span class="hl_char">(</span>i<span class="hl_char">.</span>e<span class="hl_char">.</span>&nbsp;has</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;been&nbsp;established<span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>else</b></span>&nbsp;O<span class="hl_char">,</span>&nbsp;meaning&nbsp;it&nbsp;is&nbsp;closed<span class="hl_comment">; this bit is</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;reset&nbsp;after&nbsp;FINS&nbsp;are&nbsp;exchanged&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;the&nbsp;user&nbsp;has&nbsp;done&nbsp;a&nbsp;CLOSE<span class="hl_char">)</span><span class="hl_char">.</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;The&nbsp;bit&nbsp;is&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;reset&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;the&nbsp;connection&nbsp;is&nbsp;only&nbsp;desynchronized</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;on&nbsp;send&nbsp;<span class="hl_function"><b>or</b></span>&nbsp;receive&nbsp;<span class="hl_function"><b>or</b></span>&nbsp;both&nbsp;directions<span class="hl_char">.</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr"><b>SS</b></span>&nbsp;<span class="hl_char">-</span>&nbsp;SYNCed&nbsp;on&nbsp;send&nbsp;side&nbsp;<span class="hl_char">(</span><span class="hl_function"><b>if</b></span>&nbsp;set<span class="hl_char">)</span>&nbsp;<span class="hl_function"><b>else</b></span>&nbsp;desynchronized</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SR&nbsp;<span class="hl_char">-</span>&nbsp;SYNCed&nbsp;on&nbsp;receive&nbsp;side&nbsp;<span class="hl_char">(</span><span class="hl_function"><b>if</b></span>&nbsp;set<span class="hl_char">,</span>&nbsp;<span class="hl_function"><b>else</b></span>&nbsp;desynchronized<span class="hl_char">)</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Special&nbsp;flags</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S1&nbsp;<span class="hl_char">-</span>&nbsp;SYN&nbsp;sent&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;S2&nbsp;<span class="hl_char">-</span>&nbsp;SYN&nbsp;verified&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;R&nbsp;<span class="hl_char">-</span>&nbsp;SYN&nbsp;received&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Y&nbsp;<span class="hl_char">-</span>&nbsp;FIN&nbsp;sent&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C&nbsp;<span class="hl_char">-</span>&nbsp;CLOSE&nbsp;from&nbsp;<span class="hl_function"><b>local</b></span>&nbsp;user&nbsp;received&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;U&nbsp;<span class="hl_char">-</span>&nbsp;Foreign&nbsp;socket&nbsp;unspecified&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDS&nbsp;<span class="hl_char">-</span>&nbsp;Send&nbsp;side&nbsp;DSN&nbsp;sent&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SDV&nbsp;<span class="hl_char">-</span>&nbsp;Send&nbsp;side&nbsp;DSN&nbsp;verified&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RDR&nbsp;<span class="hl_char">-</span>&nbsp;Receive&nbsp;side&nbsp;DSN&nbsp;received&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;set</li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;Initially<span class="hl_char">,</span>&nbsp;all&nbsp;bits&nbsp;are&nbsp;off&nbsp;<span class="hl_char">[</span>no&nbsp;pun&nbsp;intended<span class="hl_char">]</span>&nbsp;<span class="hl_char">(</span>i<span class="hl_char">.</span>e<span class="hl_char">.</span>&nbsp;<span class="hl_registr">SS</span><span class="hl_char">,</span>&nbsp;SR<span class="hl_char">,</span>&nbsp;E<span class="hl_char">/</span>C<span class="hl_char">,</span>&nbsp;S1<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;S2<span class="hl_char">,</span>&nbsp;R<span class="hl_char">,</span>&nbsp;F<span class="hl_char">,</span>&nbsp;C<span class="hl_char">,</span>&nbsp;SDS<span class="hl_char">,</span>&nbsp;SDV<span class="hl_char">,</span>&nbsp;RDR&nbsp;<span class="hl_char">=</span><span class="hl_number">0</span><span class="hl_char">)</span><span class="hl_char">.</span>&nbsp;When&nbsp;R&nbsp;is&nbsp;set<span class="hl_char">,</span>&nbsp;so&nbsp;is&nbsp;SR<span class="hl_char">.</span>&nbsp;When&nbsp;S1&nbsp;<span class="hl_function">and</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;S2&nbsp;are&nbsp;both&nbsp;set<span class="hl_char">,</span>&nbsp;so&nbsp;is&nbsp;<span class="hl_registr">SS</span><span class="hl_char">.</span>&nbsp;SR&nbsp;is&nbsp;reset&nbsp;when&nbsp;RDR&nbsp;is&nbsp;set<span class="hl_char">.</span>&nbsp;<span class="hl_registr"><b>SS</b></span>&nbsp;is&nbsp;reset</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;when&nbsp;both&nbsp;SDS&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;SDV&nbsp;are&nbsp;set<span class="hl_char">.</span>&nbsp;These&nbsp;bits&nbsp;are&nbsp;used&nbsp;to&nbsp;keep&nbsp;track&nbsp;of</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;connection&nbsp;state&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;to&nbsp;aid&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;arriving&nbsp;packet&nbsp;processing&nbsp;<span class="hl_char">(</span>e<span class="hl_char">.</span>g<span class="hl_char">.</span>&nbsp;Can</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;sequence&nbsp;number&nbsp;be&nbsp;validated<span class="hl_char">?</span>&nbsp;Only&nbsp;<span class="hl_function"><b>if</b></span>&nbsp;SR&nbsp;is&nbsp;set<span class="hl_char">.</span><span class="hl_char">)</span><span class="hl_char">.</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Retransmission&nbsp;timeout&nbsp;<span class="hl_char">(</span><span class="hl_function"><b>in</b></span>&nbsp;eighths&nbsp;of&nbsp;a&nbsp;second#<span class="hl_char">]</span></li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Head&nbsp;of&nbsp;Send&nbsp;buffer&nbsp;queue&nbsp;<span class="hl_char">[</span>buffers&nbsp;SENT&nbsp;from&nbsp;user&nbsp;to&nbsp;TCP<span class="hl_char">,</span>&nbsp;but&nbsp;<span class="hl_function"><b>not</b></span>&nbsp;packetized<span class="hl_char">]</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Tail&nbsp;of&nbsp;Send&nbsp;buffer&nbsp;queue</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Pointer&nbsp;to&nbsp;last&nbsp;octet&nbsp;packetized&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;partially&nbsp;packetized&nbsp;buffer&nbsp;<span class="hl_char">(</span>refers&nbsp;to&nbsp;the&nbsp;buffer&nbsp;at&nbsp;the&nbsp;head&nbsp;of&nbsp;the&nbsp;queue<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Head&nbsp;of&nbsp;Send&nbsp;packet&nbsp;queue</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Tail&nbsp;of&nbsp;Send&nbsp;packet&nbsp;queue</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Head&nbsp;of&nbsp;Packetized&nbsp;buffer&nbsp;Queue</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Tail&nbsp;of&nbsp;Packetized&nbsp;buffer&nbsp;queue</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Head&nbsp;of&nbsp;Retransmit&nbsp;packet&nbsp;queue</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Tail&nbsp;of&nbsp;Retransmit&nbsp;packet&nbsp;queue</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Head&nbsp;of&nbsp;Receive&nbsp;buffer&nbsp;queue&nbsp;<span class="hl_char">[</span>queue&nbsp;of&nbsp;buffers&nbsp;given&nbsp;by&nbsp;user&nbsp;&nbsp;to&nbsp;RECEIVE&nbsp;letters<span class="hl_char">,</span>&nbsp;but&nbsp;unfilled<span class="hl_char">]</span></li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Tail&nbsp;of&nbsp;Receive&nbsp;buffer&nbsp;queue</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Head&nbsp;of&nbsp;Receive&nbsp;packet&nbsp;queue</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Tail&nbsp;of&nbsp;receive&nbsp;packet&nbsp;queue</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Pointer&nbsp;to&nbsp;last&nbsp;contiguous&nbsp;receive&nbsp;packet</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Pointer&nbsp;to&nbsp;last&nbsp;octet&nbsp;filled&nbsp;<span class="hl_function"><b>in</b></span>&nbsp;partly&nbsp;filled&nbsp;buffer</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Pointer&nbsp;to&nbsp;next&nbsp;octet&nbsp;to&nbsp;read&nbsp;from&nbsp;partly&nbsp;emptied&nbsp;packet</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">[</span>Note<span class="hl_char">:</span>&nbsp;The&nbsp;above&nbsp;two&nbsp;pointers&nbsp;refer&nbsp;to&nbsp;the&nbsp;head&nbsp;of&nbsp;the&nbsp;receive</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;buffer&nbsp;<span class="hl_function"><b>and</b></span>&nbsp;receive&nbsp;packet&nbsp;queues&nbsp;respectively<span class="hl_char">]</span></li><li class="hl_l1">&nbsp;</li><li class="hl_l0">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Forward&nbsp;TCB&nbsp;pointer</li><li class="hl_l1">&nbsp;&nbsp;&nbsp;<span class="hl_number">16</span>&nbsp;bits<span class="hl_char">:</span>&nbsp;Backward&nbsp;TCB&nbsp;pointer</li>        </ol>
+    </div>
+</div></div>
+<br>.....<br><br>Ааа, кажется, понял: TdiCopyBufferToMdl уже копирует распарсенный TCB, указатель на который принимает ReadNextTCB вторым аргументом. Сама TCB заключена внутри некоего контейнера, который передаётся первым аргументом... Буду дальше реверсить...<br><br>Ничего похожего, по крайней мере, в порядке, в каком указано в rfc675, не нашёл.<br>Возникают вопросы: что за распарсенная структура вида как в первом посте? Что за контейнер?<br><br>Следующее, что я обнаружил:<br>указатель на некую структуру содержится в pContainer-&gt;pStruct-&gt;pNext [[Arg1 + 8]]<br>так перечисляются все структуры, пока не нуль<br>но если нуль, то берётся переменная _TWTCBTable, о которой можно найти только на <noindex><a href="http://www.google.ru/url?sa=t&amp;source=web&amp;cd=1&amp;sqi=2&amp;ved=0CBcQFjAA&amp;url=http%3A%2F%2Fwww.docin.com%2Fp-30988262.html&amp;rct=j&amp;q=_TWTCBTable&amp;ei=UNw_Tvu6KMOBOq6v0PkO&amp;usg=AFQjCNGxp2Wr6exjV60ZbqEGw6DuKE9N2Q&amp;sig2=z34lN1BKWWhyVC1okLW4oQ&amp;cad=rjt" rel="nofollow" target="_blank">--&gt; китайском сайте &lt;--</a></noindex> под заголовком Rootkit с китайским названием.<br><br>Неужели никто больше не проводил исследования в этой области? Что внутри tcpip.sys, известно только m&#036; и не публикующимся исследователям?<br><br>Ну да ладно. _TWTCBTable что-то вроде списка списков TCB с головой, который у меня на момент креша оказался пустым, т.е. указывал только на себя. Используется он, только если пакетов в очереди, чем 512... <br>У меня на момент креша было 223 пакета в очереди...<br>Все списки TCB можно перечислить по переменной TCB* _TCBTable[]. TCB отличается от структуры в первом посте и имеет примерно такую структуру:<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_number">00</span>&nbsp;pNext</li><li class="hl_l1"><span class="hl_number">04</span>&nbsp;pSpinLock</li><li class="hl_l0"><span class="hl_number">08</span>&nbsp;Reserved</li><li class="hl_l1"><span class="hl_char">/</span><span class="hl_char">/</span>входящие&nbsp;и&nbsp;исходяшие<span class="hl_char">,</span>&nbsp;только&nbsp;кто&nbsp;из&nbsp;них&nbsp;входящий<span class="hl_char">?</span></li><li class="hl_l0"><span class="hl_char">/</span><span class="hl_char">/</span>в&nbsp;сетевом&nbsp;порядке<span class="hl_char">,</span>&nbsp;Big<span class="hl_char">-</span>endian</li><li class="hl_l1"><span class="hl_number">0C</span>&nbsp;IpAddr2</li><li class="hl_l0"><span class="hl_number">10</span>&nbsp;IpAddr1</li><li class="hl_l1"><span class="hl_number">14</span>&nbsp;Port2</li><li class="hl_l0"><span class="hl_number">16</span>&nbsp;Port1</li><li class="hl_l1"><span class="hl_number">18</span>&nbsp;ProcessId</li><li class="hl_l0"><span class="hl_number">1C</span>&nbsp;<span class="hl_number">4</span>&nbsp;<span class="hl_char">-</span>&nbsp;возможно&nbsp;версия&nbsp;IP</li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li><li class="hl_l0"><span class="hl_number">80</span>&nbsp;pFunc&nbsp;<span class="hl_char">=</span>&nbsp;IndicateData&nbsp;или&nbsp;PendData<span class="hl_char">(</span>во&nbsp;всех&nbsp;TCB<span class="hl_char">,</span>&nbsp;что&nbsp;я&nbsp;нашёл<span class="hl_char">,</span>&nbsp;IndicateData<span class="hl_char">)</span>&nbsp;<span class="hl_char">-</span>&nbsp;зависит&nbsp;от&nbsp;условия<span class="hl_char">,</span></li><li class="hl_l1">&nbsp;упрощённый&nbsp;вариант&nbsp;<span class="hl_char">-</span><span class="hl_char">&gt;</span>&nbsp;<span class="hl_function">if</span><span class="hl_char">(</span>pTcb&nbsp;<span class="hl_char">+</span>&nbsp;D4&nbsp;<span class="hl_char">!</span><span class="hl_char">=</span>&nbsp;<span class="hl_number">0</span><span class="hl_char">)</span>&nbsp;pTcb<span class="hl_char">-</span><span class="hl_char">&gt;</span>pFunc&nbsp;<span class="hl_char">=</span>&nbsp;IndicateData</li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li><li class="hl_l1">С8&nbsp;pConn&nbsp;<span class="hl_char">-</span>&nbsp;указатель&nbsp;на&nbsp;структуру&nbsp;CONNECTION&nbsp;<span class="hl_char">*</span></li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li><li class="hl_l1">D4&nbsp;как<span class="hl_char">-</span>то&nbsp;связано&nbsp;с&nbsp;соединением</li>        </ol>
+    </div>
+</div></div>
+<br><br>* - название условно, может измениться<br><br>Из дампа видно, что сами структуры могут повторять информацию о соединении, так что возможно присутствует и информация о самом трафике... <br>Подхожу к логическому концу: к бсоду мой комп привело непонятное стечение обстоятельств, из-за которых в одной из структур TCB по смещению 0xC8 нулевой указатель. То ли не заполнилось поле в следствие непродуманности алгоритма, то ли обнулилось, может следствие плохой синхронизации... гадать можно долго... Структура выше получается из массива по адресу [[[pTCB + 0xC8] + 0x0C] + 0x160]<br><br>Код, приведший к бсоду<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FA3&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">8B</span>&nbsp;<span class="hl_number">86</span>&nbsp;C8&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">esi</span><span class="hl_char">+</span><span class="hl_number">0C8h</span><span class="hl_char">]</span>&nbsp;<span class="hl_comment">; [88efd0d0]</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FA9&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">8B</span>&nbsp;<span class="hl_number">40</span>&nbsp;<span class="hl_number">0C</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">eax</span><span class="hl_char">+</span><span class="hl_number">0Ch</span><span class="hl_char">]</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289305&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=3" class="addthx" data-post="289305"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="4" onfocus="this.blur()" href="JavaScript:di('[b]OKOB[/b]','')">OKOB</a></b><br></div>
+<img src="img/s8.gif" alt=""><br><img style="padding-top:3px;" src="av/6801.png" alt=""><br><span class=txtSm>Ранг: 527.7 (<b>!</b>), 381thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 13.78'>Активность: 0.16<span style='color:red'>&searr;</span>0.09</span><br>Статус: <a href="action=userinfo&amp;user=6801">Участник</a><br><font color=blue><font color=red>Победитель турнира 2010</font></font></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 18:23 &middot; Поправил: OKOB <br><script type="text/javascript">QU('OKOB','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=OKOB" target="_blank">Личное сообщение</a> &middot;  <a href="#4" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#4');return false;">#4</a> </span><div align=left><br>
+Есть только такая шняга из  ReactOS TCP/IP protocol driver<br><br>/* Transport connection context structure A.K.A. Transmission Control Block<br>   (TCB) in TCP terminology. The FileObject-&gt;FsContext2 field holds a pointer<br>   to this structure */<br>typedef struct _CONNECTION_ENDPOINT {<br>  LIST_ENTRY ListEntry;       /* Entry on list */<br>  LIST_ENTRY AddrFileEntry;   /* Entry on address file list */<br>  KSPIN_LOCK Lock;            /* Spin lock to protect this structure */<br>  ULONG RefCount;             /* Number of references to this object */<br>  PVOID ClientContext;        /* Pointer to client context information */<br>  PADDRESS_FILE AddressFile;  /* Associated address file object (NULL if none) */<br><br>  CONNECTION_STATE State;     /* Connection state */<br><br>  <b>PIP_ADDRESS LocalAddress;   /* Pointer to local IP address */<br>  USHORT LocalPort;           /* Local port number */<br><br>  PIP_ADDRESS RemoteAddress;  /* Pointer to remote IP address */<br>  USHORT RemotePort;          /* Remote port number */</b><br><br>  /* Send sequence variables */<br>  ULONG SendUnacknowledged;   /* Highest sequence number that is acknowledged */<br>  ULONG SendNext;             /* Sequence number of last data block sent */<br>  ULONG SendWindow;           /* Maximum allowed number of octets in a segment */<br>  ULONG SendUrgentPointer;    /* Sequence number of start of urgent data */<br>  ULONG SendWL1;              /* Sequence number used for last window update */<br>  ULONG SendWL2;              /* Acknowledgment number used for last window update */<br>  ULONG SendISS;              /* Initial send sequence number */<br><br>  /* Receive sequence variables */<br>  ULONG RecvNext;             /* Sequence number of last data block received */<br>  ULONG RecvWindow;           /* Maximum allowed number of octets in a segment */<br>  ULONG RecvUrgentPointer;    /* Sequence number of start of urgent data */<br>  ULONG RecvIRS;              /* Initial receive sequence number */<br><br>  /* Statistics for computing the retransmission timeout */<br>  ULONG TimestampSend;        /* Timestamp when sending a segment */<br>  ULONG TimestampAck;         /* Timestamp when receiving acknowledgment */<br>} CONNECTION_ENDPOINT, *PCONNECTION_ENDPOINT;
+<br><br><font size="1"><i>-----<br>127.0.0.1, sweet 127.0.0.1</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289310&amp;user=6801&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=4" class="addthx" data-post="289310"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="5" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 21:34 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#5" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#5');return false;">#5</a> </span><div align=left><br>
+Если это TCB, то тогда у меня ни одна из структур - не TCB <img src="img/smilies/s1.gif" alt=""> Спасибо! Пойду посмотрю структуры на ReactOS...<br><br><br>Самое интересное, что в ReadNextTCB ниже &quot;бсодного&quot; кода<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FA3&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">8B</span>&nbsp;<span class="hl_number">86</span>&nbsp;C8&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">esi</span><span class="hl_char">+</span><span class="hl_number">0C8h</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FA9&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">8B</span>&nbsp;<span class="hl_number">40</span>&nbsp;<span class="hl_number">0C</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">eax</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">eax</span><span class="hl_char">+</span><span class="hl_number">0Ch</span><span class="hl_char">]</span><span class="hl_comment">; &lt;- здесь BSOD у многих счастливых обладателей WinXP SP3</span></li><li class="hl_l0">&nbsp;</li><li class="hl_l1">A94C0FAC&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">8B</span>&nbsp;<span class="hl_number">90</span>&nbsp;<span class="hl_number">60</span>&nbsp;<span class="hl_number">01</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">edx</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">eax</span><span class="hl_char">+</span><span class="hl_number">160h</span><span class="hl_char">]</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>делается проверка<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FEF&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">8B</span>&nbsp;<span class="hl_number">8E</span>&nbsp;C8&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">esi</span><span class="hl_char">+</span><span class="hl_number">0C8h</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FF5&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">33</span>&nbsp;<span class="hl_function"><b>DB</b></span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_function"><b>xor</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ebx</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FF7&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">3B</span><span style="word-break: break-all">&nbsp;CB&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">ebx</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FF9&nbsp;<span class="hl_number">014</span>&nbsp;<span class="hl_number">74</span>&nbsp;<span class="hl_number">05</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_function"><b>jz</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_A94C1000</li>        </ol>
+    </div>
+</div></div>
+<br><br>то есть всё же m&#036; допускают, что [esi + 0xC8] может быть равно нулю <img src="img/smilies/s5.gif" alt=""><br>Только совсем непонятна логика дальше<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FFB&nbsp;<span class="hl_number">014</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">,</span>&nbsp;<span class="hl_char">[</span><span class="hl_registr">ecx</span><span class="hl_char">+</span><span class="hl_number">28h</span><span class="hl_char">]</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C0FFE&nbsp;<span class="hl_number">014</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>jmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>short</b></span>&nbsp;loc_A94C1002</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_comment">; ---------------------------------------------------------------------------</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1000</li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1000&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loc_A94C1000<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: .text:A94C0FF9j</span></li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1000&nbsp;<span class="hl_number">014</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>xor</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">ecx</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">ecx</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1002</li><li class="hl_l1"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1002&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;loc_A94C1002<span class="hl_char">:</span><span style="word-break: break-all">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span class="hl_comment">; CODE XREF: .text:A94C0FFEj</span></li><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span>A94C1002&nbsp;<span class="hl_number">014</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>cmp</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_registr">edx</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr"><b>ebx</b></span>&nbsp;</li>        </ol>
+    </div>
+</div></div>
+<br>Допустим в [esi + 0xC8] нуль и каким-то фантастическим образом миновали бсодный участок. Но чему будет при этом равен edx? <img src="img/smilies/s5.gif" alt=""> Я скажу, что он будет равен 0xA8.<br><br>Такое чувство, что вырезана/закомментирована часть кода. Причём m&#036; не смотрела её как минимум года 3. И весело и печально...
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289312&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=5" class="addthx" data-post="289312"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="6" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 22:29 <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#6" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#6');return false;">#6</a> </span><div align=left><br>
+и на sp2 точно такой же код<br>но ниукого ничего не падает(вроде?), может проблему искать в другой плоскости?<br>например установленных дополнительных драйверов левого софта?
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=289313&amp;user=15381&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=6" class="addthx" data-post="289313"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="7" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 08 августа 2011 22:35 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#7" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#7');return false;">#7</a> </span><div align=left><br>
+<I>reversecode пишет:<br>но ниукого ничего не падает(вроде?) </I><br><noindex><a href="http://www.google.ru/#sclient=psy&amp;hl=ru&amp;newwindow=1&amp;source=hp&amp;q=ReadNextTcb&amp;aq=f&amp;aqi=&amp;aql=&amp;oq=&amp;pbx=1&amp;bav=on.2,or.r_gc.r_pw.&amp;fp=485ee083a2b5ab3c&amp;biw=1246&amp;bih=845" rel="nofollow" target="_blank">--&gt; ReadNextTcb &lt;--</a></noindex><br>Хорошее обилие дампов? <img src="img/smilies/s1.gif" alt=""> Не падает, если не мониторить. На WinXP используется TDI для этого, начиная с Висты используется уже другая технология. Хотя есть и те, у кого и без мониторинга падает...<br><br>Вообще, проблема не в этой функции, не в ReadNextTcb. По смещению 0xC8 всё же не должно быть нуля...<br><br><b>UPDATED.</b><br>Читал, что на ReactOS, хоть они ковыряются в винде, но чтобы не вызвать возмущения, немного изменяют то, что на ковыряли. Поэтому, видать, не сходятся структуры. Вообще, то, что привёл <b>OKOB</b> с ReactOS не сходится с тем, что я скачал. Ну ладно, структуры в постах выше обновил тем, что ещё удалось наковырять. И новое:<br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">_TWTCBTable&nbsp;разделы&nbsp;таблиц&nbsp;TCB</li><li class="hl_l1">_TCBTable&nbsp;таблица&nbsp;списков&nbsp;TCB</li><li class="hl_l0">_NumTcbTablePartitions&nbsp;число&nbsp;разделов<span class="hl_char">,</span>&nbsp;по&nbsp;умолчанию&nbsp;<span class="hl_number">4</span></li><li class="hl_l1">_MaxHashTableSize&nbsp;макс&nbsp;число&nbsp;списков&nbsp;TCB<span class="hl_char">,</span>&nbsp;по&nbsp;умолчанию&nbsp;0x200<span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span>&nbsp;почему&nbsp;там&nbsp;слово&nbsp;Hash&nbsp;<span class="hl_char">-</span>&nbsp;непонятно&nbsp;<span class="hl_char">)</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>Эта структура передаётся в ReadNextTCB и ValidateTCBContext<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">struct&nbsp;TCB_GROUP&nbsp;<span class="hl_char">-</span>&nbsp;тот&nbsp;самый&nbsp;контейнер<span class="hl_char">,</span>&nbsp;про&nbsp;который&nbsp;писал</li><li class="hl_l1">{</li><li class="hl_l0">&nbsp;&nbsp;<span class="hl_function"><b>int</b></span>&nbsp;TcbNum<span class="hl_comment">;//номер Tcb из таблицы _TCBTable, TcbNum &lt; _MaxHashTableSize</span></li><li class="hl_l1">&nbsp;&nbsp;<span class="hl_function"><b>int</b></span>&nbsp;TcbSize<span class="hl_comment">;//0xA8, контейнер используется не только для TCB, а также и для AO, размер к-рого может</span></li><li class="hl_l0">&nbsp;быть&nbsp;другим<span class="hl_char">.</span>&nbsp;Что&nbsp;это&nbsp;такое&nbsp;и&nbsp;с&nbsp;чем&nbsp;его&nbsp;едят<span class="hl_char">,</span>&nbsp;пока&nbsp;не&nbsp;знаю&nbsp;<span class="hl_char">-</span>&nbsp;по&nbsp;его&nbsp;вине&nbsp;не&nbsp;было&nbsp;бсодов<span class="hl_char">,</span>&nbsp;но&nbsp;парсится&nbsp;и&nbsp;</li><li class="hl_l1">укладывается&nbsp;в&nbsp;MDL&nbsp;он&nbsp;также&nbsp;как&nbsp;и&nbsp;TCB&nbsp;в&nbsp;TdiQueryInformationEx<span class="hl_char">.</span>&nbsp;Структура&nbsp;в&nbsp;первом&nbsp;посте&nbsp;при&nbsp;этом&nbsp;<span class="hl_char">-</span>&nbsp;</li><li class="hl_l0">некая&nbsp;промежуточная&nbsp;<span class="hl_char">(</span>позже&nbsp;объединю&nbsp;всё&nbsp;вместе<span class="hl_char">)</span></li><li class="hl_l1">&nbsp;&nbsp;TCB<span class="hl_char">*</span>&nbsp;pCurTcb<span class="hl_comment">;//курсор, указывает на текущий Tcb</span></li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li><li class="hl_l1">}<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289315&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=7" class="addthx" data-post="289315"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="8" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 августа 2011 16:11 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#8" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#8');return false;">#8</a> </span><div align=left><br>
+по +С8 хранится Conn (Connection)<br>заполняется _например_ от сюда TdiConnect<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0"><span class="hl_char">.</span>text<span class="hl_char">:</span><span class="hl_number">0001C8DD</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">[</span><span class="hl_registr">esi</span><span class="hl_char">+</span><span class="hl_number">0C8h</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">edi</span></li>        </ol>
+    </div>
+</div></div>
+<br>берется от сюда GetConnFromConnID<br><br>приблизительно так<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">tcb&nbsp;<span class="hl_char">=</span>&nbsp;AllocTCB<span class="hl_char">(</span><span class="hl_char">)</span><span class="hl_comment">;</span></li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li><li class="hl_l0">conn&nbsp;<span class="hl_char">=</span>&nbsp;GetConnFromConnID<span class="hl_char">(</span><span class="hl_char">?</span><span class="hl_char">?</span><span class="hl_char">?</span>&nbsp;итд<span class="hl_char">)</span></li><li class="hl_l1"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li><li class="hl_l0">tcb<span class="hl_char">-</span><span class="hl_char">&gt;</span>conn&nbsp;<span class="hl_char">=</span>&nbsp;conn<span class="hl_comment">;</span></li>        </ol>
+    </div>
+</div></div>
+<br><br>вообще начиная c разбора AllocTCB(), где этот TCB аллоцируется и заполняется , дальше все очень легко разбирается дальше<br>если прыгать в каждую функцию которая вызывает этот AllocTCB
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=289341&amp;user=15381&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=8" class="addthx" data-post="289341"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:inline"> | Сообщение посчитали полезным: <span class="total_thx"><a href="action=userinfo&user=24257" title="09-08-2011 12:47, ранг:105.2" target="_blank">DenCoder</a></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="9" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 августа 2011 17:11 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#9" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#9');return false;">#9</a> </span><div align=left><br>
+Да, верно. Только у меня смещение другое, но не столь важно... Спасибо ;)<br>Значит, раз к моменту вызова ReadNextTCB уже есть IP-адреса и порты, но pTcb-&gt;pConn вдруг 0, то где-то между инициализацией и парсингом происходит обнуление...<br><br>Может в TdiReceive или TdiSend? А может какой-то редкий протокол вмешивается в работу? Попробуем найти в стеке вызовов, но скорей всего вряд ли там можно найти - здесь пахнет, что из другого потока было изменение. Нечто вроде потери соединения в момент запроса информации о TCB...<br><br>tcpip, кстати, несмотря на то, что он так назван обрабатывает ещё много протоколов, не связанных с IP...
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289345&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=9" class="addthx" data-post="289345"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="10" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 августа 2011 17:51 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#10" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#10');return false;">#10</a> </span><div align=left><br>
+http://rghost.ru/17359841 (AllocTCB) есть в обеих вариантах pdb с M&#036;<br>полистай IDA <br>там есть места когда TCB алоцирует и добавляется в очередь(хеш), но не инициализирует C8h(conn)<br><br>вообщем я как и всегда смотрю скептически на анализ такой проблемы без полного разбора tcpip.sys<br>а разбирать его я особой выгоды не для кого не вижу<br>ну получим мы к примеру tcpip.sys в исходниках, ....?<br>найдем проблему, дальше нужно будет подписывать этот драйвер<br>разве что результат продать разрабам ReactOS ;))<br><br>единственная польза, это разве что удовольствие от красоты архитектурной реализации tcpip.sys в майкрософте..
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=289347&amp;user=15381&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=10" class="addthx" data-post="289347"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="11" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 августа 2011 18:06 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#11" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#11');return false;">#11</a> </span><div align=left><br>
+Да нашёл AllocTCB. Сразу же, просто у меня <br><br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">A94943BD&nbsp;<span class="hl_number">038</span>&nbsp;<span class="hl_number">89</span>&nbsp;BE&nbsp;C8&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;<span class="hl_number">00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_function"><b>mov</b></span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="hl_char">[</span><span class="hl_registr">esi</span><span class="hl_char">+</span><span class="hl_number">0C8h</span><span class="hl_char">]</span><span class="hl_char">,</span>&nbsp;<span class="hl_registr">edi</span></li>        </ol>
+    </div>
+</div></div>
+<br>намного ниже от InitTCBFromConn, чем ожидал.<br><br><I>reversecode пишет:<br>а разбирать его я особой выгоды не для кого не вижу </I><br>да, он огромен, и одному его практически не разобрать. Собственно, выгода - узнать причину краха и по возможности устранить. По крайней мере снизить риски порчи информации. Например, реверс с консолями помог снять &quot;висячую&quot; консоль.<br><br>Кроме того, польза в понятии принципов работы сетевого стека <img src="img/smilies/s1.gif" alt="">
+<br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289348&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=11" class="addthx" data-post="289348"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel2>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="12" onfocus="this.blur()" href="JavaScript:di('[b]reversecode[/b]','')">reversecode</a></b><br></div>
+<img src="img/s9.gif" alt=""><br><img style="padding-top:3px;" src="av/15381.gif" alt=""><br><span class=txtSm>Ранг: 1053.6 <b><u>(!!!!)</u></b>, 1078thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 12.43'>Активность: 1.06<span style='color:red'>&searr;</span>0.81</span><br>Статус: <a href="action=userinfo&amp;user=15381">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 августа 2011 18:11 &middot; Поправил: reversecode <br><script type="text/javascript">QU('reversecode','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=reversecode" target="_blank">Личное сообщение</a> &middot;  <a href="#12" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#12');return false;">#12</a> </span><div align=left><br>
+<I>DenCoder пишет:<br>да, он огромен, и одному его практически не разобрать. </I><br>300 кил не много..<br><br>а причину краша может и не найдешь<br>можно ведь только по одному трейсу выйти что там TdiQueryInformation вызывается<br>а самого процесса прокрутки того что творилось с TCB нет<br><br><u>add</u><br>пример вызова чего либо по таймеру, где по таймеру к примеру функция меняет этот TCB<br>стектрейса не будет, ничего в дампе не будет по этому поводу<br>а потому уже где то когда то вызовется какой нибудь send() с userlevel<br>и все упадет в прочтении TCB-&gt;Conn<br><br>и вот такие моменты поиска кто кого где менял и почему, без реверса не обойтись
+<br><br><span class="txtGoods"><a href="action=addthx&amp;post=289349&amp;user=15381&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=12" class="addthx" data-post="289349"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+<tr valign=top class=tbCel1>
+<td width="17%" class=caption1>
+<div class=username><div><b><a name="13" onfocus="this.blur()" href="JavaScript:di('[b]DenCoder[/b]','')">DenCoder</a></b><br></div>
+<img src="img/s7.gif" alt=""><br><img style="padding-top:3px;" src="av/24257.jpg" alt=""><br><span class=txtSm>Ранг: 324.3 (мудрец), 221thx<br><span title='Сообщений в день (с регистрации) / За последний год / Лет с регистрации: 10.42'>Активность: 0.48<span style='color:red'>&searr;</span>0.37</span><br>Статус: <a href="action=userinfo&amp;user=24257">Участник</a></span></div>
+<br>
+</td>
+<td width="83%" class="caption1 post"><span class=txtSm>Создано: 09 августа 2011 18:55 &middot; Поправил: DenCoder <br><script type="text/javascript">QU('DenCoder','Цитата','пишет');</script> &middot; <a href="?step=sendmsg&amp;action=pmail&amp;userto=DenCoder" target="_blank">Личное сообщение</a> &middot;  <a href="#13" onClick="prompt('Ссылка на сообщение', 'https://exelab.ru/f/action=vthread&amp;forum=1&amp;topic=18880.html&amp;page=0#13');return false;">#13</a> </span><div align=left><br>
+1) можно старт всех потоков выяснить, кем были стартованы и для чего... <br>2) в самом tcpip обнаружить создание потоков<br>3) выявить все места по шаблонам<br>mov [reg1 + 0xC8], reg2<br>mov [reg + 0xC8], 0<br>lea reg1, [reg2 + const]<br>mov [reg1 + 0xC8 - const], 0<br><br><I>reversecode пишет:<br>300 кил </I><br>ну я 7 лет назад хернёй страдал - просто копипастил из дизасма в блокнот, в день больше, чем 6 кб не получалось )) а тут ещё и реверсить...<br><br><I>reversecode пишет:<br>можно ведь только по одному трейсу выйти что там TdiQueryInformation вызывается </I><br>ну не только<br><br>вот стандартный трейс от WinDbg<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">a883e7ec&nbsp;a94c0fa9&nbsp;badb0d00&nbsp;<span class="hl_number">00000004</span>&nbsp;<span class="hl_number">00000963</span>&nbsp;nt<span class="hl_char">!</span>KiTrap0E<span class="hl_char">+</span>0x238</li><li class="hl_l1">a883e870&nbsp;a94b1b5e&nbsp;<span class="hl_number">0272fb78</span>&nbsp;a883ea10&nbsp;<span class="hl_number">88a68c58</span>&nbsp;tcpip<span class="hl_char">!</span>ReadNextTCB<span class="hl_char">+</span>0xd2</li><li class="hl_l0"><span class="hl_number">80702830</span>&nbsp;<span class="hl_number">05c7fffe</span>&nbsp;fffe0080&nbsp;<span class="hl_number">00000041</span>&nbsp;<span class="hl_number">0f04eac1</span>&nbsp;tcpip<span class="hl_char">!</span>TdiQueryInformationEx<span class="hl_char">+</span>0x7e5</li>        </ol>
+    </div>
+</div></div>
+<br><br>Но странно, что WinDbg не показывет дальше<br>
+<div class="hl_container">
+<div class="hl_header">Code:</div>
+<div class="hl_scroll_part_normal">
+    <div class="hl_normal"> 
+        <ol class="hl_main"><li class="hl_l0">TCPQueryInformationEx<span class="hl_char">(</span>x<span class="hl_char">,</span>x<span class="hl_char">)</span><span class="hl_char">+</span><span class="hl_number">17D</span></li><li class="hl_l1">TCPDispatchDeviceControl<span class="hl_char">(</span>x<span class="hl_char">,</span>x<span class="hl_char">)</span><span class="hl_char">+</span><span class="hl_number">3B</span></li><li class="hl_l0">TCPDispatch<span class="hl_char">(</span>x<span class="hl_char">,</span>x<span class="hl_char">)</span><span class="hl_char">+</span><span class="hl_number">74</span></li><li class="hl_l1">IopfCallDriver<span class="hl_char">(</span>x<span class="hl_char">,</span>x<span class="hl_char">)</span><span class="hl_char">+</span><span class="hl_number">27</span></li><li class="hl_l0"><span class="hl_char">.</span><span class="hl_char">.</span><span class="hl_char">.</span></li>        </ol>
+    </div>
+</div></div><br><br><font size="1"><i>-----<br>IZ.RU</i></font><br><br><span class="txtGoods"><a href="action=addthx&amp;post=289353&amp;user=24257&amp;forum_n=1&amp;topic=18880.html&amp;page=0&amp;anchor=13" class="addthx" data-post="289353"><img src="img/tu.png" border=0 title="Полезное сообщение"></a><span class="have_thx" style="display:none"> | Сообщение посчитали полезным: <span class="total_thx"></span></span></span><br></div></td>
+</tr>
+
+
+</table>
+<table class=tbTransparent><tr><td class=tbTransparent><span class=txtSm><b></b></span></td></tr></table>
+<table class=forums><tr>
+<td width=16 valign=top class=caption3><img src="./img/forum_icons/green.gif" width=16 height=16 alt=""></td>
+<td width="100%" class=caption3><span class=header>&nbsp;<a href="../index.html"><b>eXeL@B</b></a> <b class=bulletHead>&#8212;&#8250;</b> <a href="action=vtopic&amp;forum=1&sortBy=0&page=0.html"><b>Основной форум</b></a> <b class=bulletHead>&#8212;&#8250;</b> Transmission Control Block(TCB) формат</span></td>
+</tr></table>
+</div>
+<a name=newreply></a>
+<script type="text/javascript">
+function check_form(f)
+{
+  f.elements['b1'].value = 'Отправка...';
+  f.elements['b1'].disabled = true;
+  return true;
+}
+</script>
+
+<div align="center">
+<form name="postMsg" action="#14" method="post" class="formStyle" enctype="multipart/form-data" onsubmit="return check_form(this);" onkeydown="ctrle(event, this)">
+<table class="forums">
+
+<tr>
+<td class="caption2">
+<span class="txtSm"><b>:: Ваш ответ</b></span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+
+<img class="toolButton" src="./img/button_bold.gif" width="23" height="22" border="0" title="Жирный" alt="Жирный" onmouseover="window.status='Жирный'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[b]','[/b]');">&nbsp;
+<img class="toolButton" src="./img/button_italic.gif" width="23" height="22" border="0" title="Курсив" alt="Курсив" onmouseover="window.status='Курсив'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[t]','[/t]');">&nbsp;
+<img class="toolButton" src="./img/button_underlined.gif" width="23" height="22" border="0" title="Подчеркнутый" alt="Подчеркнутый" onmouseover="window.status='Подчеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[u]','[/u]');">&nbsp;
+<img class="toolButton" src="./img/button_strike.gif" width="23" height="22" border="0" title="Перечеркнутый" alt="Перечеркнутый" onmouseover="window.status='Перечеркнутый'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[s]','[/s]');">&nbsp;
+<img class="toolButton" src="./img/button_code.gif" width="23" height="22" border="0" title="Код" alt="{mpf5}" onmouseover="window.status='Код'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[ASM]','[/ASM]');">&nbsp;
+<img class="toolButton" src="./img/button_image.gif" width="23" height="22" border="0" title="Ссылка на картинку" alt="Код" onmouseover="window.status='Ссылка на картинку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[img]','[/img]');">&nbsp;
+<img class="toolButton" src="./img/button_url.gif" width="23" height="22" border="0" title="Вставить ссылку" alt="Вставить ссылку" onmouseover="window.status='Вставить ссылку'; return true" onmouseout="window.status=''; return true" onclick="JavaScript:di('[url=',']--&gt; Link &lt;--[/url]');">&nbsp;
+
+<!-- mod by arnix start 
+<select style="position: relative; top: -7; width: 150px;" id="addHighlightedCode" onchange="insertHl(this);">
+<option value="0">Подсветка кода...</option>
+<option value="asm">Assembler</option>
+<option value="c">C</option>
+<option value="cpp">C++</option>
+<option value="pascal">Pascal</option>
+<option value="delphi">Delphi</option>
+<option value="php">PHP</option>
+<option value="vb">Visual Basic</option>
+</select>&nbsp;
+ mod by arnix end -->
+
+<br>
+<a href="JavaScript:di(':s1:','');"><img src="./img/smilies/s1.gif" border="0" alt=":s1:"></a>
+<a href="JavaScript:di(':s2:','');"><img src="./img/smilies/s2.gif" border="0" alt=":s2:"></a>
+<a href="JavaScript:di(':s3:','');"><img src="./img/smilies/s3.gif" border="0" alt=":s3:"></a>
+<a href="JavaScript:di(':s4:','');"><img src="./img/smilies/s4.gif" border="0" alt=":s4:"></a>
+<a href="JavaScript:di(':s5:','');"><img src="./img/smilies/s5.gif" border="0" alt=":s5:"></a>
+<a href="JavaScript:di(':s6:','');"><img src="./img/smilies/s6.gif" border="0" alt=":s6:"></a>
+<a href="JavaScript:di(':s7:','');"><img src="./img/smilies/s7.gif" border="0" alt=":s7:"></a>
+<a href="JavaScript:di(':s8:','');"><img src="./img/smilies/s8.gif" border="0" alt=":s8:"></a>
+<a href="JavaScript:di(':s9:','');"><img src="./img/smilies/s9.gif" border="0" alt=":s9:"></a>
+<a href="JavaScript:di(':s10:','');"><img src="./img/smilies/s10.gif" border="0" alt=":s10:"></a>
+<a href="JavaScript:di(':s11:','');"><img src="./img/smilies/s11.gif" border="0" alt=":s11:"></a>
+<a href="JavaScript:di(':s12:','');"><img src="./img/smilies/s12.gif" border="0" alt=":s12:"></a>
+<a href="JavaScript:di(':s13:','');"><img src="./img/smilies/s13.gif" border="0" alt=":s13:"></a>
+<a href="JavaScript:di(':s14:','');"><img src="./img/smilies/s14.gif" border="0" alt=":s14:"></a>
+<a href="JavaScript:di(':s15:','');"><img src="./img/smilies/s15.gif" border="0" alt=":s15:"></a>
+<a href="JavaScript:di(':s16:','');"><img src="./img/smilies/s16.gif" border="0" alt=":s16:"></a>
+</td></tr>
+<tr>
+<td class="caption5"><textarea name="postText" rows="10" class="textForm" tabindex="2" style="width:100%"></textarea>
+<BR><INPUT class="textForm" type="file" name="fileAttach"><BR><SMALL>Максимальный размер аттача: <b>500KB</b>.</SMALL>
+<br><span class="txtSm"> </span>
+</td>
+</tr>
+<tr>
+<td class="caption7">
+<table class=tbTransparent>
+<tr valign=middle>
+<td class=tbTransparent><span class=txtSm>Ваш логин: <b><a href="https://exelab.ru/f/action=userinfo&amp;user=55973">german1505</a></b>  &raquo; <a href="mode=logout">Выход</a> &raquo; <a href="?action=pmail"><b>ЛС</b></a></span></td>
+</tr>
+</table>
+
+</td>
+</tr>
+
+
+<tr>
+<td class="caption5"><input type="submit" value="Отправить сообщение" class="inputButton" name="b1" tabindex="5"></td>
+</tr>
+</table>
+<input type="hidden" name="action" value="pthread">
+<input type="hidden" name="forum" value="1">
+<input type="hidden" name="topic" value="18880">
+</form>
+</div>
+<script type="text/javascript" src="templates/vthread_logged.js"></script>
+<div align=center><table class=tbTransparent><tr>
+<td class=tbTransparent><span class=txtSm>      &nbsp;&nbsp;&nbsp;<a href="/f/forprint.php?topic_id=18880" title="Версия для печати"><img src="img/forprint.gif" border="0" alt="Для печати"> Для печати</a>&nbsp;</span></td>
+</tr></table></div>
+<br>
+ 
+<br><br><br></center>
+
+</div>
+<div id="footer">Вы находитесь на EXELAB.rU</div>
+<div id="footer_btns">
+<a href="http://www.reactos.org" rel="nofollow" target="_blank"><img src="./images/react.png" height="31" width="88" border="0" title="" alt=""></a> <script type="text/javascript"><!--
+document.write("<img src='//counter.yadro.ru/hit?t44.2;r"+
+escape(document.referrer)+((typeof(screen)=="undefined")?"":
+";s"+screen.width+"*"+screen.height+"*"+(screen.colorDepth?
+screen.colorDepth:screen.pixelDepth))+";u"+escape(document.URL)+
+";h"+escape(document.title.substring(0,80))+";"+Math.random()+
+"' "+
+"border='0' width='31' height='31'>")
+//--></script>
+</div>
+</div>
+
+</body></html>
